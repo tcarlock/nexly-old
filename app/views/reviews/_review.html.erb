@@ -1,0 +1,9 @@
+<li>
+	<div class="rating-icon">
+		<%= review.rating %>
+	</div>
+	<p>
+		<%= review.details %>
+	</p>
+	<span class="footer">Posted by <%= review.user.display_name %> on <%= review.created_at.to_s(:feed_date)%></span>
+</li>

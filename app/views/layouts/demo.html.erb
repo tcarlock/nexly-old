@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nexly Demo Site</title>
+  
+  <%= stylesheet_link_tag "demo_global", "themes/jx.common", "themes/jx.default" %>
+  <%= yield :styles %>
+  <%= javascript_include_tag "application", "demo_global", "jquery.jixedbar.min" %>
+  <%= yield :scripts %>
+  
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+		</div>
+		<div id="hdr-nav">
+			<ul class="navigation">
+				<li><%= link_to "Home", demo_home_path %></li>
+				<li><%= link_to "About Us", demo_toolbar_path %></li>
+				<li><%= link_to "Services", demo_toolbar_path %></li>
+				<li><%= link_to "Resources", demo_resources_path %></li>
+				<li><%= link_to "Events", demo_events_path %></li>
+				<li><%= link_to "Reviews", demo_reviews_path %></li>
+				<li><%= link_to "Contact Us", demo_contact_path %></li>
+			</ul>
+		</div>
+		<div id="main-content">
+		  	<%= yield %>
+		  	<%= yield :closure %>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div id="footer-outer">
+		<div id="footer-inner" class="clearfix">
+			<ul id="ftr-nav" class="navigation clearfix">
+				<li><span>Acme Engineering</span></li>
+				<li><%= link_to "Twitter", "twitter.com" %></li>
+				<li><%= link_to "Blog", "blog.nexly.com" %></li>
+			</ul>
+		</div>
+	</div>
+	<div id="jixedbar"></div>
+</body>
+</html>

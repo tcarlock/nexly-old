@@ -1,0 +1,11 @@
+<li id="user-item-<%= user.id %>" class="user-item">
+	<div class="avatar-outer">
+		<%= raw display_avatar(user, :thumb)%>
+	</div>
+	<div class="details-outer">
+		<%= raw display_demographics(user, :truncate_bio => true, :long_form => false) %>
+		<div class="stats-outer">
+			<%= render(:partial => 'relationships/stats', :locals => { :user => user }) %>
+		</div>
+	</div>
+</li>

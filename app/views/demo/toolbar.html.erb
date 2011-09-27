@@ -1,0 +1,105 @@
+	<ul style="display:none;">
+		<li title="Home"><a href="http://jixedbar.rawswift.com/"><img src="/assets/demo/toolbar/home.png" alt="" /></a></li>
+	</ul>
+	<span class="jx-separator-left"></span>    
+	<div class="jx-text-container">
+		Latest News: Acme is adding new regions
+	</div>
+	<span class="jx-separator-left"></span>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fjixedbar&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:30px;" allowtransparency="true">
+	</iframe>
+	<ul class="jx-bar-button-right" style="display:none;">
+		<li title="Events">
+			<a href="#">
+				<img src="/assets/demo/toolbar/card.png" alt="Events" />
+			</a>
+			<ul>
+				<% 6.times do |d| %>
+					<li class="menu-item event-item">
+						<a class="item-title">
+							Lorem ipsum event
+						</a>
+						<span class="item-details"><%= d.days.from_now.to_s(:long) %></span>
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+	<span class="jx-separator-right"></span>
+	<ul class="jx-bar-button-right">
+		<li title="Resources">
+			<a href="#">
+				<img src="/assets/demo/toolbar/bookmark.png" alt="Resources" />
+			</a>
+			<ul>
+				<% 5.times do |d| %>
+					<li class="menu-item resource-item">
+						<a class="item-title">
+							Lorem ipsum white paper
+						</a>
+						<p class="item-details">
+							<strong>Description:</strong>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						</p>
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+	<span class="jx-separator-right"></span>
+	<ul class="jx-bar-button-right">
+		<li title="Reviews">
+			<a href="#">
+				<img src="/assets/demo/toolbar/blogs.png" alt="Reviews" />
+			</a>
+			<ul>
+				<%= render @business.reviews %>
+			</ul>
+		</li>
+	</ul>
+	<span class="jx-separator-right"></span>
+	<ul class="jx-bar-button-right">
+		<li title="Chat">
+			<a href="#">
+				<img src="/assets/demo/toolbar/ballon.png" alt="Chat" />
+			</a>
+			<ul>
+				<li class="controls">
+					<textarea rows="3"></textarea>
+					<br />
+					<input type="button" value="Post"></input>
+				</li>
+				<% 5.times do |d| %>
+					<li class="menu-item chat-item">
+						<%= cycle("Tim", "Jill") %>: Lorem ipsum dolor sit amet.
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+	<span class="jx-separator-right"></span>
+	<ul class="jx-bar-button-right">       
+		<li title="Social">
+			<a href="#">
+				<img src="/assets/demo/toolbar/network.png" alt="Social" />
+			</a>
+			<ul>
+				<li class="menu-item">
+					<a href="http://www.facebook.com/jixedbar">
+						<img src="/assets/demo/toolbar/facebook.png" title="Facebook" alt="" />&nbsp;&nbsp;&nbsp;Facebook
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="http://twitter.com/jixedbar">
+						<img src="/assets/demo/toolbar/twitter.png" title="Twitter" alt="" />&nbsp;&nbsp;&nbsp;Twitter
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="http://code.google.com/p/jixedbar/">
+						<img src="/assets/demo/toolbar/google.png" title="Google+" alt="" />&nbsp;&nbsp;&nbsp;Google
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<span class="jx-separator-right"></span>        

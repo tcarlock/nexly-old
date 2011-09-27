@@ -1,0 +1,131 @@
+#profile-details-pane {
+	width:225px;
+	margin-right:7px;
+	padding-right:10px;
+	border-right:1px solid #CBC9C9;
+}
+#avatar-outer img {
+	display:block;
+	margin:0 auto 15px auto;
+}
+#user-bio {
+	padding:7px 0;
+}
+#user-details {
+	padding:0 0 7px 7px;
+	width:550px;
+}
+#user-details h1,
+#user-details h2 {
+	padding-bottom:0px;
+}
+#user-stats-outer .user-stats {
+}
+#user-stats-outer a {
+	font-size:1.1em;
+	font-weight:bold;
+}
+#user-connect-btns {
+	position:absolute;
+	top:0px;
+	right:0px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	padding:7px;
+}
+#user-connect-btns a {
+	padding:5px;
+	margin:0 1px;
+	display:inline-block;
+	background:center 4px no-repeat #4A1A2C;
+	width:25px;
+}
+
+#user-connect-btns a#question-link { background-image:url('/images/tasks/question.png'); background-position:center 3px; }
+#user-connect-btns a#session-link { background-image:url('/images/tasks/clock.png'); }
+#user-connect-btns a#task-link { background-image:url('/images/tasks/add.png'); }
+
+#profile-content-pane,
+#connect-panels,
+#connect-panels .panel {
+	position:relative;
+	width:690px;
+}
+#activity-panel {
+	width:640px;
+	margin:0px auto;
+}
+#connect-panels {
+	display:none;
+}
+#connect-panels .panel {
+	padding:7px;
+	display:none;
+	background-color:#fff;
+	border:3px solid #666;
+	border-radius:7px;
+}
+#connect-panels .close-btn {
+	position:absolute; 
+	top:3px; 
+	right:3px; 
+	background:url(/images/colorbox/controls.png) no-repeat -25px 0; 
+	width:25px; 
+	height:25px; 
+	text-indent:-9999px;
+}
+#connect-panels .close-btn:hover {
+	background-position:-25px -25px;
+}
+ul.profile-block {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+ul.interests {
+	padding:0;
+	margin:0;
+	display:inline-block;
+}
+
+/*User needs*/
+.user-task {
+	border:1px #BEBCBC solid;
+	background-color:#fff;
+	display:inline-block;
+	width:45%;
+	float:left;
+	clear:none;
+	margin:7px;
+	padding:7px;
+	border-radius:7px;
+	position:relative;
+}
+.user-task .avatar-outer {
+	clear:none;
+	margin:7px;
+	display:inline-block;
+	vertical-align:middle;
+	position:relative;
+}
+.user-task .task-title,
+.user-task .task-subtitle {
+	display:inline-block;
+	vertical-align:middle;
+}
+.user-task .task-subtitle {
+	display:block;
+	font-size:.9em;
+}
+.user-task .details-outer {
+	padding:3px 0;
+}
+.user-task .checkout-link {
+	background-image:url('/images/tasks/remove-small.png');
+}
+.user-task .checkin-link {
+	background-image:url('/images/tasks/check-small.png');
+}
+.user-task .hide-task-link {
+	background-image:url('/images/tasks/cross-small.png');
+}

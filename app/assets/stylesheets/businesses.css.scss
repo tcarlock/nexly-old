@@ -1,0 +1,74 @@
+#biz-details-pane {
+	width:225px;
+	margin-right:7px;
+	padding-right:10px;
+	border-right:1px solid #CBC9C9;
+}
+#biz-details-pane .panel {
+	margin-bottom:15px;
+}
+#avatar-outer img {
+	display:block;
+	margin:0 auto 15px auto;
+}
+#biz-bio {
+	padding:7px 0;
+}
+#biz-location .map-img {
+	width:200px;
+	padding-top:15px;
+	display:block;
+	margin:0 auto;
+}
+#biz-details {
+	padding-bottom:7px;
+	width:550px;
+}
+#biz-details h1,
+#biz-details h2 {
+	color:#4A4A4A;
+	padding-bottom:0px;
+}
+#biz-stats-outer .biz-stats {
+}
+#biz-stats-outer a {
+	font-size:1.1em;
+	font-weight:bold;
+}
+#biz-connect-btns {
+	position:absolute;
+	top:0px;
+	right:0px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	padding:7px;
+}
+
+#biz-connect-btns a#edit-profile-link { background-image:url('/assets/tasks/edit.png'); }
+#biz-connect-btns a#review-link { background-image:url('/assets/tasks/edit.png'); }
+#biz-connect-btns a#content-link { background-image:url('/assets/tasks/document.png'); }
+#biz-connect-btns a#apps-link { background-image:url('/assets/tasks/gear.png'); }
+
+#biz-content-pane,
+#biz-content-pane .panel {
+	position:relative;
+	width:690px;
+	margin-bottom:15px;
+}
+#biz-content-pane .panel h2 {
+	width:100%;
+	padding:7px 0;
+	margin-bottom:7px;
+	border-bottom:1px solid #C8C8C9;
+}
+
+#biz-reviews li {
+	padding:7px;
+}
+#biz-reviews li p {
+
+}
+#biz-reviews li .footer {
+	font-size:.9em;
+	color:#A2A2A3;
+}

@@ -1,0 +1,186 @@
+/**
+ * Default theme for jixedbar
+ * written by Ryan Yonzon, http://ryan.rawswift.com/
+ * Last update: August 13, 2010
+ */
+				
+/*----- bar style -----*/
+.jx-bar {
+	background-color:#e5e5e5;
+	border:#b5b5b5 solid 1px;
+}
+
+/* rounded top-left corner */
+.jx-bar-rounded-tl {
+}
+
+/* rounded bottom-left corner */
+.jx-bar-rounded-bl {
+}
+
+/* rounded top-right corner */
+.jx-bar-rounded-tr {
+}
+
+/* rounded bottom-right corner */
+.jx-bar-rounded-br {
+}
+
+/*----- bar separator -----*/
+.jx-bar span {
+}
+
+.jx-separator-left {
+}
+
+.jx-separator-right {
+}
+
+/*----- bar button -----*/
+.jx-bar-button ul {
+}
+
+.jx-bar-button li {
+}
+
+.jx-bar-button-right li {
+}
+
+.jx-bar-button li {
+	border:#e5e5e5 solid 1px;	
+}
+	
+/*button hover effect	*/
+.jx-bar-button li:hover {
+	background-color:#eee;
+	border:#ccc solid 1px;
+}
+
+/* rounded button corners */
+.jx-bar-button-rounded li:hover {
+}
+
+/* default button's anchor text style */
+.jx-bar-button li a:link, .jx-bar-button li a:visited {
+}
+
+.jx-bar-button li a:hover {
+}
+
+/*----- bar text container and button arrow indicator -----*/
+.jx-bar div, .jx-bar iframe {
+}
+
+.jx-bar div {
+}
+
+.jx-bar div.jx-text-container {
+}
+
+.jx-bar iframe {
+}
+
+.jx-bar div a:link, .jx-bar div a:visited {
+}
+
+.jx-bar div a:hover {
+	color:#0099FF;
+}
+
+/*----- button tooltip -----*/
+.jx-bar-button-tooltip {
+	color:#fff;
+	background-color:#36393D;
+}
+
+/* rounded tooltip */
+.jx-bar-button-tooltip {
+}
+
+/*----- nav menu -----*/
+.jx-nav-menu {
+	background-color:#eee;
+	border:#ccc solid 1px;
+}
+
+.jx-nav-menu-rounded {
+}
+
+.jx-nav-menu ul {
+}
+
+.standard-list {
+	padding:10px;
+}
+.standard-list li:hover,
+.jx-nav-menu ul li.menu-item:hover {
+	background-color:#87151B;
+}
+
+.jx-nav-menu ul li.menu-item:hover * {
+	color:#fff;
+}
+	
+/* styles for menu items */
+.jx-nav-menu ul li {
+	color:#777;
+	border:1px solid #eee; /* IE6 Bug */
+}
+
+.jx-nav-menu ul li.header {
+}
+
+.jx-nav-menu ul li .item-title {
+}
+
+.jx-nav-menu ul li .chat-item,
+.jx-nav-menu ul li .item-details {
+}
+
+/* active menu button */
+.jx-nav-menu-active {
+	background-color:#ccc;
+}
+
+/* active menu button (rounded) */
+.jx-nav-menu-active-rounded {
+}
+
+/* menu indicator UP state */
+.jx-arrow-up {
+}
+
+/* menu indicator DOWN state */
+.jx-arrow-down {
+}
+
+/* tooltip point direction */
+.jx-tool-point-dir-down {
+}
+
+.jx-tool-point-dir-up {
+}
+
+/* hide and show/unhide item */
+.jx-hide {
+}
+
+/* if showOnTop is TRUE, use "show.gif" instead of "hide.gif" */
+.jx-hide-top {
+}
+
+.jx-show {
+	background-color:#e5e5e5;
+	border:#b5b5b5 solid 1px;
+}
+
+.jx-show-button {
+}
+
+/* if showOnTop is TRUE, use "hide.gif" instead of "show.gif" */
+.jx-show-button-top {
+}
+
+.jx-hide-separator {
+	background-color:#ccc;
+}

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  response: MyString
+  review_id: 1
+  review: 
+
+two:
+  response: MyString
+  review_id: 1
+  review: 

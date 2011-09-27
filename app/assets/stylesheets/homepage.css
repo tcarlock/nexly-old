@@ -1,0 +1,245 @@
+/*Site homepage*/
+#main-content {
+	width:960px;
+	border-radius:10px;
+	padding:0px !important;
+	background-color:#fff !important;
+	-moz-box-shadow:0 0 0;
+	-webkit-box-shadow:0 0 0;
+	box-shadow:0 0 0;
+	border:0;
+}
+.homepage-pane {
+	margin-bottom:20px;
+	position:relative;
+}
+.homepage-pane h1 {
+	color:#0A2E58;	
+}
+#storyboard-pane {
+	border-radius:10px;
+	position:relative;	
+	background-color:#DEDEDE;
+}
+#storyboard-banner {
+	position:absolute;
+	z-index:2;
+	top:115px;
+	right:85px;
+	background-color:#fff;
+	-moz-box-shadow:0 4px 4px #666;
+	-webkit-box-shadow:0 4px 4px #666;
+	box-shadow:0 4px 4px #666;
+	border-radius:10px;
+}
+#storyboard-banner h1 {
+	z-index:3;
+	display:inline-block;
+	padding:10px 13px;
+	font-size:1.7em;
+}
+#pre {
+	background-color:#fff;
+	color:#1f3e4e;
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+}
+#post {
+	background-color:#fff;
+	color:#fff;
+	border-top-right-radius:10px;
+	border-bottom-right-radius:10px;
+}
+#viewport,
+#viewport div {
+	z-index:1;
+	min-height:250px;
+	padding-bottom:45px;
+}
+#viewport .panel,
+#viewport .text,
+#viewport .content {
+	height:300px;
+}
+#viewport .panel {
+	display:none;
+	width:960px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+#viewport .text {
+	font-size:1.4em;
+	line-height:1.4em;
+	width:300px;
+	border-radius:10px;
+	padding:10px;
+	margin:10px;
+	height:auto;
+	opacity:.7;
+	float:left;
+	opacity:0;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+#viewport .text h2 {
+
+}
+#viewport .content {
+	width:640px;
+	border-top-right-radius:10px;
+	background:0 0 no-repeat transparent;
+	float:left;
+	clear:none;
+	opacity:0;
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+#panel-find .content {
+	background-image:url('/assets/comm-placeholder.png');
+}
+#panel-connect .content {
+	background-image:url('/assets/comm-placeholder.png');	
+}
+#panel-learn .content {
+	background-image:url('/assets/comm-placeholder.png');
+}
+#timeline-nav-outer {
+	width:960px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+#timeline-nav {
+	padding-left:15px;
+	opacity:0;
+}
+#timeline-nav a {
+	font-size:1.3em;
+	color: #0A2E58;
+	padding:3px 7px 3px 30px;
+	margin:7px;
+	text-decoration:none;
+	display:inline-block;
+}
+#timeline-nav a { 
+	background: url('/assets/arrow.png') center left no-repeat transparent;
+}
+
+#timeline-nav a.tab-0 {}
+#timeline-nav a.tab-1 {}
+#timeline-nav a.tab-2 {}
+
+#timeline-nav a.activeSlide { 
+	border-bottom:3px solid #abdb73; 
+}
+#timeline-nav a:focus { }
+		
+#signup-pane {
+	margin-top:0px;
+	padding:0 20px;
+}
+
+/*
+0A2E58 >> Dark blue
+92C1E9 >> Light blue
+3595D4 >> Mid blue
+abdb73 >> Green
+2D2D2D 
+ebebeb
+*/
+
+#signup-pane-inner {
+	height:550px;
+	border-top:1px solid #a2a2a3;
+	display:none;
+	padding-top:20px;
+}
+#sign-up-tab {
+	display:none;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	height:45px;
+	line-height:45px;
+	font-size:1.3em;
+	font-weight:bold;
+	text-transform:lowercase;
+	color:#fff;
+	padding:0 15px;
+	cursor:pointer;
+	background-color:#3595D4;
+	border-top-left-radius:10px;
+	border-top-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+#sign-up-tab.expanded {
+	bottom:-35px;
+}
+#signup-text {
+	width:300px;
+	float:left;
+	padding-left:15px;
+}
+#signup-text p {
+	font-size:1.2em;
+}
+#svc-req-form-outer {
+	float:left;
+	padding-left:20px;
+	width:570px;
+}
+#svc-req-form-outer label {
+	color:#0A2E58; 
+}
+#expert-pane {
+	padding-top:7px;
+	float:left;
+}
+#expert-text {
+	width:450px;
+	padding:15px 15px 0 7px;
+	display:inline-block;
+	float:left;
+}
+#expert-rotator {
+	width:450px;
+	padding:15px 0 25px 15px;
+	border-left:1px #a1a1a3 solid;
+	display:inline-block;
+	float:left;
+}
+#expert-pane h1 {
+	color:#1f3e4e;
+	color:#0A2E58;
+}
+#expert-rotator ul {
+	list-style-type:none;
+	padding:0;
+	margin:0;
+	width:100%;
+}
+#expert-rotator ul li {
+	display:block;
+	list-style-type:none;
+	min-height:50px;
+	padding:7px;
+	border-bottom:1px dotted #a1a1e3;
+}
+#expert-rotator li div.avatar, 
+#expert-rotator li div.expert-details-outer {
+	display:inline-block;
+	vertical-align:top;
+}
+#expert-rotator li div.avatar {
+	width:55px;
+}
+#expert-rotator li img {
+	display:block;
+	width:50px;
+	margin:0 auto;
+}
+#expert-rotator li h3 {
+	clear:right;
+}

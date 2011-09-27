@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nexly - Where businesses connect</title>
+  
+  <%= stylesheet_link_tag "application", "app_global", "app_layout" %>
+  <%= yield :styles %>
+  <%= javascript_include_tag "application", "app_global" %>
+  <%= yield :scripts %>
+  
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="backdrop"></div>
+	<div id="container">
+		<div id="flash-outer">
+			<% flash.each do |key, msg| %>
+			    <%= content_tag :div, msg, :class => ["flash ", key], :id => "flash_#{key}" %>
+			    <%= content_tag :script, :type => "text/javascript" do -%>
+			        $('#flash_<%= key %>').delay(5000).slideUp(200);
+			    <% end %>
+			<% end %>
+		</div>
+		<div id="header">
+			<a id="logo" href="/">
+				<%= image_tag "home.png", :id => "home-icon" %>
+			</a>
+			<div id="hdr-controls">
+				<div id="hdr-nav-outer">
+					<% if user_signed_in? %>
+						<ul id="hdr-nav" class="navigation app-nav">
+							<% if current_user.businesses.count > 0 %>
+								<li><%= link_to "Business Page", business_path(current_user.businesses.first) %></li>
+							<% else %>
+								<li><%= link_to "Add Business Page", new_business_path %></li>
+							<% end %>
+							<li><%= link_to "Profile", user_profile_index_path %></li>
+							<li id="account-nav"><%= link_to "Account", "#" %>
+								<ul id="account-links">
+									<li><%= link_to "Manage Profile", edit_user_profile_path(current_user.profile)%></li>
+									<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+								</ul>
+							</li>
+						</ul>
+					<% else %>
+						<ul id="hdr-nav" class="navigation site-nav">
+							<li><%= link_to "FAQs", new_user_registration_path, :id => "tour-link"  %></li>
+							<li><%= link_to "Register", new_user_registration_path  %></li>
+							<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
+						</ul>
+					<% end %>
+					<div class="clearfix"></div>
+				</div>
+				<div id="search-outer">
+					<%= form_tag :search, :method => "get" do %>
+						<%= text_field_tag :q %>
+						<%= submit_tag "", :id => "search-btn" %>
+					<% end %>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div id="main-content">
+		  	<%= yield %>
+		  	<%= yield :closure %>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div id="footer-outer">
+		<div id="footer-inner" class="clearfix">
+			<ul id="ftr-nav" class="navigation clearfix">
+				<li><span>Nexly LLC</span></li>
+				<li><%= link_to "About Us", "about" %></li>
+				<li><%= link_to "Twitter", "twitter.com/nexlyllc" %></li>
+				<li><%= link_to "Blog", "blog.nexly.com" %></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
