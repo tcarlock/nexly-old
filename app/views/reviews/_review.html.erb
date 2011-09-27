@@ -1,4 +1,7 @@
 <li>
+	<div id="review-btns-#{review.id}" class="btns-tab btns-tab-small review-btns">
+		<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
+	</div>
 	<div class="rating-icon">
 		<%= review.rating %>
 	</div>

@@ -27,7 +27,15 @@ Nexly::Application.routes.draw do
     end
 
     get :search, :on => :collection
-    resources :reviews, :except => [:update, :edit], :controller => :reviews
+    
+    resources :reviews, :except => [:update, :edit], :controller => :reviews do
+      member do
+        post :dispute, :highlight, :feature
+      end
+      
+      resources :review_responses, :only => [:new, :create], :controller => :review_responses, :as => :responses
+    end
+    
     resources :resources, :controller => :resources
   end
 

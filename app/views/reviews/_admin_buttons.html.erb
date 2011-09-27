@@ -1,0 +1,10 @@
+<% if(@business.is_user_admin?(current_user)) %>
+	<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link" %>
+	<%= form_tag dispute_business_review_path(review), :remote => true, :id => 'highlight-review-form-' + review.id.to_s do |f| %>
+		<a review-id="<%= review.id.to_s %>" class="control-link dispute-review-link"></a>
+	<% end %>
+	<%= form_tag highlight_business_review_path(review), :remote => true, :id => 'highlight-review-form-' + review.id.to_s do |f| %>
+		<a review-id="<%= review.id.to_s %>" class="control-link highlight-review-link"></a>
+	<% end %>
+<% else %>
+<% end %>

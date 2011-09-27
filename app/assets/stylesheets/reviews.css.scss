@@ -1,3 +1,19 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#biz-reviews li {
+	padding:7px;
+	position:relative;
+}
+#biz-reviews li p {
+
+}
+#biz-reviews li .footer {
+	font-size:.9em;
+	color:#A2A2A3;
+}
+
+.review-response-link { background-image:url('/assets/tasks/reply.png'); }
+.dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
+.highlight-review-link { background-image:url('/assets/tasks/star-small.png'); }

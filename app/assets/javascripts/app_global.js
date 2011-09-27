@@ -60,4 +60,9 @@ $(function(){
 		$('#account-links').slideUp(250);
 		$(this).removeClass('active');
 	});
+	
+	$('a.control-link').click(function() {
+		$(this).closest('form').ajaxSubmit();
+	    return false; 
+	});
 });

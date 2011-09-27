@@ -154,8 +154,10 @@ ul.navigation li.active a {
 }
 .standard-list li {
 	display:block;
+	position:relative;
 	clear:left;
 	margin-bottom:5px;
+	padding:5px 0;
 	border-bottom:1px dotted #a1a1a3;
 }
 
@@ -164,17 +166,51 @@ ul.navigation li.active a {
 .action-btn-outer a,
 .action-btn-outer input[type='button'],
 .action-btn-outer input[type='submit'] {
+	display:block;
 	height:25px;
+	line-height:25px;
+	width:125px;
 	margin:0 auto 7px auto;
+	padding:3px 7px;
 	text-align:center;
+	background-color:#3D7A9A;
 	color:#fff;
 	border:0px;
 	cursor:pointer;
 	font-size:1em;
 	border-radius:3px;
-	padding:5px;
-	margin:0 1px;
+}
+.btns-tab {
+	position:absolute;
+	padding:0 5px;
+	background-color:#a1a1a3;
+	top:-16px;
+	right:-11px;
+	border-top-right-radius:7px;
+	border-bottom-left-radius:7px;
+}
+.btns-tab-small {
+	top:0;
+	right:0;
+	border-radius:0;
+	border-bottom-right-radius:7px;
+	border-bottom-left-radius:7px;
+}
+.btns-tab * {
+	float:left;
 	display:inline-block;
-	background:center 4px no-repeat #0A2E58;
-	width:25px;
+}
+.btns-tab a {
+	padding:3px;
+	background-position:center 7px;
+	background-repeat:no-repeat;
+	display:block;
+	width:37px;
+	height:37px;
+}
+.btns-tab-small a {
+	padding:1px;
+	background-position:center 3px;
+	width:27px;
+	height:27px;
 }

@@ -1,4 +1,4 @@
-<% content_for :styles do stylesheet_link_tag "businesses.css" end %>
+<% content_for :styles do stylesheet_link_tag "businesses", "reviews" end %>
 
 <div id="biz-details-pane" class="left-col">
 	<div id="avatar-outer">
@@ -25,7 +25,7 @@
 	<div id="biz-details">
 		<h1><%= @business.business_name %></h1>
 		<h2><%= @business.location %></h2>
-		<div id="biz-connect-btns" class="action-btn-outer">
+		<div class="btns-tab small-tab">
 			<% if(@business.is_user_admin?(current_user)) %>
 				<%= link_to "", "#", :id => "edit-profile-link", :href => edit_business_path(@business) %>
 				<%= link_to "", "#", :id => "content-link" %>
@@ -46,7 +46,11 @@
 		<% end %>
 	</div>
 	<div id="content-panel" class="panel">
-		<h2>Content Library</h2>
-		Content
+		<h2>Resource Library</h2>
+		Articles, white papers, links
+	</div>
+	<div id="content-panel" class="panel">
+		<h2>News</h2>
+		News updates
 	</div>
 </div>
