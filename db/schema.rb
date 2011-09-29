@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926211433) do
+ActiveRecord::Schema.define(:version => 20110927071040) do
 
   create_table "business_users", :force => true do |t|
     t.integer  "user_id"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20110926211433) do
   end
 
   create_table "businesses", :force => true do |t|
-    t.integer  "business_id"
     t.string   "business_name"
     t.string   "facebook"
     t.string   "twitter"
@@ -44,17 +43,48 @@ ActiveRecord::Schema.define(:version => 20110926211433) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "reviews", :force => true do |t|
+  create_table "resource_types", :force => true do |t|
     t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "link"
+    t.integer  "resource_type_id"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  create_table "review_responses", :force => true do |t|
+    t.text     "response"
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "review_responses", ["review_id"], :name => "index_review_responses_on_review_id"
+
+  create_table "reviews", :force => true do |t|
     t.text     "details"
     t.integer  "rating"
+    t.boolean  "is_under_review", :default => false
+    t.boolean  "is_hidden",       :default => false
+    t.boolean  "is_featured",     :default => false
     t.integer  "user_id"
     t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "reviews", ["business_id"], :name => "index_reviews_on_business_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

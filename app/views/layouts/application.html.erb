@@ -16,9 +16,6 @@
 		<div id="flash-outer">
 			<% flash.each do |key, msg| %>
 			    <%= content_tag :div, msg, :class => ["flash ", key], :id => "flash_#{key}" %>
-			    <%= content_tag :script, :type => "text/javascript" do -%>
-			        $('#flash_<%= key %>').delay(5000).slideUp(200);
-			    <% end %>
 			<% end %>
 		</div>
 		<div id="header">

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: MyString
+  message: 
+  token: MyString
+  is_reviewed: false
+  business_id: 1
+  user_id: 1
+
+two:
+  email: MyString
+  message: 
+  token: MyString
+  is_reviewed: false
+  business_id: 1
+  user_id: 1

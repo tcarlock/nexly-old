@@ -1,2 +1,13 @@
-<h1>ReviewResponses#new</h1>
-<p>Find me in app/views/review_responses/new.html.erb</p>
+<% content_for :styles do stylesheet_link_tag "review_responses" end %>
+
+<h1>Post a Review Response</h1>
+<h4>Original review posted by <%= @review.user.display_name %>:</h4>
+<p class="original-text">
+	<%= @review.details %>
+</p>
+<%= semantic_form_for(@response, :url => business_reviews_path) do |f| %>
+	<%= f.inputs do %>
+	  <%= f.input :response , :label => 'Response:', :input_html => { :rows => 6 } %>
+	<% end %>
+	<%= f.buttons %>
+<% end %>

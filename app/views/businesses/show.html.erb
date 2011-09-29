@@ -5,16 +5,16 @@
 		<%= raw display_logo(@business, :large)%>
 	</div>
 	<div id="biz-bio" class="panel">
-		<h2>
+		<h3>
 			About <%= @business.business_name %>
-		</h2>
+		</h3>
 		<%= @business.biography %>
 		<div class="clearfix"></div>
 	</div>
 	<div id="biz-location" class="panel">
-		<h2>
+		<h3>
 			Location
-		</h2>
+		</h3>
 		<%= raw display_address(@business) %>
 		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=200x200&sensor=false&zoom=16&markers=#{@business.latitude}%2C#{@business.longitude}", :class => 'map-img' %>
 		<div class="clearfix"></div>
@@ -24,33 +24,35 @@
 <div id="biz-content-pane" class="right-col">
 	<div id="biz-details">
 		<h1><%= @business.business_name %></h1>
-		<h2><%= @business.location %></h2>
+		<h3><%= @business.location %></h3>
 		<div class="btns-tab small-tab">
 			<% if(@business.is_user_admin?(current_user)) %>
-				<%= link_to "", "#", :id => "edit-profile-link", :href => edit_business_path(@business) %>
+				<%= link_to "", "#", :id => "edit-profile-link", :href => edit_business_path(@business), :title => "Edit this business profile" %>
+				<%= link_to "", "#", :id => "send-reqs-link", :href => new_business_review_request_path(@business), :title => "Send invitation requests" %>
 				<%= link_to "", "#", :id => "content-link" %>
-				<%= link_to "", "#", :id => "apps-link", :href => new_business_review_path(@business) %>
+				<%= link_to "", "#", :id => "apps-link", :href => settings_business_path(@business) %>
 			<% else %>
 				<%= link_to "", "#", :id => "review-link", :href => new_business_review_path(@business) %>
 			<% end %>
 		</div>
 	</div>
 	<div id="reviews-panel" class="panel">
-		<h2>Reviews</h2>
+		<h3>Reviews (<%= @business.reviews.count %> Reviews)</h3>
 		<% if @business.reviews.count == 0 %>
 			<span class="no-records">There are no reviews at this time</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
-				<%= render @business.reviews %>
+				<%= render @reviews %>
 			</ul>
+			<%= will_paginate(@reviews, :previous_label => '<<', :next_label => '>>' )%>
 		<% end %>
 	</div>
-	<div id="content-panel" class="panel">
-		<h2>Resource Library</h2>
+	<div id="content-panel" class="panel" style="display:none;">
+		<h3>Resource Library</h3>
 		Articles, white papers, links
 	</div>
-	<div id="content-panel" class="panel">
-		<h2>News</h2>
+	<div id="content-panel" class="panel" style="display:none;">
+		<h3>News</h3>
 		News updates
 	</div>
 </div>

@@ -1,12 +1,20 @@
-<li>
-	<div id="review-btns-#{review.id}" class="btns-tab btns-tab-small review-btns">
+<li id='biz-review-<%= review.id %>'>
+	<div class="btns-tab btns-tab-small review-btns">
 		<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
 	</div>
-	<div class="rating-icon">
-		<%= review.rating %>
-	</div>
+	<span class="disputed <%= !review.is_under_review ? 'hidden' : '' %>">
+		This review has been disputed
+	</span>
 	<p>
 		<%= review.details %>
 	</p>
-	<span class="footer">Posted by <%= review.user.display_name %> on <%= review.created_at.to_s(:feed_date)%></span>
+	<div class="rating-icon">
+		<%= review.rating %> out of 5
+	</div>
+	<div class="footer">
+		Posted by <%= review.user.display_name %> on <%= review.created_at.to_s(:feed_date)%>
+		<span class="featured <%= !review.is_featured ? 'hidden' : '' %>">
+			(This review is highlighted on your website)
+		</span>
+	</div>
 </li>

@@ -7,10 +7,9 @@ class CreateReviews < ActiveRecord::Migration
       t.boolean :is_hidden, :default => false
       t.boolean :is_featured, :default => false
       t.integer :user_id
-      t.references :business
+      t.integer :business_id
 
       t.timestamps
     end
-    add_index :reviews, :business_id
   end
 end

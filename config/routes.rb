@@ -1,10 +1,4 @@
 Nexly::Application.routes.draw do  
-  get "review_responses/new"
-
-  get "review_responses/create"
-
-  get "review_responses/destroy"
-
   devise_for :users
 
   resources :users, :only => [] do
@@ -23,19 +17,20 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     member do
-      get :edit_capabilities, :reviews
+      get :edit_capabilities, :settings
     end
 
     get :search, :on => :collection
     
     resources :reviews, :except => [:update, :edit], :controller => :reviews do
       member do
-        post :dispute, :highlight, :feature
+        post :dispute, :feature
       end
       
       resources :review_responses, :only => [:new, :create], :controller => :review_responses, :as => :responses
     end
     
+    resources :review_requests, :only => [:new, :create, :destroy], :controller => :review_requests
     resources :resources, :controller => :resources
   end
 

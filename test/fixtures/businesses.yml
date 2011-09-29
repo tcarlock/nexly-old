@@ -4,7 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+nexly:
+    business_name: Nexly
+    facebook: nexlyllc
+    twitter: nexlyllc
+    linked_in: nexlyllc
+    google_plus: nexlyllc
+    biography: We provide technology and services to help small businesses find and select service providers
+    address_1: 1408 Rhode Island St.
+    city: San Francisco
+    state: San Francisco
+
 # column: value
 #
 two: {}
@@ -15,7 +25,6 @@ two: {}
 # Table name: businesses
 #
 #  id                  :integer(4)      not null, primary key
-#  business_id         :integer(4)
 #  business_name       :string(255)
 #  facebook            :string(255)
 #  twitter             :string(255)

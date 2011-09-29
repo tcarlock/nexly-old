@@ -1,5 +1,8 @@
 class MainController < ApplicationController
   def welcome
+    if !current_user.nil?
+      redirect_to current_user.businesses.first
+    end
   end
   
   def create_service_request
@@ -20,13 +23,5 @@ class MainController < ApplicationController
   end
   
   def contact
-  end
-  
-  def home
-    if user_signed_in?
-      if current_user.profile.created_at == current_user.profile.updated_at
-        redirect_to edit_user_profile_path(current_user.profile)
-      end
-    end
   end
 end

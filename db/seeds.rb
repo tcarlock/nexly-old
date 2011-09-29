@@ -6,30 +6,11 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-#Create businesses
-Business.create!(
-                :business_name => 'Acme Consulting', 
-                :facebook => 'AcmeConsulting', 
-                :twitter => 'AcmeConsulting', 
-                :google_plus => 'AcmeConsulting',
-                :linked_in => 'AcmeConsulting',
-                :biography => 'We provide IT consulting services',
-                :address_1 => '1408 Rhode Island',
-                :address_2 => nil,
-                :city => 'San Francisco',
-                :state => 'CA',
-                :zip_code => 'CA',
-                :updated_at => '2011-08-01 20:18:35',
-                :created_at => '2011-08-01 20:18:33',
-                :avatar_file_name => "IMG_4634-1.jpg", 
-                :avatar_content_type => "image/jpeg", 
-                :avatar_file_size => 3196303, 
-                :avatar_updated_at => "2011-08-02 20:46:45")
-
+                                
 #Create users
 user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
 
-profile = Profile.find_by_user_id(user.id)
+profile = UserProfile.find_by_user_id(user.id)
 profile.update_attributes(
                 :first_name => 'Tim', 
                 :last_name => 'Carlock', 
@@ -52,7 +33,7 @@ profile.save
 #Create standard users                
 user = User.create!(:email => 'jcarlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => false)
 
-profile = Profile.find_by_user_id(user.id)
+profile = UserProfile.find_by_user_id(user.id)
 profile.update_attributes(
                 :first_name => 'Jon', 
                 :last_name => 'Carlock', 
@@ -70,7 +51,7 @@ profile.save
                 
 user = User.create!(:email => 'bcol@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => false)
 
-profile = Profile.find_by_user_id(user.id)
+profile = UserProfile.find_by_user_id(user.id)
 profile.update_attributes(
                 :first_name => 'Bill', 
                 :last_name => 'Collins', 
@@ -88,7 +69,7 @@ profile.save
 
 user = User.create!(:email => 'jlester@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => false)
 
-profile = Profile.find_by_user_id(user.id)
+profile = UserProfile.find_by_user_id(user.id)
 profile.update_attributes(
                 :first_name => 'Jay', 
                 :last_name => 'Lester', 
@@ -106,7 +87,7 @@ profile.save
 
 user = User.create!(:email => 'sally.harding@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => false)
 
-profile = Profile.find_by_user_id(user.id)
+profile = UserProfile.find_by_user_id(user.id)
 profile.update_attributes(
                 :first_name => 'Sally', 
                 :last_name => 'Harding', 
@@ -121,3 +102,46 @@ profile.update_attributes(
                 :created_at => '2011-08-01 20:18:33',
                 :screen_name => "sharding")
 profile.save
+
+#Create businesses
+User.find(1).businesses.create!(
+                :business_name => 'Nexly', 
+                :facebook => 'nexlyllc', 
+                :twitter => 'nexlyllc', 
+                :google_plus => 'nexlyllc',
+                :linked_in => 'nexlyllc',
+                :biography => 'We provide technology and services to help small businesses find and select service providers',
+                :address_1 => '1408 Rhode Island St',
+                :address_2 => nil,
+                :city => 'San Francisco',
+                :state => 'CA',
+                :zip_code => '94107',
+                :updated_at => '2011-08-01 20:18:35',
+                :created_at => '2011-08-01 20:18:33',
+                :avatar_file_name => "logo.png", 
+                :avatar_content_type => "image/png", 
+                :avatar_file_size => 3196303, 
+                :avatar_updated_at => "2011-08-02 20:46:45")
+                
+User.find(2).businesses.create!(
+                :business_name => 'Acme Consulting', 
+                :facebook => 'AcmeConsulting', 
+                :twitter => 'AcmeConsulting', 
+                :google_plus => 'AcmeConsulting',
+                :linked_in => 'AcmeConsulting',
+                :biography => 'We provide IT consulting services',
+                :address_1 => '101 South Hanley Rd',
+                :address_2 => nil,
+                :city => 'St Louis',
+                :state => 'MO',
+                :zip_code => '60105',
+                :updated_at => '2011-08-01 20:18:35',
+                :created_at => '2011-08-01 20:18:33')
+                
+#Create reviews
+25.times do |n|
+  Business.find(1).reviews.create!(
+                :details => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nulla et nisi tincidunt posuere pellentesque urna mollis.',
+                :rating => rand(5),
+                :user_id => 1 + rand(4))
+end

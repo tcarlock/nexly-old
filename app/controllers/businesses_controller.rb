@@ -40,7 +40,11 @@ class BusinessesController < ApplicationController
 
     redirect_to(@business, :notice => 'Your business profile has been updated')
   end
-
+  
+  def settings
+    
+  end
+  
   def edit_capabilities
   end
 
@@ -49,6 +53,7 @@ class BusinessesController < ApplicationController
   def get_business
     if params[:id] != nil
       @business = Business.find(params[:id])
+      @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 7)
     end
   end
 end

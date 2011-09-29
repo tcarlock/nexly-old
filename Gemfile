@@ -20,9 +20,9 @@ gem 'client_side_validations', '~> 3.0.11'
 gem 'devise'
 gem 'paperclip', "~> 2.3.15"
 gem 'acts-as-taggable-on'
-gem 'will_paginate', '~> 3.0'
 gem 'jquery-rails'
 gem 'geocoder'
+gem 'will_paginate', '~> 3.0.pre4'
 
 # Use unicorn as the web server
 # gem 'unicorn'

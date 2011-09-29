@@ -1,0 +1,4 @@
+var li = $('#biz-review-<%= params[:id] %>');
+
+li.find('span.disputed').fadeIn();
+li.find('div.btns-tab').html('<%= escape_javascript(render(:partial => "reviews/admin_buttons", :locals => { :review => @review })) %>');

@@ -11,7 +11,6 @@ end
 # Table name: businesses
 #
 #  id                  :integer(4)      not null, primary key
-#  business_id         :integer(4)
 #  business_name       :string(255)
 #  facebook            :string(255)
 #  twitter             :string(255)

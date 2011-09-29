@@ -1,10 +1,14 @@
-<% if(@business.is_user_admin?(current_user)) %>
-	<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link" %>
-	<%= form_tag dispute_business_review_path(review), :remote => true, :id => 'highlight-review-form-' + review.id.to_s do |f| %>
-		<a review-id="<%= review.id.to_s %>" class="control-link dispute-review-link"></a>
+<% if(review.business.is_user_admin?(current_user)) %>
+	<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link", :title => 'Submit review response', :id => "dispute-review-" + review.id.to_s %>
+	<% if !review.is_under_review %>
+		<%= form_tag dispute_business_review_path(review.business, review), :remote => true, :class => "dispute-review-form" do |f| %>
+			<a class="control-link dispute-review-link" title="Dispute review"></a>
+		<% end %>
 	<% end %>
-	<%= form_tag highlight_business_review_path(review), :remote => true, :id => 'highlight-review-form-' + review.id.to_s do |f| %>
-		<a review-id="<%= review.id.to_s %>" class="control-link highlight-review-link"></a>
+	<% if !review.is_featured %>
+		<%= form_tag feature_business_review_path(review.business, review), :remote => true, :class => "feature-review-form" do |f| %>
+			<a class="control-link feature-review-link" title="Add review to toolbar"></a>
+		<% end %>
 	<% end %>
 <% else %>
 <% end %>

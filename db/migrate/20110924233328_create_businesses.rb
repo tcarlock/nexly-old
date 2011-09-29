@@ -1,7 +1,6 @@
 class CreateBusinesses < ActiveRecord::Migration
   def self.up
     create_table :businesses do |t|
-      t.integer :business_id
       t.string :business_name
       t.string :facebook
       t.string :twitter

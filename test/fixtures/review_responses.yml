@@ -3,9 +3,9 @@
 one:
   response: MyString
   review_id: 1
-  review: 
+  user_id: 1
 
 two:
   response: MyString
   review_id: 1
-  review: 
+  user_id: 1

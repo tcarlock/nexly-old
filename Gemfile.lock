@@ -168,4 +168,4 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   turn
   uglifier
-  will_paginate (~> 3.0)
+  will_paginate (~> 3.0.pre4)
