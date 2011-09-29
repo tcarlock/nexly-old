@@ -69,6 +69,7 @@ $(function(){
 		$('#account-links').slideDown(250);
 		$(this).addClass('active');
 	}, function() {
+		alert($(this).attr('id'));
 		$('#account-links').slideUp(250);
 		$(this).removeClass('active');
 	});

@@ -39,3 +39,8 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
 end
+
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg"
+end
