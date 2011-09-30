@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927071040) do
+ActiveRecord::Schema.define(:version => 20110929100209) do
 
   create_table "business_users", :force => true do |t|
     t.integer  "user_id"
@@ -64,15 +64,24 @@ ActiveRecord::Schema.define(:version => 20110927071040) do
     t.datetime "attachment_updated_at"
   end
 
-  create_table "review_responses", :force => true do |t|
-    t.text     "response"
-    t.integer  "review_id"
+  create_table "review_requests", :force => true do |t|
+    t.string   "email"
+    t.text     "message"
+    t.string   "token"
+    t.boolean  "is_reviewed"
+    t.integer  "business_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "review_responses", ["review_id"], :name => "index_review_responses_on_review_id"
+  create_table "review_responses", :force => true do |t|
+    t.string   "response"
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reviews", :force => true do |t|
     t.text     "details"

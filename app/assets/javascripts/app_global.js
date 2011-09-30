@@ -1,16 +1,30 @@
 $(function(){
-	$('#post').delay(1000).animate({ backgroundColor: '#3595D4'}, 1000, function() {
-		$('#storyboard-banner').delay(1000).animate({ top:5, right:5, fontSize: '.5em', opacity:0 }, { duration: 750 });
-
-		$('#timeline-nav').fadeTo(2000, 1);
-		$('#sign-up-tab').fadeTo(2000, 1);
-		$('#viewport .content').delay(1000).fadeTo(2000, 1);
-		$('#viewport .text').delay(1000).fadeTo(2000, 1);		
-	})
+	function hoverIntentConfig(selector) {
+		return {    
+		    over: function() {
+				$(this).find(selector).show(250);
+			}, 
+		    timeout:0,
+		    out: function() {
+				$(this).find(selector).hide(250);
+			}
+		};
+	};
+	
+	if($('#storyboard-banner').length == 1) {
+		$('#pre').delay(2000).fadeOut(1000, function() {
+			$('#storyboard-banner').animate({ width: 350, right: 300 });
+			$('#post').fadeIn(1500, function() {
+				$('#storyboard-banner').delay(1500).animate({ top:0, right:0, opacity: 0 }, 1000, function() {
+					$('#timeline-nav, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(2000, 1);
+				});
+			});
+		});
+	};
 	
 	$('.flash').each(function() {
 		$(this).delay(500).show('slide', { direction: 'down' }, 250).delay(3500).hide('slide', { direction: 'down' }, 250);
-	})
+	});
 	
 	$('#logo').hover(function() {
 		$('#home-icon').show();
@@ -45,17 +59,8 @@ $(function(){
 		}
 	});
 	
-	var hoverConfig = {    
-	    over: function() {
-			$(this).find('div.btns-tab-small').show();
-		}, // function = onMouseOver callback (REQUIRED)    
-	    timeout: 400, // number = milliseconds delay before onMouseOut    
-	    out: function() {
-			$(this).find('div.btns-tab-small').hide();
-		} // function = onMouseOut callback (REQUIRED)    
-	};
 
-	$('ul.standard-list li').hoverIntent(hoverConfig)
+	$('ul.standard-list li').hoverIntent(hoverIntentConfig('div.btns-tab-small'));
 	
 	$('#sign-up-tab').toggle(function() {
 			$('#signup-pane-inner').slideToggle(350);
@@ -65,11 +70,12 @@ $(function(){
 			$('#signup-pane-inner').slideToggle(350);
 	});
 	
+	$('li', '#highlights').hoverIntent(hoverIntentConfig('div.content'));
+		
 	$('#account-nav').toggle(function() {
 		$('#account-links').slideDown(250);
 		$(this).addClass('active');
 	}, function() {
-		alert($(this).attr('id'));
 		$('#account-links').slideUp(250);
 		$(this).removeClass('active');
 	});
