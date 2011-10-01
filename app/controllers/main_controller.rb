@@ -2,9 +2,6 @@ class MainController < ApplicationController
   skip_before_filter :authenticate_user!
   
   def welcome
-    if !current_user.nil?
-      redirect_to current_user.businesses.first
-    end
   end
   
   def faqs

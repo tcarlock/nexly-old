@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      if current_user.profile.nil?
-        new_user_profile
+      if current_user.profile.created_at == current_user.profile.updated_at
+        redirect_to edit_user_profile_path(current_user.profile)
       else
         if current_user.businesses.first.nil?
           :root
