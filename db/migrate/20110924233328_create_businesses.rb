@@ -1,12 +1,12 @@
 class CreateBusinesses < ActiveRecord::Migration
   def self.up
     create_table :businesses do |t|
-      t.string :business_name
+      t.string :name
       t.string :facebook
       t.string :twitter
       t.string :google_plus
       t.string :linked_in
-      t.string :biography
+      t.text :biography
       t.string :address_1
       t.string :address_2
       t.string :city

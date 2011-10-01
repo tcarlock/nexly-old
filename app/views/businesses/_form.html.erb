@@ -1,12 +1,12 @@
 <%= semantic_form_for @business, :html => {:multipart => true} do |f| %>
   <%= f.inputs do %>
     
-    <%= f.input :business_name %>
+    <%= f.input :name %>
     <%= f.input :facebook %>
     <%= f.input :twitter %>
     <%= f.input :google_plus %>
     <%= f.input :linked_in %>
-    <%= f.input :biography, :input_html => { :rows => 6 } %>
+    <%= f.input :biography, :input_html => { :rows => 4 } %>
     <%= f.input :address_1 %>
     <%= f.input :address_2 %>
     <%= f.input :city %>
@@ -14,9 +14,6 @@
     <%= f.input :zip_code %>
     <%= f.input :avatar %>
     <%= raw display_logo(@business)%>
-    <!--
-      TODO make this a remote form
-    -->
     <%= f.input :remove_avatar, :as => :boolean %>
     
   <% end %>

@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
   end
 
   create_table "businesses", :force => true do |t|
-    t.string   "business_name"
+    t.string   "name"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "google_plus"
     t.string   "linked_in"
-    t.string   "biography"
+    t.text     "biography"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
@@ -65,10 +65,11 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
   end
 
   create_table "review_requests", :force => true do |t|
+    t.string   "name"
     t.string   "email"
     t.text     "message"
     t.string   "token"
-    t.boolean  "is_reviewed"
+    t.boolean  "is_reviewed", :default => false
     t.integer  "business_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -84,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
   end
 
   create_table "reviews", :force => true do |t|
+    t.text     "name"
+    t.text     "email"
     t.text     "details"
     t.integer  "rating"
     t.boolean  "is_under_review", :default => false
@@ -91,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
     t.boolean  "is_featured",     :default => false
     t.integer  "user_id"
     t.integer  "business_id"
+    t.boolean  "is_anon",         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

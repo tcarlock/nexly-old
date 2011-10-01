@@ -1,5 +1,7 @@
 class DemoController < ApplicationController
-  before_filter :get_business
+  skip_before_filter :authenticate_user!
+  before_filter :mock_objects
+  
   
   def home
     render :layout => 'demo'
@@ -25,7 +27,8 @@ class DemoController < ApplicationController
     render :layout => 'demo'
   end
   
-  def get_business
+  def mock_objects
     @business = Business.find(1)
+    sign_in User.find(1)
   end
 end

@@ -2,9 +2,10 @@ class Business < ActiveRecord::Base
   has_many :business_users
   has_many :users, :through => :business_users
   has_many :reviews
+  has_many :review_requests
   has_many :resources
   
-  validates_presence_of :business_name, :biography, :on => :update
+  validates_presence_of :name, :biography, :on => :update
   after_validation :geocode
   
   has_attached_file :avatar, 
@@ -48,12 +49,12 @@ end
 # Table name: businesses
 #
 #  id                  :integer(4)      not null, primary key
-#  business_name       :string(255)
+#  name                :string(255)
 #  facebook            :string(255)
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)
-#  biography           :string(255)
+#  biography           :text
 #  address_1           :string(255)
 #  address_2           :string(255)
 #  city                :string(255)

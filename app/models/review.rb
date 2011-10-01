@@ -3,7 +3,7 @@ class Review < ActiveRecord::Base
   belongs_to :user
   has_one :review_response, :as => :response
   
-  validates_presence_of :details, :rating
+  validates_presence_of :name, :details, :rating
 end
 
 # == Schema Information

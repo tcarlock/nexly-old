@@ -1,2 +1,24 @@
-<h1>ReviewRequests#new</h1>
-<p>Find me in app/views/review_requests/new.html.erb</p>
+<h1>Request New Reviews</h1>
+<p>
+	Each person will receive an email asking to submit a review.  This email will contain a link with a token 
+	that will prevent multiple reviews from being submitted.
+</p>
+<%= form_tag business_review_requests_path, :class => 'formtastic' do |f| %>
+	<fieldset class="inputs">
+		<ol>
+			<li class="string required">
+				<%= label_tag 'emails', 'Provide email addresses separated by a comma:' %>
+				<%= text_area_tag 'emails', nil, :size => '75x7' %>
+			</li>
+			<li class="string required">
+				<%= label_tag 'message', 'Include a message: (Optional)' %>
+				<%= text_area_tag 'message', nil, :size => '75x7' %>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset class="buttons">
+		<%= submit_tag "Send Requests"  %>
+	</fieldset>
+<% end %>
+
+

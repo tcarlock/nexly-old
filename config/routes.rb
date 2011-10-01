@@ -36,7 +36,7 @@ Nexly::Application.routes.draw do
 
   match "app", :to => "main#home", :as => :app_home
   match "contact", :to => "main#contact", :as => :contact
-  match "about", :to => "main#about", :as => :about
+  match "faqs", :to => "main#faqs", :as => :faqs
   match "create_service_request", :to => "main#create_service_request", :via => :post, :as => "create_request"
   get :search, :to => "main#search"
   

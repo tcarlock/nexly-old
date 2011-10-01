@@ -6,7 +6,7 @@
 	</div>
 	<div id="biz-bio" class="panel">
 		<h3>
-			About <%= @business.business_name %>
+			About <%= @business.name %>
 		</h3>
 		<%= @business.biography %>
 		<div class="clearfix"></div>
@@ -23,7 +23,7 @@
 </div>
 <div id="biz-content-pane" class="right-col">
 	<div id="biz-details">
-		<h1><%= @business.business_name %></h1>
+		<h1><%= @business.name %></h1>
 		<h3><%= @business.location %></h3>
 		<div class="btns-tab small-tab">
 			<% if(@business.is_user_admin?(current_user)) %>

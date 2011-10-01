@@ -109,15 +109,13 @@ html[xmlns].clearfix {
 	border-top-right-radius:10px;
 	border:1px solid;
 	border-bottom:0px;
+    border-color:#3595D4;
+	background-color: #3595D4;
+	color:#fff;
 }
 .flash.error {
     border-color:#ffcdcd;
 	background-color: #ffcdcd;
-	color:#fff;
-}
-.flash.notice, .flash.info {
-    border-color:#3595D4;
-	background-color: #3595D4;
 	color:#fff;
 }
 p.inline-errors {

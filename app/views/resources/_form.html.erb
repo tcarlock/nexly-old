@@ -1,11 +1,9 @@
-<div id="question-form-outer">
-	<%= semantic_form_for(@resource, :validate => true, :remote => true) do |f| %>
-		<%= f.inputs do %>
-	  	  <%= f.input :subject, :label_html => { :style => 'width:35%' }, :input_html => { :style => 'width:62%' } %>
-		  <%= f.input :content , :label => "What is your question?", :label_html => { :style => 'width:35%' }, :input_html => { :rows => 3, :style => 'width:62%' } %>
-		  <%= f.input :bounty, :label => "How much are you offering?", :label_html => { :style => 'width:35%' }, :input_html => { :style => 'width:62%' } %>
-		  <%= f.input :is_private, :label => "This question is private" %>
-		<% end %>
-		<%= f.buttons %>
+<%= semantic_form_for(@resource, :validate => true, :remote => true) do |f| %>
+	<%= f.inputs do %>
+  	  <%= f.input :subject, :label_html => { :style => 'width:35%' }, :input_html => { :style => 'width:62%' } %>
+	  <%= f.input :content , :label => "What is your question?", :label_html => { :style => 'width:35%' }, :input_html => { :rows => 3, :style => 'width:62%' } %>
+	  <%= f.input :bounty, :label => "How much are you offering?", :label_html => { :style => 'width:35%' }, :input_html => { :style => 'width:62%' } %>
+	  <%= f.input :is_private, :label => "This question is private" %>
 	<% end %>
-</div>
+	<%= f.buttons %>
+<% end %>

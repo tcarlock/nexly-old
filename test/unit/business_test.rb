@@ -11,12 +11,12 @@ end
 # Table name: businesses
 #
 #  id                  :integer(4)      not null, primary key
-#  business_name       :string(255)
+#  name                :string(255)
 #  facebook            :string(255)
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)
-#  biography           :string(255)
+#  biography           :text
 #  address_1           :string(255)
 #  address_2           :string(255)
 #  city                :string(255)

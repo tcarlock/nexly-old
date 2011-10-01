@@ -105,7 +105,7 @@ profile.save
 
 #Create businesses
 User.find(1).businesses.create!(
-                :business_name => 'Nexly', 
+                :name => 'Nexly', 
                 :facebook => 'nexlyllc', 
                 :twitter => 'nexlyllc', 
                 :google_plus => 'nexlyllc',
@@ -124,7 +124,7 @@ User.find(1).businesses.create!(
                 :avatar_updated_at => "2011-08-02 20:46:45")
                 
 User.find(2).businesses.create!(
-                :business_name => 'Acme Consulting', 
+                :name => 'Acme Consulting', 
                 :facebook => 'AcmeConsulting', 
                 :twitter => 'AcmeConsulting', 
                 :google_plus => 'AcmeConsulting',
@@ -141,6 +141,8 @@ User.find(2).businesses.create!(
 #Create reviews
 25.times do |n|
   Business.find(1).reviews.create!(
+                :name => 'Lorem ipsum name',
+                :email => 'some.client@acme.com', 
                 :details => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nulla et nisi tincidunt posuere pellentesque urna mollis.',
                 :rating => rand(5),
                 :user_id => 1 + rand(4))

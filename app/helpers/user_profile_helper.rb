@@ -41,7 +41,7 @@ module UserProfileHelper
     out = "<ul class='standard-list user-interests'>"
     
     user.profile.interests.each do |tag|
-      out << "<li class='interests'>#{link_to tag.name, search_profile_index_url(:tag => tag.id)}</li>"
+      out << "<li class='interests'>#{link_to tag.name, search_profile_index_path(:tag => tag.id)}</li>"
     end
     out << "</ul>"
   end  

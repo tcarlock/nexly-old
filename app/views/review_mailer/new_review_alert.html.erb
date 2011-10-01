@@ -1,0 +1,14 @@
+<p>
+	<h3>Sender Details</h3>
+	<strong>Name:</strong> <span><%= @review.name %></span>
+	<strong>Email:</strong> <span><%= @review.email %></span>
+</p>
+<p>
+	<h3>Review Details</h3>
+	<strong>Rating:</strong> <span><%= @review.rating %></span>
+	<strong>Review Text:</strong> <span><%= @review.details %></span>
+</p>
+<p>
+	To view the review click here: <%= url_for(:host => "nexly.heroku.com", :controller => "reviews", :action => "show", :id => @review.id) %>
+<% link_to @review %>
+</p>
