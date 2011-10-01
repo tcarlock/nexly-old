@@ -13,7 +13,7 @@ class ReviewRequestsController < ApplicationController
                  :business_id => params[:business_id],
                  :user_id => current_user.id)
         
-      ReviewMailer.deliver_new_request_alert(review_request)
+      ReviewMailer.new_request_alert(review_request).deliver
     end
     
     redirect_to(business, :notice => "Your requests have been sent")
