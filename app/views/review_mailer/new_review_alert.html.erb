@@ -9,6 +9,5 @@
 	<strong>Review Text:</strong> <span><%= @review.details %></span>
 </p>
 <p>
-	To view the review click here: <%= url_for(:host => "nexly.heroku.com", :controller => "reviews", :action => "show", :id => @review.id) %>
-<% link_to @review %>
+	Click the following link to see your reviews: <%= auto_link business_url(@review.business) %>
 </p>

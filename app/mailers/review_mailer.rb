@@ -8,9 +8,9 @@ class ReviewMailer < ActionMailer::Base
   end
   
   def new_request_alert request
-    @request = request
-    sender = request.user.profile
+    @business = request.business
+    @sender = request.user.profile
 
-    mail(:to => request.email, :subject => "#{sender.first_name} #{sender.last_name} at #{request.business.name} has requested that you submit a review...")
+    mail(:to => request.email, :subject => "#{@sender.first_name} #{@sender.last_name} at #{request.business.name} has requested that you submit a review...")
   end
 end
