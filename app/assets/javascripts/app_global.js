@@ -2,11 +2,11 @@ $(function(){
 	function hoverIntentConfig(selector) {
 		return {    
 		    over: function() {
-				$(this).find(selector).show(250);
+				$(this).find(selector).fadeIn(250);
 			}, 
 		    timeout:0,
 		    out: function() {
-				$(this).find(selector).hide(250);
+				$(this).find(selector).fadeOut(250);
 			}
 		};
 	};

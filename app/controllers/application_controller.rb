@@ -5,7 +5,15 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      current_user.businesses.first
+      if current_user.profile.nil?
+        new_user_profile
+      else
+        if current_user.businesses.first.nil?
+          :root
+        else
+          current_user.businesses.first
+        end
+      end
     else
       super
     end
