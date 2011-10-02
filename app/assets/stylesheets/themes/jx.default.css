@@ -108,15 +108,9 @@
 
 .jx-nav-menu ul {
 }
-
-.standard-list {
-	padding:10px;
-}
-.standard-list li:hover,
 .jx-nav-menu ul li.menu-item:hover {
-	background-color:#87151B;
+	background-color:#87151B !important;
 }
-
 .jx-nav-menu ul li.menu-item:hover * {
 	color:#fff;
 }

@@ -1,0 +1,16 @@
+<li id='review-request-<%= review_request.id %>'>
+	<% if(review.business.is_user_admin?(current_user)) %>
+		<div class="btns-tab btns-tab-small review-btns">
+			<%= render :partial => 'review_requests/admin_buttons', :locals => { :review_request => review_request } %>
+		</div>
+	<% end %>
+	<p>
+		<%= review_request.message %>
+	</p>
+	<div class="footer">
+		Sent to <%= review_request.email %> on <%= review_request.created_at.to_s(:feed_date_time)%>
+		<span class="featured <%= !review_request.is_reviewed ? 'hidden' : '' %>">
+			(This request has not been reviewed)
+		</span>
+	</div>
+</li>

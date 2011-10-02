@@ -1,3 +1,19 @@
 // Place all the styles related to the review_requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#review-requests li {
+	padding:7px;
+	position:relative;
+}
+#review-requests li .rating-icon {
+	margin-bottom:5px;
+}
+#review-requests li .disputed {
+	line-height:1.7em;
+	font-weight:bold;
+}
+#new-req-link { background-image:url('/assets/tasks/mail.png'); }
+.delete-request-link { background-image:url('/assets/tasks/cross-small.png'); }
+.dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
+.feature-review-link { background-image:url('/assets/tasks/star-small.png'); }

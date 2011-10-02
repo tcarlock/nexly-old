@@ -53,7 +53,7 @@ class BusinessesController < ApplicationController
   def get_business
     if params[:id] != nil
       @business = Business.find(params[:id])
-      @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 7)
+      @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page])
     end
   end
 end

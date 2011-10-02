@@ -1,4 +1,10 @@
 class ReviewRequestsController < ApplicationController
+  before_filter :get_business, :only => [:index, :new, :create]
+  
+  def index
+    @requests = @business.review_requests.where(:is_reviewed => false).paginate(:page => params[:page])
+  end
+  
   def new
   end
 
@@ -17,5 +23,17 @@ class ReviewRequestsController < ApplicationController
     end
     
     redirect_to(business, :notice => "Your requests have been sent")
+  end
+  
+  def destroy
+    review_request = ReviewRequest.find(params[:id]).destroy
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def get_business
+    @business = Business.find(params[:business_id])
   end
 end

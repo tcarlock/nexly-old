@@ -30,7 +30,7 @@ Nexly::Application.routes.draw do
       resources :review_responses, :only => [:new, :create], :controller => :review_responses, :as => :responses
     end
     
-    resources :review_requests, :only => [:new, :create, :destroy], :controller => :review_requests
+    resources :review_requests, :except => [:update, :edit], :controller => :review_requests
     resources :resources, :controller => :resources
   end
 

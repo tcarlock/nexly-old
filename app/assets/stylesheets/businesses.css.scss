@@ -21,7 +21,7 @@
 	margin:0 auto;
 }
 #biz-details {
-	padding-bottom:7px;
+	padding:0 0 7px 5px;
 	width:550px;
 }
 #biz-details h1,
@@ -40,7 +40,7 @@
 #review-link { background-image:url('/assets/tasks/edit.png'); }
 #content-link { background-image:url('/assets/tasks/document.png'); display: none; }
 #apps-link { background-image:url('/assets/tasks/gear.png'); }
-#send-reqs-link { background-image:url('/assets/tasks/mail.png'); }
+#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
 
 #biz-content-pane,
 #biz-content-pane .panel {

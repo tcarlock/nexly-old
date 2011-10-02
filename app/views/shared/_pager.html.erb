@@ -1,0 +1,8 @@
+<div class="pager-outer">
+	<span class="pager-controls">
+		<%= will_paginate(items, :previous_label => '<<', :next_label => '>>' )%>
+	</span>
+	<span class="record-count">
+		<span class="item-count"><%= items.count %></span> <%= items.count == 1 ? "pending request" : "pending request".pluralize %>
+	</span>
+</div>

@@ -1,7 +1,9 @@
 <li id='biz-review-<%= review.id %>'>
-	<div class="btns-tab btns-tab-small review-btns">
-		<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
-	</div>
+	<% if(review.business.is_user_admin?(current_user)) %>
+		<div class="btns-tab btns-tab-small review-btns">
+			<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
+		</div>
+	<% end %>
 	<span class="disputed <%= !review.is_under_review ? 'hidden' : '' %>">
 		This review has been disputed
 	</span>

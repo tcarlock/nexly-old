@@ -152,14 +152,21 @@ ul.navigation li.active a {
 	display:inline-block;
 }
 .standard-list li {
+	padding:7px;
 	display:block;
 	position:relative;
 	clear:left;
 	margin-bottom:5px;
-	padding:5px 0;
 	border-bottom:1px dotted #a1a1a3;
 }
-
+.standard-list li .footer {
+	font-size:.9em;
+	color:#A2A2A3;
+	font-weight:bold;
+}
+.standard-list li .hidden {
+	display:none;
+}
 
 /*Standard button groups*/
 .action-btn-outer a,
@@ -183,10 +190,12 @@ ul.navigation li.active a {
 	position:absolute;
 	padding:0 5px;
 	background-color:#a1a1a3;
-	top:-16px;
-	right:-11px;
+	top:-1px;
+	right:-1px;
 	border-top-right-radius:7px;
 	border-bottom-left-radius:7px;
+	opacity:.9;
+	z-index:3;
 }
 .btns-tab-small {
 	top:0;
@@ -213,4 +222,25 @@ ul.navigation li.active a {
 	background-position:center 3px;
 	width:27px;
 	height:27px;
+}
+
+/*Paging*/
+.pager-outer > span {
+	float:left;
+	display:inline-block;
+	font-weight:bold;
+}
+.pager-outer span {
+	color:#646464;
+}
+.pager-controls {
+	padding-left:7px;
+}
+.record-count {
+	padding-left:12px;
+}
+div.pagination .previous_page,
+div.pagination .next_page {
+	display:inline-block;
+	padding:0 3px;
 }
