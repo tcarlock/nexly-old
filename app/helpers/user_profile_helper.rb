@@ -6,24 +6,24 @@ module UserProfileHelper
     block
   end
   
-  def display_demographics(user, truncate_bio, long_form = false)
-    @bio = user.profile.biography
-    
-    if truncate_bio
-      @bio = truncate(user.profile.biography)
+  def display_details(user, show_admin_bio, long_form = false)
+    if show_admin_bio
+      @bio = show_admin(user.profile.biography)
+    else
+      @bio = user.profile.biography
     end
       
-    @output = '<ul class="profile-block">'
+    @output = '<ul class="profile-details">'
      
-    @output += 
+    @output << 
       <<-block
         <li class="user-name"> #{ link_to(user.profile.user.display_name << ' (' << user.profile.screen_name << ')', profile_path(user.profile)) } </li>
-        <li class="location">   <span class="label">  Location:   </span>  #{user.profile.city + ', ' + user.profile.state }       </li>
+        <li class="location">   <span class="label">  Location:   </span>  #{user.location }       </li>
         <li class="biography"><span>  <span class="label">  Biography:  </span></span>  #{@bio} </li>
      block
 
      if(long_form)
-       @output += 
+       @output <<
          <<-block
            <li class="facebook">   <span class="label">  Facebook:   </span>  #{'http://facebook.com/' + user.profile.facebook }   </li>
            <li class="twitter">    <span class="label">  Twitter:    </span>  #{user.profile.twitter}     </li>
@@ -34,14 +34,15 @@ module UserProfileHelper
            <li class="zip-code">   <span class="label">  Zip Code:   </span>  #{user.profile.zip_code }   </li>
         block
       end
-    @output += '</ul>'
+      
+    @output << '</ul>'
   end
   
   def display_interests(user)
-    out = "<ul class='standard-list user-interests'>"
+    out = "<ul class='standard-list profile-item-list'>"
     
     user.profile.interests.each do |tag|
-      out << "<li class='interests'>#{link_to tag.name, search_profile_index_path(:tag => tag.id)}</li>"
+      out << "<li>#{link_to tag.name, search_profile_index_path(:tag => tag.id)}</li>"
     end
     out << "</ul>"
   end  

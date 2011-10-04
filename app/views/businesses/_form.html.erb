@@ -1,21 +1,25 @@
 <%= semantic_form_for @business, :html => {:multipart => true} do |f| %>
   <%= f.inputs do %>
-    
+    <h2>Basics</h2>
     <%= f.input :name %>
-    <%= f.input :facebook %>
-    <%= f.input :twitter %>
+    <%= f.input :biography, :input_html => { :rows => 4 } %>
+    <%= f.input :avatar, :label => 'Logo' %>
+	<li class="file optional">
+		<label for="business_avatar"></label>
+		<%= raw display_logo(@business)%>
+	</li>
+
+	<h2>Social Media</h2>
+    <%= f.input :facebook, :label => 'Facebook handle:' %>
+    <%= f.input :twitter, :label => 'Twitter handle:' %>
     <%= f.input :google_plus %>
     <%= f.input :linked_in %>
-    <%= f.input :biography, :input_html => { :rows => 4 } %>
+	<h2>Location</h2>
     <%= f.input :address_1 %>
     <%= f.input :address_2 %>
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :zip_code %>
-    <%= f.input :avatar %>
-    <%= raw display_logo(@business)%>
-    <%= f.input :remove_avatar, :as => :boolean %>
-    
   <% end %>
   <%= f.buttons %>
 <% end %>

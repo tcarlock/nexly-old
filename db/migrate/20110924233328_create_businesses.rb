@@ -3,6 +3,7 @@ class CreateBusinesses < ActiveRecord::Migration
     create_table :businesses do |t|
       t.string :name
       t.string :facebook
+      t.string :website
       t.string :twitter
       t.string :google_plus
       t.string :linked_in

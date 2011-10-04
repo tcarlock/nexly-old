@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
   create_table "businesses", :force => true do |t|
     t.string   "name"
     t.string   "facebook"
+    t.string   "website"
     t.string   "twitter"
     t.string   "google_plus"
     t.string   "linked_in"

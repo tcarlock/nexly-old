@@ -13,7 +13,7 @@
 			<a href="#">
 				<img src="/assets/demo/toolbar/card.png" alt="Events" />
 			</a>
-			<ul>
+			<div class="container">
 				<% 6.times do |d| %>
 					<li class="menu-item event-item">
 						<a class="item-title">
@@ -22,7 +22,7 @@
 						<span class="item-details"><%= d.days.from_now.to_s(:long) %></span>
 					</li>
 				<% end %>
-			</ul>
+			</div>
 		</li>
 	</ul>
 	<span class="jx-separator-right"></span>
@@ -31,7 +31,7 @@
 			<a href="#">
 				<img src="/assets/demo/toolbar/bookmark.png" alt="Resources" />
 			</a>
-			<ul>
+			<div class="container">
 				<% 5.times do |d| %>
 					<li class="menu-item resource-item">
 						<a class="item-title">
@@ -43,7 +43,7 @@
 						</p>
 					</li>
 				<% end %>
-			</ul>
+			</div>
 		</li>
 	</ul>
 	<span class="jx-separator-right"></span>
@@ -52,9 +52,14 @@
 			<a href="#">
 				<img src="/assets/demo/toolbar/blogs.png" alt="Reviews" />
 			</a>
-			<ul>
-				<%= render @business.reviews %>
-			</ul>
+			<div class="container">
+				<li>
+					<h2>Reviews</h2>
+					<ul>
+					<%= render @business.reviews %>
+					</ul>
+				</li>
+			</div>
 		</li>
 	</ul>
 	<span class="jx-separator-right"></span>
@@ -63,7 +68,7 @@
 			<a href="#">
 				<img src="/assets/demo/toolbar/ballon.png" alt="Chat" />
 			</a>
-			<ul>
+			<div class="container">
 				<li class="controls">
 					<textarea rows="3"></textarea>
 					<br />
@@ -74,7 +79,7 @@
 						<%= cycle("Tim", "Jill") %>: Lorem ipsum dolor sit amet.
 					</li>
 				<% end %>
-			</ul>
+			</div>
 		</li>
 	</ul>
 	<span class="jx-separator-right"></span>
@@ -83,7 +88,7 @@
 			<a href="#">
 				<img src="/assets/demo/toolbar/network.png" alt="Social" />
 			</a>
-			<ul>
+			<div class="container">
 				<li class="menu-item">
 					<a href="http://www.facebook.com/jixedbar">
 						<img src="/assets/demo/toolbar/facebook.png" title="Facebook" alt="" />&nbsp;&nbsp;&nbsp;Facebook
@@ -99,7 +104,7 @@
 						<img src="/assets/demo/toolbar/google.png" title="Google+" alt="" />&nbsp;&nbsp;&nbsp;Google
 					</a>
 				</li>
-			</ul>
+			</div>
 		</li>
 	</ul>
 	<span class="jx-separator-right"></span>        

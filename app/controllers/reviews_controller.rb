@@ -1,8 +1,13 @@
 class ReviewsController < ApplicationController
   before_filter :get_review, :only => [:destroy, :feature, :dispute]
   
+  def index
+    @business = Business.find(params[:business_id])
+    @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page])
+  end
+      
   def show
-    @reviews = Business.find(params[:business_id]).reviews
+    @review = Review.find(params[:id])
   end
   
   def new

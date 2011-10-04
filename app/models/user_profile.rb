@@ -1,7 +1,7 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
   
-  validates_presence_of :first_name, :last_name, :screen_name, :biography, :on => :update
+  validates_presence_of :first_name, :last_name, :biography, :on => :update
   
   has_attached_file :avatar, 
     :default_url => "/images/profile/anonymous_:style.png", 
@@ -14,9 +14,9 @@ class UserProfile < ActiveRecord::Base
   before_save :perform_avatar_removal 
   
   acts_as_taggable
-  acts_as_taggable_on :interests
+  acts_as_taggable_on :display_details
 
-  attr_accessor :remove_avatar, :interests_string, :update_tags
+  attr_accessor :remove_avatar, :display_details_string, :update_tags
   
   def perform_avatar_removal 
     self.avatar = nil if self.remove_avatar=="1" && ! 

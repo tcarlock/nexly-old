@@ -1,5 +1,5 @@
-<li id='biz-review-<%= review.id %>'>
-	<% if(review.business.is_user_admin?(current_user)) %>
+<li id='biz-review-<%= review.id %>' class="biz-review">
+	<% if show_admin %>
 		<div class="btns-tab btns-tab-small review-btns">
 			<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
 		</div>
@@ -8,15 +8,17 @@
 		This review has been disputed
 	</span>
 	<p>
-		<%= review.details %>
+		<%= truncate_review ? truncate(review.details, :length => 40) : review.details %>
 	</p>
 	<div class="rating-icon">
 		<%= review.rating %> out of 5
 	</div>
 	<div class="footer">
 		Posted by <%= review.user.display_name %> on <%= review.created_at.to_s(:feed_date)%>
-		<span class="featured <%= !review.is_featured ? 'hidden' : '' %>">
-			(This review is highlighted on your website)
-		</span>
+		<% if show_admin %>
+			<span class="featured <%= !review.is_featured ? 'hidden' : '' %>">
+				(This review is highlighted on your website)
+			</span>
+		<% end %>
 	</div>
 </li>

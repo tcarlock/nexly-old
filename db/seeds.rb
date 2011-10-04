@@ -106,6 +106,7 @@ profile.save
 #Create businesses
 User.find(1).businesses.create!(
                 :name => 'Nexly', 
+                :website => 'nexly.com', 
                 :facebook => 'nexlyllc', 
                 :twitter => 'nexlyllc', 
                 :google_plus => 'nexlyllc',
@@ -124,7 +125,8 @@ User.find(1).businesses.create!(
                 :avatar_updated_at => "2011-08-02 20:46:45")
                 
 User.find(2).businesses.create!(
-                :name => 'Acme Consulting', 
+                :name => 'Acme Consulting',
+                :website => 'acme.com',
                 :facebook => 'AcmeConsulting', 
                 :twitter => 'AcmeConsulting', 
                 :google_plus => 'AcmeConsulting',

@@ -3,7 +3,6 @@
 <div class="btns-tab small-tab">
 	<% if(@business.is_user_admin?(current_user)) %>
 		<%= link_to "", "#", :id => "edit-profile-link", :href => edit_business_path(@business), :title => "Edit this business profile" %>
-		<%= link_to "", "#", :id => "manage-reqs-link", :href => business_review_requests_path(@business), :title => "Send invitation requests" %>
 		<%= link_to "", "#", :id => "content-link" %>
 		<%= link_to "", "#", :id => "apps-link", :href => settings_business_path(@business) %>
 	<% else %>
@@ -14,44 +13,72 @@
 	<div id="avatar-outer">
 		<%= raw display_logo(@business, :large)%>
 	</div>
-	<div id="biz-bio" class="panel">
-		<h3>
+	<ul id="biz-bio" class="profile-details">
+		<li class="header">
 			About <%= @business.name %>
-		</h3>
-		<%= @business.biography %>
-		<div class="clearfix"></div>
-	</div>
-	<div id="biz-location" class="panel">
-		<h3>
+		</li>
+		<li>
+			<%= @business.biography %>
+		</li>
+	</ul>
+	<ul id="biz-links" class="profile-details">
+		<li class="header">
+			Links
+		</li>
+		<li>
+			<strong>Website: </strong>
+			<%= @business.website %>
+		</li>
+		<li>
+			<strong>Facebook: </strong>
+			<%= @business.facebook %>
+		</li>
+		<li>
+			<strong>Twitter: </strong>
+			<%= @business.twitter %>
+		</li>
+		<li>
+			<strong>LinkIn: </strong>
+			<%= @business.linked_in %>
+		</li>
+	</ul>
+	<ul id="biz-location" class="profile-details clearfix">
+		<li class="header">
 			Location
-		</h3>
-		<%= raw display_address(@business) %>
+		</li>
+		<li>
+			<%= @business.address_1 %> <%= @business.address_2 %>
+		</li>
+  		<li>
+			<%= @business.city %>, <%= @business.state %> <%= @business.zip_code %>
+		</li>
+		<li>
 		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=200x200&sensor=false&zoom=16&markers=#{@business.latitude}%2C#{@business.longitude}", :class => 'map-img' %>
-		<div class="clearfix"></div>
-	</div>
-	<div class="clearfix"></div>
+		</li>
+	</ul>
 </div>
 <div id="biz-content-pane" class="right-col">
 	<div id="biz-details">
 		<h1><%= @business.name %></h1>
 		<h3><%= @business.location %></h3>
 	</div>
-	<div id="reviews-panel" class="panel">
-		<h3>Reviews (<%= @business.reviews.count %> Reviews)</h3>
-		<% if @business.reviews.nil? || @business.reviews.count == 0 %>
+	<div id="reviews-panel" class="content-panel">
+		<h3>Reviews (<%= @reviews.count %> Reviews)</h3>
+		<% if @reviews.nil? || @reviews.count == 0 %>
 			<span class="no-records">There are no reviews at this time</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
-				<%= render @reviews %>
+				<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
 			</ul>
-			<%= render :partial => 'shared/pager', :locals => { :items => @reviews } %>
+			<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "review" } %>
 		<% end %>
+		<div class="clearfix"></div>
 	</div>
-	<div id="content-panel" class="panel" style="display:none;">
+	<div id="content-panel" class="content-panel" style="display:none;">
 		<h3>Resource Library</h3>
 		Articles, white papers, links
 	</div>
-	<div id="content-panel" class="panel" style="display:none;">
+	<div id="content-panel" class="content-panel" style="display:none;">
 		<h3>News</h3>
 		News updates
 	</div>

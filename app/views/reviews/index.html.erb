@@ -1,0 +1,16 @@
+<% content_for :styles do stylesheet_link_tag "reviews" end %>
+
+<h1>Submitted Reviews</h1>
+<div class="btns-tab">
+	<% if(@business.is_user_admin?(current_user)) %>
+		<%= link_to "", "#", :id => "manage-reqs-link", :href => business_review_requests_path(@business), :title => "Send invitation requests" %>
+	<% end %>
+</div>
+<% if @reviews.nil? || @reviews.count == 0 %>
+	<span class="no-records">There are no review requests at this time</span>
+<% else %>
+	<ul id="review-requests" class="standard-list">
+		<%= render :partial => "reviews/review", :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false }  %>
+	</ul>
+	<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "review" } %>
+<% end %>

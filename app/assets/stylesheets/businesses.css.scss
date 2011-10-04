@@ -4,15 +4,9 @@
 	padding-right:10px;
 	border-right:1px solid #CBC9C9;
 }
-#biz-details-pane .panel {
-	margin-bottom:15px;
-}
 #avatar-outer img {
 	display:block;
 	margin:0 auto 15px auto;
-}
-#biz-bio {
-	padding:7px 0;
 }
 #biz-location .map-img {
 	width:200px;
@@ -29,29 +23,13 @@
 	color:#4A4A4A;
 	padding-bottom:0px;
 }
-#biz-stats-outer .biz-stats {
-}
-#biz-stats-outer a {
-	font-size:1.1em;
-	font-weight:bold;
-}
 
 #edit-profile-link { background-image:url('/assets/tasks/edit.png'); }
 #review-link { background-image:url('/assets/tasks/edit.png'); }
 #content-link { background-image:url('/assets/tasks/document.png'); display: none; }
 #apps-link { background-image:url('/assets/tasks/gear.png'); }
-#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
 
 #biz-content-pane,
-#biz-content-pane .panel {
-	position:relative;
+.content-panel {
 	width:690px;
-	margin-bottom:15px;
-}
-#biz-content-pane .panel h3 {
-	width:100%;
-	padding:3px 0 3px 5px;
-	margin-bottom:7px;
-	background-color:#C8C8C9;
-	border-radius:3px;
 }

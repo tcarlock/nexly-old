@@ -2,17 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#biz-reviews li {
+li.biz-review {
 	padding:7px;
 	position:relative;
 }
-#biz-reviews li .rating-icon {
+li.biz-review .rating-icon {
 	margin-bottom:5px;
 }
-#biz-reviews li .disputed {
+li.biz-review .disputed {
 	line-height:1.7em;
 	font-weight:bold;
 }
+
+#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
+
 .review-response-link { background-image:url('/assets/tasks/reply.png'); }
 .dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
 .feature-review-link { background-image:url('/assets/tasks/star-small.png'); }

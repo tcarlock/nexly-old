@@ -244,3 +244,43 @@ div.pagination .next_page {
 	display:inline-block;
 	padding:0 3px;
 }
+
+/*Global profile styles*/
+.content-panel {
+	position:relative;
+	margin-bottom:25px;
+	clear:both;
+	float:left;
+}
+.content-panel h3 {
+	width:100%;
+	padding:3px 0;
+	text-indent:7px;
+	margin-bottom:7px;
+	background-color:#C8C8C9;
+	border-radius:3px;
+}
+.content-panel h3 a {
+	margin-left:10px;
+}
+ul.profile-details {
+	width:100%;
+	padding:0;
+	margin:0;
+	margin-bottom:15px;
+	list-style-type:none;
+}
+ul.profile-details li {
+	padding:1px 0;
+}
+ul.profile-details li.header {
+	padding-bottom:7px; 
+	font-weight:bold; 
+	color:#646464;
+	font-size:1.1em;
+}
+ul.profile-item-list {
+	padding:0;
+	margin:0;
+	display:inline-block;
+}

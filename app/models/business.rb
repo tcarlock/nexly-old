@@ -3,6 +3,7 @@ class Business < ActiveRecord::Base
   has_many :users, :through => :business_users
   has_many :reviews
   has_many :review_requests
+  has_many :active_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
   validates_presence_of :name, :biography, :on => :update
@@ -39,8 +40,42 @@ class Business < ActiveRecord::Base
     "#{self.address_1}, #{self.address_2} #{self.city}, #{self.state} #{self.zip_code}"
   end
   
+  def review_stats
+    if self.reviews.count > 1
+      ReviewStats.new(self.id)
+    end
+  end
+  
   def is_user_admin? user
     self.users.find(user.id) != nil
+  end
+end
+
+class ReviewStats
+  def initialize id
+    @business = Business.find(id)
+  end
+  
+  def count
+    @business.reviews.count
+  end
+  
+  def average
+    Review.average(:rating, :conditions => ["business_id = ?", @business.id])
+  end
+  
+  def min
+  end
+  
+  def max
+  end
+  
+  def submission_rate
+    if @business.review_requests.count == 0
+      0.0 / 0.0
+    else
+      (@business.review_requests.count - @business.active_review_requests) / @business.review_requests.count
+    end
   end
 end
 
