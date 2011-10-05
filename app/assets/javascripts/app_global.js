@@ -57,7 +57,7 @@ $(function(){
 	
 	$('#viewport').cycle({
 	    speed:  1500, 
-	    timeout: 6000,
+	    timeout: 7000,
 		fx:  'scrollHorz',
 		prev: '#panel-nav-prev',
 		next: '#panel-nav-next',
@@ -91,7 +91,7 @@ $(function(){
 			$('#signup-pane-inner').slideToggle(350);
 			$('html, body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
 		}, function() {
-			$('#viewport').cycle('pause')
+			$('#viewport').cycle('resume')
 			$('html, body').animate({scrollTop: '0px'}, 800);
 			$('#signup-pane-inner').slideToggle(350);
 	});

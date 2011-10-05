@@ -19,7 +19,7 @@
 				<h2>Our First Tool: Nexly Reviews</h2>
 				<p>
 					80% of decision makers use reviews when making a purchasing decision. Nexly Reviews makes it 
-					easy to collect and use reviews. 
+					easy to collect, manage and distribute reviews. 
 				</p>
 				<ul>
 					<li>
@@ -27,6 +27,9 @@
 					</li>
 					<li>
 						Automatically publish reviews out to your social-media pages
+					</li>
+					<li>
+						Allow clients to recommend you to friends and colleagues
 					</li>
 				</ul>
 			</div>
@@ -75,12 +78,19 @@
 	<div id="signup-pane" class="homepage-pane">
 		<div id="signup-pane-inner">
 			<div id="signup-text">
-				<h1>Getting Started Is Easy</h1>
+				<h1>Why Not Sign Up? It's Easy and It's Free to Try.</h1>
 				<p>
-					It takes only two steps.  This is a new tool and we would love to hear your feedback. 
+					In fact, it takes only two steps to started. Just create an account and a profile for your 
+					business. In fact, once you're registered, visitors to our site will be able to find your 
+					business profile through our search tool. 
+				</p>
+				<p>
+					This is a new tool so we apologize for any bugs that we missed. Also, we would love to hear 
+					your feedback.
 				</p>
 			</div>
 			<div id="svc-req-form-outer">
+				<h1>Step 1) Create an Account</h1>
 				<%= form_for(user_registration_path, :url => user_registration_path) do |f| %>
 					<p><%= f.label :email %><br />
 				  	<%= f.email_field :email %></p>

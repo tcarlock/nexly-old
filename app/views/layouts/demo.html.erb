@@ -3,9 +3,9 @@
 <head>
   <title>Nexly Demo Site</title>
   
-  <%= stylesheet_link_tag "demo_global", "themes/jx.common", "themes/jx.default" %>
+  <%= stylesheet_link_tag "demo_global", "toolbar" %>
   <%= yield :styles %>
-  <%= javascript_include_tag "application", "demo_global", "jquery.jixedbar" %>
+  <%= javascript_include_tag "application", "demo_global" %>
   <%= yield :scripts %>
   
   <%= csrf_meta_tag %>

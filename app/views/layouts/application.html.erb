@@ -37,8 +37,6 @@
 						</ul>
 					<% else %>
 						<ul id="hdr-nav" class="navigation site-nav">
-							<li><%= link_to "FAQs", faqs_path, :id => "tour-link"  %></li>
-							<li><%= link_to "Tools", modules_path, :id => "tour-link"  %></li>
 							<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
 						</ul>
 					<% end %>
@@ -63,8 +61,7 @@
 		<div id="footer-inner" class="clearfix">
 			<ul id="ftr-nav" class="navigation clearfix">
 				<li><span>Nexly LLC</span></li>
-				<li><%= link_to "About Us", "about" %></li>
-				<li><%= link_to "Twitter", "twitter.com/nexlyllc" %></li>
+				<li><%= link_to "Twitter", "http://twitter.com/nexlyllc" %></li>
 				<li><%= link_to "Blog", "blog.nexly.com" %></li>
 			</ul>
 		</div>
