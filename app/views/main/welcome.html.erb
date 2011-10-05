@@ -4,51 +4,71 @@
 
 <div id="storyboard-pane" class="homepage-pane">
 	<div id="storyboard-banner">
-		<h1 id="pre">Brand management and customer engagement...</h1>
+		<h1 id="pre">Brand management and client engagement...</h1>
 		<h1 id="post">Just got a lot easier</h1>
-	</div>	
-	<div id="viewport">		
-		<div id="panel-find" class="panel">
+	</div>
+	<div id="viewport">	
+		<div id="panel-intro" class="panel">
 			<div class="text">
-				<h2>Brand management and customer-engagement tools for small businesses</h2>
+				<h2>Brand management and client-engagement tools for small businesses</h2>
 			</div>
 			<div class="content"></div>
 		</div>
-		<div id="panel-connect" class="panel">
+		<div id="panel-demo" class="panel">
 			<div class="text">
-				<h2>Nexly Reviews</h2>
+				<h2>Our First Tool: Nexly Reviews</h2>
 				<p>
-					Our first tool helps you easily collect reviews from your clients.
+					80% of decision makers use reviews when making a purchasing decision. Nexly Reviews makes it 
+					easy to collect and use reviews. 
 				</p>
+				<ul>
+					<li>
+						Easily collect reviews and display them within your website
+					</li>
+					<li>
+						Automatically publish reviews out to your social-media pages
+					</li>
+				</ul>
 			</div>
-			<div class="content"></div>
+			<div class="content">
+				<a href="#" id="play-demo" onclick="play_screencast(); return false;">
+	                <img src="/assets/play-demo.png">
+					<br>
+	                <h2>Watch the Demo</h2>
+	            </a>
+				<div id="demo-outer">
+					<object type="application/x-shockwave-flash" data="/static/swf/player-licensed.swf" width="532" height="293" id="commoncraft-embed" style="visibility: visible; ">
+						<param name="allowfullscreen" value="true">
+						<param name="wmode" value="transparent">
+						<param name="flashvars" value="file=http://scast.s3.amazonaws.com/cc/dropbox_intro.mp4&amp;skin=/static/swf/bekle.swf&amp;controlbar=over&amp;image=/static/images/cc_endframe_en.jpg&amp;autostart=true">
+					</object>
+				</div>
+			</div>
 		</div>
-		<div id="panel-learn" class="panel">
+		<div id="panel-plans" class="panel">
 			<div class="text">
-				<h2>Our Plans</h2>
+				<h2>We're just getting started</h2>
 				<p>
-					We have big plans:
-					<ul>
-						<li>
-							Resources - Publish white papers and articles
-						</li>
-						<li>
-							Events - Easily
-						</li>
-						<li>
-							News Updates
-						</li>
-						<li>
-							FAQ and Contact Us Builder
-						</li>
-							Chat
-						</li>
-					</ul>
+					We want to build a number of tools to help small businesses connect with clients and prospects.
 				</p>
+				<ul>
+					<li>
+						Resources - Help your clients make better decisions by managing and distributing white papers, 
+						articles and links.
+					</li>
+					<li>
+						Events - Manage and publicize networking events and seminars.  
+					</li>
+					<li>
+						News Updates
+					</li>
+				</ul>
 			</div>
 			<div class="content"></div>
 		</div>
 	</div>
+	<div id="panel-nav-prev" class="panel-nav-btn"></div>	
+	<div id="panel-nav-next" class="panel-nav-btn"></div>
 	<div id="timeline-nav-outer">
 		<div id="timeline-nav"></div>
 	</div>
@@ -57,11 +77,22 @@
 			<div id="signup-text">
 				<h1>Getting Started Is Easy</h1>
 				<p>
-					Registration is quick and simple.  This is a new tool and we would love to hear your feedback. 
+					It takes only two steps.  This is a new tool and we would love to hear your feedback. 
 				</p>
 			</div>
 			<div id="svc-req-form-outer">
-				Registration form
+				<%= form_for(user_registration_path, :url => user_registration_path) do |f| %>
+					<p><%= f.label :email %><br />
+				  	<%= f.email_field :email %></p>
+
+				  	<p><%= f.label :password %><br />
+				  	<%= f.password_field :password %></p>
+
+				  	<p><%= f.label :password_confirmation %><br />
+				  	<%= f.password_field :password_confirmation %></p>
+
+				  	<p><%= f.submit "Sign up" %></p>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -81,8 +112,8 @@
 			publicizing events, and connecting with prospects and clients.
 		</p>
 		<p>
-			Our solution can be easily integrated into your existing website and social-media pages, and it's modular 
-			so you pay only for what you need. 
+			Our solution can be easily integrated into your various web properties, and it's modular so you pay only for 
+			what you use. 
 		</p>
 	</div>
 	<div id="highlights">
@@ -90,12 +121,28 @@
 		<ul class="clearfix">
 			<li>
 				<div class="header">
+					<%= image_tag "homepage/map.png", :width => 35, :height => 35 %>						
+					<h3>More brand exposure and user engagement</h3>
+				</div>
+				<div class="content">
+					<p>
+						We want to make it easier for buyers to find and connect with your business. 
+					</p>
+					<p>
+						Our tools connect your various web properties and allow your clients and prospects to engage 
+						with your brand in a more-meaningful and engaging way.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="header">
 					<%= image_tag "homepage/blocks.png", :width => 35, :height => 35 %>
 					<h3>A modular solution with flexible pricing</h3>
 				</div>
 				<div class="content clearfix">
-					Pick and choose which tools you want
-					Pay only for what you use
+					We built and priced our technology with small businesses in mind. Each tool is offered as 
+					a stand-alone feature. This way you can add and remove features and only pay for what you 
+					need.
 				</div>
 			</li>
 			<li>
@@ -104,20 +151,14 @@
 					<h3>Easy to set up, integrate and use</h3>
 				</div>
 				<div class="content">
-					Quickly create a profile and publish new items
-					Easily collect reviews from your clients publish them to your various sites
-					Drop our tools directly into your business' website
-				</div>
-			</li>
-			<li>
-				<div class="header">
-					<%= image_tag "homepage/map.png", :width => 35, :height => 35 %>						
-					<h3>More brand exposure and user engagement</h3>
-				</div>
-				<div class="content">
-					Collect client reviews
-					Make your social media profiles more active and connect them back to your main site
-					After registering your business your profile is searchable
+					<p>
+						After registering and creating a profile for your business, you can start collecting reviews 
+						and managing your brand.
+					</p>
+					<p>
+						You can easily synchronize with your social-media pages, and with a few simple changes you 
+						can enable our toolbar to display reviews and updates directly within your marketing website.
+					</p>
 				</div>
 			</li>
 		</ul>

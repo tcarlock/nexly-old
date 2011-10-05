@@ -489,14 +489,13 @@
 					 */
 				
 					// hide first level menu
-					alert($("li", obj).find("div.container").length);
-					$("li", obj).find("div.container").each(function() {
+					$("li", obj).find("ul").each(function() {
 						$(this).css({"display": "none"}); // hide it! but we're listening to any click event
 					});
 
 					// create menu ID
 					i = 1;
-					$("li", obj).find("div.container").each(function() {
+					$("li", obj).find("ul").each(function() {
 						$(this).attr("id", "nav" + i);
 						$(this).parent().find("a:first").attr("href", "#"); // replace href attribute
 						$(this).parent().find("a:first").attr("name", "nav" + i); // replace href attribute				

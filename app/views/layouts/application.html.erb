@@ -27,17 +27,18 @@
 					<% if user_signed_in? %>
 						<ul id="hdr-nav" class="navigation app-nav">
 							<li><%= link_to "Dashboard", dashboard_path() %></li>
+							<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
 							<li id="account-nav">
 								<%= link_to "Account", "#" %>
 								<ul id="account-links">
 									<li><%= link_to "Manage Profile", edit_user_profile_path(current_user.profile)%></li>
-									<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
 								</ul>
 							</li>
 						</ul>
 					<% else %>
 						<ul id="hdr-nav" class="navigation site-nav">
 							<li><%= link_to "FAQs", faqs_path, :id => "tour-link"  %></li>
+							<li><%= link_to "Tools", modules_path, :id => "tour-link"  %></li>
 							<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
 						</ul>
 					<% end %>

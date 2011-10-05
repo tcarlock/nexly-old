@@ -35,6 +35,7 @@ Nexly::Application.routes.draw do
   end
 
   match "dashboard", :to => "main#dashboard"
+  match "modules", :to => "main#modules"
   match "contact", :to => "main#contact"
   match "faqs", :to => "main#faqs"
   match "create_service_request", :to => "main#create_service_request", :via => :post, :as => "create_request"
