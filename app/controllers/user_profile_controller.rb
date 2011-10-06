@@ -15,7 +15,7 @@ class UserProfileController < ApplicationController
     @profile.update_attributes(params[:user_profile])
     
     if (@profile.save)
-      redirect_to user_profile_path
+      redirect_to new_business_path
     else
       render :edit
     end

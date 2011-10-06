@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
         redirect_to edit_user_profile_path(current_user.profile)
       else
         if current_user.businesses.first.nil?
-          :root
+          redirect_to new_business_path()
         else
           current_user.businesses.first
         end

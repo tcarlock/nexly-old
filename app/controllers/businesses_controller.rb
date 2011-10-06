@@ -18,6 +18,9 @@ class BusinessesController < ApplicationController
     @business = current_user.businesses.create(params[:business])
     
     if @business.save
+      # Link user to business
+      BusinessUser.create!(:user_id => current_user.id, :business_id => @business.id)
+      
       respond_to do |format|
         format.html {
           redirect_to(@business, :notice => 'Your business profile has been saved')
