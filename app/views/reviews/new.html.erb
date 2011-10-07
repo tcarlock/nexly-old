@@ -3,6 +3,8 @@
 	<%= f.inputs do %>
 	  <%= f.input :details , :label => "Details:", :input_html => { :rows => 6 } %>
 	  <%= f.input :rating, :label => 'How would you rate this provider?' %>
-	<% end %>
-	<%= f.buttons %>
+  <% end %>
+  <%= f.buttons do %>
+	<%= f.commit_button 'Submit Review' %>
+  <% end %>
 <% end %>

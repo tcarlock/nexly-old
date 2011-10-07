@@ -37,19 +37,22 @@ div#toolbar {
   min-width: 700px; /* to limit the width when an excessive window resize */
   margin: 0px auto; /* centered toolbar */
   left: 0px;
-}
-
-div#toolbarbut { /* div for the 'hide status' */
-  width: 60px;
-  height: 15px;
-  margin-right: 3%;
   display: none;
 }
 
+div#toolbarbut { /* div for the 'hide status' */
+	width: 90px;
+	height: 25px;
+	margin-right: 3%;
+	text-align:center;
+}
+
 span.showbar a { /* show button */
-  padding: 5px;  
-  font-size: 10px;
-  color: #989898;
+	font-size: 14px;
+	display:block;
+	height: 25px;
+	line-height: 25px;
+	color: #989898;
 }
 
 .leftside {

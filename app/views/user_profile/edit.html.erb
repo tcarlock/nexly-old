@@ -3,7 +3,6 @@
 <h1>Update Your Profile</h1>
 <%= semantic_form_for @profile, :html => {:multipart => true} do |f| %>
   <%= f.inputs do %>
-    
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :biography, :input_html => { :rows => 6 } %>
@@ -12,14 +11,10 @@
     <%= f.input :zip_code %>
     <%= f.input :avatar %>
     <%= raw display_avatar(@profile.user)%>
-    <!--
-      TODO make this a remote form
-    -->
     <%= f.input :remove_avatar, :as => :boolean %>
-    
   <% end %>
-  
-  <%= f.buttons %>
-  
+  <%= f.buttons do %>
+	<%= f.commit_button 'Update Your Profile' %>
+  <% end %>
 <% end %>
 <%= link_to "Cancel", :back %>
