@@ -4,7 +4,7 @@ class UserProfile < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :biography, :on => :update
   
   has_attached_file :avatar, 
-    :default_url => "/images/profile/anonymous_:style.png", 
+    :default_url => "/assets/profile/anon_user:style.png", 
     :styles => { 
       :large => ["150x150>", :png], 
       :small => ["100x100>", :png], 
@@ -39,7 +39,7 @@ end
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)
-#  biography           :string(255)
+#  biography           :text
 #  address_1           :string(255)
 #  address_2           :string(255)
 #  city                :string(255)

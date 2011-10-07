@@ -1,5 +1,5 @@
 <h1>Post a New Review</h1>
-<%= semantic_form_for(@review, :url => business_reviews_path) do |f| %>
+<%= semantic_form_for(@review, :url => business_reviews_path, :remote => true, :html => { :id => 'new-review-form' }) do |f| %>
 	<%= f.inputs do %>
 	  <%= f.input :details , :label => "Details:", :input_html => { :rows => 6 } %>
 	  <%= f.input :rating, :label => 'How would you rate this provider?' %>

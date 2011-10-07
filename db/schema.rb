@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929100209) do
+ActiveRecord::Schema.define(:version => 20111007082223) do
 
   create_table "business_users", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "recommendations", :force => true do |t|
+    t.string   "email"
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "resource_types", :force => true do |t|
@@ -86,13 +95,12 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.text     "name"
-    t.text     "email"
+    t.string   "name"
+    t.string   "email"
     t.text     "details"
     t.integer  "rating"
     t.boolean  "is_under_review", :default => false
-    t.boolean  "is_hidden",       :default => false
-    t.boolean  "is_featured",     :default => false
+    t.boolean  "is_approved",     :default => false
     t.integer  "user_id"
     t.integer  "business_id"
     t.boolean  "is_anon",         :default => false
@@ -125,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20110929100209) do
     t.string   "twitter"
     t.string   "google_plus"
     t.string   "linked_in"
-    t.string   "biography"
+    t.text     "biography"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"

@@ -3,9 +3,9 @@
 <head>
   <title>Nexly Demo Site</title>
   
-  <%= stylesheet_link_tag "demo_global", "toolbar" %>
+  <%= stylesheet_link_tag "demo_global", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews" %>
   <%= yield :styles %>
-  <%= javascript_include_tag "application", "demo_global" %>
+  <%= javascript_include_tag "application", "toolbar" %>
   <%= yield :scripts %>
   
   <%= csrf_meta_tag %>
@@ -41,6 +41,6 @@
 			</ul>
 		</div>
 	</div>
-	<div id="jixedbar"></div>
+	<div id="nexly-toolbar"></div>
 </body>
 </html>

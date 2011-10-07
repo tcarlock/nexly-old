@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: MyString
+  message: MyText
+  business_id: 1
+
+two:
+  email: MyString
+  message: MyText
+  business_id: 1

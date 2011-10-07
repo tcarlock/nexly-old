@@ -147,5 +147,6 @@ User.find(2).businesses.create!(
                 :email => 'some.client@acme.com', 
                 :details => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nulla et nisi tincidunt posuere pellentesque urna mollis.',
                 :rating => rand(5),
+                :is_approved => n % 2 == 0,
                 :user_id => 1 + rand(4))
 end

@@ -1,16 +1,17 @@
 class Business < ActiveRecord::Base
   has_many :business_users
   has_many :users, :through => :business_users
+  has_many :recommendations
   has_many :reviews
   has_many :review_requests
   has_many :active_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
-  validates_presence_of :name, :biography, :on => :update
+  validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
   after_validation :geocode
   
   has_attached_file :avatar, 
-    :default_url => "/images/profile/anonymous_:style.png", 
+    :default_url => "/assets/profile/anon_user_:style.png", 
     :styles => { 
       :large => ["150x150>", :png], 
       :small => ["100x100>", :png], 
@@ -86,6 +87,7 @@ end
 #  id                  :integer(4)      not null, primary key
 #  name                :string(255)
 #  facebook            :string(255)
+#  website             :string(255)
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)

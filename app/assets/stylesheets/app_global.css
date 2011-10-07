@@ -85,6 +85,17 @@ html[xmlns].clearfix {
 }
 
 /*Alerts*/
+#error_explanation {
+	border-radius:10px;
+	background-color:#D8D5D5;
+	padding:7px;
+	margin-bottom:12px;
+	
+}
+#error_explanation ul {
+	margin-left:15px;
+	padding-left:7px;
+}
 #flash-outer {
 	position:absolute;
 	top:0;
@@ -164,9 +175,6 @@ ul.navigation li.active a {
 	color:#A2A2A3;
 	font-weight:bold;
 }
-.standard-list li .hidden {
-	display:none;
-}
 
 /*Standard button groups*/
 .action-btn-outer a,
@@ -194,7 +202,7 @@ ul.navigation li.active a {
 	right:-1px;
 	border-top-right-radius:7px;
 	border-bottom-left-radius:7px;
-	opacity:.9;
+	opacity:.95;
 	z-index:3;
 }
 .btns-tab-small {

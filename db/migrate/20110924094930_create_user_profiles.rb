@@ -8,7 +8,7 @@ class CreateUserProfiles < ActiveRecord::Migration
       t.string :twitter
       t.string :google_plus
       t.string :linked_in
-      t.string :biography
+      t.text :biography
       t.string :address_1
       t.string :address_2
       t.string :city

@@ -4,8 +4,8 @@
 		<a class="control-link dispute-review-link" title="Dispute review"></a>
 	<% end %>
 <% end %>
-<% if !review.is_featured %>
-	<%= form_tag feature_business_review_path(review.business, review), :remote => true do |f| %>
-		<a class="control-link feature-review-link" title="Add review to toolbar"></a>
+<% if !review.is_approved %>
+	<%= form_tag approve_business_review_path(review.business, review), :remote => true do |f| %>
+		<a class="control-link approve-review-link" title="Approve this review"></a>
 	<% end %>
 <% end %>

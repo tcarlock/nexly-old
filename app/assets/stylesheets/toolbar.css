@@ -1,9 +1,14 @@
-/*-- Bottom Toolbar --*/
-#toolbar ul {
-	padding:0;
+body,div,ul,ol,li,th,h1 { 
 	margin:0;
-	list-style-type:none;
+	padding:0;
 }
+
+ol,ul {
+	list-style:none;
+}
+
+/*-- Bottom Toolbar --*/
+
 div#toolbar, div#toolbarbut {
   position: fixed; /* set fixed position for the bar */
   bottom: 0px;
@@ -168,10 +173,26 @@ span.downarr a {
   background: url(/assets/toolbar/downarrow.png) no-repeat 5px 7px;
 }
 
+span.btn_container {
+	position:relative;
+	display:none;
+}
+
+span.btn_container a {
+	padding:5px 7px;
+	margin-right:5px;
+	font-size: 16px;
+	line-height: 34px;
+	text-align:center;
+	background-color:#87151B;
+	color: #fff;
+	border-radius:3px;
+}
+
 span.menu_title {
-  background: #e4e4e4;
   border-left: 1px solid #a4a4a4;
   padding: 10px;
+  position:relative;
 }
 
 span.menu_title a {
@@ -182,12 +203,12 @@ span.menu_title a {
 
 .quickmenu {
   position: absolute; /* important */
-  top: -251px;
-  right: 46px;
-  width: 260px;
+  top: -256px;
+  right: -5px;
+  width: 300px;
   height: 250px;
   background: #e4e4e4;
-	border-top: 1px solid #a4a4a4;
+  border-top: 1px solid #a4a4a4;
   border-left: 1px solid #a4a4a4; 
   border-right: 1px solid #a4a4a4;
   /* CSS3 */
@@ -196,16 +217,17 @@ span.menu_title a {
   -webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
   /* CSS3 end */
   display: none; /* important */
+  overflow:auto;
 }
 
 .quickmenu ul {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .quickmenu ul li {
   border-bottom: 1px solid #989898;    
   padding: 5px 10px;
-  margin: 0 15px 0 15px;
+  margin: 0 7px;
 }
 
 .quickmenu ul li a {

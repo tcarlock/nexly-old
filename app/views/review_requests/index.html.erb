@@ -7,7 +7,7 @@
 	<% end %>
 </div>
 <% if @requests.nil? || @requests.count == 0 %>
-	<span class="no-records">There are no review requests at this time</span>
+	<span class="hide-menu">There are no review requests at this time</span>
 <% else %>
 	<ul id="review-requests" class="standard-list">
 		<%= render @requests %>

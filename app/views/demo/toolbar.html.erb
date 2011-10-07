@@ -37,18 +37,25 @@
 		<span class="downarr"> <!-- hide button -->
 			<a href="#"></a>
 		</span>
-		<span class="menu_title">
-			<a class="menutit" href="#">quick menu</a> <!-- quick menu title -->
+		<span id="reviews-btns" class="btn_container">
+			<%= link_to "Post a Review", new_business_review_path(@business), :id => 'new-review-btn' %>
+			<%= link_to "Tell Someone", new_business_recommendations_path(@business), :id => 'new-rec-btn' %>
 		</span>
-		<div class="quickmenu">
-			<ul> <!-- quick menu list -->
-				<li><a href="#">Premium Member</a></li>
-				<li><a href="#">Become Author</a></li>
-				<li><a href="#">Submit News</a></li>
-				<li><a href="#">Send Feedback</a></li>
-				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">Privacy Policy</a></li>
-			</ul> 
-		</div>
+		<span class="menu_title">
+			<a class="menutit" href="#" data-toolbar-id="reviews-btns">
+				Reviews (<%= @reviews.count %> reviews)
+			</a> <!-- quick menu title -->
+			<div class="quickmenu">
+				<div class="quickmenu_inner">
+					<ul> <!-- quick menu list -->
+						<% if @reviews.nil? || @reviews.count == 0 %>
+							<li><span class="no-records">There are no reviews at this time</span></li>
+						<% else %>
+							<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</span>
 	</div>
 </div>

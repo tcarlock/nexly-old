@@ -27,8 +27,11 @@ class DemoController < ApplicationController
     render :layout => 'demo'
   end
   
+  private
+  
   def mock_objects
-    @business = Business.find(1)
     sign_in User.find(1)
+    @business = current_user.businesses.first
+    @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
   end
 end

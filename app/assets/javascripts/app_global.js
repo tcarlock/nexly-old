@@ -10,15 +10,6 @@ $(function(){
 			}
 		};
 	};
-
-	function stateMonitor(obj)
-	{
-	if(obj.newstate == 'COMPLETED')
-	{
-		alert('test');
-	document.getElementById("placeholder").style.display="none";
-	}
-	};
 	
 	if($('#storyboard-banner').length == 1) {
 		$('#pre').delay(2000).fadeOut(1000, function() {

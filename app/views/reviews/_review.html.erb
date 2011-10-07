@@ -14,9 +14,13 @@
 		<%= review.rating %> out of 5
 	</div>
 	<div class="footer">
-		Posted by <%= review.user.display_name %> on <%= review.created_at.to_s(:feed_date)%>
+		Posted
+		<% if !review.user.nil? %>
+			by <%= review.user.display_name %> 
+		<% end %>
+		 on <%= review.created_at.to_s(:feed_date)%>
 		<% if show_admin %>
-			<span class="featured <%= !review.is_featured ? 'hidden' : '' %>">
+			<span class="approved <%= !review.is_approved ? 'hidden' : '' %>">
 				(This review is highlighted on your website)
 			</span>
 		<% end %>

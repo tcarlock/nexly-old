@@ -1,4 +1,4 @@
-<% content_for :styles do stylesheet_link_tag "main.css" end %>
+<% content_for :styles do stylesheet_link_tag "main", "reviews" end %>
 
 <div id="profile-details-pane" class="left-col">
 	<div id="avatar-outer">
@@ -26,34 +26,21 @@
 			<li class="header">
 				Review Stats:
 			</li>
-			<li>
-				<%= @business.review_stats.count %> <%= @business.review_stats == 1 ? "review" : "review".pluralize %> submitted	
-			</li>
-			<li>
-				<%= @business.active_review_requests.count %> pending review <%= @business.active_review_requests.count == 1 ? "request" : "request".pluralize %>
-			</li>
-			<li>
-				<%= @business.review_stats.average %> is your average rating	
-			</li>
-			<% if !@business.review_stats.submission_rate.nan? %>
-				<li>
-					<%= @business.review_stats.submission_rate %> submission rate	
-				</li>
+			<% if @reviews.nil? || @reviews.count == 0 %>
+				<li><span class="no-records">There are no reviews at this time</span></li>
+			<% else %>
+				<%= render :partial => 'review_stats' %>
 			<% end %>
 		</ul>
 		<ul class="profile-details clearfix">
 			<li class="header">
 				Social Media:
 			</li>
-			<li>
-				752 page views for reviews	
-			</li>
-			<li>
-				49% cick-through rate
-			</li>
-			<li>
-				13% click-through improvement	
-			</li>
+			<% if @reviews.nil? || @reviews.count == 0 %>
+				<li><span class="no-records">There are no reviews at this time</span></li>
+			<% else %>
+				<%= render :partial => 'social_stats' %>
+			<% end %>
 		</ul>
 	</div>
 	<div class="content-panel">
@@ -64,7 +51,7 @@
 			<span class="no-records">There are no reviews at this time</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
-				<%= render :partial => 'reviews/review', :collection => @reviews.limit(3), :locals => { :show_admin => false, :truncate_review => false } %>
+				<%= render :partial => 'reviews/review', :collection => @reviews.limit(3), :locals => { :show_admin => true, :truncate_review => false } %>
 			</ul>
 		<% end %>
 	</div>

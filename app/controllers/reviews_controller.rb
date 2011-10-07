@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :get_review, :only => [:destroy, :feature, :dispute]
   
   def index
@@ -12,15 +13,22 @@ class ReviewsController < ApplicationController
   
   def new
     @review = Business.find(params[:business_id]).reviews.build()
+    
+    render :layout => false
   end
 
   def create
     @review = Business.find(params[:business_id]).reviews.create(params[:review])
     
-    if @review.save
-      redirect_to(@review.business)
-    else
-      render :action => new
+    respond_to do |format|
+      format.html {
+        if @review.save
+          redirect_to(@review.business)
+        else
+          render :action => new
+        end
+      }
+      format.js
     end
   end
 
@@ -33,8 +41,8 @@ class ReviewsController < ApplicationController
     end
   end
   
-  def feature
-    @review.update_attributes(:is_featured => true)
+  def approve
+    @review.update_attributes(:is_approved => true)
     @review.save
     
     respond_to do |format|

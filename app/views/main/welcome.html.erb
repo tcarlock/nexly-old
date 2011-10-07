@@ -85,7 +85,8 @@
 			</div>
 			<div id="svc-req-form-outer">
 				<h1>Step 1) Create an Account</h1>
-				<%= form_for(user_registration_path, :url => user_registration_path) do |f| %>
+				<%= form_for("user", :method => :post, :url => user_registration_path) do |f| %>
+					
 					<p><%= f.label :email %><br />
 				  	<%= f.email_field :email %></p>
 

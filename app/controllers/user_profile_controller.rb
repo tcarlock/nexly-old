@@ -1,6 +1,7 @@
 class UserProfileController < ApplicationController
   before_filter :get_user, :only => [:show, :index, :edit, :update]
-  
+  before_filter :set_menu_visibility, :only => [:new, :create]
+      
   def index
     render :show
   end
