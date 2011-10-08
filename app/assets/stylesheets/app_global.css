@@ -161,6 +161,11 @@ ul.navigation li.active a {
 }
 .standard-tiles li {
 	display:inline-block;
+	float:left;
+	margin-right:7px;
+	border:1px #D8D5D5 solid;
+	border-radius:5px;
+	padding:7px;
 }
 .standard-list li {
 	padding:7px;

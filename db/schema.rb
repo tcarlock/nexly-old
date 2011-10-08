@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007082223) do
+ActiveRecord::Schema.define(:version => 20111008034452) do
+
+  create_table "app_subscriptions", :force => true do |t|
+    t.integer  "application_id"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "applications", :force => true do |t|
+    t.string   "title"
+    t.text     "details"
+    t.float    "price"
+    t.boolean  "is_public",  :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "business_users", :force => true do |t|
     t.integer  "user_id"

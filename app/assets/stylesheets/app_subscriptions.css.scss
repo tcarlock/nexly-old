@@ -1,0 +1,13 @@
+// Place all the styles related to the app_subscriptions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#subscriptions li {
+	width:250px;
+	height:100px;
+	cursor:pointer;
+}
+
+#subscriptions li.subscribed {
+	background-color:#D8D5D5;
+}

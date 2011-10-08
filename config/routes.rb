@@ -23,25 +23,27 @@ Nexly::Application.routes.draw do
     get :search, :on => :collection
     
     resource :recommendations, :only => [:new, :create]
-    resources :reviews, :except => [:update, :edit], :controller => :reviews do
+    resources :reviews, :except => [:update, :edit] do
       member do
         post :dispute, :approve
       end
       
-      resources :review_responses, :only => [:new, :create], :controller => :review_responses, :as => :responses
+      resources :review_responses, :only => [:new, :create], :as => :responses
     end
     
-    resources :review_requests, :except => [:update, :edit], :controller => :review_requests
-    resources :resources, :controller => :resources
+    resources :review_requests, :except => [:update, :edit]
+    resources :resources
   end
+  
+  resources :app_subscriptions, :except => :index, :as => :subscriptions
 
   match "dashboard", :to => "main#dashboard"
   match "modules", :to => "main#modules"
   match "contact", :to => "main#contact"
   match "faqs", :to => "main#faqs"
-  match "create_service_request", :to => "main#create_service_request", :via => :post, :as => "create_request"
+
   get :search, :to => "main#search"
-  
+    
   get "demo/home"
   get "demo/toolbar"
   get "demo/resources"

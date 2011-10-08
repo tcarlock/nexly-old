@@ -1,0 +1,13 @@
+<% content_for :styles do stylesheet_link_tag "app_subscriptions" end %>
+
+<h1>Manage Your Applications</h1>
+<ul id="subscriptions" class="standard-tiles">
+	<% @apps.each do |app| %>
+		<li>
+			<h3><%= app.title %></h3>
+			<p>
+				<%= app.details.truncate(50) %>
+			</p>
+		</li>
+	<% end %>
+</ul>

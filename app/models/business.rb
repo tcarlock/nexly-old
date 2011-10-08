@@ -1,6 +1,10 @@
 class Business < ActiveRecord::Base
   has_many :business_users
   has_many :users, :through => :business_users
+  
+  has_many :app_subscriptions
+  has_many :applications, :through => :app_subscriptions
+  
   has_many :recommendations
   has_many :reviews
   has_many :review_requests

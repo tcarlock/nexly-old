@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  details: MyText
+  price: 1.5
+  is_public: false
+
+two:
+  title: MyString
+  details: MyText
+  price: 1.5
+  is_public: false

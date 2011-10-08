@@ -13,7 +13,7 @@ $(function(){
 		});
 		
 		//show tooltip when the mouse is moved over a list element
-		$("ul#social li").hover(function() {
+		$(".leftside > ul > li").hover(function() {
 				$(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
 		    $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
 		        $(this).find("div").hide();
