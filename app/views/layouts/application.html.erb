@@ -13,52 +13,49 @@
 <body>
 	<div id="backdrop"></div>
 	<div id="container">
-		<div id="flash-outer">
-			<% flash.each do |key, msg| %>
-			    <%= content_tag :div, msg, :class => ["flash ", key], :id => "flash_#{key}" %>
-			<% end %>
-		</div>
-		<div id="header">
-			<a id="logo" href="/">
-				<%= image_tag "home.png", :id => "home-icon" %>
-			</a>
-			<div id="hdr-controls">
-				<div id="hdr-nav-outer">
-					<% if user_signed_in? %>
-						<% unless @hide_menu %>
-							<ul id="hdr-nav" class="navigation app-nav">
-								<li><%= link_to "Dashboard", dashboard_path() %></li>
-								<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-								<li id="account-nav">
-									<%= link_to "Account", "#" %>
-									<ul id="account-links">
-										<li><%= link_to "Manage Profile", edit_user_profile_path(current_user.profile)%></li>
-									</ul>
-								</li>
+		<div id="container-inner">
+			<div id="flash-outer">
+				<% flash.each do |key, msg| %>
+				    <%= content_tag :div, msg, :class => ["flash ", key], :id => "flash_#{key}" %>
+				<% end %>
+			</div>
+			<div id="header">
+				<a id="logo" href="/">
+					<%= image_tag "home.png", :id => "home-icon" %>
+				</a>
+				<div id="hdr-controls">
+					<div id="hdr-nav-outer">
+						<% if user_signed_in? %>
+							<% unless @hide_menu %>
+								<ul id="hdr-nav" class="navigation app-nav">
+									<li><%= link_to "Dashboard", dashboard_path() %></li>
+									<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+								</ul>
+							<% end %>
+						<% else %>
+							<ul id="hdr-nav" class="navigation site-nav">
+								<li><%= link_to "Register", new_user_registration_path, :id => "register-link" %></li>
+								<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
 							</ul>
-						<% end %>
-					<% else %>
-						<ul id="hdr-nav" class="navigation site-nav">
-							<li><%= link_to "Register", new_user_registration_path, :id => "register-link" %></li>
-							<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
-						</ul>
-					<% end %>
-					<div class="clearfix"></div>
-				</div>
-				<% unless @hide_menu %>
-					<div id="search-outer">
-						<%= form_tag :search, :method => "get" do %>
-							<%= text_field_tag :q %>
-							<%= submit_tag "", :id => "search-btn" %>
 						<% end %>
 						<div class="clearfix"></div>
 					</div>
-				<% end %>
+					<% unless @hide_menu %>
+						<div id="search-outer">
+							<%= form_tag :search, :method => "get" do %>
+								<%= text_field_tag :q %>
+								<%= submit_tag "", :id => "search-btn" %>
+							<% end %>
+							<div class="clearfix"></div>
+						</div>
+					<% end %>
+				</div>
 			</div>
-		</div>
-		<div id="main-content">
-		  	<%= yield %>
-		  	<%= yield :closure %>
+			<div id="main-content" class="clearfix">
+			  	<%= yield %>
+			  	<%= yield :closure %>
+				<div class="clearfix"></div>
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>

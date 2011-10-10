@@ -4,7 +4,6 @@
 	<% if(@business.is_user_admin?(current_user)) %>
 		<%= link_to "", "#", :id => "edit-profile-link", :href => edit_business_path(@business), :title => "Edit this business profile" %>
 		<%= link_to "", "#", :id => "content-link" %>
-		<%= link_to "", "#", :id => "apps-link", :href => settings_business_path(@business) %>
 	<% else %>
 		<%= link_to "", "#", :id => "review-link", :href => new_business_review_path(@business) %>
 	<% end %>
@@ -26,20 +25,16 @@
 			Links
 		</li>
 		<li>
-			<strong>Website: </strong>
-			<%= @business.website %>
+			<a>http://<%= @business.website %></a>
 		</li>
 		<li>
-			<strong>Facebook: </strong>
-			<%= @business.facebook %>
+			<a>http://facebook.com/<%= @business.facebook %></a>
 		</li>
 		<li>
-			<strong>Twitter: </strong>
-			<%= @business.twitter %>
+			<a>http://twitter.com/<%= @business.twitter %></a>
 		</li>
 		<li>
-			<strong>LinkIn: </strong>
-			<%= @business.linked_in %>
+			<a>http://linkedin.com/<%= @business.linked_in %></a>
 		</li>
 	</ul>
 	<ul id="biz-location" class="profile-details clearfix">
@@ -60,7 +55,7 @@
 <div id="biz-content-pane" class="right-col">
 	<div id="biz-details">
 		<h1><%= @business.name %></h1>
-		<h3><%= @business.location %></h3>
+		<h2><%= @business.location %></h2>
 	</div>
 	<div id="reviews-panel" class="content-panel">
 		<h3>Reviews (<%= @reviews.count %> Reviews)</h3>

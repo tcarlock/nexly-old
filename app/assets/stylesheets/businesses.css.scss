@@ -16,13 +16,14 @@
 	border-radius:7px;
 }
 #biz-details {
-	padding:0 0 7px 5px;
+	padding-bottom:7px;
 	width:550px;
 }
 #biz-details h1,
 #biz-details h2 {
-	color:#4A4A4A;
+	color:#666;
 	padding-bottom:0px;
+	font-size:2em;
 }
 
 #edit-profile-link { background-image:url('/assets/tasks/edit.png'); }

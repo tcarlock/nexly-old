@@ -5,10 +5,11 @@
 		<%= raw display_logo(@business, :large) %>
 	</div>
 	<div id="biz-details" class="panel">
-		<h2><%= @business.name %>&nbsp;<%= link_to "Edit Profile", edit_business_path(@business) %></h2>
+		<%= link_to @business.name, business_path(@business), :class => 'biz-name' %>
+		<%= link_to "Edit Profile", edit_business_path(@business) %>
 		<h3><%= @business.location %></h3>
 	</div>
-	<ul id="user-bio" class="profile-details clearfix">
+	<ul id="biz-bio" class="profile-details clearfix">
 		<li class="header">
 			About <%= @business.name %>
 		</li>
@@ -19,33 +20,40 @@
 </div>
 <div id="dashboard-content-pane" class="right-col">
 	<div id="biz-vitals" class="content-panel">
-		<h3>
-			Business Vitals<%= link_to "View Profile", business_path(@business) %>
-		</h3>
-		<ul class="profile-details clearfix">
+		<ul id="stats-tab" class="profile-details clearfix">
 			<li class="header">
-				Review Stats:
+				<%= link_to "Review Stats", dashboard_path %>
 			</li>
 			<% if @reviews.nil? || @reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
 			<% else %>
-				<%= render :partial => 'review_stats' %>
+				<%= render :partial => 'dashboard/review_stats' %>
 			<% end %>
 		</ul>
-		<ul class="profile-details clearfix">
+		<ul id="social-tab" class="profile-details clearfix">
 			<li class="header">
-				Social Media:
+				<%= link_to "Social Media Traffic", dashboard_path %>				
 			</li>
 			<% if @reviews.nil? || @reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
 			<% else %>
-				<%= render :partial => 'social_stats' %>
+				<%= render :partial => 'dashboard/social_stats' %>
+			<% end %>
+		</ul>
+		<ul id="apps-tab" class="profile-details clearfix">
+			<li class="header">
+				<%= link_to "Apps & Settings", dashboard_path %>
+			</li>
+			<% if @reviews.nil? || @reviews.count == 0 %>
+				<li><span class="no-records">There are no reviews at this time</span></li>
+			<% else %>
+				<%= render :partial => 'dashboard/apps_settings' %>
 			<% end %>
 		</ul>
 	</div>
 	<div class="content-panel">
 		<h3>
-			Latest Reviews<%= link_to "Manage Reviews", business_reviews_path(@business) %>
+			Latest Reviews<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
 		<% if @reviews.nil? || @reviews.count == 0 %>
 			<span class="no-records">There are no reviews at this time</span>
@@ -54,10 +62,5 @@
 				<%= render :partial => 'reviews/review', :collection => @reviews.limit(3), :locals => { :show_admin => true, :truncate_review => false } %>
 			</ul>
 		<% end %>
-	</div>
-	<div class="content-panel">
-		<h3>
-			Apps and settings<%= link_to "Manage Apps", edit_subscription_path(@business) %>
-		</h3>
 	</div>
 </div>

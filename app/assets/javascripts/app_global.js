@@ -1,4 +1,14 @@
 $(function(){
+	function pauseAutoNav() {
+		$('#panel-play-pause').addClass('paused');
+		$('#viewport').cycle('pause');
+	}
+	
+	function startAutoNav() {
+		$('#panel-play-pause').removeClass('paused');
+		$('#viewport').cycle('resume');
+	}
+	
 	function hoverIntentConfig(selector) {
 		return {    
 		    over: function() {
@@ -18,9 +28,9 @@ $(function(){
 				$('#storyboard-banner').delay(1500).animate({ top:0, right:0, opacity: 0 }, 1000, function() {
 					$('.panel-nav-btn, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(2000, 1, function() {
 						$('#viewport').cycle('resume').hover(function() {
-							$(this).cycle('pause');
+							pauseAutoNav();
 						}, function() {
-							$(this).cycle('resume');
+							startAutoNav();
 						});
 					});
 				});
@@ -35,6 +45,8 @@ $(function(){
 	// 	player = document.getElementsById('commoncraft-embed');
 	// 	player.addModelListener('STATE', 'stateMonitor');
 	// });
+	
+	$('#panel-play-pause').toggle(pauseAutoNav, startAutoNav);
 	
 	$('.flash').each(function() {
 		$(this).delay(500).show('slide', { direction: 'down' }, 250).delay(3500).hide('slide', { direction: 'down' }, 250);
@@ -78,24 +90,16 @@ $(function(){
 	$('ul.standard-list li').hoverIntent(hoverIntentConfig('div.btns-tab-small'));
 	
 	$('#sign-up-tab').toggle(function() {
-			$('#viewport').cycle('pause')
+			pauseAutoNav();
 			$('#signup-pane-inner').slideToggle(350);
 			$('html, body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
 		}, function() {
-			$('#viewport').cycle('resume')
+			startAutoNav();
 			$('html, body').animate({scrollTop: '0px'}, 800);
 			$('#signup-pane-inner').slideToggle(350);
 	});
 	
 	$('li', '#highlights').hoverIntent(hoverIntentConfig('div.content'));
-		
-	$('#account-nav').toggle(function() {
-		$('#account-links').slideDown(250);
-		$(this).addClass('active');
-	}, function() {
-		$('#account-links').slideUp(250);
-		$(this).removeClass('active');
-	});
 	
 	$('a.control-link', 'div.btns-tab form').click(function() {
 		$(this).closest('form').submit();

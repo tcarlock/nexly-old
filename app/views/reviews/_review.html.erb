@@ -21,7 +21,7 @@
 		 on <%= review.created_at.to_s(:feed_date)%>
 		<% if show_admin %>
 			<span class="approved <%= !review.is_approved ? 'hidden' : '' %>">
-				(This review is highlighted on your website)
+				(This review is approved)
 			</span>
 		<% end %>
 	</div>

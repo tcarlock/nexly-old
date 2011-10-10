@@ -17,20 +17,20 @@ html, body {
 }
 body {
     background:url('/assets/bg_gradient.png') repeat-x scroll 0 0 #bfcdde;  
-    background:none repeat-x scroll 0 0 #fff;
+    background:none repeat-x scroll 0 0 #ebebeb;
     color: #272722;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
 	letter-spacing:.1em;
 }
-h1, h2, h3, h4 { padding-bottom:7px; font-weight:bold; color:#646464; }
+h1, h2, h3, h4 { padding-bottom:7px; font-family:Tahoma; color:#646464; }
 h1 { font-size:1.6em; }
 h2 { font-size:1.3em; }
 h3 { font-size:1.1em; }
 h4 { font-size:1em; }
 a {
 	cursor:pointer;
-	color:#1B5790;
+	color:#3595D4;
 	text-decoration:none;
 	background-color:transparent;
 }
@@ -90,7 +90,6 @@ html[xmlns].clearfix {
 	background-color:#D8D5D5;
 	padding:7px;
 	margin-bottom:12px;
-	
 }
 #error_explanation ul {
 	margin-left:15px;
@@ -142,7 +141,7 @@ ul.navigation li {
 	float: left;
 }
 ul.navigation li a {
-
+	font-family:Tahoma;
 }
 ul.navigation li a:hover {
 
@@ -150,7 +149,6 @@ ul.navigation li a:hover {
 ul.navigation li.active a {
 
 }
-
 
 /*Standard lists*/
 .standard-tiles,
@@ -268,13 +266,12 @@ div.pagination .next_page {
 .content-panel h3 {
 	width:100%;
 	padding:3px 0;
-	text-indent:7px;
 	margin-bottom:7px;
-	background-color:#C8C8C9;
-	border-radius:3px;
+	color:#444;
 }
 .content-panel h3 a {
 	margin-left:10px;
+	float:right;
 }
 ul.profile-details {
 	width:100%;
