@@ -91,15 +91,28 @@ $(function(){
 	
 	$('#sign-up-tab').toggle(function() {
 			pauseAutoNav();
-			$('#signup-pane-inner').slideToggle(350);
-			$('html, body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
+			$('#signup-pane-inner').slideDown(350, function() {
+				$('html, body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
+			});
 		}, function() {
 			startAutoNav();
-			$('html, body').animate({scrollTop: '0px'}, 800);
-			$('#signup-pane-inner').slideToggle(350);
+			$('html, body').animate({scrollTop: '0px'}, 800, function() {
+				$('#signup-pane-inner').slideUp(350);
+			});
 	});
 	
-	$('li', '#highlights').hoverIntent(hoverIntentConfig('div.content'));
+	$('li', '#highlights').hoverIntent({    
+	    over: function() {
+			var element = $(this);
+			element.find("div.content").fadeIn(250);
+			if((element.offset().top + element.height()) > $(window).height())
+				$('html, body').animate({ scrollTop: element.offset().top }, 4000);
+		}, 
+	    timeout:0,
+	    out: function() {
+			$(this).find("div.content").fadeOut(250);
+		}
+	});
 	
 	$('a.control-link', 'div.btns-tab form').click(function() {
 		$(this).closest('form').submit();

@@ -39,7 +39,7 @@ body {
 	-webkit-box-shadow:0 4px 4px #666;
 	box-shadow:0 4px 4px #666;
 	border-radius:10px;
-	width:650px;
+	width:690px;
 	text-align:center;
 }
 #storyboard-banner h1 {
@@ -108,6 +108,7 @@ body {
 #viewport .content {
 	width:450px;
 	border-top-right-radius:13px;
+	border-bottom-right-radius:13px;
 	background:0 0 no-repeat transparent;
 	float:left;
 	clear:none;
@@ -144,8 +145,13 @@ body {
 	margin:0 auto;
 	opacity:.5;
 }
+#panel-plans .text {
+	width:530px;
+}
 #panel-plans .content {
-	background-image:url('/assets/homepage/comm-placeholder.png');
+	width:380px;
+	height:380px;
+	background:url('/assets/homepage/it-guy.jpg') 0 0 no-repeat transparent;
 }
 .panel-nav-btn {
 	position:absolute;
@@ -170,7 +176,7 @@ body {
 #panel-nav-next {
 	width:48px;
 	height:48px;
-	top:130px;
+	top:140px;
 }
 #panel-nav-prev {
 	left:-35px;
