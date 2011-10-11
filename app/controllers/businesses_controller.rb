@@ -41,10 +41,6 @@ class BusinessesController < ApplicationController
     redirect_to(@business, :notice => 'Your business profile has been updated')
   end
   
-  def settings
-    
-  end
-  
   def edit_capabilities
   end
 

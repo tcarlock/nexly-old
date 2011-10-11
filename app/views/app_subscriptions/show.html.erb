@@ -8,6 +8,12 @@
 			<p>
 				<%= app.details.truncate(50) %>
 			</p>
+			<ul style="list-style-type:none;padding-left:10px;">
+				<li>
+					<%= check_box_tag :selected => true %>
+					Publish to Facebook
+				</li>
+			</ul>
 		</li>
 	<% end %>
 </ul>

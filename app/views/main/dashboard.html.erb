@@ -22,7 +22,7 @@
 	<div id="biz-vitals" class="content-panel">
 		<ul id="stats-tab" class="profile-details clearfix">
 			<li class="header">
-				<%= link_to "Review Stats", dashboard_path %>
+				<%= link_to "Review Stats", analytics_path %>
 			</li>
 			<% if @reviews.nil? || @reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
@@ -32,17 +32,17 @@
 		</ul>
 		<ul id="social-tab" class="profile-details clearfix">
 			<li class="header">
-				<%= link_to "Social Media Traffic", dashboard_path %>				
+				<%= link_to "Inbound Traffic", analytics_path %>				
 			</li>
 			<% if @reviews.nil? || @reviews.count == 0 %>
-				<li><span class="no-records">There are no reviews at this time</span></li>
+				<li><span class="no-records">There is no traffic data at this time</span></li>
 			<% else %>
 				<%= render :partial => 'dashboard/social_stats' %>
 			<% end %>
 		</ul>
 		<ul id="apps-tab" class="profile-details clearfix">
 			<li class="header">
-				<%= link_to "Apps & Settings", dashboard_path %>
+				<%= link_to "Apps & Settings", subscription_path(@business) %>
 			</li>
 			<% if @reviews.nil? || @reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>

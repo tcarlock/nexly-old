@@ -11,8 +11,8 @@ end
 # Table name: reviews
 #
 #  id              :integer(4)      not null, primary key
-#  name            :text
-#  email           :text
+#  name            :string(255)
+#  email           :string(255)
 #  details         :text
 #  rating          :integer(4)
 #  is_under_review :boolean(1)      default(FALSE)

@@ -157,7 +157,7 @@ ul.navigation li.active a {
 	clear:both;
 	list-style-type:none;
 }
-.standard-tiles li {
+.standard-tiles > li {
 	display:inline-block;
 	float:left;
 	margin-right:7px;
@@ -165,7 +165,7 @@ ul.navigation li.active a {
 	border-radius:5px;
 	padding:7px;
 }
-.standard-list li {
+.standard-list > li {
 	padding:7px;
 	display:block;
 	position:relative;
@@ -173,7 +173,7 @@ ul.navigation li.active a {
 	margin-bottom:5px;
 	border-bottom:1px dotted #a1a1a3;
 }
-.standard-list li .footer {
+.standard-list > li .footer {
 	font-size:.9em;
 	color:#A2A2A3;
 	font-weight:bold;
@@ -201,8 +201,8 @@ ul.navigation li.active a {
 	position:absolute;
 	padding:0 5px;
 	background-color:#a1a1a3;
-	top:-1px;
-	right:-1px;
+	top:0px;
+	right:0px;
 	border-top-right-radius:7px;
 	border-bottom-left-radius:7px;
 	opacity:.95;

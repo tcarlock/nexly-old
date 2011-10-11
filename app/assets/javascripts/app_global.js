@@ -1,4 +1,6 @@
 $(function(){
+	var isHardPaused = false;
+	
 	function pauseAutoNav() {
 		$('#panel-play-pause').addClass('paused');
 		$('#viewport').cycle('pause');
@@ -28,9 +30,11 @@ $(function(){
 				$('#storyboard-banner').delay(1500).animate({ top:0, right:0, opacity: 0 }, 1000, function() {
 					$('.panel-nav-btn, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(2000, 1, function() {
 						$('#viewport').cycle('resume').hover(function() {
-							pauseAutoNav();
+							if(!isHardPaused)
+								pauseAutoNav();
 						}, function() {
-							startAutoNav();
+							if(!isHardPaused)
+								startAutoNav();
 						});
 					});
 				});
@@ -46,7 +50,13 @@ $(function(){
 	// 	player.addModelListener('STATE', 'stateMonitor');
 	// });
 	
-	$('#panel-play-pause').toggle(pauseAutoNav, startAutoNav);
+	$('#panel-play-pause').toggle(function() {
+		isHardPaused = true;
+		pauseAutoNav();
+	}, function() {
+		isHardPaused = false;
+		startAutoNav();
+	});
 	
 	$('.flash').each(function() {
 		$(this).delay(500).show('slide', { direction: 'down' }, 250).delay(3500).hide('slide', { direction: 'down' }, 250);
@@ -90,15 +100,18 @@ $(function(){
 	$('ul.standard-list li').hoverIntent(hoverIntentConfig('div.btns-tab-small'));
 	
 	$('#sign-up-tab').toggle(function() {
-			pauseAutoNav();
-			$('#signup-pane-inner').slideDown(350, function() {
-				$('html, body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
-			});
-		}, function() {
+		pauseAutoNav();
+		$('#signup-pane-inner').slideDown(350, function() {
+			//$('#sign-up-tab').effect("scale", { percent: 50, origin: ['top','left'] }, 300);
+			$('html').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
+		});
+	}, function() {
+		if(!isHardPaused)
 			startAutoNav();
-			$('html, body').animate({scrollTop: '0px'}, 800, function() {
-				$('#signup-pane-inner').slideUp(350);
-			});
+		$('html').animate({scrollTop: '0px'}, 800, function() {
+			//$('#sign-up-tab').effect("scale", { percent: 200, origin: ['top','left'] }, 300);
+			$('#signup-pane-inner').slideUp(350);
+		});
 	});
 	
 	$('li', '#highlights').hoverIntent({    
@@ -106,8 +119,8 @@ $(function(){
 			var element = $(this);
 			element.find("div.content").fadeIn(250);
 			if((element.offset().top + element.height()) > $(window).height())
-				$('html, body').animate({ scrollTop: element.offset().top }, 4000);
-		}, 
+				$('html, body').animate({ scrollTop: element.offset().top });
+		},
 	    timeout:0,
 	    out: function() {
 			$(this).find("div.content").fadeOut(250);

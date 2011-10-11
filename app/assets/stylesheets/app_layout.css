@@ -51,6 +51,7 @@
 	height:33px;
 	background-color:#fff;
 	border-radius:3px;
+	display:none;
 }
 #search-outer #q {
 	float:left;
@@ -116,6 +117,7 @@
 	position:absolute;
 	bottom:7px;
 	right:200px;
+	right:0px;
 	margin-top:13px;
 }
 #hdr-nav li {

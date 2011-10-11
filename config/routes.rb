@@ -1,4 +1,6 @@
 Nexly::Application.routes.draw do  
+  get "analytics/index"
+
   devise_for :users
 
   resources :users, :only => [] do
@@ -17,7 +19,7 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     member do
-      get :edit_capabilities, :settings
+      get :edit_capabilities
     end
 
     get :search, :on => :collection
@@ -37,11 +39,11 @@ Nexly::Application.routes.draw do
   
   resources :app_subscriptions, :except => :index, :as => :subscriptions
 
-  match "dashboard", :to => "main#dashboard"
-  match "modules", :to => "main#modules"
-  match "contact", :to => "main#contact"
-  match "faqs", :to => "main#faqs"
-
+  get :dashboard, :to => "main#dashboard"
+  get :analytics, :to => "analytics#index"
+  get :modules, :to => "main#modules"
+  get :contact, :to => "main#contact"
+  get :faqs, :to => "main#faqs"
   get :search, :to => "main#search"
     
   get "demo/home"
