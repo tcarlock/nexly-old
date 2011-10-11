@@ -70,7 +70,7 @@ $(function(){
 	
 	$('#viewport').cycle({
 	    speed:  1500, 
-	    timeout: 7000,
+	    timeout: 8500,
 		fx:  'scrollHorz',
 		prev: '#panel-nav-prev',
 		next: '#panel-nav-next',
