@@ -23,6 +23,8 @@ gem 'acts-as-taggable-on'
 gem 'jquery-rails'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.pre4'
+gem 'oauth'
+gem 'twitter', :git => 'git://github.com/jnunemaker/twitter.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'

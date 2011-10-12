@@ -40,6 +40,7 @@ Nexly::Application.routes.draw do
   resources :app_subscriptions, :except => :index, :as => :subscriptions
 
   get :dashboard, :to => "main#dashboard"
+  get :open_popup, :to => "main#open_popup"
   get :analytics, :to => "analytics#index"
   get :modules, :to => "main#modules"
   get :contact, :to => "main#contact"

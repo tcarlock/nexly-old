@@ -132,4 +132,9 @@ $(function(){
 		$(this).closest('form').submit();
 	    return false; 
 	});
+	
+	$('a[data-popup]').live('click', function(e) { 
+		window.open($(this)[0].href); 
+		e.preventDefault(); 
+   });
 });

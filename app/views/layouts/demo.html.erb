@@ -3,9 +3,9 @@
 <head>
   <title>Nexly Demo Site</title>
   
-  <%= stylesheet_link_tag "demo_global", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews" %>
+  <%= stylesheet_link_tag "demo_global", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews", "jquery.ui.stars.min.css" %>
   <%= yield :styles %>
-  <%= javascript_include_tag "application", "toolbar" %>
+  <%= javascript_include_tag "application", "toolbar", "jquery.ui.stars.min.js" %>
   <%= yield :scripts %>
   
   <%= csrf_meta_tag %>

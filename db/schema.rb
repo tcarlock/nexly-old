@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111008034452) do
+ActiveRecord::Schema.define(:version => 20111012064021) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -60,7 +60,14 @@ ActiveRecord::Schema.define(:version => 20111008034452) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "link_clicks", :force => true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "recommendations", :force => true do |t|
+    t.string   "name"
     t.string   "email"
     t.text     "message"
     t.integer  "user_id"

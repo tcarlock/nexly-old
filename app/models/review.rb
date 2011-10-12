@@ -4,6 +4,8 @@ class Review < ActiveRecord::Base
   has_one :review_response, :as => :response
   
   validates_presence_of :details, :rating
+  validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
+  validates_inclusion_of :rating, :in => 0..5, :message => "Must be from 0 to 5"
 end
 
 # == Schema Information

@@ -8,18 +8,18 @@
 		<label for="business_avatar"></label>
 		<%= raw display_logo(@business)%>
 	</li>
-
-	<h2>Social Media</h2>
-    <%= f.input :facebook, :label => 'Facebook handle:' %>
-    <%= f.input :twitter, :label => 'Twitter handle:' %>
-    <%= f.input :google_plus %>
-    <%= f.input :linked_in %>
 	<h2>Location</h2>
     <%= f.input :address_1 %>
     <%= f.input :address_2 %>
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :zip_code %>
+	<h2>Links</h2>
+    <%= f.input :website %>
+    <%= f.input :facebook %>
+    <%= f.input :twitter %>
+    <%= f.input :google_plus, :label => "Google+" %>
+    <%= f.input :linked_in, :label => 'LinkedIn' %>
   <% end %>
   <%= f.buttons do %>
 	<%= f.commit_button 'Update Business Profile' %>

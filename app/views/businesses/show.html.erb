@@ -25,16 +25,16 @@
 			Links
 		</li>
 		<li>
-			<a>http://<%= @business.website %></a>
+			<%= link_to @business.website, create_redir_link(@business.website), 'data-popup' => true %>
 		</li>
 		<li>
-			<a>http://facebook.com/<%= @business.facebook %></a>
+			<%= link_to @business.facebook, create_redir_link(@business.facebook), 'data-popup' => true %>
 		</li>
 		<li>
-			<a>http://twitter.com/<%= @business.twitter %></a>
+			<%= link_to @business.twitter, create_redir_link(@business.twitter), 'data-popup' => true %>
 		</li>
 		<li>
-			<a>http://linkedin.com/<%= @business.linked_in %></a>
+			<%= link_to @business.linked_in, create_redir_link(@business.linked_in), 'data-popup' => true %>
 		</li>
 	</ul>
 	<ul id="biz-location" class="profile-details clearfix">

@@ -20,7 +20,7 @@ class AppSubscriptionsController < ApplicationController
   end
 
   def get_apps
-    @apps = Application.all
+    @apps = Application.where(:is_public => true)
     @app_subs = Business.find(params[:id]).applications
   end
 end

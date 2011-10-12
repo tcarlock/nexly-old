@@ -8,9 +8,9 @@ class RecommendationsController < ApplicationController
   end
 
   def create
-    @rec = Business.find(params[:business_id]).recommendations.create(params[:review])
+    @rec = Business.find(params[:business_id]).recommendations.create(params[:rec])
     
-    RecommendationMailer.new_recommendation(@rec).deliver
+    #RecommendationMailer.new_recommendation(@rec).deliver
     
     respond_to do |format|
       format.html {

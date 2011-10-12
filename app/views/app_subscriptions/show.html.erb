@@ -4,10 +4,11 @@
 <ul id="subscriptions" class="standard-tiles">
 	<% @apps.each do |app| %>
 		<li>
-			<h3><%= app.title %></h3>
+			<h2><%= app.title %></h2>
 			<p>
-				<%= app.details.truncate(50) %>
+				<strong>Details: </strong><%= app.details %>
 			</p>
+			<h3>Settings</h3>
 			<ul style="list-style-type:none;padding-left:10px;">
 				<li>
 					<%= check_box_tag :selected => true %>

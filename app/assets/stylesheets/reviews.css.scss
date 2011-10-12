@@ -24,16 +24,25 @@ span.submitted {
 	margin-top:10px;
 }
 
-#new-review-form {
+#new-review-outer {
 	width:550px;
-	height:250px;
+	height:300px;
 }
-#new-rec-form {
+#new-rec-outer {
 	width:550px;
-	height:250px;
+	height:300px;
 }
 #manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
 
 .review-response-link { background-image:url('/assets/tasks/reply.png'); }
 .dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
 .approve-review-link { background-image:url('/assets/tasks/check-small.png'); }
+
+#rating-outer {
+	width:100%;
+}
+#rating-outer label {
+	width:275px;
+	display:inline-block;
+	margin-top:3px;
+}

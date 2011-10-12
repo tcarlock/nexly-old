@@ -48,3 +48,6 @@ module Nexly
     config.action_mailer.default_url_options = { :host => "nexly.herokuapp.com" }
   end
 end
+
+LINKEDIN_API_KEY = '694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg'
+LINKEDIN_SECRET_KEY = '0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM'

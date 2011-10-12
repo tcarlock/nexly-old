@@ -1,0 +1,17 @@
+<p>
+	<%= @rec.name %> has recommended a business for you and included the following message:
+	<br />
+	<%= @rec.message %> 
+</p>
+<p>
+	Please click the following link to learn more about this business: <%= link_to @rec.business.website, @rec.business.website %>
+</p>
+<p>
+	<span>
+		Thanks,
+	</span>
+	<br />
+	<span>
+		The Nexly Team
+	</span>
+</p>

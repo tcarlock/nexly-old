@@ -50,6 +50,7 @@ fieldset select {
 	font-size:1.4em;
 }
 input[type='email'],
+input[type='url'],
 input[type='text'],
 input[type='password'],
 textarea {

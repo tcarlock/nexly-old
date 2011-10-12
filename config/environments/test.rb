@@ -40,3 +40,5 @@ Nexly::Application.configure do
   # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
   config.assets.allow_debugging = true
 end
+
+DOMAIN_NAME = "http://localhost:3000"
