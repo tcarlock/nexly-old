@@ -257,6 +257,19 @@ div.pagination .next_page {
 	padding:0 3px;
 }
 
+/*Devise forms*/
+#user_new label {
+	font-weight:bold;
+	line-height:1.5em;
+}
+#user_new input {
+	margin:5px 0;
+}
+#user_new a {
+	display:block;
+	padding:5px 0;
+}
+
 /*Global profile styles*/
 .content-panel {
 	position:relative;

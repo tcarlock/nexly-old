@@ -49,6 +49,8 @@ Nexly::Application.routes.draw do
     
   get "demo/home"
   get "demo/social"
+  get "demo/twitter_auth", :as => "twitter_auth"
+  post "demo/process_twitter_token", :as => "process_twitter_token"
   get "demo/toolbar"
   get "demo/resources"
   get "demo/events"

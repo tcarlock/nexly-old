@@ -7,12 +7,16 @@ class DemoController < ApplicationController
   end
   
   def social
+    
+  end
+  
+  def twitter_auth
     client = TwitterOAuth::Client.new(
         :consumer_key => TWITTER_CONSUMER_KEY,
         :consumer_secret => TWITTER_CONSUMER_SECRET
     )
 
-    request_token = client.request_token(:oauth_callback => oauth_confirm_url)
+    request_token = client.request_token(:oauth_callback => "http://nexly.com/demo/process_twitter_token")
     render :json => request_token.authorize_url
   end
   
