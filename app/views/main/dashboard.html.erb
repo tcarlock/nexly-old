@@ -56,11 +56,12 @@
 			Latest Reviews<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
 		<% if @reviews.nil? || @reviews.count == 0 %>
-			<span class="no-records">There are no reviews at this time</span>
+			<span class="no-records">There are no reviews pending approval</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
-				<%= render :partial => 'reviews/review', :collection => @reviews.limit(3), :locals => { :show_admin => true, :truncate_review => false } %>
+				<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false } %>
 			</ul>
+			<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "pending review" } %>
 		<% end %>
 	</div>
 </div>

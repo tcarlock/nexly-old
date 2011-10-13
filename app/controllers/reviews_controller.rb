@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :get_review, :only => [:destroy, :feature, :dispute]
+  before_filter :get_review, :only => [:destroy, :approve, :dispute]
   
   def index
     @business = Business.find(params[:business_id])
