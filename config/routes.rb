@@ -48,6 +48,7 @@ Nexly::Application.routes.draw do
   get :search, :to => "main#search"
     
   get "demo/home"
+  get "demo/social"
   get "demo/toolbar"
   get "demo/resources"
   get "demo/events"

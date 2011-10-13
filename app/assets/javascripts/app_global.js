@@ -28,7 +28,7 @@ $(function(){
 			$('#storyboard-banner').animate({ width: 350, right: 300 });
 			$('#post').fadeIn(1500, function() {
 				$('#storyboard-banner').delay(1500).animate({ top:0, right:0, opacity: 0 }, 1000, function() {
-					$('.panel-nav-btn, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(2000, 1, function() {
+					$('.panel-nav-btn, #viewport .content, #viewport .text').fadeTo(2000, 1, function() {
 						$('#viewport').cycle('resume').hover(function() {
 							if(!isHardPaused)
 								pauseAutoNav();
