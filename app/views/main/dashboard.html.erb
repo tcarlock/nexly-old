@@ -55,7 +55,7 @@
 		<h3>
 			Reviews Pending Review<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
-		<% if @business.reviews.nil? || @business.reviews.count == 0 %>
+		<% if @business.reviews.empty? %>
 			<span class="no-records">There are no reviews pending approval</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
