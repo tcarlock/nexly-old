@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  url: MyString
+  name: MyString
 
 two:
-  url: MyString
+  name: MyString
 
 # == Schema Information
 #
-# Table name: link_clicks
+# Table name: platforms
 #
 #  id         :integer(4)      not null, primary key
-#  url        :string(255)
+#  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

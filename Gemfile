@@ -23,7 +23,9 @@ gem 'acts-as-taggable-on'
 gem 'jquery-rails'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.pre4'
-gem "twitter_oauth", "~> 0.4.3"
+gem 'omniauth'
+gem 'twitter'
+gem 'fb_graph'
 
 # Use unicorn as the web server
 # gem 'unicorn'

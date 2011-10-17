@@ -37,7 +37,7 @@
 	float:right;
 	width:750px;
 	margin-right:7px;
-	display:none;
+	display:block;
 }
 #hdr-nav-outer {
 	width:650px;
@@ -117,7 +117,6 @@
 	position:absolute;
 	bottom:7px;
 	right:200px;
-	right:0px;
 	margin-top:13px;
 }
 #hdr-nav li {

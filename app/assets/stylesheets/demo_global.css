@@ -209,3 +209,22 @@ ul.navigation li.active a {
 #ftr-nav li a:hover {
     color: #333;
 }
+
+
+/*Social management*/
+.auth-btn {
+	height:23px;
+	width:150px;
+	display:block;
+	background-repeat:none;
+	background-position:0 0;
+}
+#auth-twitter {
+	background-image:url(/assets/social/twitter_signin.png);
+}
+#auth-linkedin {
+	background-image:url(/assets/social/linkedin_signin.png);
+}
+#auth-facebook {
+	background-image:url(/assets/social/facebook_signin.png);
+}

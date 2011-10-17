@@ -106,11 +106,11 @@ profile.save
 #Create businesses
 User.find(1).businesses.create!(
                 :name => 'Nexly', 
-                :website => 'nexly.com', 
-                :facebook => 'nexlyllc', 
-                :twitter => 'nexlyllc', 
-                :google_plus => 'nexlyllc',
-                :linked_in => 'nexlyllc',
+                :website => 'http://nexly.com', 
+                :facebook => 'http://facebook.com/nexlyllc', 
+                :twitter => 'http://twitter.com/nexlyllc', 
+                :google_plus => 'http://plus.google.com/nexlyllc',
+                :linked_in => 'http://linkedin.com/nexlyllc',
                 :biography => 'We provide technology and services to help small businesses find and select service providers',
                 :address_1 => '1408 Rhode Island St',
                 :address_2 => nil,
@@ -151,12 +151,17 @@ User.find(2).businesses.create!(
                 :user_id => 1 + rand(4))
 end
 
-Application.create(
+Application.create!(
                 :title => 'Reviews',
                 :details => 'Reviews allows you to easily request and manage client reviews.  It also allows you to distribute those reviews to your various social media pages and your own website',
                 :price => 24.99)
 
-Application.create(
+Application.create!(
                 :title => 'Resources',
                 :details => 'Resources allows you to easily publish and manage learning materials and information such as articles, white papers, links, etc.',
                 :price => 34.99)
+                
+Platform.create!(:name => "twitter")
+Platform.create!(:name => "facebook")
+Platform.create!(:name => "linkedin")
+Platform.create!(:name => "google plus")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012064021) do
+ActiveRecord::Schema.define(:version => 20111015023002) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20111012064021) do
     t.text     "details"
     t.float    "price"
     t.boolean  "is_public",  :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "platform_id"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +72,12 @@ ActiveRecord::Schema.define(:version => 20111012064021) do
 
   create_table "link_clicks", :force => true do |t|
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "platforms", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

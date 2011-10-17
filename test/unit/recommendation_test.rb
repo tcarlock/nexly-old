@@ -11,6 +11,7 @@ end
 # Table name: recommendations
 #
 #  id          :integer(4)      not null, primary key
+#  name        :string(255)
 #  email       :string(255)
 #  message     :text
 #  user_id     :integer(4)

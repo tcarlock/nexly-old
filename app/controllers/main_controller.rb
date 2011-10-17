@@ -23,4 +23,23 @@ class MainController < ApplicationController
     
     redirect_to params[:url]
   end
+  
+  def test_tweet
+    current_user.twitter.update("My Rails 3 App with Omniauth, Devise and Twitter")
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def test_fb_post
+    current_user.facebook.feed!(
+      :message => 'Hello, Facebook!', 
+      :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
+    )
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 end

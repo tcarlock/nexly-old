@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities]
+  before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities, :settings]
   
   def index
   end
@@ -42,6 +42,11 @@ class BusinessesController < ApplicationController
   end
   
   def edit_capabilities
+  end
+  
+  def settings
+    @apps = Application.where(:is_public => true)
+    @app_subs = Business.find(params[:id]).applications
   end
 
   private

@@ -1,6 +1,4 @@
 Nexly::Application.routes.draw do  
-  get "analytics/index"
-
   devise_for :users
 
   resources :users, :only => [] do
@@ -19,7 +17,7 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     member do
-      get :edit_capabilities
+      get :settings
     end
 
     get :search, :on => :collection
@@ -34,28 +32,31 @@ Nexly::Application.routes.draw do
     end
     
     resources :review_requests, :except => [:update, :edit]
-    resources :resources
-  end
+    # resources :resources
+    resources :authentications, :only => [:index, :create, :destroy]
+    resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
+    resources :analytics, :only => :index, :controller => :analytics
+  end  
   
-  resources :app_subscriptions, :except => :index, :as => :subscriptions
-
+  match '/auth/:provider/callback' => 'authentications#create'
+  
   get :dashboard, :to => "main#dashboard"
   get :open_popup, :to => "main#open_popup"
-  get :analytics, :to => "analytics#index"
   get :modules, :to => "main#modules"
   get :contact, :to => "main#contact"
   get :faqs, :to => "main#faqs"
   get :search, :to => "main#search"
     
-  get "demo/home"
-  get "demo/social"
-  get "demo/twitter_auth", :as => "twitter_auth"
-  post "demo/process_twitter_token", :as => "process_twitter_token"
-  get "demo/toolbar"
-  get "demo/resources"
-  get "demo/events"
-  get "demo/reviews"
-  get "demo/contact"
-    
+  match "demo/home"
+  match "demo/social"
+  match "demo/toolbar"
+  match "demo/resources"
+  match "demo/events"
+  match "demo/reviews"
+  match "demo/contact"
+  
+  post "main/test_tweet"
+  post "main/test_fb_post"
+
   root :to => "main#welcome"
 end

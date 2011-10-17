@@ -4,7 +4,8 @@ class Business < ActiveRecord::Base
   
   has_many :app_subscriptions
   has_many :applications, :through => :app_subscriptions
-  
+  has_many :authentications
+    
   has_many :recommendations
   has_many :reviews
   has_many :review_requests
@@ -32,8 +33,7 @@ class Business < ActiveRecord::Base
   attr_accessor :remove_avatar, :capabilities_string, :update_tags
   
   def perform_avatar_removal 
-    self.avatar = nil if self.remove_avatar=="1" && ! 
-    self.avatar.dirty? 
+    self.avatar = nil if self.remove_avatar=="1" && !self.avatar.dirty? 
     true 
   end
   
