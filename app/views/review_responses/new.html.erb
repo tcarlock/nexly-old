@@ -9,5 +9,7 @@
 	<%= f.inputs do %>
 	  <%= f.input :response , :label => 'Response:', :input_html => { :rows => 6 } %>
 	<% end %>
-	<%= f.buttons %>
+	<%= f.buttons do %>
+	  <%= f.commit_button 'Submit Review Response' %>
+    <% end %>
 <% end %>

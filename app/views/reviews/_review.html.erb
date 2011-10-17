@@ -20,6 +20,9 @@
 		<% end %>
 		 on <%= review.created_at.to_s(:feed_date)%>
 		<% if show_admin %>
+			<span class="rejected <%= !review.is_rejected ? 'hidden' : '' %>">
+				(This review has been rejected)
+			</span>
 			<span class="approved <%= !review.is_approved ? 'hidden' : '' %>">
 				(This review is approved)
 			</span>

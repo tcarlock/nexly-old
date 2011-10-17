@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :business
   belongs_to :user
-  has_one :review_response, :as => :response
+  has_one :review_response
   
   validates_presence_of :details, :rating
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
@@ -19,6 +19,7 @@ end
 #  rating          :integer(4)
 #  is_under_review :boolean(1)      default(FALSE)
 #  is_approved     :boolean(1)      default(FALSE)
+#  is_rejected     :boolean(1)      default(FALSE)
 #  user_id         :integer(4)
 #  business_id     :integer(4)
 #  is_anon         :boolean(1)      default(FALSE)

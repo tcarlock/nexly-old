@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
     t.datetime "updated_at"
   end
 
+  add_index "platforms", ["name"], :name => "index_platforms_on_name"
+
   create_table "recommendations", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -126,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
   end
 
   create_table "review_responses", :force => true do |t|
-    t.string   "response"
+    t.text     "response"
     t.integer  "review_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
     t.integer  "rating"
     t.boolean  "is_under_review", :default => false
     t.boolean  "is_approved",     :default => false
+    t.boolean  "is_rejected",     :default => false
     t.integer  "user_id"
     t.integer  "business_id"
     t.boolean  "is_anon",         :default => false

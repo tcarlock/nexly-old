@@ -1,14 +1,17 @@
 <li>
-	<%= @business.review_stats.count %> <%= @business.review_stats == 1 ? "review" : "review".pluralize %> submitted	
+	<%= @business.review_stats.total_review_count %> <%= @business.review_stats.total_review_count == 1 ? "review" : "review".pluralize %> submitted	
 </li>
 <li>
-	<%= @business.review_stats.count %> <%= @business.review_stats == 1 ? "review" : "review".pluralize %> submitted	
+	<%= @business.review_stats.pending_review_count %> <%= @business.review_stats.pending_review_count == 1 ? "review" : "review".pluralize %> pending review
 </li>
 <li>
-	<%= @business.active_review_requests.count %> pending <%= @business.active_review_requests.count == 1 ? "request" : "request".pluralize %>
+	<%= @business.review_stats.approved_review_count %> approved <%= @business.review_stats.approved_review_count == 1 ? "review" : "review".pluralize %>
 </li>
 <li>
-	<%= @business.review_stats.average.round(1) %> is your average rating	
+	<%= @business.review_stats.pending_request_count %> outstanding <%= @business.review_stats.pending_request_count == 1 ? "request" : "request".pluralize %>	
+</li>
+<li>
+	<%= @business.review_stats.average_rating.round(1) %> is your average rating	
 </li>
 <% if !@business.review_stats.submission_rate.nan? %>
 	<li>

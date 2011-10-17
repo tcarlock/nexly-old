@@ -25,7 +25,7 @@ Nexly::Application.routes.draw do
     resource :recommendations, :only => [:new, :create]
     resources :reviews, :except => [:update, :edit] do
       member do
-        post :dispute, :approve
+        post :dispute, :approve, :reject
       end
       
       resources :review_responses, :only => [:new, :create], :as => :responses

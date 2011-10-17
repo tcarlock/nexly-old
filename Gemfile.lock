@@ -89,6 +89,10 @@ GEM
     json (1.6.1)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    linkedin (0.3.2)
+      hashie (~> 1.1.0)
+      multi_json (~> 1.0.3)
+      oauth (~> 0.4.5)
     log4r (1.1.9)
     macaddr (1.4.0)
       systemu (~> 2.2.0)
@@ -253,6 +257,7 @@ DEPENDENCIES
   formtastic (= 1.2.4)
   geocoder
   jquery-rails
+  linkedin
   mysql2
   omniauth
   paperclip (~> 2.3.15)

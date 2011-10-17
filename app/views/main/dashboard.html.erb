@@ -24,7 +24,7 @@
 			<li class="header">
 				<%= link_to "Review Stats", business_analytics_path(@business) %>
 			</li>
-			<% if @reviews.nil? || @reviews.count == 0 %>
+			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
 			<% else %>
 				<%= render :partial => 'dashboard/review_stats' %>
@@ -34,7 +34,7 @@
 			<li class="header">
 				<%= link_to "Inbound Traffic", business_analytics_path(@business) %>				
 			</li>
-			<% if @reviews.nil? || @reviews.count == 0 %>
+			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
 				<li><span class="no-records">There is no traffic data at this time</span></li>
 			<% else %>
 				<%= render :partial => 'dashboard/social_stats' %>
@@ -44,7 +44,7 @@
 			<li class="header">
 				<%= link_to "Apps & Settings", settings_business_path(@business) %>
 			</li>
-			<% if @reviews.nil? || @reviews.count == 0 %>
+			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
 			<% else %>
 				<%= render :partial => 'dashboard/apps_settings' %>
@@ -53,15 +53,15 @@
 	</div>
 	<div class="content-panel">
 		<h3>
-			Latest Reviews<%= link_to "View All", business_reviews_path(@business) %>
+			Reviews Pending Review<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
-		<% if @reviews.nil? || @reviews.count == 0 %>
+		<% if @business.reviews.nil? || @business.reviews.count == 0 %>
 			<span class="no-records">There are no reviews pending approval</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
-				<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false } %>
+				<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
 			</ul>
-			<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "pending review" } %>
+			<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review" } %>
 		<% end %>
 	</div>
 </div>

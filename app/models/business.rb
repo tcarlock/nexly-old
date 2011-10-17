@@ -9,7 +9,10 @@ class Business < ActiveRecord::Base
   has_many :recommendations
   has_many :reviews
   has_many :review_requests
-  has_many :active_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
+  has_many :pending_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ? && is_rejected = ?', false, false]
+  has_many :approved_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ?', true]
+  has_many :rejected_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_rejected = ?', true]
+  has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
@@ -61,18 +64,34 @@ class ReviewStats
     @business = Business.find(id)
   end
   
-  def count
+  def total_review_count
     @business.reviews.count
   end
   
-  def average
+  def pending_review_count
+    @business.pending_reviews.count
+  end
+  
+  def approved_review_count
+    @business.approved_reviews.count
+  end
+  
+  def rejected_review_count
+    @business.rejected_reviews.count
+  end
+  
+  def pending_request_count
+    @business.pending_review_requests.count
+  end
+  
+  def average_rating
     Review.average(:rating, :conditions => ["business_id = ?", @business.id])
   end
   
-  def min
+  def min_rating
   end
   
-  def max
+  def max_rating
   end
   
   def submission_rate

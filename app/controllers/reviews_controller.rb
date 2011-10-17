@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :get_review, :only => [:destroy, :approve, :dispute]
+  before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
   
   def index
     @business = Business.find(params[:business_id])
@@ -43,6 +43,15 @@ class ReviewsController < ApplicationController
   
   def approve
     @review.update_attributes(:is_approved => true)
+    @review.save
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def reject
+    @review.update_attributes(:is_rejected => true)
     @review.save
     
     respond_to do |format|

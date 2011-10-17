@@ -40,7 +40,7 @@ $(function(){
 				});
 			});
 		});
-	};
+	}
 	
 	// $('#play-demo').click(function() {
 	// 	$('#viewport').cycle('pause').animate({ height: 325 });

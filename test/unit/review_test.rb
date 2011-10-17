@@ -17,6 +17,7 @@ end
 #  rating          :integer(4)
 #  is_under_review :boolean(1)      default(FALSE)
 #  is_approved     :boolean(1)      default(FALSE)
+#  is_rejected     :boolean(1)      default(FALSE)
 #  user_id         :integer(4)
 #  business_id     :integer(4)
 #  is_anon         :boolean(1)      default(FALSE)

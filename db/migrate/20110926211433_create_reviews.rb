@@ -7,7 +7,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :rating
       t.boolean :is_under_review, :default => false
       t.boolean :is_approved, :default => false
-      t.boolean :is_approved, :default => false
+      t.boolean :is_rejected, :default => false
       t.integer :user_id
       t.integer :business_id
       t.boolean :is_anon, :default => false

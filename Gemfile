@@ -26,6 +26,7 @@ gem 'will_paginate', '~> 3.0.pre4'
 gem 'omniauth'
 gem 'twitter'
 gem 'fb_graph'
+gem 'linkedin'
 
 # Use unicorn as the web server
 # gem 'unicorn'
