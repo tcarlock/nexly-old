@@ -18,25 +18,21 @@
 		</li>
 	<% end %>
 </ul>
-
 <h1>Manage Your Platforms</h1>
-<a href="/auth/twitter" class="auth_provider">
-  <%= image_tag "social/twitter-2.png", :size => "32x32", :alt => "Twitter" %>
-  <span>Add Twitter</span>
-</a>
-<a href="/auth/facebook" class="auth_provider">
-  <%= image_tag "social/facebook.png", :size => "32x32", :alt => "Facebook" %>
-  <span>Add Facebook</span>
-</a>
-<a href="/auth/linkedin" class="auth_provider">
-  <%= image_tag "social/linkedin.png", :size => "32x32", :alt => "LinkedIn" %>
-  <span>Add LinkedIn</span>
-</a>
-<a href="/auth/google_apps" class="auth_provider">
-  <%= image_tag "social/google-plus.png", :size => "32x32", :alt => "Google" %>
-  <span>Add Google+</span>
-</a>
-
+<ul id="services" class="standard-tiles">
+	<% @platforms.each do |platform| %>
+		<li>
+			<%= debug @enabled_platforms.where(:platform_id => platform.id) %>
+			<a href="/auth/#{platform.name.titleize}" class="auth_provider">
+				<%= image_tag "social/#{platform.name.sub("+", "-plus")}.png", :alt => "#{platform.name}" %>
+				<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
+					<%= image_tag "tasks/check-small.png", :class => "enabled" %>
+				<% end %>
+				<span>Enable <%= platform.name.titleize %></span>
+			</a>
+		</li>
+	<% end %>
+</ul>
 <div style="display:none;">
 	<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
 		<%= submit_tag "Post Tweet" %>

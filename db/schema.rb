@@ -71,10 +71,16 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
   end
 
   create_table "link_clicks", :force => true do |t|
+    t.string   "referrer_domain"
     t.string   "url"
+    t.integer  "business_id"
+    t.integer  "reference_id"
+    t.integer  "link_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "link_clicks", ["url", "referrer_domain"], :name => "index_link_clicks_on_url_and_referrer_domain"
 
   create_table "platforms", :force => true do |t|
     t.string   "name"
@@ -95,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
   end
 
   create_table "resource_types", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

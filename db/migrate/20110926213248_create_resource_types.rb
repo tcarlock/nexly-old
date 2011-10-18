@@ -1,7 +1,7 @@
 class CreateResourceTypes < ActiveRecord::Migration
   def change
     create_table :resource_types do |t|
-      t.string :title
+      t.string :name
       t.text :description
 
       t.timestamps

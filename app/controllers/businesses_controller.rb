@@ -45,8 +45,11 @@ class BusinessesController < ApplicationController
   end
   
   def settings
+    @business = Business.find(params[:id])
     @apps = Application.where(:is_public => true)
-    @app_subs = Business.find(params[:id]).applications
+    @enabled_apps = @business.applications
+    @platforms = Platform.all
+    @enabled_platforms = current_user.authentications
   end
 
   private

@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  skip_before_filter :authenticate_user!, :except => :dashboard
+  skip_before_filter :authenticate_user!, :except => [:dashboard, :open_popup]
   
   def welcome
     if signed_in?
@@ -19,7 +19,11 @@ class MainController < ApplicationController
   end
   
   def open_popup
-    LinkClick.create!(:url => params[:url])
+    LinkClick.create!(:url => params[:url], 
+        :referrer_domain => params[:url].split('/')[2],
+        :business_id => params[:bId],
+        :reference_id =>params[:rId],
+        :link_type_id => params[:tId])
     
     redirect_to params[:url]
   end

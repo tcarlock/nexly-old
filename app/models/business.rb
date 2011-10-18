@@ -15,6 +15,8 @@ class Business < ActiveRecord::Base
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
+  has_many :link_clicks
+  
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
   after_validation :geocode
   
@@ -49,57 +51,19 @@ class Business < ActiveRecord::Base
   end
   
   def review_stats
-    if self.reviews.count > 1
+    if self.reviews.count > 0
       ReviewStats.new(self.id)
+    end
+  end
+  
+  def traffic_stats
+    if self.link_clicks.count > 0
+      TrafficStats.new(self.id)
     end
   end
   
   def is_user_admin? user
     self.users.find(user.id) != nil
-  end
-end
-
-class ReviewStats
-  def initialize id
-    @business = Business.find(id)
-  end
-  
-  def total_review_count
-    @business.reviews.count
-  end
-  
-  def pending_review_count
-    @business.pending_reviews.count
-  end
-  
-  def approved_review_count
-    @business.approved_reviews.count
-  end
-  
-  def rejected_review_count
-    @business.rejected_reviews.count
-  end
-  
-  def pending_request_count
-    @business.pending_review_requests.count
-  end
-  
-  def average_rating
-    Review.average(:rating, :conditions => ["business_id = ?", @business.id])
-  end
-  
-  def min_rating
-  end
-  
-  def max_rating
-  end
-  
-  def submission_rate
-    if @business.review_requests.count == 0
-      0.0 / 0.0
-    else
-      (@business.review_requests.count - @business.active_review_requests) / @business.review_requests.count
-    end
   end
 end
 

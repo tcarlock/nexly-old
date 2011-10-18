@@ -1,0 +1,14 @@
+defaults: &defaults
+  app_title: Nexly
+  header_color: #fff
+  
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  app_title: Nexly (TEST ENV)
+
+production:
+  <<: *defaults

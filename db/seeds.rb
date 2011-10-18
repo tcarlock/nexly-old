@@ -167,4 +167,4 @@ Application.create!(
 Platform.create!(:name => "twitter")
 Platform.create!(:name => "facebook")
 Platform.create!(:name => "linkedin")
-Platform.create!(:name => "google plus")
+Platform.create!(:name => "google+")

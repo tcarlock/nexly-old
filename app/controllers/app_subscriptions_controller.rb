@@ -1,6 +1,4 @@
 class AppSubscriptionsController < ApplicationController
-  before_filter :get_apps
-  
   def show
   end
   
@@ -17,10 +15,5 @@ class AppSubscriptionsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def get_apps
-    @apps = Application.where(:is_public => true)
-    @app_subs = Business.find(params[:id]).applications
   end
 end

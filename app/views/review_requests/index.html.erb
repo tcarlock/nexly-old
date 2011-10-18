@@ -6,7 +6,7 @@
 		<%= link_to "", "#", :id => "new-req-link", :href => new_business_review_request_path(@business), :title => "Send invitation requests" %>
 	<% end %>
 </div>
-<% if @requests.nil? || @requests.count == 0 %>
+<% if @requests.empty? %>
 	<span class="hide-menu">There are no review requests at this time</span>
 <% else %>
 	<ul id="review-requests" class="standard-list">

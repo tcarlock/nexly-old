@@ -24,7 +24,7 @@
 			<li class="header">
 				<%= link_to "Review Stats", business_analytics_path(@business) %>
 			</li>
-			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
+			<% if @business.reviews.empty? %>
 				<li><span class="no-records">There are no reviews at this time</span></li>
 			<% else %>
 				<%= render :partial => 'dashboard/review_stats' %>
@@ -34,21 +34,17 @@
 			<li class="header">
 				<%= link_to "Inbound Traffic", business_analytics_path(@business) %>				
 			</li>
-			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
+			<% if @business.link_clicks.empty? %>
 				<li><span class="no-records">There is no traffic data at this time</span></li>
 			<% else %>
-				<%= render :partial => 'dashboard/social_stats' %>
+				<%= render :partial => 'dashboard/traffic_stats' %>
 			<% end %>
 		</ul>
 		<ul id="apps-tab" class="profile-details clearfix">
 			<li class="header">
 				<%= link_to "Apps & Settings", settings_business_path(@business) %>
 			</li>
-			<% if @business.reviews.nil? || @business.reviews.count == 0 %>
-				<li><span class="no-records">There are no reviews at this time</span></li>
-			<% else %>
-				<%= render :partial => 'dashboard/apps_settings' %>
-			<% end %>
+			<%= render :partial => 'dashboard/apps_settings' %>
 		</ul>
 	</div>
 	<div class="content-panel">

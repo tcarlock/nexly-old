@@ -48,7 +48,7 @@
 			<div class="quickmenu">
 				<div class="quickmenu_inner">
 					<ul> <!-- quick menu list -->
-						<% if @reviews.nil? || @reviews.count == 0 %>
+						<% if @reviews.empty? %>
 							<li><span class="no-records">There are no reviews at this time</span></li>
 						<% else %>
 							<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>

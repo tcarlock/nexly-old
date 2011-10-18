@@ -1,0 +1,14 @@
+<li>
+	<%= @business.traffic_stats.incoming_traffic %> page <%= @business.traffic_stats.incoming_traffic == 1 ? "view" : "view".pluralize %>
+</li>
+<li>
+	<%= @business.traffic_stats.traffic_by_link_type(LinkClick.types[:review]) %> <%= @business.traffic_stats.traffic_by_link_type(LinkClick.types[:review]) == 1 ? "click" : "click".pluralize %> from reviews
+</li>
+<li>
+	<%= @business.traffic_stats.traffic_by_link_type(LinkClick.types[:profile]) %> <%= @business.traffic_stats.traffic_by_link_type(LinkClick.types[:profile]) == 1 ? "click" : "click".pluralize %> from your  profile links
+</li>
+<li>
+	<%= @business.traffic_stats.traffic_by_domain(@business.website.split("/")[2]) %> <%= @business.traffic_stats.traffic_by_domain(@business.website.split("/")[2]) == 1 ? "view" : "view".pluralize %> to <%= @business.website %>
+</li>
+
+<!-- Measure incoming traffic to main site from links auto-posted to SM sites -->

@@ -16,7 +16,7 @@ module Nexly
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -49,11 +49,3 @@ module Nexly
   end
 end
 
-LINKEDIN_API_KEY = '694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg'
-LINKEDIN_SECRET_KEY = '0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM'
-
-TWITTER_CONSUMER_KEY = 'HjzVzzin2zCogq8tNezeA'
-TWITTER_CONSUMER_SECRET = 'oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o'
-
-TWITTER_TOKEN = '79022077-J3VPDE1rHrsVxjHyxMnQp8elzmZR8sgG0uSuQBcFZ'
-TWITTER_TOKEN_SECRET = 'XrG8rOVnISgsuHSmymLGSNpcHeWyvig5iWMjv2QQ'
