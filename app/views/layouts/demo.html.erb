@@ -43,7 +43,7 @@
 	</div>
 	<script type='text/javascript'>
 		$(function(){
-			$('#nexly-toolbar').load('/plugins/toolbar?token=bzerx37g', function() {
+			$('#nexly-toolbar').load('/plugins/toolbar?token=<%= Business.first.api_token %>', function() {
 				initToolbar();
 			});
 		});
