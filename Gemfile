@@ -45,7 +45,7 @@ group :development, :test do
   gem 'heroku_san'
 end
 
-group :production, :staging, :demo do
+group :production do
   # gems specifically for Heroku go here
   gem "pg"
 end
