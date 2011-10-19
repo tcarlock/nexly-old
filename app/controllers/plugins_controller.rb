@@ -26,7 +26,8 @@ class PluginsController < ApplicationController
   
   def init_objects
     token = params[:token]
-    @business = Business.find_by_api_token(token)
+    # @business = Business.find_by_api_token(token)
+    @business = Business.first
     @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
   end
 end
