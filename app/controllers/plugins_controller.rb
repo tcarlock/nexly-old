@@ -1,13 +1,9 @@
-class DemoController < ApplicationController
+class PluginsController < ApplicationController
   skip_before_filter :authenticate_user!
-  before_filter :mock_objects
+  before_filter :init_objects
   
-  def home
-    render :layout => 'demo'
-  end
-  
-  def social
-    
+  def toolbar
+    render :layout => false
   end
   
   def resources
@@ -28,9 +24,9 @@ class DemoController < ApplicationController
   
   protected
   
-  def mock_objects
-    sign_in User.find(1)
-    @business = current_user.businesses.first
+  def init_objects
+    token = params[:token]
+    @business = Business.find_by_token(token)
     @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
   end
 end

@@ -2,11 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#subscriptions li {
+#subscriptions > li {
 	width:45%;
 	width:98%;
 	height:200px;
-	cursor:pointer;
 	margin-bottom:15px;
 }
 
@@ -14,11 +13,19 @@
 	background-color:#D8D5D5;
 }
 
-
+#app-options {
+	margin:0;
+	margin-left:15px;
+	padding:0;
+}
+#app-options li {
+	display:inline-block;
+	float:left;
+	margin-right:10px;
+}
 .authentications {
   margin-bottom: 30px;
 }
-
 .authentication {
   width: 130px;
   float: left;
@@ -66,20 +73,20 @@
   display: block;
 }
 
-.auth_provider {
+.auth-provider {
   float: left;
   text-decoration: none;
   margin-right: 20px;
   text-align: center;
 }
-.auth_provider * {
+.auth-provider * {
   display:inline-block;
   float: left;
   height:32px;
   line-height:32px;
-  margin-right:7px;
+  margin-right:12px;
 }
-.auth_provider img.enabled {
+.auth-provider img.enabled {
 	position:absolute;
 	top:0;
 	left:32px;

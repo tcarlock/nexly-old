@@ -36,7 +36,10 @@ Nexly::Application.routes.draw do
     resources :authentications, :only => [:index, :create, :destroy]
     resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
     resources :analytics, :only => :index, :controller => :analytics
-  end  
+  end
+  
+  get "plugins/toolbar"
+  post "beta_signup/create"
   
   match '/auth/:provider/callback' => 'authentications#create'
   
@@ -49,7 +52,6 @@ Nexly::Application.routes.draw do
     
   match "demo/home"
   match "demo/social"
-  match "demo/toolbar"
   match "demo/resources"
   match "demo/events"
   match "demo/reviews"

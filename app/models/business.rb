@@ -1,4 +1,6 @@
 class Business < ActiveRecord::Base
+  helper :application
+  
   has_many :business_users
   has_many :users, :through => :business_users
   
@@ -19,6 +21,7 @@ class Business < ActiveRecord::Base
   
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
   after_validation :geocode
+  before_create :set_token
   
   has_attached_file :avatar, 
     :default_url => "/assets/profile/anon_user_:style.png", 
@@ -64,6 +67,12 @@ class Business < ActiveRecord::Base
   
   def is_user_admin? user
     self.users.find(user.id) != nil
+  end
+  
+  private
+  
+  def set_token
+    self.token = generate_token
   end
 end
 

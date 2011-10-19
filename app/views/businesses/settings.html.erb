@@ -8,12 +8,14 @@
 			<p>
 				<strong>Details: </strong><%= app.details %>
 			</p>
-			<h3>Settings</h3>
-			<ul style="list-style-type:none;padding-left:10px;">
-				<li>
-					<%= check_box_tag :selected => true %>
-					Publish to Facebook
-				</li>
+			<h3>Publishing Options</h3>
+			<ul id="app-options">
+				<% @platforms.each do |platform| %>
+					<li>
+						<%= check_box_tag platform.id, platform.name %>
+						<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+					</li>
+				<% end %>
 			</ul>
 		</li>
 	<% end %>
@@ -22,13 +24,14 @@
 <ul id="services" class="standard-tiles">
 	<% @platforms.each do |platform| %>
 		<li>
-			<%= debug @enabled_platforms.where(:platform_id => platform.id) %>
-			<a href="/auth/#{platform.name.titleize}" class="auth_provider">
+			<a href="/auth/<%= platform.name %>" class="auth-provider">
 				<%= image_tag "social/#{platform.name.sub("+", "-plus")}.png", :alt => "#{platform.name}" %>
 				<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
-					<%= image_tag "tasks/check-small.png", :class => "enabled" %>
+					<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
+					<span>Disable <%= platform.name.titleize %></span>
+				<% else %>
+					<span>Enable <%= platform.name.titleize %></span>
 				<% end %>
-				<span>Enable <%= platform.name.titleize %></span>
 			</a>
 		</li>
 	<% end %>

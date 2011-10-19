@@ -1,0 +1,5 @@
+$('#svc-req-form-outer').hide();
+$('#signup-text').replaceWith("<h3>Thank you. We'll email you as soon as we launch.");
+$('body').delay(2000).animate({scrollTop: '0px'}, 800, function() {
+	$('#signup-pane-inner').slideUp(350);
+});

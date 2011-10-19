@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015023002) do
+ActiveRecord::Schema.define(:version => 20111018234412) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(:version => 20111015023002) do
     t.string   "token"
     t.string   "secret"
     t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "beta_signups", :force => true do |t|
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

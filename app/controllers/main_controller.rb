@@ -1,9 +1,11 @@
 class MainController < ApplicationController
-  skip_before_filter :authenticate_user!, :except => [:dashboard, :open_popup]
+  skip_before_filter :authenticate_user!, :except => :dashboard
   
   def welcome
     if signed_in?
       redirect_to dashboard_path
+    else
+      @signup = BetaSignup.new()
     end
   end
   

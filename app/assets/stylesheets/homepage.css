@@ -283,6 +283,7 @@ ebebeb
 	-moz-border-bottom-right-radius:10px;
 	-webkit-border-bottom-right-radius:10px;
 	border-bottom-right-radius:10px;
+	display:none;
 }
 #signup-text {
 	width:540px;
