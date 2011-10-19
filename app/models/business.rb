@@ -1,6 +1,4 @@
 class Business < ActiveRecord::Base
-  helper :application
-  
   has_many :business_users
   has_many :users, :through => :business_users
   
