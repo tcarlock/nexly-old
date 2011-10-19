@@ -11,7 +11,16 @@
 		<%= truncate_review ? truncate(review.details, :length => 40) : review.details %>
 	</p>
 	<div class="rating-icon">
-		<%= review.rating %> out of 5
+		<% 1.upto(5) do |n| %>
+			<% if n <= review.rating %>
+				<div class="rating-star selected"></div>
+			<% else %>
+				<div class="rating-star deselected"></div>			
+			<% end %>
+	    <% end %>
+		<span>
+			(<%= review.rating %> out of 5)
+		</span>
 	</div>
 	<div class="footer">
 		Posted

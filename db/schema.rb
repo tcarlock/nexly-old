@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018234412) do
+ActiveRecord::Schema.define(:version => 20111019002459) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20111018234412) do
     t.string   "twitter"
     t.string   "google_plus"
     t.string   "linked_in"
+    t.string   "api_token"
     t.text     "biography"
     t.string   "address_1"
     t.string   "address_2"

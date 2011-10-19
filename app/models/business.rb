@@ -19,7 +19,7 @@ class Business < ActiveRecord::Base
   
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
   after_validation :geocode
-  before_create :set_token
+  before_create :set_api_token
   
   has_attached_file :avatar, 
     :default_url => "/assets/profile/anon_user_:style.png", 
@@ -69,8 +69,8 @@ class Business < ActiveRecord::Base
   
   private
   
-  def set_token
-    self.token = generate_token
+  def set_api_token
+    self.api_token = rand(36**8).to_s(36)
   end
 end
 

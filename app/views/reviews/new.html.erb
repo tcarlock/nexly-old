@@ -9,13 +9,14 @@
 <div id="new-review-outer">
 	<%= semantic_form_for(@review, :url => business_reviews_path, :remote => true) do |f| %>
 		<%= f.inputs do %>
-		  <li id="rating-outer">
+	  	<li id="rating-outer">
 			<%= f.label 'How would you rate this provider?' %>
-		    <% 0.upto(5) do |n| %>
-		      <%= f.radio_button :rating, n %>
-		    <% end %>
-		  </li>
-		  <%= f.input :details , :label => 'Please share some thoughts about this provider:', :input_html => { :rows => 8 } %>
+	    	<% 0.upto(5) do |n| %>
+	      		<%= f.radio_button :rating, n %>
+	    	<% end %>
+	  	</li>
+		<%= f.input :details , :label => 'Please share some thoughts about this provider:', :input_html => { :rows => 8 } %>
+		<%= f.input :name , :label => 'Your name:' %>
 	  <% end %>
 	  <%= f.buttons do %>
 		<%= f.commit_button 'Submit Review' %>

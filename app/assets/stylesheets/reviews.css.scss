@@ -9,6 +9,23 @@ li.biz-review {
 li.biz-review .rating-icon {
 	margin-bottom:5px;
 }
+li.biz-review .rating-icon * {
+	height:16px;
+	line-height:16px;
+	display:inline-block;
+	vertical-align:middle;
+}
+li.biz-review .rating-star {
+	width:16px;
+	background-image:url(/assets/rating/jquery.ui.stars.gif);
+	background-repeat:no-repeat;
+}
+li.biz-review .selected {
+	background-position:0 -48px;
+}
+li.biz-review .deselected {
+	background-position:0 -32px;
+}
 li.biz-review .disputed {
 	line-height:1.7em;
 	font-weight:bold;
@@ -25,8 +42,8 @@ span.submitted {
 }
 
 #new-review-outer {
-	width:550px;
-	height:300px;
+	width:600px;
+	height:350px;
 }
 #new-rec-outer {
 	width:550px;

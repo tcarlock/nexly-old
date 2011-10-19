@@ -92,7 +92,6 @@ body {
 	left:0px;
 }
 #viewport .text {
-	width:520px;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
@@ -120,7 +119,6 @@ body {
 	padding-left:7px;
 }
 #viewport .content {
-	width:400px;
 	-moz-border-top-right-radius:10px;
 	-webkit-border-top-right-radius:10px;
 	border-top-right-radius:10px;
@@ -157,6 +155,12 @@ body {
 	margin:50px auto 0 auto;
 	width:250px;
 	text-align:center;
+}
+#panel-demo .text {
+	width:620px;
+}
+#panel-demo .content {
+	width:350px;
 }
 #play-demo img {
 	display:block;

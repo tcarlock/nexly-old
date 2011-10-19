@@ -7,6 +7,7 @@ class CreateBusinesses < ActiveRecord::Migration
       t.string :twitter
       t.string :google_plus
       t.string :linked_in
+      t.string :api_token
       t.text :biography
       t.string :address_1
       t.string :address_2
