@@ -9,7 +9,7 @@ class Business < ActiveRecord::Base
   has_many :recommendations
   has_many :reviews
   has_many :review_requests
-  has_many :pending_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ? && is_rejected = ?', false, false]
+  has_many :pending_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ? AND is_rejected = ?', false, false]
   has_many :approved_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ?', true]
   has_many :rejected_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_rejected = ?', true]
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
