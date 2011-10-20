@@ -72,7 +72,18 @@ fieldset textarea {
 	display:block;
 	float:left;
 }
-
+h2.edit-section { 
+	padding-top:7px; 
+	margin-bottom:3px; 
+	color:#0A2E58;
+	margin-top:7px;
+	border-bottom:1px #e2e2e3 solid;
+}
+span.intro-text {
+	display:inline-block;
+	padding:10px 0;
+	color:#646464;
+}
 /*Clearfix*/
 .clearfix {
 	display:inline-block;

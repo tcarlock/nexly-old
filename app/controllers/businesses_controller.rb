@@ -50,6 +50,7 @@ class BusinessesController < ApplicationController
     @enabled_apps = @business.applications
     @platforms = Platform.all
     @enabled_platforms = current_user.authentications
+    @toolbar_code = render_to_string :partial => 'plugins/toolbar_code', :locals => { :api_token => @business.api_token }
   end
 
   private

@@ -41,13 +41,6 @@
 			</ul>
 		</div>
 	</div>
-	<script type='text/javascript'>
-		$(function(){
-			$('#nexly-toolbar').load('/plugins/toolbar?token=<%= Business.first.api_token %>', function() {
-				initToolbar();
-			});
-		});
-	</script>
-	<div id="nexly-toolbar"></div>
+	<%= render :partial => 'plugins/toolbar_code', :locals => { :api_token => @business.api_token } %>
 </body>
 </html>

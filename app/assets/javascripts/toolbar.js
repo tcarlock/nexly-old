@@ -44,6 +44,7 @@ function initToolbar() {
 	//hide menu on casual click on the page
 	$(document).click(function() {
 		$(".quickmenu").fadeOut("fast");
+		$(".btn_container").fadeOut("fast");
 	});
 	
 	$('.quickmenu').click(function(event) {

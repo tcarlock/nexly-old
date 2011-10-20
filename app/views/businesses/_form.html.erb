@@ -1,6 +1,6 @@
 <%= semantic_form_for @business, :html => {:multipart => true} do |f| %>
   <%= f.inputs do %>
-    <h2>Basics</h2>
+    <h2 class="edit-section">Basics</h2>
     <%= f.input :name %>
     <%= f.input :biography, :input_html => { :rows => 4 } %>
     <%= f.input :avatar, :label => 'Logo' %>
@@ -8,13 +8,13 @@
 		<label for="business_avatar"></label>
 		<%= raw display_logo(@business)%>
 	</li>
-	<h2>Location</h2>
+	<h2 class="edit-section">Location</h2>
     <%= f.input :address_1 %>
     <%= f.input :address_2 %>
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :zip_code %>
-	<h2>Links</h2>
+	<h2 class="edit-section">Links</h2>
     <%= f.input :website %>
     <%= f.input :facebook %>
     <%= f.input :twitter %>

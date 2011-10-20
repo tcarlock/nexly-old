@@ -2,91 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#subscriptions,
+#app-options, 
+#services {
+	margin:0;
+	padding:7px 0 25px 0;
+	float:left;
+	display:block;
+	width:100%;
+	clear:both;
+}
 #subscriptions > li {
 	width:45%;
 	width:98%;
 	height:200px;
 	margin-bottom:15px;
 }
-
 #subscriptions li.subscribed {
 	background-color:#D8D5D5;
 }
-
 #app-options {
-	margin:0;
 	margin-left:15px;
-	padding:0;
 }
-#app-options li {
+#app-options > li {
 	display:inline-block;
 	float:left;
 	margin-right:10px;
+	padding:5px 0;
+	margin-right:25px;
 }
-.authentications {
-  margin-bottom: 30px;
+#services {
+  	padding:7px 0 25px 0;
 }
-.authentication {
-  width: 130px;
-  float: left;
+#services > li {
   background-color: #EEE;
-  border: solid 1px #999;
-  padding: 5px 10px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  position: relative;
-  margin-right: 10px;
 }
-
-.authentication .remove {
-  text-decoration: none;
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  color: #333;
-  padding: 2px 4px;
-  font-size: 10px;
-}
-
-.authentication .remove:hover {
-  color: #CCC;
-  background-color: #777;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-}
-
-.authentication img {
-  float: left;
-  margin-right: 10px;
-}
-
-.authentication .provider {
-  font-weight: bold;
-}
-
-.authentication .uid {
-  color: #666;
-  font-size: 11px;
-}
-
-.auth_provider img {
-  display: block;
-}
-
-.auth-provider {
+#services > li > a {
   float: left;
   text-decoration: none;
   margin-right: 20px;
   text-align: center;
 }
-.auth-provider * {
+#services > li > a * {
   display:inline-block;
   float: left;
   height:32px;
   line-height:32px;
   margin-right:12px;
 }
-.auth-provider img.enabled {
+#services > li > a img.enabled {
 	position:absolute;
 	top:0;
 	left:32px;
