@@ -14,7 +14,7 @@ $(function(){
 	function hoverIntentConfig(selector) {
 		return {    
 		    over: function() {
-				$(this).find(selector).fadeIn(250);
+				$(this).find(selector).slideDown(250);
 			}, 
 		    timeout:0,
 		    out: function() {
