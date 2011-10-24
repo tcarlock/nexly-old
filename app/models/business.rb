@@ -19,13 +19,13 @@ class Business < ActiveRecord::Base
   has_many :link_clicks
   
   # Sphinx indexes
-  define_index do
-    indexes :name, :sortable => true
-    indexes biography
-    indexes city
-    indexes state
-    indexes zip_code
-  end
+  # define_index do
+  #   indexes :name, :sortable => true
+  #   indexes biography
+  #   indexes city
+  #   indexes state
+  #   indexes zip_code
+  # end
   
   # Validations
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
