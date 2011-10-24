@@ -24,9 +24,10 @@ gem 'jquery-rails'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'omniauth'
-gem 'twitter'
+gem 'twitter', "~> 1.0"
 gem 'fb_graph'
 gem 'linkedin'
+gem 'thinking-sphinx'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -43,9 +44,12 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem 'heroku_san'
+  gem 'faker', '~> 1.0.1'
 end
 
 group :production do
   # gems specifically for Heroku go here
-  gem "pg"
+  gem 'pg'
+  gem 'flying-sphinx'
 end
+

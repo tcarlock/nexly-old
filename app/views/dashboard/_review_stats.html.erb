@@ -1,14 +1,14 @@
 <li>
-	<%= @business.review_stats.total_review_count %> <%= @business.review_stats.total_review_count == 1 ? "review" : "review".pluralize %> submitted	
+	<%= pluralize(@business.review_stats.total_review_count, "review") %> submitted
 </li>
 <li>
-	<%= @business.review_stats.pending_review_count %> <%= @business.review_stats.pending_review_count == 1 ? "review" : "review".pluralize %> pending review
+	<%= pluralize(@business.review_stats.pending_review_count, "review") %> pending approval
 </li>
 <li>
-	<%= @business.review_stats.approved_review_count %> approved <%= @business.review_stats.approved_review_count == 1 ? "review" : "review".pluralize %>
+	<%= pluralize(@business.review_stats.approved_review_count, "approved review") %>
 </li>
 <li>
-	<%= @business.review_stats.pending_request_count %> outstanding <%= @business.review_stats.pending_request_count == 1 ? "request" : "request".pluralize %>	
+	<%= pluralize(@business.review_stats.pending_request_count, "outstanding request") %>
 </li>
 <li>
 	<%= @business.review_stats.average_rating.round(1) %> is your average rating	

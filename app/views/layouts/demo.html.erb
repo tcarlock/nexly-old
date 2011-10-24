@@ -3,7 +3,7 @@
 <head>
   <title>Nexly Demo Site</title>
   
-  <%= stylesheet_link_tag "demo_global", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews", "jquery.ui.stars.min.css" %>
+  <%= stylesheet_link_tag "demo", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews", "jquery.ui.stars.min.css" %>
   <%= yield :styles %>
   <%= javascript_include_tag "application", "toolbar", "jquery.ui.stars.min.js" %>
   <%= yield :scripts %>
@@ -13,16 +13,17 @@
 <body>
 	<div id="container">
 		<div id="header">
+			<%= image_tag "demo/logo.jpg", :id => "inset", :size => '125x117' %>
 		</div>
 		<div id="hdr-nav">
 			<ul class="navigation">
-				<li><%= link_to "Home", demo_home_path %></li>
-				<li><%= link_to "About Us", demo_reviews_path %></li>
-				<li><%= link_to "Services", demo_reviews_path %></li>
-				<li><%= link_to "Resources", demo_resources_path %></li>
-				<li><%= link_to "Events", demo_events_path %></li>
-				<li><%= link_to "Reviews", demo_reviews_path %></li>
-				<li><%= link_to "Contact Us", demo_contact_path %></li>
+				<li><%= link_to "Home", "#" %></li>
+				<li><%= link_to "About Us", "#" %></li>
+				<li><%= link_to "Services", "#" %></li>
+				<li><%= link_to "Resources", "#" %></li>
+				<li><%= link_to "Events", "#" %></li>
+				<li><%= link_to "Reviews", "#" %></li>
+				<li><%= link_to "Contact Us", "#" %></li>
 			</ul>
 		</div>
 		<div id="main-content">
@@ -35,9 +36,9 @@
 	<div id="footer-outer">
 		<div id="footer-inner" class="clearfix">
 			<ul id="ftr-nav" class="navigation clearfix">
-				<li><span>Acme Engineering</span></li>
+				<li><span>BCI Consulting</span></li>
 				<li><%= link_to "Twitter", "twitter.com" %></li>
-				<li><%= link_to "Blog", "blog.nexly.com" %></li>
+				<li><%= link_to "Blog", "#" %></li>
 			</ul>
 		</div>
 	</div>

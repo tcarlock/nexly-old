@@ -1,37 +1,34 @@
-// Place all the styles related to the reviews controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 li.biz-review {
-	padding:7px;
 	position:relative;
-}
-li.biz-review .rating-icon {
-	margin-bottom:5px;
-}
-li.biz-review .rating-icon * {
-	height:16px;
-	line-height:16px;
-	display:inline-block;
-	vertical-align:middle;
-}
-li.biz-review .rating-star {
-	width:16px;
-	background-image:url(/assets/rating/jquery.ui.stars.gif);
-	background-repeat:no-repeat;
-}
-li.biz-review .selected {
-	background-position:0 -48px;
-}
-li.biz-review .deselected {
-	background-position:0 -32px;
-}
-li.biz-review .disputed {
-	line-height:1.7em;
-	font-weight:bold;
-}
-li.biz-review .hidden {
-	display:none;
+	
+	.rating-icon {
+		margin-bottom:5px;
+	 	
+		* {
+			height:16px;
+			line-height:16px;
+			display:inline-block;
+			vertical-align:middle;
+		}
+	}
+	.rating-star {
+		width:16px;
+		background-image:url(/assets/rating/jquery.ui.stars.gif);
+		background-repeat:no-repeat;
+	}
+	.selected {
+		background-position:0 -48px;
+	}
+	.deselected {
+		background-position:0 -32px;
+	}
+	.disputed {
+		line-height:1.7em;
+		font-weight:bold;
+	}
+	.hidden {
+		display:none;
+	}
 }
 
 span.submitted {
@@ -58,9 +55,10 @@ span.submitted {
 
 #rating-outer {
 	width:100%;
-}
-#rating-outer label {
-	width:275px;
-	display:inline-block;
-	margin-top:3px;
+
+	label {
+		width:275px;
+		display:inline-block;
+		margin-top:3px;
+	}
 }

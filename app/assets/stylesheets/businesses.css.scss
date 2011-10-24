@@ -1,3 +1,38 @@
+/* Business index */
+li.business {
+	position:relative;
+	
+	.rating-icon {
+		margin-bottom:5px;
+	 	
+		* {
+			height:16px;
+			line-height:16px;
+			display:inline-block;
+			vertical-align:middle;
+		}
+	}
+	.rating-star {
+		width:16px;
+		background-image:url(/assets/rating/jquery.ui.stars.gif);
+		background-repeat:no-repeat;
+	}
+	.selected {
+		background-position:0 -48px;
+	}
+	.deselected {
+		background-position:0 -32px;
+	}
+	.disputed {
+		line-height:1.7em;
+		font-weight:bold;
+	}
+	.hidden {
+		display:none;
+	}
+}
+
+/* Business profile page */
 #biz-details-pane {
 	width:225px;
 	margin-right:7px;

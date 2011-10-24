@@ -83,6 +83,11 @@ span.intro-text {
 	padding:10px 0;
 	color:#646464;
 }
+.no-records {
+	margin:0;
+	padding:0;
+	font-size:.9em;
+}
 /*Clearfix*/
 .clearfix {
 	display:inline-block;
@@ -336,7 +341,7 @@ ul.profile-details {
 	margin-bottom:15px;
 	list-style-type:none;
 
-	li {
+	ul > li {
 		padding:1px 0;
 		
 		&.header {

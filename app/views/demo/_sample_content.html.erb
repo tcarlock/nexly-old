@@ -1,9 +1,44 @@
 <div id="news">
-	<%= image_tag "demo/news.png"%>
+	<div class="image">
+		<%= image_tag "demo/news.png"%>
+	</div>
+	<div class="text">
+		<h3>What We Do</h3>
+		At BCI Consulting we believe that every small business should have access to the best services available.
+		We make that happen by giving businesses a cost-effective way of finding and selecting providers.
+	</div>
 </div>
 <div id="why-hire">
-	<%= image_tag "demo/why-hire.png"%>
+	<h3>Why You Should Hire Us</h3>
+	<ul>
+		<li>
+			A unique service and delivery model
+		</li>
+		<li>
+			Seasoned professionals and superior customer support
+		</li>
+		<li>
+			We understand the small-business culture and environment
+		</li>
+		<li>
+			Our pricing makes our services accessible
+		</li>
+	</ul>
 </div>
 <div id="headlines">
-	<%= image_tag "demo/headlines.png"%>
+	<h3>Latest BCI News</h3>
+	<ul>
+		<li>
+			<span><%= (Date.today - 30).to_s(:feed_date) %></span>
+			<%= link_to "New Service Offering Being Introduced Next Quarter", "#" %>
+		</li>
+		<li>
+			<span><%= (Date.today - 60).to_s(:feed_date) %></span>
+			<%= link_to "Four New Associates Hired for Our Consulting Group", "#" %>
+		</li>
+		<li>
+			<span><%= (Date.today - 90).to_s(:feed_date) %></span>
+			<%= link_to "BCI Consulting Named the Hottest Consulting Company in the Midwest", "#" %>
+		</li>
+	</ul>
 </div>

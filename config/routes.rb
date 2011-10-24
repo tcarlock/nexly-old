@@ -48,7 +48,6 @@ Nexly::Application.routes.draw do
   get :modules, :to => "main#modules"
   get :contact, :to => "main#contact"
   get :faqs, :to => "main#faqs"
-  get :search, :to => "main#search"
     
   match "demo/home"
   match "demo/social"

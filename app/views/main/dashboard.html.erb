@@ -24,27 +24,39 @@
 			<li class="header">
 				<%= link_to "Review Stats", business_analytics_path(@business) %>
 			</li>
-			<% if @business.reviews.empty? %>
-				<li><span class="no-records">There are no reviews at this time</span></li>
-			<% else %>
-				<%= render :partial => 'dashboard/review_stats' %>
-			<% end %>
+			<li>
+				<% if @business.reviews.empty? %>
+					<span class="no-records">There are no reviews at this time</span>
+				<% else %>
+					<ul>
+						<%= render :partial => 'dashboard/review_stats' %>
+					</ul>
+				<% end %>
+			</li>
 		</ul>
 		<ul id="social-tab" class="profile-details clearfix">
 			<li class="header">
 				<%= link_to "Inbound Traffic", business_analytics_path(@business) %>				
 			</li>
-			<% if @business.link_clicks.empty? %>
-				<li><span class="no-records">There is no traffic data at this time</span></li>
-			<% else %>
-				<%= render :partial => 'dashboard/traffic_stats' %>
-			<% end %>
+			<li>
+				<% if @business.link_clicks.empty? %>
+					<span class="no-records">There is no traffic data at this time</span>
+				<% else %>
+					<ul>
+						<%= render :partial => 'dashboard/traffic_stats' %>
+					</ul>
+				<% end %>
+			</li>
 		</ul>
 		<ul id="apps-tab" class="profile-details clearfix">
 			<li class="header">
 				<%= link_to "Apps & Settings", settings_business_path(@business) %>
 			</li>
-			<%= render :partial => 'dashboard/apps_settings' %>
+			<li>
+				<ul>
+					<%= render :partial => 'dashboard/apps_settings' %>
+				</ul>
+			</li>
 		</ul>
 	</div>
 	<div class="content-panel">

@@ -54,7 +54,7 @@
 						</div>
 						<% unless @hide_menu %>
 							<div id="search-outer">
-								<%= form_tag :search, :method => "get" do %>
+								<%= form_tag businesses_path, :method => "get" do %>
 									<%= text_field_tag :q %>
 									<%= submit_tag "", :id => "search-btn" %>
 								<% end %>

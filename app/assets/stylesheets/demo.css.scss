@@ -1,3 +1,280 @@
-// Place all the styles related to the demo controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+0A2E58 >> Dark blue
+92C1E9 >> Light blue
+3595D4 >> Mid blue
+abdb73 >> Green
+2D2D2D 
+ebebeb
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+	font-size:14px;
+}
+html, body {
+	height:100%;
+}
+body {
+    background:url('/assets/bg_gradient.png') repeat-x scroll 0 0 #bfcdde;  
+    background:none repeat-x scroll 0 0 #fff;
+    color: #272722;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+	letter-spacing:.1em;
+}
+h1, h2, h3, h4 { padding-bottom:7px; font-weight:bold; }
+h1 { font-size:1.6em; }
+h2 { font-size:1.3em; }
+h3 { font-size:1.1em; }
+h4 { font-size:1em; }
+a {
+	cursor:pointer;
+	color:#1B5790;
+	text-decoration:none;
+	background-color:transparent;
+}
+img {
+	border: 0px;
+}
+P {
+	margin-bottom:10px;
+}
+fieldset {
+	border:0px;
+}
+fieldset label,
+fieldset input,
+fieldset textarea,
+fieldset select {
+	font-size:1.4em;
+}
+input[type='email'],
+input[type='url'],
+input[type='text'],
+input[type='password'],
+textarea {
+	font-size:1.1em;
+	padding:3px 0;
+	border-radius:4px;
+	border:1px solid #e1e1e3;
+}
+fieldset textarea {
+}
+
+.right-col {
+	clear:right;
+	display:block;
+	float:right;
+}
+.left-col {
+	clear:none;	
+	display:block;
+	float:left;
+}
+
+/*Clearfix*/
+.clearfix {
+	display:inline-block;
+}
+html[xmlns].clearfix {
+	display:block;
+}
+* html .clearfix {
+	height:1%;
+	overflow:visible;
+}
+
+/*Common navigation*/
+ul.navigation {
+    list-style: none outside none;
+}
+ul.navigation li {
+	float: left;
+}
+ul.navigation li a {
+
+}
+ul.navigation li a:hover {
+
+}
+ul.navigation li.active a {
+
+}
+
+/*Global layout*/
+#header {
+	position:relative;
+	height:283px;
+	margin-top:15px;
+	background:url('/assets/demo/header2.jpg') no-repeat 0 0 #fff;
+}
+#inset {
+	position:absolute;
+	top:0;
+	left:300px;
+}
+#container {
+	position:relative;
+	height:100%;
+	width:715px;
+	margin:0 auto;
+	border:1px #e2e2e2 solid;
+	min-height:750px;
+}
+#main-content {
+	width:715px;
+	position:relative;
+	min-height:350px;
+}
+#hdr-nav {
+	background-color:#87151B;
+	height:50px;
+}
+#news, #why-hire, #headlines {
+	h3 {
+		color:#444;
+		text-transform:uppercase;
+	}
+}
+#news { 
+	width:715px;
+	height:151px;
+	border-bottom:1px #e2e2e2 solid;
+	position:absolute;
+	top:0;
+	left:0;
+	clear:both;
+	
+	.image {
+		width:277px;
+		height:151px;
+		float:left;
+		clear:none;
+	}
+	.text {
+		clear:none;
+		float:right;
+		width:415px;
+		padding:7px;
+	}
+}
+#why-hire { 
+	width:335px;
+	height:250px;
+	border-right:1px #e2e2e2 solid;
+	position:absolute;
+	top:153px;
+	left:0;
+	clear:both;	
+	padding:7px;
+	
+	ul {
+		list-style-type:disc;
+		margin-left:15px;
+		padding-left:7px;
+		
+		li {
+			padding:5px 0;
+		}
+	}
+}
+#headlines { 
+	width:350px;
+	height:250px;
+	border-right:1px #e2e2e2 solid;
+	position:absolute;
+	top:153px;
+	right:0;
+	clear:both;	
+	padding:7px;
+	
+	ul {
+		
+		li {
+			padding:5px 0;
+			margin-bottom:7px;
+			
+			span, a {
+				display:block;
+				clear:both;
+			}
+		}
+	}
+}
+#footer-outer {
+	width:100%;
+	padding:10px 0;
+	float:left;
+	text-align:center;
+}
+#footer-inner {
+	margin:0 auto;
+	width:960px;
+}
+
+/*Specific nav implementations*/
+#hdr-nav li {
+	display:inline-block;
+	line-height:50px;
+}
+#hdr-nav li span,
+#hdr-nav li a {
+	color:#fff;
+    display:block;
+    font-size:1.1em;
+	line-height:30px;
+    padding:0 7px;
+    margin:10px;
+    text-decoration:none;
+}
+#hdr-nav li a:hover {
+	color:#87151B;
+    background:none repeat scroll 0 0 #fff;
+	border-radius:2px;
+}
+#hdr-nav li.active a {
+    background: none repeat scroll 0 0 #fff;
+	border-radius:2px;
+}
+#ftr-nav {
+	margin:13px 25px 0 25px;
+	display:inline-block;
+}
+#ftr-nav li {
+	display:inline-block;
+	float:left;
+    padding:0;
+	list-item-type:circle;
+	padding:0 12px;
+}
+#ftr-nav li span,
+#ftr-nav li a {
+	color:#272722;
+    display: block;
+    padding: 4px 0;
+    text-decoration: none;
+
+}
+#ftr-nav li a:hover {
+    color: #333;
+}
+
+
+/*Social management*/
+.auth-btn {
+	height:23px;
+	width:150px;
+	display:block;
+	background-repeat:none;
+	background-position:0 0;
+}
+#auth-twitter {
+	background-image:url(/assets/social/twitter_signin.png);
+}
+#auth-linkedin {
+	background-image:url(/assets/social/linkedin_signin.png);
+}
+#auth-facebook {
+	background-image:url(/assets/social/facebook_signin.png);
+}

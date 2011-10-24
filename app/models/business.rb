@@ -1,4 +1,5 @@
 class Business < ActiveRecord::Base
+  # Associations
   has_many :business_users
   has_many :users, :through => :business_users
   
@@ -17,6 +18,16 @@ class Business < ActiveRecord::Base
   
   has_many :link_clicks
   
+  # Sphinx indexes
+  define_index do
+    indexes :name, :sortable => true
+    indexes biography
+    indexes city
+    indexes state
+    indexes zip_code
+  end
+  
+  # Validations
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
   after_validation :geocode
   before_create :set_api_token
@@ -29,14 +40,14 @@ class Business < ActiveRecord::Base
       :thumb => ["50x50>", :png]
     }
   
-  before_save :perform_avatar_removal 
-  
   acts_as_taggable
   acts_as_taggable_on :capabilities
   
   geocoded_by :address
 
   attr_accessor :remove_avatar, :capabilities_string, :update_tags
+  
+  before_save :perform_avatar_removal
   
   def perform_avatar_removal 
     self.avatar = nil if self.remove_avatar=="1" && !self.avatar.dirty? 
@@ -64,7 +75,7 @@ class Business < ActiveRecord::Base
   end
   
   def is_user_admin? user
-    self.users.find(user.id) != nil
+    !self.users.find_by_id(user.id).nil?
   end
   
   private

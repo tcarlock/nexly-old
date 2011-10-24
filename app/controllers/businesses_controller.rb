@@ -2,6 +2,7 @@ class BusinessesController < ApplicationController
   before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities, :settings]
   
   def index
+    @businesses = Business.search params[:q]
   end
 
   def show
