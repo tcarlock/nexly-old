@@ -21,15 +21,17 @@
 		</li>
 	<% end %>
 </ul>
-<h2 class="edit-section">Reviews Settings</h2>
-<ul id="app-options">
-	<% @platforms.each do |platform| %>
-		<li>
-			<%= check_box_tag platform.id, platform.name %>
-			<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
-		</li>
-	<% end %>
-</ul>
+<div style="display:none;">
+	<h2 class="edit-section">Reviews Settings</h2>
+	<ul id="app-options">
+		<% @platforms.each do |platform| %>
+			<li>
+				<%= check_box_tag platform.id, platform.name %>
+				<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+			</li>
+		<% end %>
+	</ul>
+</div>
 <h2 class="edit-section">Services</h2>
 <ul id="services" class="standard-tiles">
 	<% @platforms.each do |platform| %>

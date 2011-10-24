@@ -61,7 +61,9 @@
 	</div>
 	<div class="content-panel">
 		<h3>
-			Reviews Pending Approval<%= link_to "View All", business_reviews_path(@business) %>
+			Reviews Pending Approval
+			<%= link_to "Send Review Requests", business_review_requests_path(@business) %>
+			<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
 		<% if @business.reviews.empty? %>
 			<span class="no-records">There are no reviews pending approval</span>

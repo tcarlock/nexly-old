@@ -10,7 +10,8 @@ Application.create!(
                 :price => 34.99,
                 :is_public => false)
                 
-Platform.create!(:name => "twitter")
 Platform.create!(:name => "facebook")
 Platform.create!(:name => "linkedin")
+Platform.create!(:name => "twitter")
 Platform.create!(:name => "google+")
+Platform.create!(:name => "google places")

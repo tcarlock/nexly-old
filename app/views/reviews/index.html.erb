@@ -3,7 +3,7 @@
 <h1>Submitted Reviews</h1>
 <div class="btns-tab">
 	<% if(@business.is_user_admin?(current_user)) %>
-		<%= link_to "", "#", :id => "manage-reqs-link", :href => business_review_requests_path(@business), :title => "Send invitation requests" %>
+		<%= link_to "", "#", :id => "manage-reqs-link", :href => business_review_requests_path(@business), :title => "Send review requests" %>
 	<% end %>
 </div>
 <% if @reviews.empty? %>
