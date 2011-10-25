@@ -27,6 +27,7 @@ gem 'omniauth'
 gem 'twitter', "~> 1.0"
 gem 'fb_graph'
 gem 'linkedin'
+gem 'faker', '~> 1.0.1'
 # gem 'thinking-sphinx'
 
 # Use unicorn as the web server
@@ -44,7 +45,6 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem 'heroku_san'
-  gem 'faker', '~> 1.0.1'
 end
 
 group :production do
