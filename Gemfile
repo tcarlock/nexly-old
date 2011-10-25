@@ -27,7 +27,7 @@ gem 'omniauth'
 gem 'twitter', "~> 1.0"
 gem 'fb_graph'
 gem 'linkedin'
-gem 'thinking-sphinx'
+# gem 'thinking-sphinx'
 
 # Use unicorn as the web server
 # gem 'unicorn'
