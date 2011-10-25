@@ -9,8 +9,8 @@ namespace :app do
     Rake::Task['db:migrate'].execute
     Rake::Task['db:seed'].execute
     Rake::Task['app:load_demo_data'].execute
-    Rake::Task['ts:index'].execute
-    Rake::Task['ts:start'].execute
+    # Rake::Task['ts:index'].execute
+    #    Rake::Task['ts:start'].execute
   end
   
   desc <<-DESC
