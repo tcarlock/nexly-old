@@ -3,16 +3,21 @@ class TrafficStats
 		@business = Business.find(id)
 	end
 
-	def incoming_traffic
-		@business.link_clicks.count
+  def page_views
+    page_views = @business.page_views
+    if page_views.empty?
+      0
+    else
+      @business.page_views.count
+    end
+  end
+	
+	def views_by_link_type link_type
+		@business.page_views.where(:link_type_id => link_type).count
 	end
 	
-	def traffic_by_link_type link_type
-		@business.link_clicks.where(:link_type_id => link_type).count
-	end
-	
-	def traffic_by_domain domain
-		@business.link_clicks.where(:referrer_domain => domain).count
+	def views_by_platform platform_id
+		@business.page_views.where(:platform_id => platform_id).count
 	end
 	
 	protected

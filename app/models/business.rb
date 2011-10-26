@@ -16,7 +16,7 @@ class Business < ActiveRecord::Base
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
-  has_many :link_clicks
+  has_many :page_views
   
   # Sphinx indexes
   # define_index do
@@ -69,7 +69,7 @@ class Business < ActiveRecord::Base
   end
   
   def traffic_stats
-    if self.link_clicks.count > 0
+    if self.page_views.count > 0
       TrafficStats.new(self.id)
     end
   end
@@ -96,6 +96,7 @@ end
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)
+#  api_token           :string(255)
 #  biography           :text
 #  address_1           :string(255)
 #  address_2           :string(255)

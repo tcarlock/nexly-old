@@ -17,6 +17,7 @@ end
 #  twitter             :string(255)
 #  google_plus         :string(255)
 #  linked_in           :string(255)
+#  api_token           :string(255)
 #  biography           :text
 #  address_1           :string(255)
 #  address_2           :string(255)

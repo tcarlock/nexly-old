@@ -1,5 +1,6 @@
 class Platform < ActiveRecord::Base
   has_many :authentications
+  has_many :page_views
 end
 
 # == Schema Information

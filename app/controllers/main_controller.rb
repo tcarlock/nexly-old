@@ -21,7 +21,7 @@ class MainController < ApplicationController
   end
   
   def open_popup
-    LinkClick.create!(:url => params[:url], 
+    PageView.create!(:url => params[:url], 
         :referrer_domain => params[:url].split('/')[2],
         :business_id => params[:bId],
         :reference_id =>params[:rId],

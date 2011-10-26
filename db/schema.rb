@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019002459) do
+ActiveRecord::Schema.define(:version => 20111026022649) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -77,17 +77,17 @@ ActiveRecord::Schema.define(:version => 20111019002459) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "link_clicks", :force => true do |t|
-    t.string   "referrer_domain"
+  create_table "page_views", :force => true do |t|
     t.string   "url"
     t.integer  "business_id"
     t.integer  "reference_id"
     t.integer  "link_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "platform_id"
   end
 
-  add_index "link_clicks", ["url", "referrer_domain"], :name => "index_link_clicks_on_url_and_referrer_domain"
+  add_index "page_views", ["url"], :name => "index_link_clicks_on_url_and_referrer_domain"
 
   create_table "platforms", :force => true do |t|
     t.string   "name"

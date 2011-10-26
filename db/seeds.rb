@@ -13,5 +13,5 @@ Application.create!(
 Platform.create!(:name => "facebook")
 Platform.create!(:name => "linkedin")
 Platform.create!(:name => "twitter")
-Platform.create!(:name => "google+")
 Platform.create!(:name => "google places")
+Platform.create!(:name => "google+")

@@ -3,7 +3,7 @@ namespace :app do
       Drop and re-create development database
     DESC
     
-  task :remount_database => [:environment] do
+  task :remount_local_database => [:environment] do
     Rake::Task['db:drop'].execute
     Rake::Task['db:create'].execute
     Rake::Task['db:migrate'].execute
@@ -30,52 +30,67 @@ namespace :app do
     user.reload
     
     user.profile.update_attributes!(
-        :first_name => 'Tim', 
-        :last_name => 'Carlock', 
-        :facebook => 'tcarlock', 
-        :twitter => 'tcarlock', 
-        :google_plus => 'tcarlock',
-        :linked_in => 'tcarlock',
-        :biography => 'I''m the founder and CEO of an internet startup based in San Francisco',
-        :city => 'San Francisco',
-        :state => 'CA',
-        :updated_at => '2011-08-01 20:18:35',
-        :created_at => '2011-08-01 20:18:33',
-        :avatar_file_name => 'IMG_4634-1.jpg', 
-        :avatar_content_type => 'image/jpeg', 
-        :avatar_file_size => 3196303,
-        :avatar_updated_at => '2011-08-02 20:46:45', 
-        :screen_name => 'tcarlock')
+      :first_name => 'Tim', 
+      :last_name => 'Carlock', 
+      :facebook => 'tcarlock', 
+      :twitter => 'tcarlock', 
+      :google_plus => 'tcarlock',
+      :linked_in => 'tcarlock',
+      :biography => 'I''m the founder and CEO of an internet startup based in San Francisco',
+      :city => 'San Francisco',
+      :state => 'CA',
+      :updated_at => '2011-08-01 20:18:35',
+      :created_at => '2011-08-01 20:18:33',
+      :avatar_file_name => 'IMG_4634-1.jpg', 
+      :avatar_content_type => 'image/jpeg', 
+      :avatar_file_size => 3196303,
+      :avatar_updated_at => '2011-08-02 20:46:45', 
+      :screen_name => 'tcarlock')
     
     biz = user.businesses.create!(
-        :name => 'BCI Consulting', 
-        :website => 'http://bci.com', 
-        :facebook => 'http://facebook.com/bci', 
-        :twitter => 'http://twitter.com/bci', 
-        :google_plus => 'http://plus.google.com/bci',
-        :linked_in => 'http://linkedin.com/bci',
-        :biography => 'We provide technology and services to help small businesses find and select service providers',
-        :address_1 => '101 South Hanley Rd',
-        :address_2 => nil,
-        :city => 'St Louis',
-        :state => 'MO',
-        :zip_code => '63105',
-        :avatar_file_name => 'logo.jpg', 
-        :avatar_content_type => 'image/jpeg', 
-        :avatar_file_size => 3196303, 
-        :avatar_updated_at => '2011-08-02 20:46:45')
+      :name => 'BCI Consulting', 
+      :website => 'http://bci.com', 
+      :facebook => 'http://facebook.com/bci', 
+      :twitter => 'http://twitter.com/bci', 
+      :google_plus => 'http://plus.google.com/bci',
+      :linked_in => 'http://linkedin.com/bci',
+      :biography => 'We provide technology and services to help small businesses find and select service providers',
+      :address_1 => '101 South Hanley Rd',
+      :address_2 => nil,
+      :city => 'St Louis',
+      :state => 'MO',
+      :zip_code => '63105',
+      :avatar_file_name => 'logo.jpg', 
+      :avatar_content_type => 'image/jpeg', 
+      :avatar_file_size => 3196303, 
+      :avatar_updated_at => '2011-08-02 20:46:45')
         
     biz.reload
   
+    # Create reviews
     25.times do |n|
-        biz.reviews.create!(
-          :name => Faker::Name.name,
-          :email => Faker::Internet.email, 
-          :details => Faker::Lorem.paragraph,
-          :rating => rand(5),
-          :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
-          :is_rejected => ((n % 2 != 0) && (n % 5 != 0)),
-          :user_id => 1 + rand(4))
+      biz.reviews.create!(
+        :name => Faker::Name.name,
+        :email => Faker::Internet.email, 
+        :details => Faker::Lorem.paragraph,
+        :rating => rand(5),
+        :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
+        :is_rejected => ((n % 2 != 0) && (n % 5 != 0)),
+        :user_id => 1 + rand(4))
+    end
+    
+    # Create link clicks
+    urls = ['http://bci.com', 'http://bci.com/reviews', 'http://bci.com/content/article/4', 'http://bci.com/events/5']
+    rec_refs = (1..50).to_a
+    platform_ids = Platform.all(:select => :id).map { |x| x.id }
+    link_types = PageView.types.values
+    
+    359.times do |n|
+      biz.page_views.create!(:url => urls.rotate![0],
+        :platform_id => platform_ids.rotate![0],
+        :reference_id => rec_refs.rotate![0],
+        :link_type_id => link_types.rotate![0],
+        :business_id => biz.id) 
     end
     
     50.times do |n|
@@ -84,7 +99,7 @@ namespace :app do
       user_handle = first_name.first + last_name
       biz_name = Faker::Company.name
       
-      user = User.create!(:email => Faker::Internet.free_email, :password => 'password', :password_confirmation => 'password', :is_admin => true)
+      user = User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :is_admin => true)
       user.reload
 
       user.profile.update_attributes!(

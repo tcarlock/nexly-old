@@ -39,7 +39,7 @@
 				<%= link_to "Inbound Traffic", business_analytics_path(@business) %>				
 			</li>
 			<li>
-				<% if @business.link_clicks.empty? %>
+				<% if @business.page_views.count == 0 %>
 					<span class="no-records">There is no traffic data at this time</span>
 				<% else %>
 					<ul>
@@ -62,7 +62,7 @@
 	<div class="content-panel">
 		<h3>
 			Reviews Pending Approval
-			<%= link_to "Send Review Requests", business_review_requests_path(@business) %>
+			<%= link_to "Send Requests", business_review_requests_path(@business) %>
 			<%= link_to "View All", business_reviews_path(@business) %>
 		</h3>
 		<% if @business.reviews.empty? %>

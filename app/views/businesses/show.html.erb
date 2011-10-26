@@ -25,16 +25,16 @@
 			Links
 		</li>
 		<li>
-			<%= link_to @business.website, create_redir_link(@business.website, @business.id, 0, LinkClick.types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.website, create_redir_link(@business.website, @business.id, 0, PageView.types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.facebook, create_redir_link(@business.facebook, @business.id, 0, LinkClick.types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.facebook, create_redir_link(@business.facebook, @business.id, 0, PageView.types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.twitter, create_redir_link(@business.twitter, @business.id, 0, LinkClick.types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.twitter, create_redir_link(@business.twitter, @business.id, 0, PageView.types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.linked_in, create_redir_link(@business.linked_in, @business.id, 0, LinkClick.types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.linked_in, create_redir_link(@business.linked_in, @business.id, 0, PageView.types[:profile]), 'data-popup' => true %>
 		</li>
 	</ul>
 	<ul id="biz-location" class="profile-details clearfix">

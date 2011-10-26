@@ -1,14 +1,16 @@
 <li>
-	<%= pluralize(@business.traffic_stats.incoming_traffic, "page view") %>
+	<%= pluralize(@business.traffic_stats.page_views, "page view") %>
 </li>
 <li>
-	<%= pluralize(@business.traffic_stats.traffic_by_link_type(LinkClick.types[:review]), "click") %> from reviews
+	<%= pluralize(@business.traffic_stats.views_by_link_type(PageView.types[:review]), "page view") %> from reviews
 </li>
 <li>
-	<%= pluralize(@business.traffic_stats.traffic_by_link_type(LinkClick.types[:profile]), "click") %> from your profile links
+	<%= pluralize(@business.traffic_stats.views_by_link_type(PageView.types[:profile]), "page view") %> from your profile links
 </li>
-<li>
-	<%= pluralize(@business.traffic_stats.traffic_by_domain(@business.website.split("/")[2]), "view") %> to <%= @business.website %>
-</li>
-
-<!-- Measure incoming traffic to main site from links auto-posted to SM sites -->
+<div style="display:none;">
+	<% Platform.all.each do |p| %>
+		<li>
+			<%= pluralize(@business.traffic_stats.views_by_platform(p.id), "page view") %> from <%= Platform.find(p.id).name.titleize %>
+		</li>
+	<% end %>
+</div>
