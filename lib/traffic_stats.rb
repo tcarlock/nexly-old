@@ -1,23 +1,30 @@
 class TrafficStats
-	def initialize id
-		@business = Business.find(id)
+  attr_accessor :current_data_set, :from_date, :to_date
+  
+  # Get traffic data by timeframe
+  
+	def initialize business_id, from = 365.days.ago, to = DateTime.current
+		self.from_date = from
+		self.to_date = to
+		
+		@business = Business.find(business_id)
+		self.current_data_set = @business.page_views
 	end
 
   def page_views
-    page_views = @business.page_views
-    if page_views.empty?
+    if self.current_data_set.empty?
       0
     else
-      @business.page_views.count
+      self.current_data_set.count
     end
   end
 	
 	def views_by_link_type link_type
-		@business.page_views.where(:link_type_id => link_type).count
+		self.current_data_set.where(:link_type_id => link_type).count
 	end
 	
 	def views_by_platform platform_id
-		@business.page_views.where(:platform_id => platform_id).count
+		self.current_data_set.where(:platform_id => platform_id).count
 	end
 	
 	protected

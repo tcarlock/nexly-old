@@ -1,3 +1,6 @@
+<% content_for :styles do stylesheet_link_tag "businesses" end %>
+<% content_for :scripts do javascript_include_tag "businesses" end %>
+	
 <%= semantic_form_for @business, :html => {:multipart => true} do |f| %>
   <%= f.inputs do %>
     <h2 class="edit-section">Basics</h2>
@@ -8,7 +11,8 @@
 		<label for="business_avatar"></label>
 		<%= raw display_logo(@business)%>
 	</li>
-	<h2 class="edit-section">Location</h2>
+	<h2 class="edit-section">Contact &amp; Location</h2>
+    <%= f.input :phone %>
     <%= f.input :address_1 %>
     <%= f.input :address_2 %>
     <%= f.input :city %>

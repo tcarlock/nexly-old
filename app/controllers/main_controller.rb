@@ -17,6 +17,8 @@ class MainController < ApplicationController
     @profile = current_user.profile
     @business = current_user.businesses.first
     # @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page])
+    @platforms = Platform.where(:is_available => true)
+    @traffic_stats = TrafficStats.new(@business.id, 2.years.ago, DateTime.current)
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
   

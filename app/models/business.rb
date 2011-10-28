@@ -68,11 +68,11 @@ class Business < ActiveRecord::Base
     end
   end
   
-  def traffic_stats
-    if self.page_views.count > 0
-      TrafficStats.new(self.id)
-    end
-  end
+  # def traffic_stats
+  #   if self.page_views.count > 0
+  #     TrafficStats.new(self.id, 2.years.ago, Date.today)
+  #   end
+  # end
   
   def is_user_admin? user
     !self.users.find_by_id(user.id).nil?

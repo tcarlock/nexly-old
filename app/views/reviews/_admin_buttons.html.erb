@@ -1,13 +1,15 @@
-<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link", :title => 'Submit review response', :id => "dispute-review-" + review.id.to_s %>
+<% if !review.is_rejected && !review.is_approved %>
+	<% if !review.is_approved %>
+		<%= form_tag approve_business_review_path(review.business, review), :remote => true do |f| %>
+			<a class="control-link approve-review-link" title="Approve this review"></a>
+		<% end %>
+	<% end %>
+<% end %>
+<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link", :title => 'Submit review response', :id => "respond-review-" + review.id.to_s %>
 <% if !review.is_rejected && !review.is_approved %>
 	<% if !review.is_rejected %>
 		<%= form_tag reject_business_review_path(review.business, review), :remote => true do |f| %>
 			<a class="control-link reject-review-link" title="Reject review"></a>
-		<% end %>
-	<% end %>
-	<% if !review.is_approved %>
-		<%= form_tag approve_business_review_path(review.business, review), :remote => true do |f| %>
-			<a class="control-link approve-review-link" title="Approve this review"></a>
 		<% end %>
 	<% end %>
 <% end %>

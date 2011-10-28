@@ -1,6 +1,6 @@
 class ReviewStats
-  def initialize id
-    @business = Business.find(id)
+  def initialize business_id
+    @business = Business.find(business_id)
   end
   
   def total_review_count

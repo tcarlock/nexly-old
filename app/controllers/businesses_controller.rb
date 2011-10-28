@@ -49,7 +49,7 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
     @apps = Application.where(:is_public => true)
     @enabled_apps = @business.applications
-    @platforms = Platform.all
+    @platforms = Platform.where(:is_available => true).order(:display_order)
     @enabled_platforms = current_user.authentications
     @toolbar_code = render_to_string :partial => 'plugins/toolbar_code', :locals => { :api_token => @business.api_token }
   end

@@ -10,8 +10,8 @@ Application.create!(
                 :price => 34.99,
                 :is_public => false)
                 
-Platform.create!(:name => "facebook")
-Platform.create!(:name => "linkedin")
-Platform.create!(:name => "twitter")
-Platform.create!(:name => "google places")
-Platform.create!(:name => "google+")
+Platform.create!(:name => 'linkedin', :icon => 'linkedin.png', :display_order => 1)
+Platform.create!(:name => 'facebook', :icon => 'facebook.png', :display_order => 2)
+Platform.create!(:name => 'twitter', :icon => 'twitter.png', :display_order => 3)
+Platform.create!(:name => 'google places', :icon => 'google.png', :display_order => 4)
+Platform.create!(:name => 'google+', :icon => 'google_plus.png', :is_available => false, :display_order => 5)

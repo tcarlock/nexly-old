@@ -5,16 +5,18 @@
 		<%= raw display_logo(@business, :large) %>
 	</div>
 	<div id="biz-details" class="panel">
-		<%= link_to @business.name, business_path(@business), :class => 'biz-name' %>
-		<%= link_to "Edit Profile", edit_business_path(@business) %>
+		<%= link_to "Edit Profile", edit_business_path(@business), :id => 'edit-profile'  %>
+		<%= link_to @business.name, business_path(@business), :id => 'biz-name' %>
 		<h3><%= @business.location %></h3>
 	</div>
-	<ul id="biz-bio" class="profile-details clearfix">
+	<ul id="apps-settings" class="profile-details clearfix">
 		<li class="header">
-			About <%= @business.name %>
+			<%= link_to "Apps & Settings", settings_business_path(@business) %>
 		</li>
 		<li>
-			<%= @business.biography %>
+			<ul>
+				<%= render :partial => 'dashboard/apps_settings' %>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -39,7 +41,7 @@
 				<%= link_to "Inbound Traffic", business_analytics_path(@business) %>				
 			</li>
 			<li>
-				<% if @business.page_views.count == 0 %>
+				<% if @traffic_stats.page_views == 0 %>
 					<span class="no-records">There is no traffic data at this time</span>
 				<% else %>
 					<ul>
@@ -48,22 +50,12 @@
 				<% end %>
 			</li>
 		</ul>
-		<ul id="apps-tab" class="profile-details clearfix">
-			<li class="header">
-				<%= link_to "Apps & Settings", settings_business_path(@business) %>
-			</li>
-			<li>
-				<ul>
-					<%= render :partial => 'dashboard/apps_settings' %>
-				</ul>
-			</li>
-		</ul>
 	</div>
 	<div class="content-panel">
 		<h3>
 			Reviews Pending Approval
-			<%= link_to "Send Requests", business_review_requests_path(@business) %>
-			<%= link_to "View All", business_reviews_path(@business) %>
+			<%= link_to "Manage Requests", business_review_requests_path(@business) %>
+			<%= link_to "Manage Reviews", business_reviews_path(@business) %>
 		</h3>
 		<% if @business.reviews.empty? %>
 			<span class="no-records">There are no reviews pending approval</span>

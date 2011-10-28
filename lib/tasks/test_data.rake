@@ -48,7 +48,8 @@ namespace :app do
       :screen_name => 'tcarlock')
     
     biz = user.businesses.create!(
-      :name => 'BCI Consulting', 
+      :name => 'BCI Consulting',
+      :phone => Faker::PhoneNumber.phone_number,
       :website => 'http://bci.com', 
       :facebook => 'http://facebook.com/bci', 
       :twitter => 'http://twitter.com/bci', 
@@ -68,6 +69,15 @@ namespace :app do
     biz.reload
   
     # Create reviews
+    biz.reviews.create!(
+      :name => 'David Hansson',
+      :email => 'dhh@37signals.com', 
+      :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
+      :rating => 5,
+      :is_approved => true,
+      :is_rejected => false,
+      :user_id => 1 + rand(4))
+      
     25.times do |n|
       biz.reviews.create!(
         :name => Faker::Name.name,
@@ -90,7 +100,8 @@ namespace :app do
         :platform_id => platform_ids.rotate![0],
         :reference_id => rec_refs.rotate![0],
         :link_type_id => link_types.rotate![0],
-        :business_id => biz.id) 
+        :business_id => biz.id,
+        :created_at => Date.today - rand(1095)) 
     end
     
     50.times do |n|
@@ -125,6 +136,7 @@ namespace :app do
       
       biz = user.businesses.create!(
           :name => biz_name,
+          :phone => Faker::PhoneNumber.phone_number,
           :website => Faker::Internet.url,
           :facebook => 'http://facebook.com/' + biz_handle, 
           :twitter => 'http://twitter.com/' + biz_handle, 

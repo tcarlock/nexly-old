@@ -42,14 +42,6 @@ $(function(){
 		});
 	}
 	
-	// $('#play-demo').click(function() {
-	// 	$('#viewport').cycle('pause').animate({ height: 325 });
-	// 	$(this).fadeOut(250);
-	// 	$('demo-outer').fadeIn(250);
-	// 	player = document.getElementsById('commoncraft-embed');
-	// 	player.addModelListener('STATE', 'stateMonitor');
-	// });
-	
 	$('#panel-play-pause').toggle(function() {
 		isHardPaused = true;
 		pauseAutoNav();
@@ -127,6 +119,9 @@ $(function(){
 			$(this).find("div.content").fadeOut(250);
 		}
 	});
+	
+	$('#reviews-view').buttonset();
+	$('#reviews-view input[type=radio]').change(function() { $('#reviews-view').submit(); })
 	
 	$('a.control-link', 'div.btns-tab form').click(function() {
 		$(this).closest('form').submit();

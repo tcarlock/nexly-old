@@ -1,15 +1,37 @@
 <% content_for :styles do stylesheet_link_tag "app_subscriptions" end %>
+<% content_for :scripts do javascript_include_tag "main" end %>
 
 <h1>Applications and Settings</h1>
-<ul id="subscriptions" class="standard-tiles" style="display:none;">
-<h2 class="edit-section">Manage Your Settings</h2>
-	<% @apps.each do |app| %>
-		<li>
-			<h2><%= app.title %></h2>
-			<p>
-				<strong>Details: </strong><%= app.details %>
-			</p>
-			<h3>Publishing Options</h3>
+<div id="admin-tabs">
+	<ul>
+		<li><a href="#tabs-3">Select Distribution Websites</a></li>
+		<li><a href="#tabs-4">Get the Nexly Reviews toolbar</a></li>
+	</ul>
+	<div id="tabs-1">
+		<ul id="subscriptions" class="standard-tiles" style="display:none;">
+		<h2 class="edit-section">Manage Your Settings</h2>
+			<% @apps.each do |app| %>
+				<li>
+					<h2><%= app.title %></h2>
+					<p>
+						<strong>Details: </strong><%= app.details %>
+					</p>
+					<h3>Publishing Options</h3>
+					<ul id="app-options">
+						<% @platforms.each do |platform| %>
+							<li>
+								<%= check_box_tag platform.id, platform.name %>
+								<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div id="tabs-2">
+		<div style="display:none;">
+			<h2 class="edit-section">Reviews Settings</h2>
 			<ul id="app-options">
 				<% @platforms.each do |platform| %>
 					<li>
@@ -18,48 +40,48 @@
 					</li>
 				<% end %>
 			</ul>
-		</li>
-	<% end %>
-</ul>
-<div style="display:none;">
-	<h2 class="edit-section">Reviews Settings</h2>
-	<ul id="app-options">
-		<% @platforms.each do |platform| %>
-			<li>
-				<%= check_box_tag platform.id, platform.name %>
-				<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
-			</li>
+		</div>
+	</div>
+	<div id="tabs-3">
+		<h2 class="edit-section" style="display:none">Services</h2>
+		<span>
+			Nexly enables you to publish your clients’ reviews to other marketing and social media platform, thus making your brand more visible online and helping you engage more with prospective clients.  
+
+			Choose from the list below the websites where your prospective clients are most likely to visit. If you are not sure, don’t worry - select what makes sense for your industry or business and our analytics feature  will show in time where you get most traffic from.  Once you enabled a platform, the client reviews will be published on that platform as soon as you approved a review
+		</span>
+		<ul id="services" class="standard-tiles">
+			<% @platforms.each do |platform| %>
+				<li>
+					<a href="/auth/<%= platform.icon %>" class="auth-provider">
+						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.name}" %>
+						<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
+							<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
+							<span>Disable <%= platform.name.titleize %></span>
+						<% else %>
+							<span>Enable <%= platform.name.titleize %></span>
+						<% end %>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+	<div id="tabs-4">
+		<h2 class="edit-section" style="display:none;">Integration</h2>
+		<div class="">
+			<span class="intro-text">
+				Adding the Nexly Review toolbar to your site is simple. Just copy the following code and paste it onto every page immediately before the body-closing tag (i.e., &lt;/body&gt;).
+			</span>
+			<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '102x10' %>
+		</div>
+	</div>
+	<div style="display:none;">
+		<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
+			<%= submit_tag "Post Tweet" %>
 		<% end %>
-	</ul>
-</div>
-<h2 class="edit-section">Services</h2>
-<ul id="services" class="standard-tiles">
-	<% @platforms.each do |platform| %>
-		<li>
-			<a href="/auth/<%= platform.name %>" class="auth-provider">
-				<%= image_tag "social/#{platform.name.sub("+", "-plus")}.png", :alt => "#{platform.name}" %>
-				<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
-					<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
-					<span>Disable <%= platform.name.titleize %></span>
-				<% else %>
-					<span>Enable <%= platform.name.titleize %></span>
-				<% end %>
-			</a>
-		</li>
-	<% end %>
-</ul>
-<h2 class="edit-section">Integration</h2>
-<div class="">
-	<span class="intro-text">
-		Copy the following code and paste it onto every page immediately before the body-closing tag (i.e., &lt;/body&gt;).
-	</span>
-	<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '102x10' %>
-</div>
-<div style="display:none;">
-	<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
-		<%= submit_tag "Post Tweet" %>
-	<% end %>
-	<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
-		<%= submit_tag "Post to FB" %>
-	<% end %>
+		<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
+			<%= submit_tag "Post to FB" %>
+		<% end %>
+	</div>
+	<div class="clearfix"></div>
 </div>

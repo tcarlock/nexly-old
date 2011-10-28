@@ -46,6 +46,12 @@ span.submitted {
 	width:550px;
 	height:300px;
 }
+
+#reviews-view {
+	display:inline-block;
+	float:right;
+	margin-right:125px;
+}
 #manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
 
 .review-response-link { background-image:url('/assets/tasks/reply.png'); }

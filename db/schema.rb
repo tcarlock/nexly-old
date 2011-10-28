@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026022649) do
+ActiveRecord::Schema.define(:version => 20111028083617) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20111026022649) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "phone"
   end
 
   create_table "page_views", :force => true do |t|
@@ -93,6 +94,10 @@ ActiveRecord::Schema.define(:version => 20111026022649) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
+    t.integer  "display_order"
+    t.string   "details"
+    t.boolean  "is_available",  :default => true
   end
 
   add_index "platforms", ["name"], :name => "index_platforms_on_name"
