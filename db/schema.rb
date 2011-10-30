@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028083617) do
+ActiveRecord::Schema.define(:version => 20111030103615) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -90,6 +90,12 @@ ActiveRecord::Schema.define(:version => 20111028083617) do
 
   add_index "page_views", ["url"], :name => "index_link_clicks_on_url_and_referrer_domain"
 
+  create_table "platform_suggestions", :force => true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "platforms", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -158,12 +164,20 @@ ActiveRecord::Schema.define(:version => 20111028083617) do
     t.string   "email"
     t.text     "details"
     t.integer  "rating"
-    t.boolean  "is_under_review", :default => false
-    t.boolean  "is_approved",     :default => false
-    t.boolean  "is_rejected",     :default => false
+    t.boolean  "is_under_review",   :default => false
+    t.boolean  "is_approved",       :default => false
+    t.boolean  "is_rejected",       :default => false
     t.integer  "user_id"
     t.integer  "business_id"
-    t.boolean  "is_anon",         :default => false
+    t.boolean  "is_anon",           :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "review_request_id", :default => 0
+  end
+
+  create_table "suggestions", :force => true do |t|
+    t.text     "details"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,11 +1,11 @@
 class TrafficStats
-  attr_accessor :current_data_set, :from_date, :to_date
+  attr_accessor :current_data_set, :start_date, :end_date
   
   # Get traffic data by timeframe
   
-	def initialize business_id, from = 365.days.ago, to = DateTime.current
-		self.from_date = from
-		self.to_date = to
+	def initialize business_id, start_date = 365.days.ago, end_date = DateTime.current
+		self.start_date = start_date
+		self.end_date = end_date
 		
 		@business = Business.find(business_id)
 		self.current_data_set = @business.page_views
@@ -23,6 +23,10 @@ class TrafficStats
 		self.current_data_set.where(:link_type_id => link_type).count
 	end
 	
+	def views_by_platforms
+	  self.current_data_set.where(:platform_id => 0)
+  end
+  
 	def views_by_platform platform_id
 		self.current_data_set.where(:platform_id => platform_id).count
 	end

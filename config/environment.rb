@@ -22,9 +22,11 @@ ActionMailer::Base.smtp_settings = {
 Time::DATE_FORMATS.merge!(
   :default => "%b %d at %I:%M%p",
   :feed_date => "%b %d",
+  :feed_date_year => "%b %d, %Y",
   :feed_date_time => "%b %d at %I:%M%p",
   :date_time12  => "%m/%d/%Y %I:%M%p",
   :date_time24  => "%m/%d/%Y %H:%M",
+  :date_only  => "%m/%d/%Y"
 )
 
 WillPaginate.per_page = 7

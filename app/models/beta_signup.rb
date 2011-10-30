@@ -1,4 +1,5 @@
 class BetaSignup < ActiveRecord::Base
+  validates_presence_of :email
 end
 
 # == Schema Information

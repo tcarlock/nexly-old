@@ -56,6 +56,9 @@ Nexly::Application.routes.draw do
   match "demo/reviews"
   match "demo/contact"
   
+  post "main/suggest_platform", :as => :suggest_platform
+  get "main/new_feedback", :as => :new_feedback
+  post "main/submit_feedback", :as => :submit_feedback 
   post "main/test_tweet"
   post "main/test_fb_post"
 

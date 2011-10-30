@@ -10,7 +10,7 @@
 	<%= semantic_form_for(@review, :url => business_reviews_path, :remote => true) do |f| %>
 		<%= f.inputs do %>
 	  	<li id="rating-outer">
-			<%= f.label 'How would you rate this provider?' %>
+			<%= f.label 'How would you rate this provider?', :style => 'width:325px' %>
 	    	<% 0.upto(5) do |n| %>
 	      		<%= f.radio_button :rating, n %>
 	    	<% end %>

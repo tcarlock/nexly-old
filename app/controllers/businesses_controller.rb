@@ -52,8 +52,9 @@ class BusinessesController < ApplicationController
     @platforms = Platform.where(:is_available => true).order(:display_order)
     @enabled_platforms = current_user.authentications
     @toolbar_code = render_to_string :partial => 'plugins/toolbar_code', :locals => { :api_token => @business.api_token }
+    @platform_suggestion = PlatformSuggestion.new
   end
-
+  
   private
 
   def get_business

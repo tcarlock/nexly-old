@@ -128,8 +128,11 @@ $(function(){
 	    return false; 
 	});
 	
+	$('#submit-feedback').colorbox({transition:'fade', speed:500, modal: true});
+		
+	// Required for link redirects
 	$('a[data-popup]').live('click', function(e) { 
 		window.open($(this)[0].href); 
 		e.preventDefault(); 
-   });
+	});
 });

@@ -1,16 +1,16 @@
 <% content_for :styles do stylesheet_link_tag "review_requests" end %>
 
-<h1>Review Requests</h1>
+<% content_for :page_header do "Review Requests" end %>
 <div class="btns-tab">
 	<% if(@business.is_user_admin?(current_user)) %>
-		<%= link_to "", "#", :id => "new-req-link", :href => new_business_review_request_path(@business), :title => "Send invitation requests" %>
+		<%= link_to '', '#', :id => 'new-req-link', :href => new_business_review_request_path(@business), :title => 'Send review requests' %>
 	<% end %>
 </div>
 <% if @requests.empty? %>
-	<span class="hide-menu">There are no review requests at this time</span>
+	<span class="no-records">There are no review requests at this time <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
 <% else %>
 	<ul id="review-requests" class="standard-list">
 		<%= render @requests %>
 	</ul>
-	<%= render :partial => 'shared/pager', :locals => { :items => @requests, :label => "pending request" } %>
+	<%= render :partial => 'shared/pager', :locals => { :items => @requests, :label => 'pending request' } %>
 <% end %>

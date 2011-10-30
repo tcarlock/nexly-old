@@ -16,9 +16,8 @@ class MainController < ApplicationController
     @user = current_user
     @profile = current_user.profile
     @business = current_user.businesses.first
-    # @reviews = @business.reviews.order('created_at DESC').paginate(:page => params[:page])
     @platforms = Platform.where(:is_available => true)
-    @traffic_stats = TrafficStats.new(@business.id, 2.years.ago, DateTime.current)
+    @traffic_stats = TrafficStats.new(@business.id, [@business.created_at, 1.years.ago].max, DateTime.current)
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
   
@@ -30,6 +29,34 @@ class MainController < ApplicationController
         :link_type_id => params[:tId])
     
     redirect_to params[:url]
+  end
+  
+  def suggest_platform
+    suggestion = PlatformSuggestion.create!(params[:platform_suggestion])
+
+    suggestion.update_attributes!(:user_id => current_user.id) if user_signed_in?
+    
+    FeedbackMailer.new_platform_suggestion_alert(suggestion).deliver
+          
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def new_feedback
+    render :layout => false
+  end 
+  
+  def submit_feedback
+    suggestion = Suggestion.create!(params[:suggestion])
+    
+    suggestion.update_attributes!(:user_id => current_user.id) if user_signed_in?
+    
+    #FeedbackMailer.new_feedback_alert(suggestion).deliver
+          
+    respond_to do |format|
+      format.js
+    end
   end
   
   def test_tweet

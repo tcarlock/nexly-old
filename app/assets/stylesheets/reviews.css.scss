@@ -29,6 +29,9 @@ li.biz-review {
 	.hidden {
 		display:none;
 	}
+	.footer {
+		font-size:.9em;
+	}
 }
 
 span.submitted {
@@ -40,11 +43,11 @@ span.submitted {
 
 #new-review-outer {
 	width:600px;
-	height:350px;
+	height:400px;
 }
 #new-rec-outer {
 	width:550px;
-	height:300px;
+	height:350px;
 }
 
 #reviews-view {

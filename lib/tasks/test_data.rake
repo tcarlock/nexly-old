@@ -64,7 +64,8 @@ namespace :app do
       :avatar_file_name => 'logo.jpg', 
       :avatar_content_type => 'image/jpeg', 
       :avatar_file_size => 3196303, 
-      :avatar_updated_at => '2011-08-02 20:46:45')
+      :avatar_updated_at => '2010-08-02 20:46:45',
+      :created_at => '2010-08-02 20:46:45')
         
     biz.reload
   
@@ -76,7 +77,8 @@ namespace :app do
       :rating => 5,
       :is_approved => true,
       :is_rejected => false,
-      :user_id => 1 + rand(4))
+      :user_id => 1 + rand(4),
+      :created_at => DateTime.current + 30)
       
     25.times do |n|
       biz.reviews.create!(

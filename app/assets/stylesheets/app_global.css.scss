@@ -16,7 +16,7 @@ html, body {
 body {
     background:url('/assets/bg_gradient.png') repeat-x scroll 0 0 #bfcdde;  
     background:none repeat-x scroll 0 0 #ebebeb;
-    color: #272722;
+    color: #212121;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
 	letter-spacing:.1em;
@@ -81,13 +81,27 @@ h2.edit-section {
 }
 span.intro-text {
 	display:inline-block;
-	padding:10px 0;
-	color:#646464;
+	padding:10px 0 20px 0;
+	color:#212121;
+
+}
+span.submitted {
+	display:block;
+	font-size:1.1em;
+	margin-top:10px;	
 }
 .no-records {
+	display:inline-block;
 	margin:0;
-	padding:0;
-	font-size:.9em;
+	padding:10px 0 0 0;
+	
+	a {
+		margin-left:7px;
+	}
+}
+#new-suggestion-outer {
+	width:550px;
+	height:250px;
 }
 /*Clearfix*/
 .clearfix {
@@ -133,7 +147,11 @@ html[xmlns].clearfix {
 		width:480px;
 		margin:0 auto;
 		padding:10px;
+		-moz-border-top-left-radius:10px;
+		-webkit-border-top-left-radius:10px;
 		border-top-left-radius:10px;
+		-moz-border-top-right-radius:10px;
+		-webkit-border-top-right-radius:10px;
 		border-top-right-radius:10px;
 		border {
 			width:1px;
@@ -185,7 +203,6 @@ ul.navigation li.active a {
 .standard-tiles > li {
 	display:inline-block;
 	position:relative;
-	float:left;
 	margin:0 7px 7px 0;
 	border:1px #D8D5D5 solid;
 	border-radius:5px;

@@ -3,7 +3,6 @@
 #services {
 	margin:0;
 	padding:7px 0 25px 0;
-	float:left;
 	display:block;
 	width:100%;
 	clear:both;
@@ -34,10 +33,12 @@
 }
 
 #services {
-  	padding:7px 0 25px 0;
+  	padding:7px 0;
 
 	li {
 	  	background-color: #EEE;
+		width:30%;
+		margin-right:11px;
 	
 		a {
 			float: left;
@@ -61,5 +62,35 @@
 				height:20px;
 			}
 		}
+	}
+}
+.separator {
+	text-align:center;
+	width:100%;
+	position:relative;
+	padding:15px 0;
+	
+	div.line {
+		border-top:1px solid #CBC9C9;
+		height:1px;
+	}
+	
+	div.word {
+		display:block;
+		width:20px;
+		margin:0 auto;
+		font-size:1.1em;
+		height:20px;
+		line-height:20px;
+		margin-top:-12px;
+		padding:0 7px;
+		background-color:#fff;
+	}
+}
+#suggest-platform-outer {
+	width:100%;
+	
+	abbr {
+		display:none;
 	}
 }

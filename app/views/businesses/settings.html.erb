@@ -1,11 +1,11 @@
 <% content_for :styles do stylesheet_link_tag "app_subscriptions" end %>
 <% content_for :scripts do javascript_include_tag "main" end %>
 
-<h1>Applications and Settings</h1>
+<% content_for :page_header do "Applications and Settings" end %>
 <div id="admin-tabs">
 	<ul>
-		<li><a href="#tabs-3">Select Distribution Websites</a></li>
-		<li><a href="#tabs-4">Get the Nexly Reviews toolbar</a></li>
+		<li><a href="#tab-sites">Manage Distribution Websites</a></li>
+		<li><a href="#tab-toolbar">Get the Nexly Toolbar</a></li>
 	</ul>
 	<div id="tabs-1">
 		<ul id="subscriptions" class="standard-tiles" style="display:none;">
@@ -42,17 +42,16 @@
 			</ul>
 		</div>
 	</div>
-	<div id="tabs-3">
+	<div id="tab-sites">
 		<h2 class="edit-section" style="display:none">Services</h2>
-		<span>
-			Nexly enables you to publish your clients’ reviews to other marketing and social media platform, thus making your brand more visible online and helping you engage more with prospective clients.  
-
-			Choose from the list below the websites where your prospective clients are most likely to visit. If you are not sure, don’t worry - select what makes sense for your industry or business and our analytics feature  will show in time where you get most traffic from.  Once you enabled a platform, the client reviews will be published on that platform as soon as you approved a review
+		<span class="intro-text">
+			Nexly allows you to automatically publish your reviews to other websites including your social-media pages. These 
+			posts contain links which drive traffic back to your main site. 
 		</span>
-		<ul id="services" class="standard-tiles">
+		<ul id="services" class="standard-tiles clearfix">
 			<% @platforms.each do |platform| %>
 				<li>
-					<a href="/auth/<%= platform.icon %>" class="auth-provider">
+					<a href="/auth/<%= platform.name %>" class="auth-provider">
 						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.name}" %>
 						<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
 							<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
@@ -64,13 +63,25 @@
 				</li>
 			<% end %>
 		</ul>
-		<div class="clearfix"></div>
+		<div class="separator">
+			<div class="line"></div>
+			<div class="word">or</div>
+		</div>
+		<div id="suggest-platform-outer" class="clearfix">
+			<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
+				<%= f.inputs do %>
+				  <%= f.input :url, :label => 'Suggest a new website:', :input_html => { :style => 'width:300px', :placeholder => 'http://' } %>
+			  <% end %>
+			  <%= f.buttons do %>
+				<%= f.commit_button 'Submit' %>
+			  <% end %>
+			<% end %>
+		</div>
 	</div>
-	<div id="tabs-4">
-		<h2 class="edit-section" style="display:none;">Integration</h2>
+	<div id="tab-toolbar">
 		<div class="">
 			<span class="intro-text">
-				Adding the Nexly Review toolbar to your site is simple. Just copy the following code and paste it onto every page immediately before the body-closing tag (i.e., &lt;/body&gt;).
+				Adding the Nexly Review toolbar to your site is simple. Just copy the following code and paste it your webpages immediately before the body-closing tag (i.e., &lt;/body&gt;).
 			</span>
 			<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '102x10' %>
 		</div>

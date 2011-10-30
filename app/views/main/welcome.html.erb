@@ -82,13 +82,13 @@
 	<div id="signup-pane" class="homepage-pane">
 		<div id="signup-pane-inner">
 			<div id="signup-text">
-				<h1>We're really close to launching!</h1>
+				content_for :page_headerWe're really close to launching!</h1>
 				<p>
 					Provide us with your email address and we'll alert you as soon as we launch.  Don't worry, your 
 					information will stay private and we won't spam you.
 				</p>
 				<div style="display:none">
-					<h1>Why Not Sign Up? It's Easy and Free to Try.</h1>
+					content_for :page_headerWhy Not Sign Up? It's Easy and Free to Try.</h1>
 					<p>
 						Actually there are only three steps. Plus once you're registered, visitors to our site will be 
 						able to find your business profile through our search tool. 
@@ -109,7 +109,7 @@
 				  <% end %>
 				<% end %>
 				<div style="display:none">
-					<h1>Step 1) Create an Account</h1>
+					content_for :page_headerStep 1) Create an Account</h1>
 					<%= form_for("user", :method => :post, :url => user_registration_path) do |f| %>
 					
 						<p><%= f.label :email %><br />
@@ -133,7 +133,7 @@
 </div>
 <div id="details-pane" class="homepage-pane">
 	<div id="overview">
-		<h1>Digital Marketing Made Easier</h1>
+		content_for :page_headerDigital Marketing Made Easier</h1>
 		<p>
 			Digital marketing, brand management and community building are key to the success of small, service-based 
 			businesses, yet most SMBs struggle to do these things well.
@@ -148,7 +148,7 @@
 		</p>
 	</div>
 	<div id="highlights">
-		<h1>A Few of the Highlights</h1>
+		content_for :page_headerA Few of the Highlights</h1>
 		<ul class="clearfix">
 			<li>
 				<div class="header">

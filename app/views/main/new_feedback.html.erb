@@ -1,0 +1,15 @@
+<style type="text/css">
+	li.text textarea[cols] { max-width:99% !important; width:99% !important; }
+	li.commit { float:right !important; }
+</style>
+<h1>We'd Love to Hear Your Thoughts</h1>
+<div id="new-suggestion-outer">
+	<%= semantic_form_for Suggestion.new(), :method => :post, :url => submit_feedback_path, :validate => true, :remote => true do |f| %>
+		<%= f.inputs do %>
+		  <%= f.input :details, :label => false, :input_html => { :rows => 8, :cols => 5 } %>
+	  <% end %>
+	  <%= f.buttons do %>
+		<%= f.commit_button 'Submit' %>
+	  <% end %>
+	<% end %>
+</div>

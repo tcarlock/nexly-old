@@ -1,6 +1,6 @@
 <% content_for :styles do stylesheet_link_tag "app_subscriptions" end %>
 
-<h1>Manage Your Applications</h1>
+<% content_for :page_header do "Manage Your Applications" end %>
 <ul id="subscriptions" class="standard-tiles">
 	<% @apps.each do |app| %>
 		<li>

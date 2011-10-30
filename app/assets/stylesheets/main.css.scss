@@ -44,12 +44,21 @@
 		float:left;
 		list-style-type:none;
 		list-style-image:none;
-		height:135px;
+		height:115px;
+		
+		li span.date-range {
+			font-size:.8em;
+		}
 		
 		ul > li {
 			font-size:.9em;
 			list-style-type:disc;
 		}
+	}
+	
+	span.no-records {
+		font-size:.9em;
+		padding:0;
 	}
 }
 #apps-settings {

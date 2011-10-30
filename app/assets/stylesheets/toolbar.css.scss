@@ -34,8 +34,8 @@ div#toolbar, div#toolbarbut {
 
 div#toolbar {
 	color:#666;
-	width: 85%;
-	min-width: 700px; /* to limit the width when an excessive window resize */
+	width:60%;
+	min-width: 200px; /* to limit the width when an excessive window resize */
 	margin: 0px auto; /* centered toolbar */
 	left: 0px;
   	display: block;
@@ -135,7 +135,7 @@ a.stumble {
 }
 
 .tip ul li a {
-  font-size: 18px;
+  font-size: 14px;
 }       
 
 .tip ul li a:hover {
@@ -167,7 +167,7 @@ span.btn_container {
 span.btn_container a {
 	padding:5px 7px;
 	margin-right:5px;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 34px;
 	text-align:center;
 	background-color:#87151B;
@@ -182,7 +182,7 @@ span.menu_title {
 }
 
 span.menu_title a {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 34px;
   color: #666;
 }

@@ -19,6 +19,10 @@ class ReviewStats
     @business.rejected_reviews.count
   end
   
+  def total_request_count
+    @business.review_requests.count
+  end
+  
   def pending_request_count
     @business.pending_review_requests.count
   end

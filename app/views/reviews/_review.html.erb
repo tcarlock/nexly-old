@@ -23,11 +23,13 @@
 		</span>
 	</div>
 	<div class="footer">
-		Posted
-		<% if !review.user.nil? %>
-			by <%= review.user.display_name %> 
+		Posted by
+		<% if review.user_id == 0 %>
+			<%= review.user.display_name %> 
+		<% else %>
+			<%= review.name %> 
 		<% end %>
-		 on <%= review.created_at.to_s(:feed_date)%>
+		 on <%= review.created_at.to_s(:feed_date_year)%>
 		<% if show_admin %>
 			<span class="rejected <%= !review.is_rejected ? 'hidden' : '' %>">
 				(This review has been rejected)
