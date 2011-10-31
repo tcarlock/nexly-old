@@ -35,8 +35,8 @@
 				<a id="logo" href="/">
 					<%= image_tag "home.png", :id => "home-icon" %>
 				</a>
-				<% if user_signed_in? %>
-					<div id="hdr-controls">
+				<div id="hdr-controls">
+					<% unless @hide_menu %>
 						<div id="hdr-nav-outer">
 							<% if user_signed_in? %>
 								<% unless @hide_menu %>
@@ -53,22 +53,22 @@
 							<% end %>
 							<div class="clearfix"></div>
 						</div>
-						<% unless @hide_menu %>
-							<div id="search-outer">
-								<%= form_tag businesses_path, :method => "get" do %>
-									<%= text_field_tag :q %>
-									<%= submit_tag "", :id => "search-btn" %>
-								<% end %>
-								<div class="clearfix"></div>
-							</div>
-						<% end %>
-					</div>
-				<% end %>
+						<div id="search-outer">
+							<%= form_tag businesses_path, :method => "get" do %>
+								<%= text_field_tag :q %>
+								<%= submit_tag "", :id => "search-btn" %>
+							<% end %>
+							<div class="clearfix"></div>
+						</div>
+					<% end %>
+				</div>
 			</div>
 			<div id="main-content" class="clearfix">
-				<h1 id="page-header">
-			  		<%= yield :page_header %>
-				</h1>
+				<% if content_for? :page_header %>
+					<h1 id="page-header">
+			  			<%= yield :page_header %>
+					</h1>
+				<% end %>
 			  	<%= yield %>
 			  	<%= yield :closure %>
 				<div class="clearfix"></div>

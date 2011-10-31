@@ -32,13 +32,35 @@
 	}
 }
 
+.tab-content-outer {
+	position:relative;
+	
+	.form-outer {
+		width:650px;	
+	}
+	
+	.details-text {
+		width:230px;
+		position:absolute;
+		top:0;
+		right:0;
+		
+		h3 {
+			color:#0A2E58;
+		}	
+		
+		.intro-text {
+			padding:0;
+		}
+	}
+}
 #services {
   	padding:7px 0;
 
 	li {
-	  	background-color: #EEE;
-		width:30%;
-		margin-right:11px;
+	  	background-color:#EEE;
+		width:295px;
+		margin:5px;
 	
 		a {
 			float: left;

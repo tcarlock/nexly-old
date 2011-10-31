@@ -5,25 +5,29 @@
   <%= f.inputs do %>
     <h2 class="edit-section">Basics</h2>
     <%= f.input :name %>
-    <%= f.input :biography, :input_html => { :rows => 4 } %>
+    <%= f.input :biography, :label => 'Tell us a bit about your business', :input_html => { :rows => 4 } %>
     <%= f.input :avatar, :label => 'Logo' %>
 	<li class="file optional">
 		<label for="business_avatar"></label>
-		<%= raw display_logo(@business)%>
+		<%= raw display_logo(@business, :thumb)%>
 	</li>
-	<h2 class="edit-section">Contact &amp; Location</h2>
-    <%= f.input :phone %>
-    <%= f.input :address_1 %>
-    <%= f.input :address_2 %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :zip_code %>
-	<h2 class="edit-section">Links</h2>
-    <%= f.input :website %>
-    <%= f.input :facebook %>
-    <%= f.input :twitter %>
-    <%= f.input :google_plus, :label => "Google+" %>
-    <%= f.input :linked_in, :label => 'LinkedIn' %>
+	<div class="left-col">
+		<h2 class="edit-section">Contact &amp; Location</h2>
+	    <%= f.input :phone %>
+	    <%= f.input :address_1 %>
+	    <%= f.input :address_2 %>
+	    <%= f.input :city %>
+	    <%= f.input :state %>
+	    <%= f.input :zip_code %>
+	</div>
+	<div class="right-col">
+		<h2 class="edit-section">Links</h2>
+	    <%= f.input :website %>
+	    <%= f.input :facebook %>
+	    <%= f.input :twitter %>
+	    <%= f.input :google_plus, :label => "Google+" %>
+	    <%= f.input :linked_in, :label => 'LinkedIn' %>
+	</div>
   <% end %>
   <%= f.buttons do %>
 	<%= f.commit_button 'Update Business Profile' %>

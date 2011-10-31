@@ -17,7 +17,7 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     member do
-      get :settings
+      get :settings, :billing
     end
 
     get :search, :on => :collection

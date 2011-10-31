@@ -60,8 +60,7 @@ class User < ActiveRecord::Base
   
   def setup_blank_profile
     if self.profile.blank?
-      p = UserProfile.create(:user => self)
-      p.save
+      UserProfile.create!(:user => self)
     end
   end
   
