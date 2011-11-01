@@ -70,15 +70,17 @@ namespace :app do
     biz.reload
   
     # Create reviews
-    biz.reviews.create!(
+    review = biz.reviews.create(
       :name => 'David Hansson',
       :email => 'dhh@37signals.com', 
       :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
       :rating => 5,
       :is_approved => true,
       :is_rejected => false,
-      :user_id => 1 + rand(4),
-      :created_at => DateTime.current + 30)
+      :user_id => 1 + rand(4))
+      
+    review.save
+    review.update_attributes!(:created_at => DateTime.current + 30)
       
     25.times do |n|
       biz.reviews.create!(
