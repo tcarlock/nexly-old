@@ -1,7 +1,7 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
   
-  validates_presence_of :first_name, :last_name, :biography, :on => :update
+  validates_presence_of :first_name, :last_name, :on => :update
   
   has_attached_file :avatar, 
     :default_url => "/assets/profile/default_user:style.png", 

@@ -1,22 +1,20 @@
-<h2>Sign up</h2>
+<% content_for :page_header do "Step 1 of 2 - Create a New Account" end %>
 
-<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+<%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+	<%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
+	<%= f.inputs do %>
+		<%= f.fields_for :profile_attributes do |profile_form| %>
+			<%= profile_form.input :first_name %>
+			<%= profile_form.input :last_name %>
+		<% end %>
+		<%= f.input :email %>
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
+	<% end %>
+	<%= f.buttons do %>
+		<%= f.commit_button 'Create Your Account' %>
+	<% end %>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

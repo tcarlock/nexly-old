@@ -2,15 +2,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  has_one :profile, :class_name => "UserProfile", :dependent => :destroy
   
+  has_one :profile, :class_name => "UserProfile", :dependent => :destroy
   has_many :business_users
   has_many :businesses, :through => :business_users
+  
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :profile_attributes, :email, :password, :password_confirmation, :remember_me
+  accepts_nested_attributes_for :profile
            
-  after_create :setup_blank_profile
+  # after_create :setup_blank_profile
   
   def screenname
     self.profile.screen_name

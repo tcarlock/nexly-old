@@ -109,6 +109,7 @@ span.submitted {
 	width:550px;
 	height:250px;
 }
+
 /*Clearfix*/
 .clearfix {
 	display:inline-block;
@@ -123,14 +124,21 @@ html[xmlns].clearfix {
 
 /*Alerts*/
 #error_explanation {
-	border-radius:10px;
-	background-color:#D8D5D5;
+	border-radius:4px;
+	background-color: #fef1ec;
+	color:#cd0a0a;
 	padding:7px;
 	margin-bottom:12px;
+	
+	h2 {
+		font-weight:normal;
+		font-size:1.1em;
+	}
 	
 	ul {
 		margin-left:15px;
 		padding-left:7px;
+		list-style-type:disc;
 	}
 }
 #flash-outer {
@@ -322,19 +330,6 @@ ul.navigation li.active a {
 	.record-count {
 		padding-left:12px;
 	}
-}
-
-/*Devise forms*/
-#user_new label {
-	font-weight:bold;
-	line-height:1.5em;
-}
-#user_new input {
-	margin:5px 0;
-}
-#user_new a {
-	display:block;
-	padding:5px 0;
 }
 
 /*Global profile styles*/

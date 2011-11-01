@@ -19,11 +19,11 @@ form.formtastic input, form.formtastic textarea, form.formtastic select { font-s
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li { padding:0.5em 0 0 0; margin-top:0em; } /* padding and negative margin juggling is for Firefox */
+form.formtastic fieldset > ol li { padding:0.2em 0; margin:0em 0 0.3em 0; } /* padding and negative margin juggling is for Firefox */
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset label { font-size:1.1em; line-height:1.6em; font-weight:bold; padding-right:10px; }
 form.formtastic p.undefined { display:inline-block; margin-left:15px; }
 
-li.commit { float:right !important; }
+li.commit { float:right !important; padding-top:10px !important; }

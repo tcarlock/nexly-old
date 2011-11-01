@@ -102,26 +102,27 @@
 			<div id="svc-req-form-outer">
 				<%= semantic_form_for @signup, :method => :post, :url => beta_signup_create_path, :remote => true do |f| %>
 					<%= f.inputs do %>
-					  <%= f.input :email , :label => false, :input_html => { :placeholder => "Your email address" } %>
+					  <%= f.input :email , :label => false, :input_html => { :style => 'width:325px;', :placeholder => "Your email address" } %>
 				  <% end %>
 				  <%= f.buttons do %>
 					<%= f.commit_button 'Submit' %>
 				  <% end %>
 				<% end %>
 				<div style="display:none">
-					<h1>Step 1) Create an Account</h1>
-					<%= form_for("user", :method => :post, :url => user_registration_path) do |f| %>
-					
-						<p><%= f.label :email %><br />
-					  	<%= f.email_field :email %></p>
-
-					  	<p><%= f.label :password %><br />
-					  	<%= f.password_field :password %></p>
-
-					  	<p><%= f.label :password_confirmation %><br />
-					  	<%= f.password_field :password_confirmation %></p>
-
-					  	<p><%= f.submit "Sign up" %></p>
+					<h1>Step 1) Create an Account</h1>					
+					<%= semantic_form_for("user", :method => :post, :url => user_registration_path) do |f| %>
+						<%= f.inputs do %>
+							<%= f.fields_for :profile_attributes do |profile_form| %>
+								<%= profile_form.input :first_name %>
+								<%= profile_form.input :last_name %>
+							<% end %>
+							<%= f.input :email %>
+							<%= f.input :password %>
+							<%= f.input :password_confirmation %>
+						<% end %>
+						<%= f.buttons do %>
+							<%= f.commit_button 'Create Your Account' %>
+						<% end %>
 					<% end %>
 				</div>
 			</div>
