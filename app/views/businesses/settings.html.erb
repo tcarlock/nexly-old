@@ -45,7 +45,7 @@
 	<div id="tab-sites">
 		<div class="tab-content-outer">
 			<div class="form-outer">
-				<h2 class="edit-section" style="display:none">Services</h2>
+				<label>Select websites for distribution:</label>
 				<ul id="services" class="standard-tiles clearfix">
 					<% @platforms.each do |platform| %>
 						<li>
@@ -62,13 +62,13 @@
 					<% end %>
 				</ul>
 				<div class="separator">
-					<div class="line"></div>
-					<div class="word">or</div>
+					<div></div>
+					<label>or</label>
 				</div>
 				<div id="suggest-platform-outer" class="clearfix">
 					<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
 						<%= f.inputs do %>
-						  <%= f.input :url, :label => 'Suggest a new website:', :label_html => { :style => 'width:225px', }, :input_html => { :style => 'width:300px', :placeholder => 'http://' } %>
+						  <%= f.input :url, :label => 'Suggest a new website:', :label_html => { :style => 'width:200px', }, :input_html => { :style => 'width:300px', :placeholder => 'http://' } %>
 					  <% end %>
 					  <%= f.buttons do %>
 						<%= f.commit_button 'Submit' %>
@@ -88,6 +88,7 @@
 	</div>
 	<div id="tab-toolbar">
 		<div class="tab-content-outer">
+			<label>Don't be alarmed by code...getting the toolbar is easy:</label>
 			<div class="form-outer">
 				<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '77x10' %>
 			</div>

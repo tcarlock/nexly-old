@@ -36,7 +36,7 @@
 	position:relative;
 	
 	.form-outer {
-		width:650px;	
+		width:650px;
 	}
 	
 	.details-text {
@@ -47,7 +47,7 @@
 		
 		h3 {
 			color:#0A2E58;
-		}	
+		}
 		
 		.intro-text {
 			padding:0;
@@ -55,7 +55,7 @@
 	}
 }
 #services {
-  	padding:7px 0;
+  	padding-bottom:7px;
 
 	li {
 	  	background-color:#EEE;
@@ -67,6 +67,7 @@
 			text-decoration: none;
 			margin-right: 20px;
 			text-align: center;
+			color:#3595D4;
 			
 			* {
 				display:inline-block;
@@ -92,12 +93,12 @@
 	position:relative;
 	padding:15px 0;
 	
-	div.line {
+	div {
 		border-top:1px solid #CBC9C9;
 		height:1px;
 	}
 	
-	div.word {
+	label {
 		display:block;
 		width:20px;
 		margin:0 auto;
@@ -115,4 +116,7 @@
 	abbr {
 		display:none;
 	}
+}
+#toolbar_code {
+	margin-top:10px;
 }

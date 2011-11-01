@@ -48,6 +48,13 @@ fieldset {
 		font-size:1.4em;
 	}
 }
+
+label { 
+	font-size:1.1em; 
+	font-weight:bold; 
+	padding-right:10px; 
+}
+
 input[type='email'],
 input[type='url'],
 input[type='text'],
