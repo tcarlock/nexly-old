@@ -43,7 +43,7 @@
 		</div>
 	</div>
 	<div id="tab-sites">
-		<div class="tab-content-outer">
+		<div class="tab-content-outer clearfix">
 			<div class="form-outer">
 				<label>Select websites for distribution:</label>
 				<ul id="services" class="standard-tiles clearfix">
@@ -84,10 +84,9 @@
 				</span>
 			</div>
 		</div>
-		<div class="clearfix"></div>
 	</div>
 	<div id="tab-toolbar">
-		<div class="tab-content-outer">
+		<div class="tab-content-outer clearfix">
 			<label>Don't be alarmed by code...getting the toolbar is easy:</label>
 			<div class="form-outer">
 				<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '77x10' %>
@@ -99,7 +98,6 @@
 				</span>
 			</div>
 		</div>
-		<div class="clearfix"></div>
 	</div>
 	<div style="display:none;">
 		<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
