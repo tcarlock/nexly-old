@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111030103615) do
+ActiveRecord::Schema.define(:version => 20111102232558) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -76,19 +76,29 @@ ActiveRecord::Schema.define(:version => 20111030103615) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "phone"
+    t.integer  "version_id"
   end
 
+  create_table "links", :force => true do |t|
+    t.integer  "business_id"
+    t.string   "in_url"
+    t.text     "out_url"
+    t.integer  "http_status", :default => 301
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["in_url"], :name => "index_links_on_in_url"
+
   create_table "page_views", :force => true do |t|
-    t.string   "url"
+    t.text     "url"
     t.integer  "business_id"
     t.integer  "reference_id"
     t.integer  "link_type_id"
+    t.integer  "platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "platform_id"
   end
-
-  add_index "page_views", ["url"], :name => "index_link_clicks_on_url_and_referrer_domain"
 
   create_table "platform_suggestions", :force => true do |t|
     t.string   "url"
@@ -104,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20111030103615) do
     t.integer  "display_order"
     t.string   "details"
     t.boolean  "is_available",  :default => true
+    t.string   "display_name"
   end
 
   add_index "platforms", ["name"], :name => "index_platforms_on_name"
@@ -172,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20111030103615) do
     t.boolean  "is_anon",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "review_request_id", :default => 0
+    t.integer  "review_request_id"
   end
 
   create_table "suggestions", :force => true do |t|

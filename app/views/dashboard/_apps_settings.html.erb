@@ -1,9 +1,5 @@
-<li>
-	LinkedIn is enabled
-</li>
-<li>
-	Twitter is enabled
-</li>
-<li>
-	Reviews are being published
-</li>
+<% @business.active_platforms.each do |p| %>
+	<li>
+		<%= p.display_name %> is enabled
+	</li>
+<% end %>

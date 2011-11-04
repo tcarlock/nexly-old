@@ -30,7 +30,7 @@ class DemoController < ApplicationController
   
   def mock_objects
     sign_in User.find(1)
-    @business = current_user.businesses.first
+    @business = current_user.business
     @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
   end
 end

@@ -42,9 +42,10 @@ Nexly::Application.routes.draw do
   post "beta_signup/create"
   
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/auth/failure' => 'authentications#failure'
   
   get :dashboard, :to => "main#dashboard"
-  get :open_popup, :to => "main#open_popup"
+  get :redir, :to => "main#redir"
   get :modules, :to => "main#modules"
   get :contact, :to => "main#contact"
   get :faqs, :to => "main#faqs"
@@ -60,6 +61,7 @@ Nexly::Application.routes.draw do
   get "main/new_feedback", :as => :new_feedback
   post "main/submit_feedback", :as => :submit_feedback 
   post "main/test_tweet"
+  post "main/test_li_update"
   post "main/test_fb_post"
 
   root :to => "main#welcome"

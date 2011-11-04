@@ -24,12 +24,15 @@ namespace :app do
     User.delete_all
     UserProfile.delete_all
     Business.delete_all
+    Review.delete_all
+    PageView.delete_all
 
     #Create demo user, business and reviews
     user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
     user.reload
     
-    user.profile.update_attributes!(
+    UserProfile.create!(
+      :user => user,
       :first_name => 'Tim', 
       :last_name => 'Carlock', 
       :facebook => 'tcarlock', 
@@ -70,7 +73,7 @@ namespace :app do
     biz.reload
   
     # Create reviews
-    review = biz.reviews.create(
+    review = biz.reviews.create!(
       :name => 'David Hansson',
       :email => 'dhh@37signals.com', 
       :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
@@ -79,7 +82,6 @@ namespace :app do
       :is_rejected => false,
       :user_id => 1 + rand(4))
       
-    review.save
     review.update_attributes!(:created_at => DateTime.current + 30)
       
     25.times do |n|
@@ -117,7 +119,8 @@ namespace :app do
       user = User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :is_admin => true)
       user.reload
 
-      user.profile.update_attributes!(
+      UserProfile.create!(
+          :user => user,
           :first_name => first_name, 
           :last_name => last_name, 
           :facebook => 'http://facebook.com/' + user_handle, 

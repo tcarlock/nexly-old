@@ -15,18 +15,18 @@ class MainController < ApplicationController
   def dashboard
     @user = current_user
     @profile = current_user.profile
-    @business = current_user.businesses.first
+    @business = current_user.business
     @platforms = Platform.where(:is_available => true)
     @traffic_stats = TrafficStats.new(@business.id, [@business.created_at, 1.years.ago].max, DateTime.current)
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
   
-  def open_popup
-    PageView.create!(:url => params[:url], 
-        :referrer_domain => params[:url].split('/')[2],
+  def redir
+    PageView.create!(:url => params[:url],
         :business_id => params[:bId],
         :reference_id =>params[:rId],
-        :link_type_id => params[:tId])
+        :link_type_id => params[:tId],
+        :platform_id => params[:pId])
     
     redirect_to params[:url]
   end
@@ -52,7 +52,7 @@ class MainController < ApplicationController
     
     suggestion.update_attributes!(:user_id => current_user.id) if user_signed_in?
     
-    #FeedbackMailer.new_feedback_alert(suggestion).deliver
+    FeedbackMailer.new_feedback_alert(suggestion).deliver
           
     respond_to do |format|
       format.js
@@ -60,7 +60,21 @@ class MainController < ApplicationController
   end
   
   def test_tweet
-    current_user.twitter.update("My Rails 3 App with Omniauth, Devise and Twitter")
+    social = PostFactory.new(current_user)
+    social.post_to_twitter! current_user.business.reviews.first
+
+    Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def test_li_update
+    social = PostFactory.new(current_user)
+    social.post_to_linkedin! current_user.business.reviews.first
+
+    Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
     
     respond_to do |format|
       format.js
@@ -68,10 +82,10 @@ class MainController < ApplicationController
   end
   
   def test_fb_post
-    current_user.facebook.feed!(
-      :message => 'Hello, Facebook!', 
-      :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
-    )
+    social = PostFactory.new(current_user)
+    social.post_to_facebook! current_user.business.reviews.first
+
+    Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
     
     respond_to do |format|
       format.js

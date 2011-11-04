@@ -5,7 +5,9 @@ class Business < ActiveRecord::Base
   
   has_many :app_subscriptions
   has_many :applications, :through => :app_subscriptions
+  
   has_many :authentications
+  has_many :active_platforms, :source => :platform, :foreign_key => "platform_id", :through => :authentications
     
   has_many :recommendations
   has_many :reviews
@@ -16,6 +18,7 @@ class Business < ActiveRecord::Base
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
+  has_many :links
   has_many :page_views
   
   # Sphinx indexes
@@ -112,5 +115,7 @@ end
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer(4)
 #  avatar_updated_at   :datetime
+#  phone               :string(255)
+#  version_id          :integer(4)
 #
 

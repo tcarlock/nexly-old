@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      if current_user.businesses.first.nil?
+      if current_user.business.nil?
         new_business_path
       else
         dashboard_path
@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
   
   def set_menu_visibility
-    @hide_menu = (ENV['RAILS_ENV'] == 'production') && (signed_in? && (current_user.profile.nil? || current_user.businesses.first.nil?))
+    @hide_menu = (ENV['RAILS_ENV'] == 'production') && (signed_in? && (current_user.profile.nil? || current_user.business.nil?))
   end
 end

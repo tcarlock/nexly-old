@@ -26,7 +26,7 @@ gem 'will_paginate', '~> 3.0.pre4'
 gem 'omniauth'
 gem 'twitter', "~> 1.0"
 gem 'fb_graph'
-gem 'linkedin'
+gem 'linkedin', :branch => '2-0-stable'
 gem 'faker', '~> 1.0.1'
 # gem 'thinking-sphinx'
 

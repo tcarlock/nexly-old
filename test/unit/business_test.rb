@@ -33,5 +33,7 @@ end
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer(4)
 #  avatar_updated_at   :datetime
+#  phone               :string(255)
+#  version_id          :integer(4)
 #
 

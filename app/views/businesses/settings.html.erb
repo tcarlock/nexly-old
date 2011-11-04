@@ -50,12 +50,12 @@
 					<% @platforms.each do |platform| %>
 						<li>
 							<a href="/auth/<%= platform.name %>" class="auth-provider">
-								<%= image_tag "social/#{platform.icon}", :alt => "#{platform.name}" %>
+								<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}" %>
 								<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
 									<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
-									<span>Disable <%= platform.name.titleize %></span>
+									<span>Disable <%= platform.display_name %></span>
 								<% else %>
-									<span>Enable <%= platform.name.titleize %></span>
+									<span>Enable <%= platform.display_name %></span>
 								<% end %>
 							</a>
 						</li>
@@ -68,7 +68,7 @@
 				<div id="suggest-platform-outer" class="clearfix">
 					<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
 						<%= f.inputs do %>
-						  <%= f.input :url, :label => 'Suggest a new website:', :label_html => { :style => 'width:200px', }, :input_html => { :style => 'width:300px', :placeholder => 'http://' } %>
+						  <%= f.input :url, :label => 'Suggest a new website:', :label_html => { :style => 'width:200px' }, :input_html => { :placeholder => 'http://' } %>
 					  <% end %>
 					  <%= f.buttons do %>
 						<%= f.commit_button 'Submit' %>
@@ -101,13 +101,18 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<div style="display:none;">
-		<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
-			<%= submit_tag "Post Tweet" %>
-		<% end %>
-		<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
-			<%= submit_tag "Post to FB" %>
-		<% end %>
-	</div>
+	<% if ENV['RAILS_ENV'] == 'development'%>
+		<div>
+			<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post Tweet" %>
+			<% end %>
+			<%= form_tag :main_test_li_update, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to LinkedIn" %>
+			<% end %>
+			<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to FB" %>
+			<% end %>
+		</div>
+	<% end %>
 	<div class="clearfix"></div>
 </div>
