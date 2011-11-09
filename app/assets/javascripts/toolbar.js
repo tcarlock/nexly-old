@@ -22,7 +22,6 @@ function initToolbar() {
 	
 		//show quick menu on click
 		$("span.menu_title a").click(function() {
-			expandFrame();
 			var toolbar = null;
 			
 			if($(this).attr('data-toolbar-id') != undefined)
@@ -33,11 +32,13 @@ function initToolbar() {
 			if(menu.is(':hidden')){ //if quick menu isn't visible
 				$(".quickmenu").hide(); //Hide all other menus
 				menu.fadeIn("fast"); //show menu on click
+				expandFrame();
 				if(toolbar != null)
 					toolbar.fadeIn(1000);
 			}
 			else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
 				menu.fadeOut("fast"); //hide menu on click
+				collapseFrame();
 				if(toolbar != null)
 					toolbar.fadeOut(500);
 			}
@@ -47,6 +48,7 @@ function initToolbar() {
 		$(document).click(function() {
 			$(".quickmenu").fadeOut("fast");
 			$(".btn_container").fadeOut("fast");
+			collapseFrame();
 		});
 	
 		$('.quickmenu').click(function(event) {
@@ -62,7 +64,12 @@ function initToolbar() {
 		//$('#new-review-btn').colorbox({transition:'fade', speed:500, modal: true});
 		//$('#new-rec-btn').colorbox({transition:'fade', speed:500, modal: true});
 	
-		$('#new-review-btn').click(function(e) {
+		// $('#new-review-btn').click(function(e) {
+		// 	window.open($(this).attr("href"));
+		// 	e.preventDefault();
+		// });
+
+		$('a.link-button').click(function(e) {
 			window.open($(this).attr("href"));
 			e.preventDefault();
 		});

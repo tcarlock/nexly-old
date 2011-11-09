@@ -4,7 +4,11 @@ class RecommendationsController < ApplicationController
   def new
     @rec = Business.find(params[:business_id]).recommendations.build()
     
-    render :layout => false
+    if params[:v] == 'popup'
+      render :layout => false
+    else
+      render :layout => true 
+    end
   end
 
   def create

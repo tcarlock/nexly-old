@@ -7,27 +7,21 @@
 	<div class="leftside"> <!-- all things in floating left side -->
 		<ul>
 			<li>
-				<a class="rss" href="#"></a><!-- icon -->
-				<div id="tiprss" class="tip"><!-- tooltip -->
-					<ul>
-						<li><a href="/dashboard">580 Readers</a></li>
-						<li><a href="#"><small>[Subscribe]</small></a></li>
-					</ul>  
-				</div>
+				<a class="rss" href="/dashboard"></a><!-- icon -->
 			</li>
 			<% if !@business.linked_in.empty? %>
 				<li>
-					<a class="linkedin" href="<%= @business.linked_in %>"></a> 
+					<a class="link-button linkedin" href="<%= @business.linked_in %>"></a> 
 				</li>
 			<% end %>
 			<% if !@business.twitter.empty? %>
 				<li>
-					<a class="twitter" href="<%= @business.twitter %>"></a> 
+					<a class="link-button twitter" href="<%= @business.twitter %>"></a> 
 				</li>
 			<% end %>
 			<% if !@business.facebook.empty? %>
 				<li>
-					<a class="facebook" href="<%= @business.facebook %>"></a> 
+					<a class="link-button facebook" href="<%= @business.facebook %>"></a> 
 				</li>
 			<% end %>
 		</ul>
@@ -37,8 +31,8 @@
 			<a href="#"></a>
 		</span>
 		<span id="reviews-btns" class="btn_container">
-			<%= link_to "Post a Review", new_business_review_path(@business), :id => 'new-review-btn' %>
-			<%= link_to "Tell Someone", new_business_recommendations_path(@business), :id => 'new-rec-btn' %>
+			<%= link_to "Post a Review", new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" %>
+			<%= link_to "Tell Someone", new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" %>
 		</span>
 		<span class="menu_title">
 			<a class="menutit" href="#" data-toolbar-id="reviews-btns">

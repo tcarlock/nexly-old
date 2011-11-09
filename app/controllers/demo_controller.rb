@@ -31,7 +31,7 @@ class DemoController < ApplicationController
   
   def check_env
     if Rails.env == 'production' || Rails.env == 'staging'
-      render :text => "<strong>Demos in this environment are not allowed.</strong>", :layout => false
+      render :text => "<strong>Demos are not allowed in this environment.</strong>", :layout => false
     end
   end
   
