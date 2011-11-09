@@ -1,5 +1,6 @@
 class DemoController < ApplicationController
   skip_before_filter :authenticate_user!
+  before_filter :check_env
   before_filter :mock_objects
   
   def home
@@ -27,6 +28,12 @@ class DemoController < ApplicationController
   end
   
   protected
+  
+  def check_env
+    if Rails.env == 'production' || Rails.env == 'staging'
+      render :text => "<strong>Demos in this environment are not allowed.</strong>", :layout => false
+    end
+  end
   
   def mock_objects
     sign_in User.find(1)
