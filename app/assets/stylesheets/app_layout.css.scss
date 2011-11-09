@@ -1,4 +1,8 @@
 /*Global layout*/
+body {
+    background:url('/assets/bg_gradient.png') repeat-x scroll 0 0 #bfcdde;  
+    background:none repeat-x scroll 0 0 #ebebeb;
+}
 #backdrop {
 	background-color:#0A2E58;
 	position:relative;

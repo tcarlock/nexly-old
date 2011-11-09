@@ -30,3 +30,11 @@ Time::DATE_FORMATS.merge!(
 )
 
 WillPaginate.per_page = 7
+
+DOMAIN_NAMES = 
+{
+  "staging" => "http://nexly-staging.heroku.com", 
+  "development" => "http://localhost:3000", 
+  "production" =>  "http://nexly.com", 
+  "demo" => "http://nexly-demo.heroku.com"
+}

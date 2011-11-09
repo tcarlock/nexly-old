@@ -1,3 +1,9 @@
+Application.delete_all
+Platform.delete_all
+
+# ActiveRecord::Base.connection.reset_pk_sequence!('applications')
+# ActiveRecord::Base.connection.reset_pk_sequence!('platforms')
+
 Application.create!(
                 :title => 'Reviews',
                 :details => 'Reviews allows you to easily request and manage client reviews.  It also allows you to distribute those reviews to your various social media pages and your own website',
@@ -10,7 +16,6 @@ Application.create!(
                 :price => 34.99,
                 :is_public => false)
 
-Platform.delete_all
 Platform.create!(:name => 'linked_in', :display_name => 'LinkedIn', :icon => 'linkedin.png', :display_order => 1)
 Platform.create!(:name => 'facebook', :display_name => 'Facebook', :icon => 'facebook.png', :display_order => 2)
 Platform.create!(:name => 'twitter', :display_name => 'Twitter', :icon => 'twitter.png', :display_order => 3)

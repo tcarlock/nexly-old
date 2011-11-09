@@ -41,7 +41,7 @@ class ReviewStats
     if @business.review_requests.count == 0
       0.0 / 0.0
     else
-      (@business.review_requests.count - @business.active_review_requests) / @business.review_requests.count
+      (@business.review_requests.count - @business.pending_review_requests.count).to_f / @business.review_requests.count.to_f
     end
   end
 end

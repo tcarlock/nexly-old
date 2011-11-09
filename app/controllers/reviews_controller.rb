@@ -27,21 +27,37 @@ class ReviewsController < ApplicationController
   end
   
   def new
-    @review = Business.find(params[:business_id]).reviews.build()
+    if !params[:token].nil?
+      token = params[:token]
+      
+      if !is_token_valid? token
+        render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
+        return
+      end
+        
+      if !is_review_submitted? token
+        render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
+        return
+      end
+      
+      @review = Business.find(params[:business_id]).reviews.build(:review_request_id => ReviewRequest.find_by_token(token).id)
+    else
+      @review = Business.find(params[:business_id]).reviews.build()
+    end
     
-    render :layout => false
+    if params[:v] == 'popup'
+      render :layout => false
+    else
+      render :layout => true 
+    end
   end
 
   def create
-    @review = Business.find(params[:business_id]).reviews.create(params[:review])
+    Business.find(params[:business_id]).reviews.create!(params[:review])
     
     respond_to do |format|
       format.html {
-        if @review.save
-          redirect_to(@review.business)
-        else
-          render :action => new
-        end
+        redirect_to(@review.business)
       }
       format.js
     end
@@ -87,5 +103,15 @@ class ReviewsController < ApplicationController
   
   def get_review
     @review = Review.find(params[:id])
+  end
+  
+  def is_token_valid? token
+    !ReviewRequest.find_by_token(token).nil?
+  end
+  
+  def is_review_submitted? token
+    request = ReviewRequest.find_by_token(token)
+    
+    Review.find_by_review_request_id(request.id).nil?   # Review not already submitted for request
   end
 end

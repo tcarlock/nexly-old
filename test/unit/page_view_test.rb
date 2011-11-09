@@ -11,12 +11,12 @@ end
 # Table name: page_views
 #
 #  id           :integer(4)      not null, primary key
-#  url          :string(255)
+#  url          :text
 #  business_id  :integer(4)
 #  reference_id :integer(4)
 #  link_type_id :integer(4)
+#  platform_id  :integer(4)
 #  created_at   :datetime
 #  updated_at   :datetime
-#  platform_id  :integer(4)
 #
 

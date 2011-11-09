@@ -1,6 +1,13 @@
 class ReviewRequest < ActiveRecord::Base
   belongs_to :business
   belongs_to :user
+  belongs_to :review
+  
+  before_create :set_token
+  
+  def set_token
+    self.token = rand(36**8).to_s(36)
+  end
 end
 
 # == Schema Information

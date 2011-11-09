@@ -1,5 +1,4 @@
 function initToolbar() {
-	$("#nexly-toolbar").load("http://localhost:3000/plugins/toolbar/?network=" + $("#nexly-toolbar").attr("data-network"), function(){
 	//hide toolbar and make visible the 'show' button
 	$("span.downarr a").click(function() {
 	    $("#toolbar").slideToggle("fast");
@@ -60,9 +59,4 @@ function initToolbar() {
 	//Init command buttons
 	$('#new-review-btn').colorbox({transition:'fade', speed:500, modal: true});
 	$('#new-rec-btn').colorbox({transition:'fade', speed:500, modal: true});
-});}
-
-initToolbar();
-var tb = document.getElementById('nexly-toolbar');
-tb.addEventListener("mouseover",function(){parent.document.getElementById("nexly-iframe").style.height="400px"},false)
-tb.addEventListener("mouseout",function(){parent.document.getElementById("nexly-iframe").style.height="47px"},false);
+}

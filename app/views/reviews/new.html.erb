@@ -1,7 +1,10 @@
+<%= stylesheet_link_tag "jquery.ui.stars.min.css" %>
+<%= javascript_include_tag "jquery.ui.stars.min.js" %>
+
 <script type="text/javascript">
 	$(function() {
 		$('#rating-outer').stars({
-			cancelShow: false
+			cancelShow:false
 		});
 	});
 </script>
@@ -10,19 +13,22 @@
 	<%= semantic_form_for(@review, :url => business_reviews_path, :remote => true) do |f| %>
 		<%= f.inputs do %>
 	  	<li id="rating-outer">
-			<%= f.label 'How would you rate this provider?', :style => 'width:325px' %>
+			<%= f.label 'How would you rate this provider?', :style => "width:325px" %>
 	    	<% 0.upto(5) do |n| %>
 	      		<%= f.radio_button :rating, n %>
 	    	<% end %>
 	  	</li>
-		<%= f.input :details , :label => 'Please share some thoughts about this provider:', :input_html => { :rows => 8 } %>
-		<%= f.input :name , :label => 'Your name:' %>
+		<%= f.input :review_request_id, :as => :hidden %>
+		<%= f.input :details , :label => "Please share some thoughts about this provider:", :input_html => { :rows => 8 } %>
+		<%= f.input :name , :label => "Your name:" %>
 	  <% end %>
 	  <%= f.buttons do %>
 		<%= f.commit_button 'Submit Review' %>
 	  <% end %>
 	<% end %>
-	<strong><%= @review.business.name %> posts their reviews to Twitter and LinkedIn</strong>
+	<strong>
+		<%= @review.business.name %> posts their reviews to <%= @review.business.active_platforms.collect{|p| p.display_name}.join(', ') %>
+	</strong>
 	<br />
 	<a><strong>View terms and conditions</strong></a>
 </div>

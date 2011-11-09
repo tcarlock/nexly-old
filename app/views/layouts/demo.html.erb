@@ -2,20 +2,17 @@
 <html>
 <head>
   <title>Nexly Demo Site</title>
-  
-  <%= stylesheet_link_tag "demo", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews", "jquery.ui.stars.min.css" %>
-  <%= yield :styles %>
-  <%= javascript_include_tag "application", "toolbar", "jquery.ui.stars.min.js" %>
-  <%= yield :scripts %>
-  
+  <%= stylesheet_link_tag "demo" %>
+
   <%= csrf_meta_tag %>
 </head>
 <body>
 	<div id="container">
+		<%= render :partial => 'plugins/toolbar_init_code', :locals => { :api_token => @business.api_token, :root => @root }  %>
 		<div id="header">
 			<%= image_tag "demo/logo.jpg", :id => "inset", :size => '125x117' %>
 		</div>
-		<div id="hdr-nav">
+		<div id="hdr-nav" class="clearfix">
 			<ul class="navigation">
 				<li><%= link_to "Home", "#" %></li>
 				<li><%= link_to "About Us", "#" %></li>
@@ -26,22 +23,21 @@
 				<li><%= link_to "Contact Us", "#" %></li>
 			</ul>
 		</div>
-		<div id="main-content">
+		<div id="main-content" class="clearfix">
 		  	<%= yield %>
 		  	<%= yield :closure %>
 			<div class="clearfix"></div>
 		</div>
-		<div class="clearfix"></div>
-	</div>
-	<div id="footer-outer">
-		<div id="footer-inner" class="clearfix">
-			<ul id="ftr-nav" class="navigation clearfix">
-				<li><span>BCI Consulting</span></li>
-				<li><%= link_to "Twitter", "twitter.com" %></li>
-				<li><%= link_to "Blog", "#" %></li>
-			</ul>
+		<div id="footer-outer" class="clearfix">
+			<div id="footer-inner" class="clearfix">
+				<ul id="ftr-nav" class="navigation clearfix">
+					<li><span>BCI Consulting</span></li>
+					<li><%= link_to "Twitter", "twitter.com" %></li>
+					<li><%= link_to "Blog", "#" %></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<%= render :partial => 'plugins/toolbar_code', :locals => { :api_token => @business.api_token } %>
+	<%= render :partial => 'plugins/toolbar_render_code', :locals => { :api_token => @business.api_token } %>
 </body>
 </html>

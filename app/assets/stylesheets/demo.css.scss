@@ -13,15 +13,15 @@ ebebeb
 	font-size:14px;
 }
 html, body {
-	height:100%;
+	min-height:100%;
 }
 body {
-    background:url('/assets/bg_gradient.png') repeat-x scroll 0 0 #bfcdde;  
     background:none repeat-x scroll 0 0 #fff;
     color: #272722;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
 	letter-spacing:.1em;
+	min-height:100%;
 }
 h1, h2, h3, h4 { padding-bottom:7px; font-weight:bold; }
 h1 { font-size:1.6em; }
@@ -116,14 +116,14 @@ ul.navigation li.active a {
 }
 #container {
 	position:relative;
-	height:100%;
+	min-height:100%;
 	width:715px;
 	margin:0 auto;
 	border:1px #e2e2e2 solid;
 	min-height:750px;
 }
 #main-content {
-	width:715px;
+	width:100%;
 	position:relative;
 	min-height:350px;
 }
@@ -141,9 +141,6 @@ ul.navigation li.active a {
 	width:715px;
 	height:151px;
 	border-bottom:1px #e2e2e2 solid;
-	position:absolute;
-	top:0;
-	left:0;
 	clear:both;
 	
 	.image {
@@ -163,11 +160,10 @@ ul.navigation li.active a {
 	width:335px;
 	height:250px;
 	border-right:1px #e2e2e2 solid;
-	position:absolute;
-	top:153px;
-	left:0;
-	clear:both;	
-	padding:7px;
+	float:left;
+	clear:none;
+	padding:15px 7px 7px 7px;
+	margin-top:15px;
 	
 	ul {
 		list-style-type:disc;
@@ -179,18 +175,17 @@ ul.navigation li.active a {
 		}
 	}
 }
-#headlines { 
+#headlines {
 	width:350px;
 	height:250px;
-	border-right:1px #e2e2e2 solid;
-	position:absolute;
-	top:153px;
-	right:0;
-	clear:both;	
-	padding:7px;
+	float:left;
+	clear:none;
+	padding:15px 7px 7px 7px;
+	margin-top:15px;
 	
 	ul {
-		
+		list-style-type:none;
+
 		li {
 			padding:5px 0;
 			margin-bottom:7px;
@@ -205,12 +200,11 @@ ul.navigation li.active a {
 #footer-outer {
 	width:100%;
 	padding:10px 0;
-	float:left;
 	text-align:center;
 }
 #footer-inner {
 	margin:0 auto;
-	width:960px;
+	width:450px;
 }
 
 /*Specific nav implementations*/

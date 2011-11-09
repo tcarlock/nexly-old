@@ -32,5 +32,6 @@ class DemoController < ApplicationController
     sign_in User.find(1)
     @business = current_user.business
     @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
+    @root = DOMAIN_NAMES[Rails.env]
   end
 end

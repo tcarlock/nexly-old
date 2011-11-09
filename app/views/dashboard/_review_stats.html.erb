@@ -13,8 +13,3 @@
 <li>
 	<%= @business.review_stats.average_rating.round(1) %> is your average rating	
 </li>
-<% if !@business.review_stats.submission_rate.nan? %>
-	<li>
-		<%= @business.review_stats.submission_rate.round(1) %> submission rate	
-	</li>
-<% end %>

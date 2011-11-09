@@ -1,3 +1,4 @@
+//List styles
 li.biz-review {
 	position:relative;
 	
@@ -33,6 +34,12 @@ li.biz-review {
 		font-size:.9em;
 	}
 }
+#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
+
+.review-response-link { background-image:url('/assets/tasks/reply.png'); }
+.dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
+.reject-review-link { background-image:url('/assets/tasks/cross-red-small.png'); }
+.approve-review-link { background-image:url('/assets/tasks/check-green-small.png'); }
 
 span.submitted {
 	display:block;
@@ -41,6 +48,7 @@ span.submitted {
 	margin-top:10px;
 }
 
+//Form styles
 #new-review-outer {
 	width:600px;
 	height:400px;
@@ -55,12 +63,7 @@ span.submitted {
 	float:right;
 	margin-right:125px;
 }
-#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
 
-.review-response-link { background-image:url('/assets/tasks/reply.png'); }
-.dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
-.reject-review-link { background-image:url('/assets/tasks/cross-red-small.png'); }
-.approve-review-link { background-image:url('/assets/tasks/check-green-small.png'); }
 
 #rating-outer {
 	width:100%;

@@ -15,7 +15,6 @@ class ReviewRequestsController < ApplicationController
       review_request = business.review_requests.create!(
                  :email => email,
                  :message => params[:message],
-                 :token => rand(36**8).to_s(36),
                  :business_id => params[:business_id],
                  :user_id => current_user.id)
         

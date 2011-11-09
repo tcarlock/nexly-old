@@ -1,7 +1,7 @@
-<li id='biz-review-<%= review.id %>' class="biz-review">
+<li id="biz-review-<%= review.id %>" class="biz-review">
 	<% if show_admin %>
 		<div class="btns-tab btns-tab-small review-btns">
-			<%= render :partial => 'reviews/admin_buttons', :locals => { :review => review } %>
+			<%= render :partial => "reviews/admin_buttons", :locals => { :review => review } %>
 		</div>
 	<% end %>
 	<span class="disputed <%= !review.is_under_review ? 'hidden' : '' %>">

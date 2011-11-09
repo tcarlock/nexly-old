@@ -26,7 +26,32 @@ namespace :app do
     Business.delete_all
     Review.delete_all
     PageView.delete_all
-
+    Authentication.delete_all
+    
+    Authentication.create!(
+      platform_id: 1,
+      uid: '3WN1tB6wg0',
+      token: '06ed3edb-e795-47b2-a484-b4a13e53f149',
+      secret: 'ea4b6c1c-7beb-4c35-8b5d-d4ca8b1ea05d',
+      business_id: 1
+    )
+    
+    Authentication.create!(
+      platform_id: 2,
+      uid: '100003063373098',
+      token: 'AAACVmYzueukBAPRUaQXZA6wiZAKpzBNJ8Yx3Jv2mU3HMLyfSBCbSjzm3m1ZB4an1ZAhwg8Qz9ZB7ZBunFJY0kyPXFgBJNhopRt8dYxe5c31QZDZD',
+      secret: nil,
+      business_id: 1
+    )
+    
+    Authentication.create!(
+      platform_id: 3,
+      uid: '392200113',
+      token: '392200113-qzGQrLPoj7wkhCCPpwH6VI1GvlvSaCjJa7Wyjwjj',
+      secret: 'xqYOCHuzwkD3o3JVYis9zyy9qXMQUP8NvKOo0leiXIA',
+      business_id: 1
+    )
+    
     #Create demo user, business and reviews
     user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
     user.reload
@@ -72,7 +97,15 @@ namespace :app do
         
     biz.reload
   
-    # Create reviews
+    # Create review requests and reviews
+    10.times do |n|
+      biz.review_requests.create!(
+        :email => Faker::Internet.email,
+        :message => Faker::Lorem.paragraph,
+        :user_id => 1
+      )
+    end
+    
     review = biz.reviews.create!(
       :name => 'David Hansson',
       :email => 'dhh@37signals.com', 
@@ -84,6 +117,17 @@ namespace :app do
       
     review.update_attributes!(:created_at => DateTime.current + 30)
       
+    review = biz.reviews.create!(
+      :name => 'Dale Cooper',
+      :email => 'dale.cooper@tpks.com', 
+      :details => 'Great experience working with the firm - we saved time and $ by using their',
+      :rating => 5,
+      :is_approved => false,
+      :is_rejected => false,
+      :user_id => 1 + rand(4))
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+    
     25.times do |n|
       biz.reviews.create!(
         :name => Faker::Name.name,

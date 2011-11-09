@@ -1,5 +1,9 @@
-<% @business.active_platforms.each do |p| %>
-	<li>
-		<%= p.display_name %> is enabled
-	</li>
+<% if @business.active_platforms.empty? %>
+	<span class="no-records">You haven't enabled any sites</span>
+<% else %>
+	<% @business.active_platforms.each do |p| %>
+		<li>
+			<%= p.display_name %> is enabled
+		</li>
+	<% end %>
 <% end %>
