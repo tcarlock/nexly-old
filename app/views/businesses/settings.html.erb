@@ -90,7 +90,8 @@
 		<div class="tab-content-outer">
 			<label>Don't be alarmed by code...getting the toolbar is easy:</label>
 			<div class="form-outer">
-				<%= text_area_tag 'toolbar_code', @toolbar_code.to_s, :size => '77x10' %>
+				<%= text_area_tag "toolbar-init-script", @toolbar_init_script.to_s, :class => "toolbar-code", :size => '77x10' %>
+				<%= text_area_tag "toolbar-render-script", @toolbar_render_script.to_s, :class => "toolbar-code", :size => '77x3' %>
 			</div>
 			<div class="details-text">
 				<h3>How Does this Work?</h3>

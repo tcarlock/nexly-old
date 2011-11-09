@@ -58,8 +58,15 @@ function initToolbar() {
 	});
 	
 	//Init command buttons
-	$('#new-review-btn').colorbox({transition:'fade', speed:500, modal: true});
-	$('#new-rec-btn').colorbox({transition:'fade', speed:500, modal: true});
+	//$('#new-review-btn').colorbox({transition:'fade', speed:500, modal: true});
+	//$('#new-rec-btn').colorbox({transition:'fade', speed:500, modal: true});
+	
+	$('#new-review-btn').click(function(e) {
+		//alert('test');
+		//window.open($(this)[0].href);
+		$('body', parent.document).colorbox({ href:$(this).href});
+		e.preventDefault();
+	});
 });}
 
 initToolbar();

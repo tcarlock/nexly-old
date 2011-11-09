@@ -15,24 +15,21 @@
 					</ul>  
 				</div>
 			</li>
-			<li>
-				<a class="linkedin" href="#"></a>
-				<div id="tiplinkedin" class="tip">
-					<ul>
-						<li><a href="#">Share</a></li>
-						<li><a href="#">View Profile</a></li>
-					</ul>  
-				</div>  
-			</li>
-			<li>
-				<a class="twitter" href="#"></a>
-				<div id="tiptwitter" class="tip">
-					<ul>
-						<li><a href="#">Share</a></li>
-						<li><a href="#">View Profile</a></li>
-					</ul>  
-				</div>
-			</li>
+			<% if !@business.linked_in.empty? %>
+				<li>
+					<a class="linkedin" href="<%= @business.linked_in %>"></a> 
+				</li>
+			<% end %>
+			<% if !@business.twitter.empty? %>
+				<li>
+					<a class="twitter" href="<%= @business.twitter %>"></a> 
+				</li>
+			<% end %>
+			<% if !@business.facebook.empty? %>
+				<li>
+					<a class="facebook" href="<%= @business.facebook %>"></a> 
+				</li>
+			<% end %>
 		</ul>
 	</div>
 	<div class="rightside"> <!-- all things in floating right side -->

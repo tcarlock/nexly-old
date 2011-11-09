@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="container">
-		<%= render :partial => 'plugins/toolbar_init_code', :locals => { :api_token => @business.api_token, :root => @root }  %>
+		<%= render :partial => 'plugins/toolbar_init_script', :locals => { :network => @business.api_token, :root => @root }  %>
 		<div id="header">
 			<%= image_tag "demo/logo.jpg", :id => "inset", :size => '125x117' %>
 		</div>
@@ -38,6 +38,6 @@
 			</div>
 		</div>
 	</div>
-	<%= render :partial => 'plugins/toolbar_render_code', :locals => { :api_token => @business.api_token } %>
+	<%= render :partial => 'plugins/toolbar_render_script' %>
 </body>
 </html>

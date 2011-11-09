@@ -7,7 +7,7 @@ class PluginsController < ApplicationController
   end
   
   def toolbar_script
-    render :content_type => 'text/javascript', :layout => false, :locals => { :network => params[:network] }
+    render :content_type => 'text/javascript', :layout => false, :locals => { :network => @network }
   end
   
   def resources
@@ -29,7 +29,9 @@ class PluginsController < ApplicationController
   protected
   
   def init_objects
-    @business = Business.find_by_api_token(params[:network])
+    @network = params[:network]
+    @business = Business.find_by_api_token(@network)
     @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
+    @root = DOMAIN_NAMES[Rails.env]
   end
 end
