@@ -1,4 +1,4 @@
-$("#nexly-toolbar", parent.document).load("http://localhost:3000/plugins/toolbar/?network=" + $("#nexly-toolbar", parent.document).attr("data-network"), function(){
+$("#nexly-toolbar", parent.document).load("/plugins/toolbar/?network=" + $("#nexly-toolbar", parent.document).attr("data-network"), function(){
 	//hide toolbar and make visible the 'show' button
 	$("span.downarr a", parent.document).click(function() {
 	    $("#toolbar", parent.document).slideToggle("fast");

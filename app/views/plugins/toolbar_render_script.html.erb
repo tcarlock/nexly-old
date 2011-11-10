@@ -1,4 +1,4 @@
-var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "http://localhost:3000/assets/jquery_ujs.js", "http://localhost:3000/assets/toolbar.js"];
+var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/toolbar.js"];
 
 scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
@@ -6,8 +6,6 @@ scriptPaths.forEach(function(path) {
 	script.src = path;
 	document.getElementsByTagName("head")[0].appendChild(script);
 });
-
-//parent.document.body.innerHTML = '<div id="nexly-toolbar" data-network="<%= network %>"></div>'
 
 var div = document.createElement("div");
 div.setAttribute("id", "nexly-toolbar");
