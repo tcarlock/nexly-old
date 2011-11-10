@@ -1,12 +1,3 @@
-body,div,ul,ol,li,th,h1 { 
-	margin:0;
-	padding:0;
-}
-
-ol,ul {
-	list-style:none;
-}
-
 /*-- Bottom Toolbar --*/
 
 div#toolbar, div#toolbarbut {
@@ -20,9 +11,11 @@ div#toolbar, div#toolbarbut {
 	-moz-border-radius-topleft: 8px;
 	-khtml-border-radius-topleft: 8px;
 	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius:8px;
 	-moz-border-radius-topright: 8px;
 	-khtml-border-radius-topright: 8px;
 	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius:8px;
 	-moz-box-shadow: 0px 1px 10px #666, inset 1px 1px 0px #a4a4a4; /* inset creates a inner-shadow */
 	-khtml-box-shadow: 0px 1px 10px #666;
 	-webkit-box-shadow: 0px 1px 10px #666;
@@ -50,7 +43,7 @@ div#toolbarbut { /* div for the 'hide status' */
 }
 
 span.showbar a { /* show button */
-	font-size: 14px;
+	font-size: 12px;
 	display:block;
 	height: 25px;
 	line-height: 25px;
@@ -162,48 +155,64 @@ span.downarr a {
 span.btn_container {
 	position:relative;
 	display:none;
+	padding:10px;
 }
 
 span.btn_container a {
-	padding:5px 7px;
+	position:relative;
+	display:inline-block;
+	padding:5px 12px;
 	margin-right:5px;
-	font-size: 14px;
-	line-height: 34px;
+	vertical-align:bottom;
+	font-size: 13px;
+	height:22px;
 	text-align:center;
-	background-color:#87151B;
+	background-color:#3595D4;
 	color: #fff;
-	border-radius:3px;
+	-moz-border-radius-topleft: 8px;
+	-khtml-border-radius-topleft: 8px;
+	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius:8px;
+	-moz-border-radius-topright: 8px;
+	-khtml-border-radius-topright: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius:8px;
 }
-
+span.btn_container a span {
+	display:block;
+	margin-top:3px;
+}
 span.menu_title {
-  border-left: 1px solid #a4a4a4;
-  padding: 10px;
-  position:relative;
+  	border-left: 1px solid #a4a4a4;
+  	padding:1px 10px;
+  	position:relative;
+	display:inline-block;
 }
 
 span.menu_title a {
-  font-size: 14px;
-  line-height: 34px;
-  color: #666;
+  	font-size: 13px;
+  	line-height: 34px;
+  	color: #666;
+	padding:7px 0;
 }
 
 .quickmenu {
-  position: absolute; /* important */
-  top: -260px;
-  right: -5px;
-  width: 300px;
-  height: 250px;
-  background: #F7F7F7;
-  border-top: 1px solid #a4a4a4;
-  border-left: 1px solid #a4a4a4; 
-  border-right: 1px solid #a4a4a4;
-  /* CSS3 */
-  -moz-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-  -khtml-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-  -webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-  /* CSS3 end */
-  display: none; /* important */
-  overflow:auto;
+	position: absolute; /* important */
+	top: -253px;
+	right: -5px;
+	width: 300px;
+	height: 250px;
+	background: #F7F7F7;
+	border-top: 1px solid #a4a4a4;
+	border-left: 1px solid #a4a4a4; 
+	border-right: 1px solid #a4a4a4;
+	/* CSS3 */
+	-moz-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+	-khtml-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+	-webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+	/* CSS3 end */
+	display: none; /* important */
+	overflow:auto;
 }
 
 .quickmenu ul {

@@ -1,12 +1,12 @@
 class PluginsController < ApplicationController
   skip_before_filter :authenticate_user!
-  before_filter :init_objects, :only => [:toolbar, :toolbar_script]
+  before_filter :init_objects, :only => [:toolbar, :toolbar_render_script]
   
   def toolbar
     render :layout => false
   end
   
-  def toolbar_script
+  def toolbar_render_script
     render :content_type => 'text/javascript', :layout => false, :locals => { :network => @network }
   end
   

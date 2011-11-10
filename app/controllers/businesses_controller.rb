@@ -52,8 +52,8 @@ class BusinessesController < ApplicationController
     @enabled_apps = @business.applications
     @platforms = Platform.where(:is_available => true).order(:display_order)
     @enabled_platforms = current_user.authentications
-    @toolbar_init_script = render_to_string :partial => 'plugins/toolbar_init_script', :locals => { :network => @business.api_token, :root => DOMAIN_NAMES[Rails.env] }
-    @toolbar_render_script = render_to_string :partial => 'plugins/toolbar_render_script'
+    @toolbar_bootstrap_script = render_to_string :partial => 'plugins/toolbar_bootstrap_script', :locals => { :network => @business.api_token, :root => DOMAIN_NAMES[Rails.env] }
+    @toolbar_init_script = render_to_string :partial => 'plugins/toolbar_init_script'
     @platform_suggestion = PlatformSuggestion.new
   end
   

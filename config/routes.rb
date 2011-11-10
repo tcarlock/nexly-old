@@ -38,7 +38,7 @@ Nexly::Application.routes.draw do
     resources :analytics, :only => :index, :controller => :analytics
   end
   
-  get "plugins/toolbar_script"
+  get "plugins/toolbar_render_script"
   get "plugins/toolbar"
   post "beta_signup/create"
   
