@@ -2,7 +2,7 @@ class PageView < ActiveRecord::Base
   belongs_to :business
   belongs_to :platform
   
-  def self.types
+  def self.page_types
     {:profile  => 1, :review => 2}
   end
   

@@ -7,7 +7,7 @@ class PluginsController < ApplicationController
   end
   
   def toolbar_render_script
-    render :content_type => 'text/javascript', :layout => false, :locals => { :network => @network, :root => @root,  }
+    render :content_type => 'text/javascript', :layout => false, :locals => { :network => @network, :root => @root  }
   end
   
   def resources

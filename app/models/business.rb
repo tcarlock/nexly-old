@@ -71,11 +71,10 @@ class Business < ActiveRecord::Base
     end
   end
   
-  # def traffic_stats
-  #   if self.page_views.count > 0
-  #     TrafficStats.new(self.id, 2.years.ago, Date.today)
-  #   end
-  # end
+  def traffic_browser start_date = 365.days.ago.beginning_of_month, end_date = DateTime.current.beginning_of_month
+    @browser = TrafficDetails.new(self.id, start_date, end_date)
+    @browser
+  end
   
   def is_user_admin? user
     !self.users.find_by_id(user.id).nil?

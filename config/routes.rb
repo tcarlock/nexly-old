@@ -17,7 +17,8 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     member do
-      get :settings, :billing
+      get :settings, :version, :billing
+      post :update_version
     end
 
     get :search, :on => :collection
@@ -40,7 +41,6 @@ Nexly::Application.routes.draw do
   
   get "plugins/toolbar_render_script"
   get "plugins/toolbar"
-  post "beta_signup/create"
   
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
@@ -58,9 +58,11 @@ Nexly::Application.routes.draw do
   match "demo/reviews"
   match "demo/contact"
   
+  post "beta_signup/create"
   post "main/suggest_platform", :as => :suggest_platform
   get "main/new_feedback", :as => :new_feedback
-  post "main/submit_feedback", :as => :submit_feedback 
+  post "main/submit_feedback", :as => :submit_feedback
+  
   post "main/test_tweet"
   post "main/test_li_update"
   post "main/test_fb_post"

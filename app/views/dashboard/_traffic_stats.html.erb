@@ -1,16 +1,9 @@
 <li>
-	<%= pluralize(@traffic_stats.page_views, "new page view") %>
+	<%= pluralize(@traffic.page_views.count, "new page view") %>
 </li>
 <li>
-	<%= pluralize(@traffic_stats.views_by_link_type(PageView.types[:review]), "page view") %> from reviews
+	<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:review]).page_views.count, "page view") %> from reviews
 </li>
 <li>
-	<%= pluralize(@traffic_stats.views_by_link_type(PageView.types[:profile]), "page view") %> from your profile links
+	<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:profile]).page_views.count, "page view") %> from your profile links
 </li>
-<div style="display:none;">
-	<% @platforms.each do |p| %>
-		<li>
-			<%= pluralize(@traffic_stats.views_by_platform(p.id), "page view") %> from <%= Platform.find(p.id).name.titleize %>
-		</li>
-	<% end %>
-</div>

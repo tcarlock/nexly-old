@@ -39,15 +39,15 @@
 		<ul id="social-tab" class="profile-details clearfix">
 			<li class="header">
 				<%= link_to "Traffic Stats", business_analytics_path(@business) %>
-				<% if @traffic_stats.page_views > 0 %>
-				<span class="date-range">
-					<%= @traffic_stats.start_date.to_s(:date_only) %> to 
-					<%= @traffic_stats.end_date.to_s(:date_only) %>
-				</span>
+				<% if @traffic.page_views.count > 0 %>
+					<span class="date-range">
+						<%= @traffic.start_date.to_s(:stats_date) %> to 
+						<%= @traffic.end_date.to_s(:stats_date) %>
+					</span>
 				<% end %>			
 			</li>
 			<li>
-				<% if @traffic_stats.page_views == 0 %>
+				<% if @traffic.page_views.count == 0 %>
 					<span class="no-records">There is no traffic data at this time</span>
 				<% else %>
 					<ul>

@@ -36,7 +36,7 @@ class PostFactory
     pId = Platform.find_by_name(format.to_s).id
     
     if resource.class == Review
-      self.full_link = create_redir_link(@business.website, @business.id, resource.id, PageView.types[:review], pId)
+      self.full_link = create_redir_link(@business.website, @business.id, resource.id, PageView.page_types[:review], pId)
       self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
       message = "A new review has been posted for #{@business.name}: " + resource.details
       name = "View our website"

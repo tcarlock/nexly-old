@@ -68,7 +68,7 @@
 				<div id="suggest-platform-outer" class="clearfix">
 					<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
 						<%= f.inputs do %>
-						  <%= f.input :url, :label => 'Suggest a new website:', :label_html => { :style => 'width:200px' }, :input_html => { :placeholder => 'http://' } %>
+						  <%= f.input :url, :label => 'Suggest a website we should support:', :label_html => { :style => 'width:325px' }, :input_html => { :placeholder => 'http://' } %>
 					  <% end %>
 					  <%= f.buttons do %>
 						<%= f.commit_button 'Submit' %>
@@ -90,11 +90,11 @@
 		<div class="tab-content-outer">
 			<label>Don't be alarmed by code...getting the toolbar is easy:</label>
 			<div class="form-outer">
-				<%= text_area_tag "toolbar-bootstrap-script", @toolbar_bootstrap_script.to_s, :class => "toolbar-code", :size => '77x10' %>
-				<%= text_area_tag "toolbar-init-script", @toolbar_init_script.to_s, :class => "toolbar-code", :size => '77x3' %>
+				<%= text_area_tag "toolbar-bootstrap-script", @toolbar_bootstrap_script.to_s, :class => "toolbar-script", :size => '77x10' %>
+				<%= text_area_tag "toolbar-init-script", @toolbar_init_script.to_s, :class => "toolbar-script", :size => '77x3' %>
 			</div>
 			<div class="details-text">
-				<h3>How Does this Work?</h3>
+				<h3>Don't be alarmed by code...</h3>
 				<span class="intro-text">
 					Adding the Nexly Review toolbar to your site is simple. Just copy the following code and paste it your webpages immediately before the body-closing tag (i.e., &lt;/body&gt;).
 				</span>

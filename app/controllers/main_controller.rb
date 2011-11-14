@@ -17,8 +17,8 @@ class MainController < ApplicationController
     @profile = current_user.profile
     @business = current_user.business
     @platforms = Platform.where(:is_available => true)
-    @traffic_stats = TrafficStats.new(@business.id, [@business.created_at, 1.years.ago].max, DateTime.current)
-    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)    
+    @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max.beginning_of_month, DateTime.current.beginning_of_month)
   end
   
   def redir

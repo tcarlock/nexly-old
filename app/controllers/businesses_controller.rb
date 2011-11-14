@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities, :settings]
+  before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities, :settings, :version, :update_version]
   before_filter :set_menu_visibility, :only => [:new, :create]
   
   def index
@@ -55,6 +55,14 @@ class BusinessesController < ApplicationController
     @toolbar_bootstrap_script = render_to_string :partial => 'plugins/toolbar_bootstrap_script', :locals => { :network => @business.api_token, :root => DOMAIN_NAMES[Rails.env] }
     @toolbar_init_script = render_to_string :partial => 'plugins/toolbar_init_script'
     @platform_suggestion = PlatformSuggestion.new
+  end
+  
+  def version
+    
+  end
+  
+  def update_version
+    
   end
   
   private

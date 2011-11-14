@@ -15,7 +15,7 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 /* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:1.2em; padding:3px 0 }
+form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:1.1em; padding:3px 0 }
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
