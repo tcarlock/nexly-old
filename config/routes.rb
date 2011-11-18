@@ -11,18 +11,9 @@ Nexly::Application.routes.draw do
     member do
       get '/' => 'user_profile#show', :as => 'user_profile'
     end
-
-    get :search, :on => :collection
   end
 
   resources :businesses do
-    member do
-      get :settings, :version, :billing
-      post :update_version
-    end
-
-    get :search, :on => :collection
-    
     resource :recommendations, :only => [:new, :create]
     resources :reviews, :except => [:update, :edit] do
       member do
@@ -34,16 +25,26 @@ Nexly::Application.routes.draw do
     
     resources :review_requests, :except => [:update, :edit]
     # resources :resources
-    resources :authentications, :only => [:index, :create, :destroy]
-    resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
+  
     resources :analytics, :only => :index, :controller => :analytics
   end
   
-  get "plugins/toolbar_render_script"
-  get "plugins/toolbar"
+  namespace :plugins do
+    get :toolbar_render_script
+    get :toolbar
+  end 
+    
+  match "/auth/:provider/callback" => "authentications#create"
+  match "/auth/failure" => "authentications#failure"
   
-  match '/auth/:provider/callback' => 'authentications#create'
-  match '/auth/failure' => 'authentications#failure'
+  resources :authentications, :only => [:index, :create, :destroy]
+  resources :platforms, :only => [] do
+    resources :pages, :only => [:index], :controller => :platform_pages, :as => :pages do
+      member do
+        post :toggle_publishing
+      end
+    end
+  end
   
   get :dashboard, :to => "main#dashboard"
   get :redir, :to => "main#redir"
@@ -51,21 +52,30 @@ Nexly::Application.routes.draw do
   get :contact, :to => "main#contact"
   get :faqs, :to => "main#faqs"
     
-  match "demo/home"
-  match "demo/social"
-  match "demo/resources"
-  match "demo/events"
-  match "demo/reviews"
-  match "demo/contact"
+  namespace :demo do
+    get :home
+    get :social
+    get :resources
+    get :events
+    get :reviews
+    get :contact    
+  end
+  
+  get :billing, :to => "main#billing"
+  get :init_settings, :to => "main#init_settings"
+  get :settings, :to => "main#settings"
+  resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
+  post "main/update_billing", :as => :update_billing
   
   post "beta_signup/create"
   post "main/suggest_platform", :as => :suggest_platform
-  get "main/new_feedback", :as => :new_feedback
+  get :feedback, :to => "main#feedback"
   post "main/submit_feedback", :as => :submit_feedback
   
   post "main/test_tweet"
   post "main/test_li_update"
   post "main/test_fb_post"
+  match "test_fbfp_access" => "main#test_fbfp_access"
 
   root :to => "main#welcome"
 end

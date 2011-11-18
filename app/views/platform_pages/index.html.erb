@@ -1,0 +1,20 @@
+<% content_for :styles do stylesheet_link_tag "settings" end %>
+<% content_for :scripts do javascript_include_tag "settings" end %>
+
+<%= hidden_field_tag "platform-id", @platform_id %>
+
+<h2>Select Pages to Post Updates To</h2>
+<ul id="platform-pages">
+	<li>
+		<input type="checkbox" id="0" class="page-select" <%= !@active_pages.where(:external_id => 0).empty? ? 'checked="checked"' : '' %>>
+		<label for="0">Your profile page</label>
+	</li>
+	<% if !@accounts.empty? %>
+		<% @accounts.each do |account| %>
+			<li>
+				<input type="checkbox" id="<%= account.identifier %>" class="page-select" <%= !@active_pages.where(:external_id => account.identifier).empty? ? 'checked="checked"' : '' %>>
+				<%= label_tag account.identifier, account.name %>
+			</li>
+		<% end %>
+	<% end %>
+</ul>

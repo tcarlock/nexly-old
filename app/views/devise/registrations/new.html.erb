@@ -1,18 +1,18 @@
-<% content_for :page_header do "Step 1 of 2 - Create a New Account" end %>
-
-<%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-	<%= devise_error_messages! %>
-
-	<%= f.inputs do %>
-		<%= f.fields_for :profile_attributes do |profile_form| %>
-			<%= profile_form.input :first_name %>
-			<%= profile_form.input :last_name %>
+<div class="devise-form-narrow">
+	<h2>Step 1 of 2 - Create a New Account</h2>
+	<%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		<%= devise_error_messages! %>
+		<%= f.inputs do %>
+			<%= f.fields_for :profile_attributes do |profile_form| %>
+				<%= profile_form.input :first_name %>
+				<%= profile_form.input :last_name %>
+			<% end %>
+			<%= f.input :email %>
+			<%= f.input :password %>
+			<%= f.input :password_confirmation %>
 		<% end %>
-		<%= f.input :email %>
-		<%= f.input :password %>
-		<%= f.input :password_confirmation %>
+		<%= f.buttons do %>
+			<%= f.commit_button 'Create Your Account' %>
+		<% end %>
 	<% end %>
-	<%= f.buttons do %>
-		<%= f.commit_button 'Create Your Account' %>
-	<% end %>
-<% end %>
+</div>

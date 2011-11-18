@@ -39,7 +39,7 @@ namespace :app do
     Authentication.create!(
       platform_id: 2,
       uid: '100003063373098',
-      token: 'AAACVmYzueukBAPRUaQXZA6wiZAKpzBNJ8Yx3Jv2mU3HMLyfSBCbSjzm3m1ZB4an1ZAhwg8Qz9ZB7ZBunFJY0kyPXFgBJNhopRt8dYxe5c31QZDZD',
+      token: 'AAACVmYzueukBAPz0py39PT4emcBAFcYVGqogqpvk8ghZAXZCWj4HruZCndTSMSa7vwNfXd4ygre0g1Ixe0gUSV69wRqIyk2BJjE95lZAKgZDZD',
       secret: nil,
       business_id: 1
     )

@@ -87,7 +87,6 @@ span.intro-text {
 	display:inline-block;
 	padding:10px 0 20px 0;
 	color:#212121;
-
 }
 span.submitted {
 	display:block;
@@ -107,7 +106,16 @@ span.submitted {
 	width:550px;
 	height:250px;
 }
-
+.devise-form-narrow {
+	width:600px;
+	position:relative;
+	margin:50px auto 0 auto;
+	padding:15px;
+	border:1px solid #a2a2a3;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}
 #devise-links a {
 	display:block;
 	font-size:1.1em;

@@ -1,5 +1,6 @@
 class MainController < ApplicationController
-  skip_before_filter :authenticate_user!, :except => :dashboard
+  skip_before_filter :authenticate_user!, :except => [:dashboard, :init_settings, :settings]
+  before_filter :get_settings, :only => [:init_settings, :settings]
   
   def welcome
     if signed_in?
@@ -19,6 +20,15 @@ class MainController < ApplicationController
     @platforms = Platform.where(:is_available => true)
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)    
     @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max.beginning_of_month, DateTime.current.beginning_of_month)
+  end
+  
+  def init_settings
+  end
+      
+  def settings
+    @business = current_user.business
+    @apps = Application.where(:is_public => true)
+    @enabled_apps = @business.applications
   end
   
   def redir
@@ -43,7 +53,7 @@ class MainController < ApplicationController
     end
   end
   
-  def new_feedback
+  def feedback
     render :layout => false
   end 
   
@@ -90,5 +100,19 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def test_fbfp_access
+    @accounts = current_user.facebook.accounts
+  end
+  
+  private
+  
+  def get_settings
+    @platforms = Platform.where(:is_available => true).order(:display_order)
+    @enabled_platforms = current_user.authentications
+    @toolbar_bootstrap_script = render_to_string :partial => 'plugins/toolbar_bootstrap_script', :locals => { :network => current_user.business.api_token, :root => DOMAIN_NAMES[Rails.env] }
+    @toolbar_init_script = render_to_string :partial => 'plugins/toolbar_init_script'
+    @platform_suggestion = PlatformSuggestion.new
   end
 end

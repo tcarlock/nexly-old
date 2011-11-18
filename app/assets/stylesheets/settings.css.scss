@@ -35,6 +35,9 @@
 .tab-content-outer {
 	position:relative;
 	
+	label {
+		font-size:1em;
+	}
 	.form-outer {
 		width:630px;
 	}
@@ -54,7 +57,13 @@
 		}
 	}
 }
-#services {
+#tab-toolbar {	
+	label {
+		display:block;
+		margin:7px 0;
+	}
+}
+#platforms {
   	padding-bottom:7px;
 
 	li {
@@ -84,7 +93,30 @@
 				width:20px;
 				height:20px;
 			}
+			
+			img.settings {
+				width:16px;
+				height:16px;
+				padding:7px;
+				margin:0;
+				border:1px transparent solid;
+				background:url(/assets/gear.png) center center no-repeat transparent;
+				-moz-border-radius:5px;
+				-webkit-border-radius:5px;
+				border-radius:5px;
+				right:0px;
+				position:absolute;
+			}
 		}
+	}
+}
+#platform-pages {
+	margin:0;
+	padding:0;
+	
+	li {
+		list-style-type:none;
+		padding:3px 0;
 	}
 }
 .separator {
@@ -122,6 +154,6 @@
 	}
 }
 .toolbar-script {
-	margin-top:10px;
 	color:#666;
+	margin-bottom:12px;
 }

@@ -1,0 +1,83 @@
+<% content_for :styles do stylesheet_link_tag "settings" end %>
+<% content_for :scripts do javascript_include_tag "settings" end %>
+
+<% content_for :page_header do "Applications and Settings" end %>
+<div id="admin-tabs">
+	<ul>
+		<li><a href="#tab-sites">Manage Distribution Websites</a></li>
+		<li><a href="#tab-toolbar">Get the Nexly Toolbar</a></li>
+	</ul>
+	<div id="tabs-1">
+		<ul id="subscriptions" class="standard-tiles" style="display:none;">
+		<h2 class="edit-section">Manage Your Settings</h2>
+			<% @apps.each do |app| %>
+				<li>
+					<h2><%= app.title %></h2>
+					<p>
+						<strong>Details: </strong><%= app.details %>
+					</p>
+					<h3>Publishing Options</h3>
+					<ul id="app-options">
+						<% @platforms.each do |platform| %>
+							<li>
+								<%= check_box_tag platform.id, platform.name %>
+								<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div id="tabs-2">
+		<div style="display:none;">
+			<h2 class="edit-section">Reviews Settings</h2>
+			<ul id="app-options">
+				<% @platforms.each do |platform| %>
+					<li>
+						<%= check_box_tag platform.id, platform.name %>
+						<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<div id="tab-sites">
+		<div class="tab-content-outer">
+			<%= render :partial => "main/platform_tabs", :locals => { :show_suggestions => true } %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div id="tab-toolbar">
+		<div class="tab-content-outer">
+			<div class="form-outer">
+				<label>Step 1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;).</label>
+				<%= text_area_tag "toolbar-bootstrap-script", @toolbar_bootstrap_script.to_s, :class => "toolbar-script", :size => '77x6' %>
+				<label>Step 2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;).</label>
+				<%= text_area_tag "toolbar-init-script", @toolbar_init_script.to_s, :class => "toolbar-script", :size => '77x2' %>
+			</div>
+			<div class="details-text">
+				<h3>Don't be alarmed by code...</h3>
+				<span class="intro-text">
+					Adding the Nexly Review toolbar to your site is simple. With two small changes you can display reviews directly in 
+					your site.
+				</span>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<% if ENV['RAILS_ENV'] == 'development'%>
+		<div>
+			<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post Tweet" %>
+			<% end %>
+			<%= form_tag :main_test_li_update, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to LinkedIn" %>
+			<% end %>
+			<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to FB" %>
+			<% end %>
+		</div>
+	<% end %>
+	<div class="clearfix"></div>
+</div>

@@ -1,3 +1,0 @@
-$(function() {
-	$('#admin-tabs').tabs();
-});

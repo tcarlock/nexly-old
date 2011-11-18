@@ -44,11 +44,29 @@ class PostFactory
 
     case format
       when :facebook
-        return @current_user.facebook.feed!(
-          :message => message,
-          :link => self.short_link, 
-          :name => name
-        )
+        # Get pages user's selected to post to
+        platform_id = Platform.find_by_name("facebook").id
+        active_pages = @current_user.business.active_platforms.find(platform_id).platform_pages
+        
+        active_pages.each do |p|
+          if p.external_id == "0"   # Post to profile wall
+            @current_user.facebook.feed!(
+              :message => message,
+              :link => self.short_link, 
+              :name => name
+            )
+          else   # Post to fanpage wall
+            page = @current_user.facebook.accounts.detect do |page|
+              page.identifier == p.external_id
+            end
+
+            page.feed!(
+              :message => message,
+              :link => self.short_link, 
+              :name => name
+            )
+          end  
+        end
       when :twitter
         # Process for 140 char count limit taking into account shortened link length
         short_link_len = 13

@@ -1,0 +1,82 @@
+==  CreatePlatformPages: never migrated, skipping =============================
+
+==  AddIndustryIdToBusiness: reverting ========================================
+==  AddIndustryIdToBusiness: reverted (0.0000s) ===============================
+
+==  RebuildPageViews: reverting ===============================================
+==  RebuildPageViews: reverted (0.0000s) ======================================
+
+==  CreateLinks: reverting ====================================================
+-- remove_index("links", {:column=>:in_url})
+   -> 0.3912s
+-- drop_table("links")
+   -> 0.2574s
+==  CreateLinks: reverted (0.6487s) ===========================================
+
+==  AddDisplayNameToPlatforms: reverting ======================================
+-- remove_column("platforms", :display_name)
+   -> 0.6116s
+==  AddDisplayNameToPlatforms: reverted (0.6117s) =============================
+
+==  AddVersionIdToBusiness: reverting =========================================
+-- remove_column("businesses", :version_id)
+   -> 0.6256s
+==  AddVersionIdToBusiness: reverted (0.6257s) ================================
+
+==  CreateSuggestions: reverting ==============================================
+-- drop_table("suggestions")
+   -> 0.0941s
+==  CreateSuggestions: reverted (0.0942s) =====================================
+
+==  CreatePlatformSuggestions: reverting ======================================
+-- drop_table("platform_suggestions")
+   -> 0.0465s
+==  CreatePlatformSuggestions: reverted (0.0466s) =============================
+
+==  AddRequestIdToReview: reverting ===========================================
+-- remove_column("reviews", :review_request_id)
+   -> 0.3874s
+==  AddRequestIdToReview: reverted (0.3875s) ==================================
+
+==  AddPlatformFields: reverting ==============================================
+-- remove_column("platforms", :is_available)
+   -> 0.3372s
+-- remove_column("platforms", :details)
+   -> 0.2728s
+-- remove_column("platforms", :display_order)
+   -> 0.1964s
+-- remove_column("platforms", :icon)
+   -> 0.3047s
+==  AddPlatformFields: reverted (1.1115s) =====================================
+
+==  AddPhoneNumberToBusiness: reverting =======================================
+-- remove_column("businesses", :phone)
+   -> 0.2855s
+==  AddPhoneNumberToBusiness: reverted (0.2856s) ==============================
+
+==  AlterLinkClickTable: reverting ============================================
+-- rename_table(:page_views, :link_clicks)
+   -> 0.0451s
+-- remove_column(:link_clicks, :platform_id)
+   -> 0.4416s
+==  AlterLinkClickTable: reverted (0.4869s) ===================================
+
+==  CreateBetaSignups: reverting ==============================================
+-- drop_table("beta_signups")
+   -> 0.0215s
+==  CreateBetaSignups: reverted (0.0216s) =====================================
+
+==  CreateAuthentications: reverting ==========================================
+-- drop_table("authentications")
+   -> 0.0350s
+==  CreateAuthentications: reverted (0.0351s) =================================
+
+==  CreatePlatforms: reverting ================================================
+-- remove_index("platforms", {:column=>:name})
+   -> 0.2022s
+-- drop_table("platforms")
+   -> 0.0360s
+==  CreatePlatforms: reverted (0.2383s) =======================================
+
+==  CreateLinkClicks: reverting ===============================================
+-- remove_index("link_clicks", {:column=>[:url, :referrer_domain]})

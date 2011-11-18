@@ -8,15 +8,15 @@ class ReviewsController < ApplicationController
     @view = (params[:v] || 1).to_i
     
     case @view
-    when 1   # Pending
-      @reviews = @business.pending_reviews
-      @header = "Reviews Pending Approval"
-    when 2   # Approved
-      @reviews = @business.approved_reviews
-      @header = "Approved Reviews"
-    when 3   # Rejected
-      @reviews = @business.rejected_reviews
-      @header = "Rejected Reviews"
+      when 1   # Pending
+        @reviews = @business.pending_reviews
+        @header = "Reviews Pending Approval"
+      when 2   # Approved
+        @reviews = @business.approved_reviews
+        @header = "Approved Reviews"
+      when 3   # Rejected
+        @reviews = @business.rejected_reviews
+        @header = "Rejected Reviews"
     end
     
     @reviews = @reviews.order('created_at DESC').paginate(:page => params[:page])

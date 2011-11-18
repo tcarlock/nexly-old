@@ -1,0 +1,24 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  platform_id: 1
+  business_id: 1
+  external_id: MyString
+
+two:
+  platform_id: 1
+  business_id: 1
+  external_id: MyString
+
+# == Schema Information
+#
+# Table name: platform_pages
+#
+#  id          :integer(4)      not null, primary key
+#  platform_id :integer(4)
+#  business_id :integer(4)
+#  external_id :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
