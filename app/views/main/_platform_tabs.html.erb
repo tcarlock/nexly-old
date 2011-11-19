@@ -4,15 +4,13 @@
 		<% @platforms.each do |platform| %>
 			<li>
 				<% if !@enabled_platforms.where(:platform_id => platform.id).empty? %>
-					<%= form_tag authentication_path(platform), :method => :delete, :id => "disable-fb-form" do %>
-						<%= link_to "", :id => "disable-fb-link",  :class => "auth-provider"  do %>
-							<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
-							<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
-							<span>Disable <%= platform.display_name %></span>
-							<% if platform.id == 2 && current_user.facebook.accounts.length > 0 %>
-								<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
-									<%= image_tag "gear.png", :class => "settings", :title => "Manage settings" %>
-								<% end %>
+					<%= link_to authentication_path(platform), :method => :delete, :class => "auth-provider" do %>
+						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
+						<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
+						<span>Disable <%= platform.display_name %></span>
+						<% if platform.id == 2 && current_user.facebook.accounts.length > 0 %>
+							<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
+								<%= image_tag "gear.png", :class => "settings", :title => "Manage settings" %>
 							<% end %>
 						<% end %>
 					<% end %>

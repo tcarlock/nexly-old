@@ -21,12 +21,7 @@ class BusinessesController < ApplicationController
     @business = current_user.businesses.create(params[:business])
     
     if @business.save
-      respond_to do |format|
-        format.html {
-          redirect_to(init_settings_path(@business), :notice => 'Your business profile has been saved')
-        }
-        format.js
-      end
+      redirect_to settings_path, :notice => 'Your business profile has been saved'
     else
       render :action => "new"
     end
@@ -41,7 +36,7 @@ class BusinessesController < ApplicationController
     @business.update_attributes(params[:business])
     @business.save
 
-    redirect_to(@business, :notice => 'Your business profile has been updated')
+    redirect_to @business, :notice => 'Your business profile has been updated'
   end
   
   def edit_capabilities
@@ -50,8 +45,8 @@ class BusinessesController < ApplicationController
   private
 
   def get_business
-    if params[:business_id] != nil
-      @business = Business.find(params[:business_id])
+    if params[:id] != nil
+      @business = Business.find(params[:id])
     end
   end
 end

@@ -21,14 +21,12 @@ class MainController < ApplicationController
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)    
     @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max.beginning_of_month, DateTime.current.beginning_of_month)
   end
-  
-  def init_settings
-  end
-      
+
   def settings
     @business = current_user.business
     @apps = Application.where(:is_public => true)
     @enabled_apps = @business.applications
+    @display_pages = params[:display_pages].nil? ? false : true
   end
   
   def redir

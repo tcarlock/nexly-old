@@ -2,15 +2,14 @@ $(function() {
 	$('#admin-tabs').tabs();
 
 	$('#fb-pages-link').colorbox();
-	
-	$('input.page-select').change(function() {
-		$.post('/platforms/' + $('#platform-id').attr('value') + '/pages/' + $(this).attr('id') + '/toggle_publishing');
+
+	$('input.page-select').live("change", function() {
+		$.post('/platforms/' + $('#platform-id').val() + '/pages/' + $(this).attr('id') + '/toggle_publishing');
 	});
-	
-	$('#disable-fb-link').click(function() {
-		$('#disable-fb-form').submit();
-		return false;
-	});
+
+	if ($('#display-pages').val() == 'true') {
+		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
+	};
 	
 	$('textarea.toolbar-script')
 	.mouseup(function(e){

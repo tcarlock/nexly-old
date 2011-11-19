@@ -8,16 +8,12 @@ class PlatformPagesController < ApplicationController
         @accounts = current_user.facebook.accounts
     end
 
-    render :layout => false, 
+    render :layout => false
   end
   
   def toggle_publishing
     platform = Platform.find(params[:platform_id])
-    ext_page_id = params[:id]
-    
-    active_pages = current_user.business.active_platforms.find(params[:platform_id]).platform_pages
-    
-    page = active_pages.find_or_initialize_by_external_id(ext_page_id)
+    page = current_user.business.active_platforms.find(params[:platform_id]).platform_pages.find_or_initialize_by_external_id(params[:id])
 
     if page.persisted?   # Record already existed; delete
       page.destroy

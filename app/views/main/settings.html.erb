@@ -2,6 +2,7 @@
 <% content_for :scripts do javascript_include_tag "settings" end %>
 
 <% content_for :page_header do "Applications and Settings" end %>
+<%= hidden_field_tag "display-pages", @display_pages %>
 <div id="admin-tabs">
 	<ul>
 		<li><a href="#tab-sites">Manage Distribution Websites</a></li>

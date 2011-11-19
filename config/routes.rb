@@ -62,7 +62,6 @@ Nexly::Application.routes.draw do
   end
   
   get :billing, :to => "main#billing"
-  get :init_settings, :to => "main#init_settings"
   get :settings, :to => "main#settings"
   resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
   post "main/update_billing", :as => :update_billing
