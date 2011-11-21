@@ -11,7 +11,7 @@ $(function() {
 		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
 	};
 	
-	$('textarea.toolbar-script')
+	$('textarea.integration-script')
 	.mouseup(function(e){
 	    // fixes safari/chrome problem
 	    e.preventDefault();

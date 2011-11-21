@@ -198,9 +198,9 @@ span.menu_title a {
 
 .quickmenu {
 	position: absolute; /* important */
-	top: -253px;
+	top: -270px;
 	right: -5px;
-	width: 300px;
+	width: 400px;
 	height: 250px;
 	background: #F7F7F7;
 	border-top: 1px solid #a4a4a4;
@@ -213,16 +213,16 @@ span.menu_title a {
 	/* CSS3 end */
 	display: none; /* important */
 	overflow:auto;
+	padding:7px;
 }
 
 .quickmenu ul {
-  padding-top: 10px;
 }
 
 .quickmenu ul li {
-  border-bottom: 1px solid #989898;    
-  padding: 5px 10px;
-  margin: 0 7px;
+	border-bottom: 1px solid #989898;    
+	padding: 5px 7px;
+	list-style-type:none;
 }
 
 .quickmenu ul li a {

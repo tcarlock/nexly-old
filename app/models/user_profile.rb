@@ -4,7 +4,7 @@ class UserProfile < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :on => :update
   
   has_attached_file :avatar, 
-    :default_url => "/assets/profile/default_user:style.png", 
+    :default_url => "/assets/avatars/default_user_:style.gif", 
     :styles => { 
       :large => ["150x150>", :png], 
       :small => ["100x100>", :png], 

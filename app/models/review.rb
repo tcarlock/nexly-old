@@ -4,9 +4,16 @@ class Review < ActiveRecord::Base
   has_one :review_request
   has_one :review_response
   
-  validates_presence_of :details, :rating
+  validates_presence_of :name, :email, :details, :rating
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
   validates_inclusion_of :rating, :in => 0..5, :message => "Must be from 0 to 5"
+  
+  has_attached_file :avatar, 
+    :default_url => "/assets/avatars/default_user_:style.gif", 
+    :styles => { 
+      :thumb => ["50x50>", :png],
+      :tab => ["25x25>", :png]
+    }
 end
 
 # == Schema Information

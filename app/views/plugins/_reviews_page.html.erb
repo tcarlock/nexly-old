@@ -1,0 +1,7 @@
+<% if @reviews.empty? %>
+	<span class="no-records">There are no reviews at this time</span>
+<% else %>
+	<ul>
+		<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
+	</ul>
+<% end %>

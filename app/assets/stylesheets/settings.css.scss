@@ -34,16 +34,18 @@
 
 .tab-content-outer {
 	position:relative;
-	
-	label {
-		font-size:1em;
-	}
+
 	.form-outer {
-		width:630px;
+		width:600px;
+		
+		h5 {
+			padding:7px 0;
+			font-weight:normal;
+		}
 	}
 	
 	.details-text {
-		width:250px;
+		width:280px;
 		position:absolute;
 		top:0;
 		right:0;
@@ -52,15 +54,10 @@
 			color:#0A2E58;
 		}
 		
-		.intro-text {
+		p { 
+			margin-bottom:15px;
 			padding:0;
 		}
-	}
-}
-#tab-toolbar {	
-	label {
-		display:block;
-		margin:7px 0;
 	}
 }
 #platforms {
@@ -68,7 +65,7 @@
 
 	li {
 	  	background-color:#EEE;
-		width:285px;
+		width:271px;
 		margin:5px;
 	
 		a {
@@ -149,11 +146,15 @@
 		display:none;
 	}
 	
+	form.formtastic fieldset label {
+		padding-right:0;
+	}
+	
 	#platform_suggestion_url {
 		width:275px;
 	}
 }
-.toolbar-script {
+.integration-script {
 	color:#666;
 	margin-bottom:12px;
 }

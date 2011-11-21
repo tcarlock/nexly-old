@@ -43,14 +43,14 @@
 				Reviews (<%= @reviews.count %>)
 			</a> <!-- quick menu title -->
 			<div class="quickmenu">
-				<div class="quickmenu_inner">
-					<ul> <!-- quick menu list -->
-						<% if @reviews.empty? %>
-							<li><span class="no-records">There are no reviews at this time</span></li>
-						<% else %>
-							<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
-						<% end %>
-					</ul>
+				<div class="quickmenu-inner">
+					<% if @reviews.empty? %>
+						<span class="no-records">There are no reviews at this time</span>
+					<% else %>
+						<ul> <!-- quick menu list -->
+							<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
+						</ul>
+					<% end %>
 				</div>
 			</div>
 		</span>

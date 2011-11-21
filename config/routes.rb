@@ -1,11 +1,5 @@
 Nexly::Application.routes.draw do  
   devise_for :users
-
-  resources :users, :only => [] do
-    member do
-      get :following, :followers, :stats, :controller => 'relationships'
-    end
-  end
        
   resources :user_profile do
     member do
@@ -30,7 +24,7 @@ Nexly::Application.routes.draw do
   end
   
   namespace :plugins do
-    get :toolbar_render_script
+    get :plugin_render_script
     get :toolbar
   end 
     

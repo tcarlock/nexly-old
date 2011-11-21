@@ -108,12 +108,11 @@ namespace :app do
     
     review = biz.reviews.create!(
       :name => 'David Hansson',
-      :email => 'dhh@37signals.com', 
+      :email => 'dhh@37signals.com',
       :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
       :rating => 5,
       :is_approved => true,
-      :is_rejected => false,
-      :user_id => 1 + rand(4))
+      :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
       
@@ -123,8 +122,7 @@ namespace :app do
       :details => 'Great experience working with the firm - we saved time and $ by using their',
       :rating => 5,
       :is_approved => false,
-      :is_rejected => false,
-      :user_id => 1 + rand(4))
+      :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
     
@@ -135,8 +133,7 @@ namespace :app do
         :details => Faker::Lorem.paragraph,
         :rating => rand(5),
         :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
-        :is_rejected => ((n % 2 != 0) && (n % 5 != 0)),
-        :user_id => 1 + rand(4))
+        :is_rejected => ((n % 2 != 0) && (n % 5 != 0)))
     end
     
     # Create link clicks
@@ -208,8 +205,7 @@ namespace :app do
             :details => Faker::Lorem.paragraph,
             :rating => rand(5),
             :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
-            :is_rejected => ((n % 2 != 0) && (n % 5 != 0)),
-            :user_id => 1 + rand(4))
+            :is_rejected => ((n % 2 != 0) && (n % 5 != 0)))
       end
     end
   end

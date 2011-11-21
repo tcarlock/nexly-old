@@ -7,7 +7,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-	<%= render :partial => 'plugins/toolbar_bootstrap_script', :locals => { :network => @business.api_token, :root => @root }  %>
+	<%= render :partial => 'plugins/plugin_bootstrap_script', :locals => { :network => @business.api_token, :root => @root } %>
 	<div id="container">
 		<div id="header">
 			<%= image_tag "demo/logo.jpg", :id => "inset", :size => '125x117' %>
@@ -17,9 +17,9 @@
 				<li><%= link_to "Home", "#" %></li>
 				<li><%= link_to "About Us", "#" %></li>
 				<li><%= link_to "Services", "#" %></li>
+				<li><%= link_to "Clients", "/demo/reviews" %></li>
 				<li><%= link_to "Resources", "#" %></li>
 				<li><%= link_to "Events", "#" %></li>
-				<li><%= link_to "Reviews", "#" %></li>
 				<li><%= link_to "Contact Us", "#" %></li>
 			</ul>
 		</div>
@@ -38,6 +38,6 @@
 			</div>
 		</div>
 	</div>
-	<%= render :partial => 'plugins/toolbar_init_script' %>
+	<%= render :partial => 'plugins/plugin_init_script' %>
 </body>
 </html>

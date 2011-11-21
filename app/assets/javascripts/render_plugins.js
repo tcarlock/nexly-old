@@ -1,4 +1,10 @@
 try {
+	if ($(".nexly-content", parent.document).length > 0)
+	{
+		$(".nexly-content", parent.document).html("This is a test");
+		//$("#nexly-toolbar", parent.document).load("/plugins/render_content_page/?app=" +  + "&network=" + $("#nexly-toolbar", parent.document).attr("data-network"))
+	}
+		
 	$("#nexly-toolbar", parent.document).load("/plugins/toolbar/?network=" + $("#nexly-toolbar", parent.document).attr("data-network"), function(){
 		//hide toolbar and make visible the 'show' button
 		$("span.downarr a", parent.document).click(function() {

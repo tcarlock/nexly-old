@@ -1,5 +1,5 @@
 <div class="form-outer">
-	<label>Select websites for distribution:</label>
+	<h2>Select websites for distribution</h2>
 	<ul id="platforms" class="standard-tiles clearfix">
 		<% @platforms.each do |platform| %>
 			<li>
@@ -31,7 +31,7 @@
 		<div id="suggest-platform-outer" class="clearfix">
 			<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
 				<%= f.inputs do %>
-				  <%= f.input :url, :label => 'Suggest a website we should support:', :label_html => { :style => 'width:325px' }, :input_html => { :placeholder => 'http://' } %>
+				  <%= f.input :url, :label => 'Suggest a website we should support:', :label_html => { :style => 'width:315px' }, :input_html => { :placeholder => 'http://' } %>
 			  <% end %>
 			  <%= f.buttons do %>
 				<%= f.commit_button 'Submit' %>
@@ -42,8 +42,8 @@
 </div>
 <div class="details-text">
 	<h3>What is this?</h3>
-	<span class="intro-text">
+	<p>
 		Nexly allows you to automatically publish your reviews to other websites including your social-media pages. These 
 		posts contain links which drive traffic back to your main site. 
-	</span>
+	</p>
 </div>

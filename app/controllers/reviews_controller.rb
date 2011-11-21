@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    Business.find(params[:business_id]).reviews.create!(params[:review])
+    @review = Business.find(params[:business_id]).reviews.create!(params[:review])
     
     respond_to do |format|
       format.html {
