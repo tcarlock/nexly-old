@@ -57,6 +57,12 @@ class Business < ActiveRecord::Base
     true 
   end
   
+  preferable do
+    boolean :is_toolbar_active, :default => true
+    boolean :is_reviewing_enabled, :default => true
+    boolean :is_recs_enabled, :default => true
+  end
+    
   def location
     "#{self.city}, #{self.state}"
   end

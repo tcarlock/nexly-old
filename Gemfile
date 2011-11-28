@@ -28,6 +28,7 @@ gem 'twitter', "~> 1.0"
 gem 'fb_graph'
 gem 'linkedin', :branch => '2-0-stable'
 gem 'faker', '~> 1.0.1'
+gem 'preferable'
 # gem 'thinking-sphinx'
 
 # Use unicorn as the web server
@@ -44,7 +45,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'turn', :require => false
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
-  gem 'heroku_san'
+  gem 'heroku_san' 
 end
 
 group :production do

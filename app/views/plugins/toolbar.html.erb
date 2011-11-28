@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "app_global", "toolbar", "public/formtastic", "public/formtastic_changes", "public/colorbox", "reviews" %>
+<%= stylesheet_link_tag "app_global", "toolbar", "public/formtastic", "public/formtastic_changes" %>
 
 <div id="toolbarbut"> <!-- hide button -->
 	<span class="showbar"><a href="#">show bar</a></span>
@@ -47,7 +47,7 @@
 					<% if @reviews.empty? %>
 						<span class="no-records">There are no reviews at this time</span>
 					<% else %>
-						<ul> <!-- quick menu list -->
+						<ul class="nexly-list"> <!-- quick menu list -->
 							<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>
 						</ul>
 					<% end %>

@@ -1,7 +1,7 @@
 class PlatformSuggestion < ActiveRecord::Base
   belongs_to :user
   
-  validates_presence_of :url
+  validates_presence_of :url, :message => ""
 end
 
 # == Schema Information

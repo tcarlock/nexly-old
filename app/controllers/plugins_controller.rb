@@ -15,8 +15,8 @@ class PluginsController < ApplicationController
   end
   
   def render_content_page
-    app_id = params[:id].to_i
-    app = Applications.find(app_id)
+    app_id = params[:app].to_i
+    app = Application.find(app_id)
     
     case app_id
       when 1   # Display reviews

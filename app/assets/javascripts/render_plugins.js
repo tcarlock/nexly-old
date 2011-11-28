@@ -1,8 +1,9 @@
 try {
 	if ($(".nexly-content", parent.document).length > 0)
 	{
-		$(".nexly-content", parent.document).html("This is a test");
-		//$("#nexly-toolbar", parent.document).load("/plugins/render_content_page/?app=" +  + "&network=" + $("#nexly-toolbar", parent.document).attr("data-network"))
+		var pluginContainer = $(".nexly-content", parent.document);
+		
+		pluginContainer.load("/plugins/render_content_page/?app=" + pluginContainer.attr('data-app-id') + "&network=" + pluginContainer.attr('data-network'))
 	}
 		
 	$("#nexly-toolbar", parent.document).load("/plugins/toolbar/?network=" + $("#nexly-toolbar", parent.document).attr("data-network"), function(){

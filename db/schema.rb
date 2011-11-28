@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119194659) do
+ActiveRecord::Schema.define(:version => 20111126200343) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20111119194659) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "phone"
+    t.text     "preferences"
   end
 
   create_table "links", :force => true do |t|

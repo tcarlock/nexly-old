@@ -7,9 +7,47 @@ $(function() {
 		$.post('/platforms/' + $('#platform-id').val() + '/pages/' + $(this).attr('id') + '/toggle_publishing');
 	});
 
+	$('#toolbar-activation').change(function() {
+		$.post('/settings/toggle_toolbar_activation');
+	});
+
+	$('#review-enabling').change(function() {
+		$.post('/settings/toggle_public_reviews');
+	});
+	
+	$('#rec-enabling').change(function() {
+		$.post('/settings/toggle_public_recommendations');
+	});
+	
 	if ($('#display-pages').val() == 'true') {
 		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
 	};
+	
+	$('.integration-panels a').click(function() {
+		if(!$(this).siblings('div.contents').is(':visible')) {
+			$('.integration-panels div.contents').slideUp(200);
+			$(this).siblings('div.contents').slideDown(350);
+		}
+	});
+	
+	// $('.integration-panels a').toggle(function() {
+	// 	var contentPanel = $(this).siblings('div.contents');
+	// 	contentPanel.slideDown(350, function() {
+	// 		$('body').animate({scrollTop: contentPanel.offset().top - 5}, 800);
+	// 	});
+	// }, function() {
+	// 	var contentPanel = $(this).siblings('div.contents');
+	// 	contentPanel.slideDown(350, function() {
+	// 		$('body').animate({scrollTop: contentPanel.offset().top - 5}, 800);
+	// 	});
+	// 	
+	// 	if(!isHardPaused)
+	// 		startAutoNav();
+	// 	$('body').animate({scrollTop: '0px'}, 800, function() {
+	// 		//$('#sign-up-tab').effect("scale", { percent: 200, origin: ['top','left'] }, 300);
+	// 		$('#signup-pane-inner').slideUp(350);
+	// 	});
+	// });
 	
 	$('textarea.integration-script')
 	.mouseup(function(e){

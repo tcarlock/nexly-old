@@ -1,5 +1,5 @@
 <div class="form-outer">
-	<h2>Select websites for distribution</h2>
+	<label>Select websites for distribution:</label>
 	<ul id="platforms" class="standard-tiles clearfix">
 		<% @platforms.each do |platform| %>
 			<li>
@@ -31,7 +31,7 @@
 		<div id="suggest-platform-outer" class="clearfix">
 			<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
 				<%= f.inputs do %>
-				  <%= f.input :url, :label => 'Suggest a website we should support:', :label_html => { :style => 'width:315px' }, :input_html => { :placeholder => 'http://' } %>
+				  <%= f.input :url, :label => 'Suggest a website to support:', :label_html => { :style => 'width:275px' }, :input_html => { :placeholder => 'http://' } %>
 			  <% end %>
 			  <%= f.buttons do %>
 				<%= f.commit_button 'Submit' %>

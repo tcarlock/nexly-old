@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :get_business, :only => [:show, :edit, :update, :edit_capabilities, :init_settings, :settings]
+  before_filter :get_business, :except => [:index, :create]
   before_filter :set_menu_visibility, :only => [:new, :create]
   
   def index
@@ -37,9 +37,6 @@ class BusinessesController < ApplicationController
     @business.save
 
     redirect_to @business, :notice => 'Your business profile has been updated'
-  end
-  
-  def edit_capabilities
   end
   
   private

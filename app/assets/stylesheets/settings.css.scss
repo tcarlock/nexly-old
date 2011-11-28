@@ -154,7 +154,43 @@
 		width:275px;
 	}
 }
+.integration-panels {
+  	padding-bottom:7px;
+	position:relative;
+	border:1px #D8D5D5 solid;
+	border-radius:5px;
+	padding:7px;
+  	background-color:#EEE;
+	width:586px;
+	margin-bottom:20px;
+	
+	a {
+		font-size:1.2em;
+		color:#3595D4;
+		display:block;
+		width:100%;
+		padding:7px 0;
+	}
+	
+	div.contents {
+		display:none;
+		
+		span {
+			display:block;
+			margin:7px 0;
+		}
+	}
+	
+	label {
+		font-weight:normal;
+	}
+}
+.integration-panels:nth-child(1) {
+	div.contents {
+		display:block;
+	}
+}
 .integration-script {
 	color:#666;
-	margin-bottom:12px;
+	margin:0 0 12px 20px;
 }

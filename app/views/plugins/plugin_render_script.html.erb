@@ -7,8 +7,23 @@ scriptPaths.forEach(function(path) {
 	document.getElementsByTagName("head")[0].appendChild(script);
 });
 
+var stylePaths = ["<%= root %>/assets/plugins.css"];
+
+stylePaths.forEach(function(path) {
+	var style = document.createElement("link");
+	style.media = "screen";
+	style.rel = "stylesheet"
+	style.type="text/css";
+	style.href = path;
+	parent.document.getElementsByTagName("head")[0].appendChild(style);
+});
+
 var div = document.createElement("div");
 div.setAttribute("id", "nexly-toolbar");
 div.setAttribute("style", "height:45px;");
 div.setAttribute("data-network", "<%= network %>");
 parent.document.body.appendChild(div);
+
+$(function() {
+	alert('test');
+})

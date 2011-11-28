@@ -18,14 +18,18 @@ Nexly::Application.routes.draw do
     end
     
     resources :review_requests, :except => [:update, :edit]
-    # resources :resources
-  
     resources :analytics, :only => :index, :controller => :analytics
   end
+  
+  get 'settings/' => 'settings#index'
+  post 'settings/toggle_toolbar_activation' => 'settings#toggle_toolbar_activation'
+  post 'settings/toggle_public_reviews' => 'settings#toggle_public_reviews'
+  post 'settings/toggle_public_recommendations' => 'settings#toggle_public_recommendations'
   
   namespace :plugins do
     get :plugin_render_script
     get :toolbar
+    get :render_content_page
   end 
     
   match "/auth/:provider/callback" => "authentications#create"
@@ -56,7 +60,6 @@ Nexly::Application.routes.draw do
   end
   
   get :billing, :to => "main#billing"
-  get :settings, :to => "main#settings"
   resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
   post "main/update_billing", :as => :update_billing
   

@@ -1,0 +1,129 @@
+<% content_for :styles do stylesheet_link_tag "settings" end %>
+<% content_for :scripts do javascript_include_tag "settings" end %>
+
+<% content_for :page_header do "Applications and Settings" end %>
+<%= hidden_field_tag "display-pages", @display_pages %>
+<div id="admin-tabs">
+	<ul>
+		<li><a href="#tab-platforms">Manage Distribution Websites</a></li>
+		<li><a href="#tab-toolbar">Add Nexly Features to Your Site</a></li>
+	</ul>
+	<div id="tabs-1">
+		<ul id="subscriptions" class="standard-tiles" style="display:none;">
+		<h2 class="edit-section">Manage Your Settings</h2>
+			<% @nexly_apps.each do |app| %>
+				<li>
+					<h2><%= app.title %></h2>
+					<p>
+						<strong>Details: </strong><%= app.details %>
+					</p>
+					<h3>Publishing Options</h3>
+					<ul id="app-options">
+						<% @platforms.each do |platform| %>
+							<li>
+								<%= check_box_tag platform.id, platform.name %>
+								<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div id="tabs-2">
+		<div style="display:none;">
+			<h2 class="edit-section">Reviews Settings</h2>
+			<ul id="app-options">
+				<% @platforms.each do |platform| %>
+					<li>
+						<%= check_box_tag platform.id, platform.name %>
+						<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<div id="tab-platforms">
+		<div class="tab-content-outer">
+			<%= render :partial => "settings/platform_tabs", :locals => { :show_suggestions => true } %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div id="tab-toolbar">
+		<div class="tab-content-outer">
+			<div class="form-outer">
+				<div class="integration-panels clearfix">
+					<a>Initial Setup</a>
+					<div class="contents">
+						<span>Complete these two simple steps before adding Nexly features to your site</span>
+						<h5>1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;).</h5>
+						<%= text_area_tag "toolbar-bootstrap-script", @plugin_bootstrap_script.to_s, :class => "integration-script", :size => '67x6' %>
+						<h5>2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;).</h5>
+						<%= text_area_tag "toolbar-init-script", @plugin_init_script.to_s, :class => "integration-script", :size => '67x2' %>
+					</div>
+				</div>
+				<div class="integration-panels clearfix">
+					<a>Enable the Nexly Toolbar</a>
+					<div class="contents">
+						<span>
+							After initial setup you can turn the toolbar on and off without changing any code.
+						</span>
+						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:is_toolbar_active] ? 'checked="checked"' : '' %>>
+						<label for="toolbar-activation">
+							Enable Toolbar
+						</label>
+						<input type="checkbox" id="review-enabling" <%= @business.preferences[:is_reviewing_enabled] ? 'checked="checked"' : '' %>>
+						<label for="toolbar-activation">
+							Enable Public Reviews
+						</label>
+						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:is_toolbar_active] ? 'checked="checked"' : '' %>>
+						<label for="toolbar-activation">
+							Enable Recommendations
+						</label>
+					</div>
+				</div>
+				<div class="integration-panels clearfix">
+					<a>Add Nexly Pages</a>
+					<div class="contents">
+						<span>
+							Simply paste the code where you want content displayed in your site. Pick and choose the features you want included: 
+						</span>
+						<% @content_pages_html.each do |page| %>
+							<h5><%= page[:app_title] %> module</h5>					
+							<%= text_area_tag "content-page-#{page[:app_id]}", page[:placeholder_html], :class => "integration-script", :size => '67x1' %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="details-text">
+				<h3>What is this?</h3>
+				<p>
+					With Nexly you can easily add useful information and and engaging features to your website. 
+				</p>
+				<h3>The Nexly Toolbar</h3>
+				<p>
+					The toolbar helps people interact with your brand and access information about your business. The toolbar appears at the bottom of your webpages and it won't hurt the performance of your site.
+				</p>
+				<h3>Nexly Pages</h3>
+				<p>
+					Nexly Pages allows you to automatically display useful information in your website such as client reviews.
+				</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<% if ENV['RAILS_ENV'] == 'development'%>
+		<div>
+			<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post Tweet" %>
+			<% end %>
+			<%= form_tag :main_test_li_update, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to LinkedIn" %>
+			<% end %>
+			<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
+				<%= submit_tag "Post to FB" %>
+			<% end %>
+		</div>
+	<% end %>
+	<div class="clearfix"></div>
+</div>
