@@ -36,9 +36,6 @@ class Business < ActiveRecord::Base
   before_create :set_api_token
   
   has_attached_file :avatar,
-    :storage => :s3,
-    :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :path => "/:style/:id/:filename",
     :default_url => "/assets/avatars/default_biz_:style.gif", 
     :styles => { 
       :large => ["150x150>", :png], 
