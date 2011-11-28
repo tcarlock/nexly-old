@@ -22,11 +22,11 @@
 	</div>
 	<div class="right-col">
 		<h2 class="edit-section">Links</h2>
-	    <%= f.input :website %>
-	    <%= f.input :facebook %>
-	    <%= f.input :twitter %>
-	    <%= f.input :google_plus, :label => "Google+" %>
-	    <%= f.input :linked_in, :label => 'LinkedIn' %>
+	    <%= f.input :website, :input_html => { :placeholder => 'http://' } %>
+	    <%= f.input :facebook, :input_html => { :placeholder => 'http://' } %>
+	    <%= f.input :twitter, :input_html => { :placeholder => 'http://' } %>
+	    <%= f.input :google_plus, :label => "Google+", :input_html => { :placeholder => 'http://' } %>
+	    <%= f.input :linked_in, :label => "LinkedIn", :input_html => { :placeholder => 'http://' } %>
 	</div>
   <% end %>
   <%= f.buttons do %>

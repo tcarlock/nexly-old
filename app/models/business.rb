@@ -36,7 +36,7 @@ class Business < ActiveRecord::Base
   before_create :set_api_token
   
   has_attached_file :avatar, 
-    :default_url => "/assets/profile/default_biz_:style.gif", 
+    :default_url => "/assets/avatars/default_biz_:style.gif", 
     :styles => { 
       :large => ["150x150>", :png], 
       :small => ["100x100>", :png], 

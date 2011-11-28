@@ -22,6 +22,7 @@ Nexly::Application.routes.draw do
   end
   
   get 'settings/' => 'settings#index'
+  get 'init_settings/' => 'settings#init_settings'
   post 'settings/toggle_toolbar_activation' => 'settings#toggle_toolbar_activation'
   post 'settings/toggle_public_reviews' => 'settings#toggle_public_reviews'
   post 'settings/toggle_public_recommendations' => 'settings#toggle_public_recommendations'
