@@ -35,7 +35,10 @@ class Business < ActiveRecord::Base
   after_validation :geocode
   before_create :set_api_token
   
-  has_attached_file :avatar, 
+  has_attached_file :avatar,
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :path => "/:style/:id/:filename"
     :default_url => "/assets/avatars/default_biz_:style.gif", 
     :styles => { 
       :large => ["150x150>", :png], 

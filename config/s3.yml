@@ -1,0 +1,12 @@
+development:
+  bucket: nexly_avatar_dev
+  access_key_id: AKIAJ3LPSGAKUNUXAJ6Q
+  secret_access_key: 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
+test:
+  bucket: nexly_avatar_test
+  access_key_id: AKIAJ3LPSGAKUNUXAJ6Q
+  secret_access_key: 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
+production:
+  bucket: nexly_avatar_prod
+  access_key_id: AKIAJ3LPSGAKUNUXAJ6Q
+  secret_access_key: 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

@@ -15,6 +15,7 @@ group :assets do
   gem "uglifier"
 end
 
+gem "aws-s3"
 gem "formtastic", "=1.2.4"
 gem "client_side_validations", "~> 3.0.11"
 gem "devise"
