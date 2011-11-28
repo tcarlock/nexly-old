@@ -3,7 +3,10 @@ class UserProfile < ActiveRecord::Base
   
   validates_presence_of :first_name, :last_name, :on => :update
   
-  has_attached_file :avatar, 
+  has_attached_file :avatar,
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :path => "/:style/:id/:filename",
     :default_url => "/assets/avatars/default_user_:style.gif", 
     :styles => { 
       :large => ["150x150>", :png], 
