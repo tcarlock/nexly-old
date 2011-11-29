@@ -23,7 +23,7 @@ class BusinessesController < ApplicationController
     if @business.save
       redirect_to settings_path, :notice => 'Your business profile has been saved'
     else
-      render :action => "new"
+      render :new
     end
   end
   
@@ -34,9 +34,12 @@ class BusinessesController < ApplicationController
     end
 
     @business.update_attributes(params[:business])
-    @business.save
-
-    redirect_to @business, :notice => 'Your business profile has been updated'
+    
+    if @business.save
+      redirect_to @business, :notice => 'Your business profile has been updated'
+    else
+      render :edit
+    end
   end
   
   private
