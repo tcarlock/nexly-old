@@ -32,8 +32,7 @@ class Business < ActiveRecord::Base
   
   # Validations
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :website, :on => :update, :message => "This is required"
-  validates :website, :presence => true, :uri_format => true
-  validates :facebook, :twitter, :google_plus, :linked_in, :presence => false, :uri_format => true
+  validates :website, :facebook, :twitter, :google_plus, :linked_in, :uri_format => true
     
   after_validation :geocode
   before_create :set_api_token
