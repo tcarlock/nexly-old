@@ -5,7 +5,7 @@ class UserProfile < ActiveRecord::Base
   
   has_attached_file :avatar,
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename",
     :default_url => "/assets/avatars/default_user_:style.gif", 
     :styles => { 

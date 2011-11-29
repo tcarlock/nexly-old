@@ -14,7 +14,7 @@
 	<% end %>
 </div>
 <% if @reviews.empty? %>
-	<span class="no-records">There are no reviews at this time</span>
+	<span class="no-records">There are no reviews at this time.</span>
 <% else %>
 	<ul id="review-requests" class="standard-list">
 		<%= render :partial => "reviews/review", :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false }  %>

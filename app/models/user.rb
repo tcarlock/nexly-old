@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :business_users
   has_many :businesses, :through => :business_users
   
+  validates :email, :presence => true, :uniqueness => true, :email_format => true 
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :profile_attributes, :email, :password, :password_confirmation, :remember_me
   accepts_nested_attributes_for :profile

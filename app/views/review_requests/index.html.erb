@@ -7,7 +7,7 @@
 	<% end %>
 </div>
 <% if @requests.empty? %>
-	<span class="no-records">There are no review requests at this time <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
+	<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
 <% else %>
 	<ul id="review-requests" class="standard-list">
 		<%= render @requests %>

@@ -58,9 +58,9 @@
 		<h2><%= @business.location %></h2>
 	</div>
 	<div id="reviews-panel" class="content-panel">
-		<h3>Reviews (<%= @reviews.count %> Reviews)</h3>
+		<h3>Reviews (<%= @reviews.count %>)</h3>
 		<% if @reviews.empty? %>
-			<span class="no-records">There are no reviews at this time</span>
+			<span class="no-records">There are no reviews at this time.</span>
 		<% else %>
 			<ul id="biz-reviews" class="standard-list">
 				<%= render :partial => 'reviews/review', :collection => @reviews, :locals => { :show_admin => false, :truncate_review => false } %>

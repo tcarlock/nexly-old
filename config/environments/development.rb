@@ -28,5 +28,3 @@ Nexly::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
-
-DOMAIN_NAME = "http://localhost:3000"

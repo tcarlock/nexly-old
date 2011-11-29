@@ -31,7 +31,9 @@ class Business < ActiveRecord::Base
   # end
   
   # Validations
-  validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :on => :update
+  validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :website, :on => :update
+  validates :website, :presence => true, :uri_format => true 
+    
   after_validation :geocode
   before_create :set_api_token
   
@@ -61,9 +63,9 @@ class Business < ActiveRecord::Base
   end
   
   preferable do
-    boolean :is_toolbar_active, :default => true
-    boolean :is_reviewing_enabled, :default => true
-    boolean :is_recs_enabled, :default => true
+    boolean :is_toolbar_active, :default => false
+    boolean :is_reviewing_enabled, :default => false
+    boolean :is_recs_enabled, :default => false
   end
     
   def location
