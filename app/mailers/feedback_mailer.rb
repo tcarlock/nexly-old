@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default :from => "admin@nexly.com", :to => "tcarlock+admin@nexly.com", 
+  default :from => "admin@nexly.com", :to => "tcarlock+admin@nexly.com"
   
   def new_platform_suggestion_alert suggestion
     @suggestion = suggestion
