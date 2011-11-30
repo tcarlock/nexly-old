@@ -1,7 +1,7 @@
 <% content_for :styles do stylesheet_link_tag "review_responses" end %>
 
 <% content_for :page_header do "Post a Review Response" end %>
-<h4>Original review posted by <%= @review.user.display_name %>:</h4>
+<h4>Original review posted by <%= @review.name %>:</h4>
 <p class="original-text">
 	<%= @review.details %>
 </p>

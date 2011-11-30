@@ -24,7 +24,9 @@
 	</div>
 	<div class="footer">
 		<%= image_tag review.avatar.url(:tab) %>
-		Posted by <%= review.name %> on <%= review.created_at.to_s(:feed_date_year)%>
+		<span>
+			Posted by <%= review.name %> on <%= review.created_at.to_s(:feed_date_year)%>
+		</span>
 		<% if show_admin %>
 			<span class="rejected <%= !review.is_rejected ? 'hidden' : '' %>">
 				(This review has been rejected)

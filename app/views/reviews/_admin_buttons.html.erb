@@ -5,7 +5,9 @@
 		<% end %>
 	<% end %>
 <% end %>
-<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link", :title => "Submit review response", :id => "respond-review-" + review.id.to_s %>
+<div style="display:none;">
+	<%= link_to "", new_business_review_response_path(review.business, review), :class => "review-response-link", :title => "Submit review response", :id => "respond-review-" + review.id.to_s %>
+</div>
 <% if !review.is_rejected && !review.is_approved %>
 	<% if !review.is_rejected %>
 		<%= form_tag reject_business_review_path(review.business, review), :remote => true do |f| %>

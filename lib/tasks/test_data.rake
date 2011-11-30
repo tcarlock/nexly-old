@@ -52,6 +52,8 @@ namespace :app do
       business_id: 1
     )
     
+    user.avatar = File.open('/Users/tcarlock/Sites/IMG_4634-1.jpg')
+    
     #Create demo user, business and reviews
     user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
     user.reload

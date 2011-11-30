@@ -5,5 +5,6 @@ class ReviewResponsesController < ApplicationController
   end
 
   def create
+    
   end
 end
