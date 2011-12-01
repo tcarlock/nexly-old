@@ -52,13 +52,11 @@ namespace :app do
       business_id: 1
     )
     
-    user.avatar = File.open('/Users/tcarlock/Sites/IMG_4634-1.jpg')
-    
     #Create demo user, business and reviews
     user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
     user.reload
     
-    UserProfile.create!(
+    profile = UserProfile.create!(
       :user => user,
       :first_name => 'Tim', 
       :last_name => 'Carlock', 
@@ -76,6 +74,9 @@ namespace :app do
       :avatar_file_size => 3196303,
       :avatar_updated_at => '2011-08-02 20:46:45', 
       :screen_name => 'tcarlock')
+      
+    profile.avatar = File.open('/Users/tcarlock/Sites/IMG_4634-1.jpg')
+    profile.save
     
     biz = user.businesses.create!(
       :name => 'BCI Consulting',
@@ -96,7 +97,9 @@ namespace :app do
       :avatar_file_size => 3196303, 
       :avatar_updated_at => '2010-08-02 20:46:45',
       :created_at => '2010-08-02 20:46:45')
-        
+      
+    biz.avatar = File.open('/Users/tcarlock/Sites/logo.jpg')
+    biz.save
     biz.reload
   
     # Create review requests and reviews

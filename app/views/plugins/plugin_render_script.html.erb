@@ -22,8 +22,7 @@ var div = document.createElement("div");
 div.setAttribute("id", "nexly-toolbar");
 div.setAttribute("style", "height:45px;");
 div.setAttribute("data-network", "<%= network %>");
+div.setAttribute("data-tb-enabled", <%= is_toolbar_enabled %>);
+div.setAttribute("data-rev-enabled", <%= is_rev_enabled %>);
+div.setAttribute("data-rec-enabled", <%= is_rec_enabled %>);
 parent.document.body.appendChild(div);
-
-$(function() {
-	alert('test');
-})

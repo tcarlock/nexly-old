@@ -6,9 +6,6 @@
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
 		<ul>
-			<li>
-				<a class="rss" href="/dashboard"></a><!-- icon -->
-			</li>
 			<% if !@business.linked_in.empty? %>
 				<li>
 					<a class="link-button linkedin" href="<%= @business.linked_in %>"></a> 
@@ -31,11 +28,15 @@
 			<a href="#"></a>
 		</span>
 		<span id="reviews-btns" class="btn_container">
-			<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
-				<span>Post a Review</span>
+			<% if is_rev_enabled == true %>
+				<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
+					<span>Post a Review</span>
+				<% end %>
 			<% end %>
-			<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
-				<span>Tell Someone</span>
+			<% if is_rec_enabled == true %>
+				<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
+					<span>Tell Someone</span>
+				<% end %>
 			<% end %>
 		</span>
 		<span class="menu_title">

@@ -68,17 +68,17 @@
 						<span>
 							After initial setup you can turn the toolbar on and off without changing any code.
 						</span>
-						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:is_toolbar_active] ? 'checked="checked"' : '' %>>
+						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:is_toolbar_enabled] ? 'checked="checked"' : '' %>>
 						<label for="toolbar-activation">
 							Enable Toolbar
 						</label>
 						<input type="checkbox" id="review-enabling" <%= @business.preferences[:is_reviewing_enabled] ? 'checked="checked"' : '' %>>
 						<label for="review-enabling">
-							Enable Public Reviews
+							Enable &quot;Post a Review&quot;
 						</label>
-						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:is_toolbar_active] ? 'checked="checked"' : '' %>>
+						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:is_rec_enabled] ? 'checked="checked"' : '' %>>
 						<label for="rec-enabling">
-							Enable Recommendations
+							Enable &quot;Tell Someone&quot;
 						</label>
 					</div>
 				</div>

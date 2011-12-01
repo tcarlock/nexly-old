@@ -3,11 +3,32 @@ class PluginsController < ApplicationController
   before_filter :init_objects
   
   def toolbar
-    render :layout => false
+    is_rev_enabled = @business.preferences[:is_reviewing_enabled]
+    is_rec_enabled = @business.preferences[:is_rec_enabled]
+
+    render :layout => false,
+    :locals => { 
+      :network => @network, 
+      :root => @root, 
+      :is_rev_enabled => is_rev_enabled,
+      :is_rec_enabled => is_rec_enabled
+    }
   end
   
   def plugin_render_script
-    render :content_type => 'text/javascript', :layout => false, :locals => { :network => @network, :root => @root  }
+    is_toolbar_enabled = @business.preferences[:is_toolbar_enabled]
+    is_rev_enabled = @business.preferences[:is_reviewing_enabled]
+    is_rec_enabled = @business.preferences[:is_rec_enabled]
+    
+    render :content_type => 'text/javascript', 
+      :layout => false, 
+      :locals => { 
+        :network => @network, 
+        :root => @root, 
+        :is_toolbar_enabled => is_toolbar_enabled,
+        :is_rev_enabled => is_rev_enabled,
+        :is_rec_enabled => is_rec_enabled
+      }
   end
   
   def content_page_placeholder

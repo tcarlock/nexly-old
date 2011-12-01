@@ -28,17 +28,17 @@ class SettingsController < ApplicationController
   end
   
   def toggle_toolbar_activation
-    update_setting :is_toolbar_active, !@business.preferences[:is_toolbar_active]    
+    update_setting :is_toolbar_enabled 
     render :nothing => true
   end
   
   def toggle_public_reviews
-    update_setting :is_reviewing_enabled, !@business.preferences[:is_reviewing_enabled]    
+    update_setting :is_reviewing_enabled
     render :nothing => true
   end
   
   def toggle_public_recommendations
-    update_setting :is_recs_enabled, !@business.preferences[:is_recs_enabled]    
+    update_setting :is_rec_enabled
     render :nothing => true
   end
   
@@ -48,8 +48,9 @@ class SettingsController < ApplicationController
     @business = current_user.business
   end
   
-  def update_setting key, value
-    @business.preferences[key] = value
+  def update_setting key
+    @business.preferences[key] = !@business.preferences[key]
+      
     @business.save
   end
 end

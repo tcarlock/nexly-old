@@ -63,9 +63,9 @@ class Business < ActiveRecord::Base
   end
   
   preferable do
-    boolean :is_toolbar_active, :default => false
-    boolean :is_reviewing_enabled, :default => false
-    boolean :is_recs_enabled, :default => false
+    boolean :is_toolbar_enabled, :default => "0"
+    boolean :is_reviewing_enabled, :default => "0"
+    boolean :is_rec_enabled, :default => "0"
   end
     
   def location
