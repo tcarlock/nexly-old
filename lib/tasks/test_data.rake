@@ -75,7 +75,7 @@ namespace :app do
       :avatar_updated_at => '2011-08-02 20:46:45', 
       :screen_name => 'tcarlock')
       
-    profile.avatar = File.open('https://s3.amazonaws.com/nexly_avatar_dev/original/1/IMG_4634-1.jpg')
+    profile.avatar = "https://s3.amazonaws.com/nexly_avatar_dev/original/1/IMG_4634-1.jpg"
     profile.save
     
     biz = user.businesses.create!(
