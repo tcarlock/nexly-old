@@ -19,5 +19,5 @@ Application.create!(
 Platform.create!(:name => 'linked_in', :display_name => 'LinkedIn', :icon => 'linkedin.png', :display_order => 1)
 Platform.create!(:name => 'facebook', :display_name => 'Facebook', :icon => 'facebook.png', :display_order => 2)
 Platform.create!(:name => 'twitter', :display_name => 'Twitter', :icon => 'twitter.png', :display_order => 3)
-Platform.create!(:name => 'google', :display_name => 'Google Places', :icon => 'google.png', :display_order => 4)
+Platform.create!(:name => 'google', :display_name => 'Google Places', :icon => 'google.png', :is_available => false, :display_order => 4)
 Platform.create!(:name => 'google', :display_name => 'Google+', :icon => 'google_plus.png', :is_available => false, :display_order => 5)

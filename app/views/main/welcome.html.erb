@@ -82,49 +82,44 @@
 	<div id="signup-pane" class="homepage-pane">
 		<div id="signup-pane-inner">
 			<div id="signup-text">
-				<h1>We're really close to launching!</h1>
-				<p>
-					Provide us with your email address and we'll alert you as soon as we launch.  Don't worry, your 
-					information will stay private and we won't spam you.
-				</p>
 				<div style="display:none">
-					<h1>Why Not Sign Up? It's Easy and Free to Try.</h1>
+					<h1>We're really close to launching!</h1>
 					<p>
-						Actually there are only three steps. Plus once you're registered, visitors to our site will be 
-						able to find your business profile through our search tool. 
-					</p>
-					<p>
-						This is a new tool so we apologize for any bugs that we missed and we would love to hear 
-						your feedback.
+						Provide us with your email address and we'll alert you as soon as we launch.  Don't worry, your 
+						information will stay private and we won't spam you.
 					</p>
 				</div>
+				<h1>It's Easy and Free to Sign Up.</h1>
+				<p>
+					There are only two steps to register and you don't need a credit card to get started. We just launched so we apologize for any bugs that we missed and we would love to hear your feedback.
+				</p>
 			</div>
 			<div id="svc-req-form-outer">
-				<%= semantic_form_for @signup, :method => :post, :url => beta_signup_create_path, :remote => true do |f| %>
-					<%= f.inputs do %>
-					  <%= f.input :email , :label => false, :input_html => { :style => 'width:325px;', :placeholder => "Your email address" } %>
-				  <% end %>
-				  <%= f.buttons do %>
-					<%= f.commit_button 'Submit' %>
-				  <% end %>
-				<% end %>
 				<div style="display:none">
-					<h1>Step 1) Create an Account</h1>					
-					<%= semantic_form_for("user", :method => :post, :url => user_registration_path) do |f| %>
+					<%= semantic_form_for @signup, :method => :post, :url => beta_signup_create_path, :remote => true do |f| %>
 						<%= f.inputs do %>
-							<%= f.fields_for :profile_attributes do |profile_form| %>
-								<%= profile_form.input :first_name %>
-								<%= profile_form.input :last_name %>
-							<% end %>
-							<%= f.input :email %>
-							<%= f.input :password %>
-							<%= f.input :password_confirmation %>
-						<% end %>
-						<%= f.buttons do %>
-							<%= f.commit_button 'Create Your Account' %>
-						<% end %>
+						  <%= f.input :email , :label => false, :input_html => { :style => 'width:325px;', :placeholder => "Your email address" } %>
+					  <% end %>
+					  <%= f.buttons do %>
+						<%= f.commit_button 'Submit' %>
+					  <% end %>
 					<% end %>
 				</div>
+				<h1>Step 1 of 2 - Create an Account</h1>					
+				<%= semantic_form_for("user", :method => :post, :url => user_registration_path) do |f| %>
+					<%= f.inputs do %>
+						<%= f.fields_for :profile_attributes do |profile_form| %>
+							<%= profile_form.input :first_name %>
+							<%= profile_form.input :last_name %>
+						<% end %>
+						<%= f.input :email %>
+						<%= f.input :password %>
+						<%= f.input :password_confirmation %>
+					<% end %>
+					<%= f.buttons do %>
+						<%= f.commit_button 'Create Your Account' %>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 	</div>
