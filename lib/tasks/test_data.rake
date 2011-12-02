@@ -98,7 +98,7 @@ namespace :app do
       :avatar_updated_at => '2010-08-02 20:46:45',
       :created_at => '2010-08-02 20:46:45')
       
-    biz.avatar = File.open('/Users/tcarlock/Sites/logo.jpg')
+    biz.avatar = File.open('https://s3.amazonaws.com/nexly_avatar_dev/original/1/logo.jpg')
     biz.save
     biz.reload
   
