@@ -1,5 +1,9 @@
 class MainController < ApplicationController
-  skip_before_filter :authenticate_user!, :except => :dashboard
+  if Rails.env == "development" || Rails.env == "demo"
+    skip_before_filter :authenticate_user!
+  else
+    skip_before_filter :authenticate_user!, :except => :dashboard
+  end
   
   def welcome
     if signed_in?
