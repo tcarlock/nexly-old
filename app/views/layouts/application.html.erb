@@ -23,7 +23,11 @@
 </head>
 <body>
 	<div id="backdrop"></div>
-	<div id="feedback-tab"><%= link_to 'Feedback', feedback_path, :id => 'submit-feedback'  %></div>
+	<% if user_signed_in? %>
+		<div id="feedback-tab">
+			<%= link_to 'Feedback', feedback_path, :id => 'submit-feedback'  %>
+		</div>
+	<% end %>
 	<div id="container">
 		<div id="container-inner">
 			<div id="flash-outer">

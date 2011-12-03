@@ -13,6 +13,10 @@ class MainController < ApplicationController
   end
   
   def dashboard
+    if ENV['RAILS_ENV'] = "demo"
+      sign_in User.find(1)
+    end
+    
     @user = current_user
     @profile = current_user.profile
     @business = current_user.business
