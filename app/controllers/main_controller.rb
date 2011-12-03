@@ -13,7 +13,7 @@ class MainController < ApplicationController
   end
   
   def dashboard
-    if ENV['RAILS_ENV'] = "demo"
+    if Rails.env == "development" || Rails.env == "demo"
       sign_in User.find(1)
     end
     
