@@ -1,4 +1,5 @@
 class Suggestion < ActiveRecord::Base
+  validates_presence_of :details, :message => "Please complete this field"
 end
 
 # == Schema Information

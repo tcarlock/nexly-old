@@ -7,8 +7,12 @@ class Review < ActiveRecord::Base
   validates_presence_of :name, :email, :details, :rating
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
   validates_inclusion_of :rating, :in => 0..5, :message => "Must be from 0 to 5"
+  validates :email, :presence => true, :uniqueness => true, :email_format => true 
   
   has_attached_file :avatar, 
+  :storage => :s3,
+  :s3_credentials => S3_CREDENTIALS,
+  :path => "/:style/:id/:filename",
     :default_url => "/assets/avatars/default_user_:style.gif", 
     :styles => { 
       :thumb => ["50x50>", :png],

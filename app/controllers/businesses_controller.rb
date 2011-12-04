@@ -33,9 +33,7 @@ class BusinessesController < ApplicationController
       @business.capability_list = tags
     end
 
-    @business.update_attributes(params[:business])
-    
-    if @business.save
+    if @business.update_attributes(params[:business])
       redirect_to @business, :notice => 'Your business profile has been updated'
     else
       render :edit

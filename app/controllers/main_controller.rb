@@ -30,7 +30,7 @@ class MainController < ApplicationController
   end
   
   def redir
-    PageView.create!(:url => params[:url],
+    PageView.create(:url => params[:url],
         :business_id => params[:bId],
         :reference_id =>params[:rId],
         :link_type_id => params[:tId],
@@ -40,14 +40,16 @@ class MainController < ApplicationController
   end
   
   def suggest_platform
-    suggestion = PlatformSuggestion.create!(params[:platform_suggestion])
+    suggestion = PlatformSuggestion.create(params[:platform_suggestion])
 
-    suggestion.update_attributes!(:user_id => current_user.id) if user_signed_in?
+    if suggestion.valid?
+      suggestion.update_attributes(:user_id => current_user.id) if user_signed_in?
     
-    FeedbackMailer.new_platform_suggestion_alert(suggestion).deliver
+      FeedbackMailer.new_platform_suggestion_alert(suggestion).deliver
           
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
     end
   end
   
@@ -56,14 +58,18 @@ class MainController < ApplicationController
   end 
   
   def submit_feedback
-    suggestion = Suggestion.create!(params[:suggestion])
+    suggestion = Suggestion.create(params[:suggestion])
     
-    suggestion.update_attributes!(:user_id => current_user.id) if user_signed_in?
-    
-    FeedbackMailer.new_feedback_alert(suggestion).deliver
+    if suggestion.valid?
+      suggestion.update_attributes(:user_id => current_user.id) if user_signed_in?
+      
+      FeedbackMailer.new_feedback_alert(suggestion).deliver
           
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
+    else
+      render :feedback
     end
   end
   

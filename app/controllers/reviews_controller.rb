@@ -53,19 +53,22 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Business.find(params[:business_id]).reviews.create!(params[:review])
+    @review = Business.find(params[:business_id]).reviews.create(params[:review])
     
-    respond_to do |format|
-      format.html {
-        redirect_to(@review.business)
-      }
-      format.js
+    if @review.valid?
+      respond_to do |format|
+        format.html {
+          redirect_to(@review.business)
+        }
+        format.js
+      end
+    else
+      render :new
     end
   end
 
   def destroy
     @review.destroy
-    @review.save
     
     respond_to do |format|
       format.js
@@ -74,7 +77,6 @@ class ReviewsController < ApplicationController
   
   def approve
     @review.update_attributes(:is_approved => true)
-    @review.save
     
     respond_to do |format|
       format.js
@@ -83,7 +85,6 @@ class ReviewsController < ApplicationController
   
   def reject
     @review.update_attributes(:is_rejected => true)
-    @review.save
     
     respond_to do |format|
       format.js
@@ -92,7 +93,6 @@ class ReviewsController < ApplicationController
   
   def dispute
     @review.update_attributes(:is_under_review => true)
-    @review.save
     
     respond_to do |format|
       format.js
