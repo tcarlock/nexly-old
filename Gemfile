@@ -5,8 +5,6 @@ gem "rails", "3.1.0"
 # Bundle edge Rails instead:
 # gem "rails",     :git => "git://github.com/rails/rails.git"
 
-gem "mysql2"
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -30,6 +28,7 @@ gem "fb_graph"
 gem "linkedin", :branch => "2-0-stable"
 gem "faker", "~> 1.0.1"
 gem "preferable"
+gem "rinku"
 # gem "thinking-sphinx"
 
 # Use unicorn as the web server
@@ -42,6 +41,8 @@ gem "preferable"
 # gem "ruby-debug19", :require => "ruby-debug"
 
 group :development, :test do
+  gem "mysql2"
+  
   gem "rspec-rails", ">= 2.0.0.beta"
   gem "autotest"
   gem "autotest-rails"

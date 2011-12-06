@@ -1,10 +1,10 @@
 <h1>Recommend This Business To Someone</h1>
 <div id="new-rec-outer">
-	<%= semantic_form_for(@rec, :url => business_recommendations_path, :remote => true) do |f| %>
+	<%= semantic_form_for(@rec, :url => business_recommendations_path, :remote => true, :validate => true, ) do |f| %>
 		<%= f.inputs do %>
 		  <%= f.input :name , :label => "Your Name:" %>
 		  <%= f.input :email , :label => "Recipient's Email:" %>
-		  <%= f.input :message , :label => "Message:", :input_html => { :rows => 6 } %>
+		  <%= f.input :message , :label => "Message: (Optional)", :input_html => { :rows => 6 } %>
 		<% end %>
 		<%= f.buttons do %>
 			<%= f.commit_button 'Send Recommendation' %>

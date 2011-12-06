@@ -28,12 +28,12 @@
 			<a href="#"></a>
 		</span>
 		<span id="reviews-btns" class="btn_container">
-			<% if is_rev_enabled == true %>
+			<% if is_rev_enabled %>
 				<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
 					<span>Post a Review</span>
 				<% end %>
 			<% end %>
-			<% if is_rec_enabled == true %>
+			<% if tb_show_rec_btn %>
 				<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
 					<span>Tell Someone</span>
 				<% end %>

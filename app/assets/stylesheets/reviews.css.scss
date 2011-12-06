@@ -47,21 +47,10 @@ li.biz-review {
 .reject-review-link { background-image:url('/assets/tasks/cross-red-small.png'); }
 .approve-review-link { background-image:url('/assets/tasks/check-green-small.png'); }
 
-span.submitted {
-	display:block;
-	font-size:1.2em;
-	font-weight:bold;
-	margin-top:10px;
-}
-
 //Form styles
 #new-review-outer {
-	width:600px;
-	height:400px;
 }
 #new-rec-outer {
-	width:550px;
-	height:350px;
 }
 
 #reviews-view {

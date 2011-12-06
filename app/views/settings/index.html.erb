@@ -5,8 +5,8 @@
 <%= hidden_field_tag "display-pages", @display_pages %>
 <div id="admin-tabs">
 	<ul>
-		<li><a href="#tab-platforms">Manage Distribution Websites</a></li>
-		<li><a href="#tab-toolbar">Add Nexly Features to Your Site</a></li>
+		<li><a href="#tab-platforms">Manage Websites</a></li>
+		<li><a href="#tab-toolbar">Add Features to Your Site</a></li>
 	</ul>
 	<div id="tabs-1">
 		<ul id="subscriptions" class="standard-tiles" style="display:none;">
@@ -68,15 +68,15 @@
 						<span>
 							After initial setup you can turn the toolbar on and off without changing any code.
 						</span>
-						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:is_toolbar_enabled] ? 'checked="checked"' : '' %>>
+						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:enable_toolbar] ? 'checked="checked"' : '' %>>
 						<label for="toolbar-activation">
 							Enable Toolbar
 						</label>
-						<input type="checkbox" id="review-enabling" <%= @business.preferences[:is_reviewing_enabled] ? 'checked="checked"' : '' %>>
+						<input type="checkbox" id="review-enabling" <%= @business.preferences[:tb_show_review_btn] ? 'checked="checked"' : '' %>>
 						<label for="review-enabling">
 							Enable &quot;Post a Review&quot;
 						</label>
-						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:is_rec_enabled] ? 'checked="checked"' : '' %>>
+						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:tb_show_rec_btn] ? 'checked="checked"' : '' %>>
 						<label for="rec-enabling">
 							Enable &quot;Tell Someone&quot;
 						</label>

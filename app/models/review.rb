@@ -4,10 +4,10 @@ class Review < ActiveRecord::Base
   has_one :review_request
   has_one :review_response
   
-  validates_presence_of :name, :email, :details, :rating
+  validates_presence_of :name, :details, :rating
+  validates :email, :presence => true, :email_format => true
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
   validates_inclusion_of :rating, :in => 0..5, :message => "Must be from 0 to 5"
-  validates :email, :presence => true, :uniqueness => true, :email_format => true 
   
   has_attached_file :avatar, 
   :storage => :s3,

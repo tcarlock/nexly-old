@@ -28,17 +28,17 @@ class SettingsController < ApplicationController
   end
   
   def toggle_toolbar_activation
-    update_setting :is_toolbar_enabled 
+    update_setting :enable_toolbar 
     render :nothing => true
   end
   
   def toggle_public_reviews
-    update_setting :is_reviewing_enabled
+    update_setting :tb_show_review_btn
     render :nothing => true
   end
   
   def toggle_public_recommendations
-    update_setting :is_rec_enabled
+    update_setting :tb_show_rec_btn
     render :nothing => true
   end
   

@@ -1,10 +1,9 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :get_business, :only => [:index, :new, :create]
   before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
   
   def index
-    @business = Business.find(params[:business_id])
-    
     @view = (params[:v] || 1).to_i
     
     case @view
@@ -27,22 +26,34 @@ class ReviewsController < ApplicationController
   end
   
   def new
-    if !params[:token].nil?
-      token = params[:token]
-      
-      if !is_token_valid? token
-        render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
+    if signed_in?
+      if current_user.business.id == @business.id
+        render :text => "<strong>You cannot review your own business.</strong>", :layout => true
         return
       end
-        
-      if !is_review_submitted? token
-        render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
-        return
-      end
+    end
+
+    if @business.preferences[:tb_show_review_btn]   # Business allows public reviews
+      @review = @business.reviews.build()
+    else   # Business does not allow public reviews; check for invitation token  
+      if params[:token].nil?   # No token; don't allow review
+            render :text => "<strong>This business does not allow public reviews.</strong>", :layout => true
+          return
+      else   # Token supplied; validate
+        token = params[:token]
+    
+        if !is_token_valid? token   #Token invalid
+          render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
+          return
+        end
       
-      @review = Business.find(params[:business_id]).reviews.build(:review_request_id => ReviewRequest.find_by_token(token).id)
-    else
-      @review = Business.find(params[:business_id]).reviews.build()
+        if !is_review_submitted? token   #Review already submitted for this token
+          render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
+          return
+        end
+    
+        @review = @business.reviews.build(:review_request_id => ReviewRequest.find_by_token(token).id)
+      end
     end
     
     if params[:v] == 'popup'
@@ -53,9 +64,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Business.find(params[:business_id]).reviews.create(params[:review])
+    @review = @business.reviews.create(params[:review])
     
     if @review.valid?
+      ReviewMailer.new_review_alert(@review).deliver
+
       respond_to do |format|
         format.html {
           redirect_to(@review.business)
@@ -100,6 +113,12 @@ class ReviewsController < ApplicationController
   end
   
   private
+
+  def get_business
+    if params[:business_id] != nil
+      @business = Business.find(params[:business_id])
+    end
+  end
   
   def get_review
     @review = Review.find(params[:id])

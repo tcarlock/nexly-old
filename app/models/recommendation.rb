@@ -1,4 +1,7 @@
 class Recommendation < ActiveRecord::Base
+	belongs_to :business
+	
+	validates_presence_of :name, :email, :message => "Required Field", 
 end
 
 # == Schema Information
