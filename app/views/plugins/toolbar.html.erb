@@ -6,6 +6,11 @@
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
 		<ul>
+			<%= if Rails.env == "demo" %>
+				<li>
+					<a class="rss" href="/dashboard"></a><!-- icon -->
+				</li>
+			<% end %>
 			<% if !@business.linked_in.empty? %>
 				<li>
 					<a class="link-button linkedin" href="<%= @business.linked_in %>"></a> 
