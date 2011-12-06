@@ -2,7 +2,7 @@ class RecommendationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
 
   def new
-    if signed_in?
+    if Rails.env == "production" && signed_in?
       if current_user.business.id == @business.id
         render :text => "<strong>You cannot recommend your own business.</strong>", :layout => true
         return

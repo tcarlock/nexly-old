@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
   end
   
   def new
-    if signed_in?
+    if Rails.env == "production" && signed_in?
       if current_user.business.id == @business.id
         render :text => "<strong>You cannot review your own business.</strong>", :layout => true
         return
