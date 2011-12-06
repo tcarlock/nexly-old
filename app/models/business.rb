@@ -34,6 +34,7 @@ class Business < ActiveRecord::Base
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :website, :on => :update, :message => "This is required"
   validates :website, :facebook, :twitter, :google_plus, :linked_in, :uri_format => true
     
+  before_validation :sanitize_url
   after_validation :geocode
   before_create :set_api_token
   
@@ -95,6 +96,16 @@ class Business < ActiveRecord::Base
   
   def set_api_token
     self.api_token = rand(36**8).to_s(36)
+  end
+
+  def sanitize_url
+    [:website, :facebook, :twitter, :google_plus, :linked_in].each do |attr_sym|
+      if !self[attr_sym].nil?
+        unless self[attr_sym].include?("http://") || self[attr_sym].include?("https://")
+          self[attr_sym] = "http://" + self[attr_sym].to_s
+        end
+      end
+    end
   end
 end
 
