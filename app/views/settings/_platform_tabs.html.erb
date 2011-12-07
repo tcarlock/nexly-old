@@ -8,7 +8,7 @@
 						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
 						<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
 						<span>Disable <%= platform.display_name %></span>
-						<% if platform.id == 2 && current_user.facebook.accounts.length > 0 %>
+						<% if platform.name == "facebook" && current_user.facebook.accounts.length > 0 %>
 							<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
 								<%= image_tag "gear.png", :class => "settings", :title => "Manage settings" %>
 							<% end %>
