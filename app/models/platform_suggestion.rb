@@ -7,11 +7,10 @@ class PlatformSuggestion < ActiveRecord::Base
   before_validation :sanitize_url
 
   def sanitize_url
-      if !self.url.empty?
-        unless self.url.include?("http://") || self.url.include?("https://")
+    if !self.url.empty?
+    	unless self.url.include?("http://") || self.url.include?("https://")
           self.url = "http://" + self.url
-        end
-      end
+		end
     end
   end
 end
