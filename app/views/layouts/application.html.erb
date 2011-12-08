@@ -43,7 +43,7 @@
 					<div id="hdr-nav-outer">
 						<% if user_signed_in? %>
 							<ul id="hdr-nav" class="navigation app-nav">
-								<% unless @hide_menu %>
+								<% unless @hide_nav %>
 									<li><%= link_to "Dashboard", dashboard_path() %></li>
 								<% end %>
 								<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
