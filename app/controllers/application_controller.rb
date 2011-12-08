@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_biz
-    unless params[:controller] == "devise/sessions"
+    unless devise_controller?
       if signed_in? && current_user.business.nil?
         redirect_to new_business_path
       end
