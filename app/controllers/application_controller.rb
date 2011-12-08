@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_menu_visibility
-
-  if !devise_controller?
-    before_filter :check_for_biz   # Make sure user has created a biz profile
-  end
+  before_filter :check_for_biz if !devise_controller?   # Make sure user has created a biz profile
     
   protect_from_forgery
   
