@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
   before_filter :get_business, :except => [:index, :create]
   before_filter :set_menu_visibility, :only => [:new, :create]
-  skip_before_filter :
+  skip_before_filter :check_for_biz  # Filter in application_controller; skip to prevent infinite redirects
   
   def index
     @businesses = Business.search params[:q]
