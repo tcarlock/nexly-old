@@ -20,7 +20,7 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :user_name      => ENV['SENDGRID_USERNAME'],
   :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => ENV['SENDGRID_DOMAIN']
+  :domain         => "nexly.com"
 }
 
 Time::DATE_FORMATS.merge!(
