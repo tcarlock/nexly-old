@@ -3,8 +3,10 @@ class PlatformPagesController < ApplicationController
     @platform_id = params[:platform_id].to_i
     @active_pages = current_user.business.active_platforms.find(@platform_id).platform_pages
     
-    case @platform_id
-      when 2
+    platform_name = Platform.find(@platform_id).name
+
+    case platform_name
+      when "facebook"
         @accounts = current_user.facebook.accounts
     end
 
