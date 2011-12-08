@@ -7,11 +7,7 @@ class MainController < ApplicationController
   
   def welcome
     if signed_in?
-      if current_user.business.nil?
-        redirect_to new_business_path
-      else
-        redirect_to dashboard_path
-      end
+      redirect_to dashboard_path
     else
       @signup = BetaSignup.new()
     end

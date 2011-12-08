@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_menu_visibility
+  before_filter :check_for_biz
     
   protect_from_forgery
   
@@ -18,5 +19,11 @@ class ApplicationController < ActionController::Base
   
   def set_menu_visibility
     @hide_menu = (Rails.env == 'production') && (signed_in? && (current_user.profile.nil? || current_user.business.nil?))
+  end
+
+  def check_for_biz
+    if current_user.business.nil?
+      redirect_to new_business_path
+    end
   end
 end
