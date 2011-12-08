@@ -37,15 +37,12 @@ gem "rinku"
 # Deploy with Capistrano
 # gem "capistrano"
 
-# To use debugger
-# gem "ruby-debug19", :require => "ruby-debug"
-
 group :development, :test do
   gem "mysql2"
   
   gem "rspec-rails", ">= 2.0.0.beta"
-  gem "autotest"
-  gem "autotest-rails"
+  gem "minitest"
+  gem "watchr"
 
   gem "ruby-debug19", :require => "ruby-debug"
   gem "turn", :require => false

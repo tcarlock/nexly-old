@@ -4,13 +4,11 @@ one:
   platform_id: 1
   token: MyString
   secret: MyString
-  authenticatable: 
 
 two:
   platform_id: 1
   token: MyString
   secret: MyString
-  authenticatable: 
 
 # == Schema Information
 #

@@ -7,7 +7,11 @@ class MainController < ApplicationController
   
   def welcome
     if signed_in?
-      redirect_to dashboard_path
+      if current_user.business.nil?
+        redirect_to new_business_path
+      else
+        redirect_to dashboard_path
+      end
     else
       @signup = BetaSignup.new()
     end
@@ -17,7 +21,7 @@ class MainController < ApplicationController
   end
   
   def dashboard
-    if Rails.env == "development" || Rails.env == "demo"
+    if Rails.env == "development" || Rails.env == "demo" || Rails.env == "test"
       sign_in User.find(1)
     end
     

@@ -6,7 +6,7 @@
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
 		<ul>
-			<% if Rails.env == "demo" %>
+			<% if Rails.env != "production" %>
 				<li>
 					<a class="rss" href="/dashboard"></a><!-- icon -->
 				</li>

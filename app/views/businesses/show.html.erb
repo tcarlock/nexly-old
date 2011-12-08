@@ -25,10 +25,10 @@
 			Links
 		</li>
 		<li>
-			<%= create_redir_link(@business.website.website.truncate(25), @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.website.truncate(25), create_redir_link(@business.website, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.facebook.truncate(25), create_redir_link(@business.facebook.website.truncate(25), @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.facebook.truncate(25), create_redir_link(@business.facebook, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
 			<%= link_to @business.twitter.truncate(25), create_redir_link(@business.twitter, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
