@@ -45,7 +45,7 @@ module Nexly
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
-    config.action_mailer.default_url_options = { :host => "nexly.herokuapp.com" }
+    config.action_mailer.default_url_options = { :host => "nexly.com" }
   end
 end
 
