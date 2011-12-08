@@ -40,31 +40,29 @@
 					<%= image_tag "home.png", :id => "home-icon" %>
 				</a>
 				<div id="hdr-controls">
-					<% unless @hide_menu %>
-						<div id="hdr-nav-outer">
-							<% if user_signed_in? %>
-								<ul id="hdr-nav" class="navigation app-nav">
-									<% unless @hide_menu %>
-										<li><%= link_to "Dashboard", dashboard_path() %></li>
-									<% end %>
-									<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-								</ul>
-							<% else %>
-								<ul id="hdr-nav" class="navigation site-nav">
-									<li><%= link_to "Register", new_user_registration_path, :id => "register-link" %></li>
-									<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
-								</ul>
-							<% end %>
-							<div class="clearfix"></div>
-						</div>
-						<div id="search-outer">
-							<%= form_tag businesses_path, :method => "get" do %>
-								<%= text_field_tag :q %>
-								<%= submit_tag "", :id => "search-btn" %>
-							<% end %>
-							<div class="clearfix"></div>
-						</div>
-					<% end %>
+					<div id="hdr-nav-outer">
+						<% if user_signed_in? %>
+							<ul id="hdr-nav" class="navigation app-nav">
+								<% unless @hide_menu %>
+									<li><%= link_to "Dashboard", dashboard_path() %></li>
+								<% end %>
+								<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+							</ul>
+						<% else %>
+							<ul id="hdr-nav" class="navigation site-nav">
+								<li><%= link_to "Register", new_user_registration_path, :id => "register-link" %></li>
+								<li><%= link_to "Log In", new_user_session_path, :id => "login-link" %></li>
+							</ul>
+						<% end %>
+						<div class="clearfix"></div>
+					</div>
+					<div id="search-outer" style="display:none;">
+						<%= form_tag businesses_path, :method => "get" do %>
+							<%= text_field_tag :q %>
+							<%= submit_tag "", :id => "search-btn" %>
+						<% end %>
+						<div class="clearfix"></div>
+					</div>
 				</div>
 			</div>
 			<div id="main-content" class="clearfix">
