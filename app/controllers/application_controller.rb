@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_menu_visibility
-  before_filter :check_for_biz if !devise_controller?   # Make sure user has created a biz profile
+  before_filter :check_for_biz    # Make sure user has created a biz profile
     
   protect_from_forgery
   
@@ -22,8 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_biz
-    if current_user.business.nil?
-      redirect_to new_business_path
+    unless params[:controller] == "users"
+      if current_user.business.nil?
+        redirect_to new_business_path
+      end
     end
   end
 end
