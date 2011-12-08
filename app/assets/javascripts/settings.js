@@ -19,7 +19,7 @@ $(function() {
 		$.post('/settings/toggle_public_recommendations');
 	});
 	
-	if ($('#display-pages').val() == 'true') {
+	if ($('#display-fb-pages').val() == 'true') {
 		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
 	};
 	

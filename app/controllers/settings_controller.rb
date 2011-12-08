@@ -3,16 +3,23 @@ class SettingsController < ApplicationController
   
   def index
     @root = DOMAIN_NAMES[Rails.env]
-    
-    @display_pages = params[:display_pages].nil? ? false : true   # Controls whether popup is displayed for user to select fanpages
-
     @business = current_user.business
     
     @nexly_apps = Application.where(:is_public => true)
     @enabled_apps = @business.applications
 
     @platforms = Platform.where(:is_available => true).order(:display_order)
-    @enabled_platforms = current_user.authentications
+    @enabled_platforms = @business.active_platforms
+
+    fb_platform_id = Platform.find_by_name("facebook").id
+    fb_platform = @enabled_platforms.find(fb_platform_id)
+
+    if !@enabled_platforms.empty? && !fb_platform.nil? && fb_platform.platform_pages.count == 0
+      @display_fb_pages = true   # Controls whether popup is displayed for user to select fanpages
+    else
+      @display_fb_pages = false
+    end
+
     @platform_suggestion = PlatformSuggestion.new
     
     @plugin_bootstrap_script = render_to_string :partial => 'plugins/plugin_bootstrap_script', :locals => { :network => @business.api_token, :root => @root }
