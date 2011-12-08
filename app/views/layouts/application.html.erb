@@ -43,12 +43,12 @@
 					<% unless @hide_menu %>
 						<div id="hdr-nav-outer">
 							<% if user_signed_in? %>
-								<% unless @hide_menu %>
-									<ul id="hdr-nav" class="navigation app-nav">
+								<ul id="hdr-nav" class="navigation app-nav">
+									<% unless @hide_menu %>
 										<li><%= link_to "Dashboard", dashboard_path() %></li>
-										<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-									</ul>
-								<% end %>
+									<% end %>
+									<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+								</ul>
 							<% else %>
 								<ul id="hdr-nav" class="navigation site-nav">
 									<li><%= link_to "Register", new_user_registration_path, :id => "register-link" %></li>

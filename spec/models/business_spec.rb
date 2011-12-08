@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Business do
 	before(:each) do
-		biz = Business.new
+		@biz = Business.new
 	end
 
-	it "should not validate without key business and contact details" do
+	it "should not validate without required fields" do
 
 	end
 
