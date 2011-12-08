@@ -11,11 +11,13 @@ class SettingsController < ApplicationController
     @platforms = Platform.where(:is_available => true).order(:display_order)
     @enabled_platforms = @business.active_platforms
 
-    fb_platform_id = Platform.find_by_name("facebook").id
-    fb_platform = @enabled_platforms.find(fb_platform_id)
+    if !@enabled_platforms.empty?
+      fb_platform_id = Platform.find_by_name("facebook").id
+      fb_platform = @enabled_platforms.where(:id => fb_platform_id).first
 
-    if !@enabled_platforms.empty? && !fb_platform.nil? && fb_platform.platform_pages.count == 0
-      @display_fb_pages = true   # Controls whether popup is displayed for user to select fanpages
+      if !fb_platform.nil? && fb_platform.platform_pages.count > 0
+        @display_fb_pages = true    # Controls whether popup is displayed for user to select fanpages
+      end
     else
       @display_fb_pages = false
     end
