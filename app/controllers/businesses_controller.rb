@@ -1,6 +1,7 @@
 class BusinessesController < ApplicationController
   before_filter :get_business, :except => [:index, :create]
   before_filter :set_menu_visibility, :only => [:new, :create]
+  skip_before_filter :
   
   def index
     @businesses = Business.search params[:q]
