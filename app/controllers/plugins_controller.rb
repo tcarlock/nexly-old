@@ -1,5 +1,6 @@
 class PluginsController < ApplicationController
   skip_before_filter :authenticate_user!
+  skip_before_filter :check_for_biz
   before_filter :init_objects
   
   def toolbar

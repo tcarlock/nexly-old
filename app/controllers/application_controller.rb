@@ -23,8 +23,9 @@ class ApplicationController < ActionController::Base
 
   def check_for_biz
     unless params[:controller] == "users"
-      if current_user.business.nil?
-        redirect_to new_business_path
+      if signed_in? && current_user.business.nil?
+          redirect_to new_business_path
+        end
       end
     end
   end
