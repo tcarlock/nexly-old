@@ -1,5 +1,23 @@
 class Business < ActiveRecord::Base
+  attr_accessor :remove_avatar, :capabilities_string, :update_tags
+
+  acts_as_taggable
+  acts_as_taggable_on :capabilities
+  
+  geocoded_by :address
+
   # Associations
+  has_attached_file :avatar,
+    :storage => :s3,
+    :s3_credentials => S3_CREDENTIALS,
+    :path => "/:style/:id/:filename",
+    :default_url => "/assets/avatars/default_biz_:style.gif", 
+    :styles => { 
+      :large => ["150x150>", :png], 
+      :small => ["100x100>", :png], 
+      :thumb => ["50x50>", :png]
+    }
+
   has_many :business_users
   has_many :users, :through => :business_users
   
@@ -10,14 +28,18 @@ class Business < ActiveRecord::Base
   has_many :active_platforms, :source => :platform, :foreign_key => "platform_id", :through => :authentications
     
   has_many :recommendations
+
   has_many :reviews
-  has_many :review_requests
   has_many :pending_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ? AND is_rejected = ?', false, false]
   has_many :approved_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_approved = ?', true]
   has_many :rejected_reviews, :class_name => "Review", :foreign_key => "business_id", :conditions => ['is_rejected = ?', true]
+
+  has_many :review_requests
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
   
+  has_many :news_posts
+
   has_many :links
   has_many :page_views
   
@@ -38,30 +60,7 @@ class Business < ActiveRecord::Base
   after_validation :geocode
   before_create :set_api_token
   
-  has_attached_file :avatar,
-    :storage => :s3,
-    :s3_credentials => S3_CREDENTIALS,
-    :path => "/:style/:id/:filename",
-    :default_url => "/assets/avatars/default_biz_:style.gif", 
-    :styles => { 
-      :large => ["150x150>", :png], 
-      :small => ["100x100>", :png], 
-      :thumb => ["50x50>", :png]
-    }
-  
-  acts_as_taggable
-  acts_as_taggable_on :capabilities
-  
-  geocoded_by :address
-
-  attr_accessor :remove_avatar, :capabilities_string, :update_tags
-  
   before_save :perform_avatar_removal
-  
-  def perform_avatar_removal 
-    self.avatar = nil if self.remove_avatar=="1" && !self.avatar.dirty? 
-    true 
-  end
   
   preferable do
     boolean :enable_toolbar, :default => false
@@ -93,6 +92,11 @@ class Business < ActiveRecord::Base
   end
   
   private
+  
+  def perform_avatar_removal 
+    self.avatar = nil if self.remove_avatar=="1" && !self.avatar.dirty? 
+    true 
+  end
   
   def set_api_token
     self.api_token = rand(36**8).to_s(36)
@@ -137,5 +141,6 @@ end
 #  avatar_file_size    :integer(4)
 #  avatar_updated_at   :datetime
 #  phone               :string(255)
+#  preferences         :text
 #
 

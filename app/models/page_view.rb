@@ -3,7 +3,7 @@ class PageView < ActiveRecord::Base
   belongs_to :platform
   
   def self.page_types
-    {:profile  => 1, :review => 2}
+    {:profile  => 1, :review => 2, :news => 3}
   end
   
   validates_presence_of :url

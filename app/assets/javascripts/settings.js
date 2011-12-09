@@ -1,6 +1,4 @@
 $(function() {
-	$('#admin-tabs').tabs();
-
 	$('#fb-pages-link').colorbox();
 
 	$('input.page-select').live("change", function() {

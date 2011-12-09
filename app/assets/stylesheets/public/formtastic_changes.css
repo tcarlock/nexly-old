@@ -24,6 +24,6 @@ form.formtastic fieldset > ol li { padding:0.2em 0; margin:0em 0 0.3em 0; } /* p
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset label { font-size:1.1em; line-height:1.6em; font-weight:bold; padding-right:10px; }
-form.formtastic p.undefined { display:inline-block; margin-left:15px; }
+form.formtastic p.undefined { display:inline-block; margin:0 60px 0 15px; float:right;}
 
 li.commit { float:right !important; padding-top:10px !important; }

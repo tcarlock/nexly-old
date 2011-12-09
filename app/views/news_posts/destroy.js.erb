@@ -1,0 +1,6 @@
+var li = $('#news-post-<%= params[:id] %>');
+
+$('.item-count').text(parseInt($('.item-count').text()) - 1);
+li.fadeOut(500, function() {
+	$(this).slideUp(500).remove();
+});

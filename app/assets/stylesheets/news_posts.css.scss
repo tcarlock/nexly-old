@@ -1,0 +1,17 @@
+//List styles
+li.news-post {
+	position:relative;
+
+	.footer {
+		font-size:.9em;
+		margin-top:10px;
+		
+		* {
+			vertical-align:middle;
+		}
+	}
+	
+}
+#manage-reqs-link { background-image:url('/assets/tasks/mail.png'); }
+
+.delete-post-link { background-image:url('/assets/tasks/cross-red-small.png'); }

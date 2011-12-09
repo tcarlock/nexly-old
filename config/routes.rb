@@ -9,6 +9,7 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     resource :recommendations, :only => [:new, :create]
+    resources :review_requests, :except => [:update, :edit]
     resources :reviews, :except => [:update, :edit] do
       member do
         post :dispute, :approve, :reject
@@ -17,7 +18,7 @@ Nexly::Application.routes.draw do
       resources :review_responses, :only => [:new, :create], :as => :responses
     end
     
-    resources :review_requests, :except => [:update, :edit]
+    resources :news, :controller => :news_posts
     resources :analytics, :only => :index, :controller => :analytics
   end
   

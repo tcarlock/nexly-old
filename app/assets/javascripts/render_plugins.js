@@ -1,4 +1,9 @@
-try {	
+try {
+	if ($(".nexly-content", parent.document).length > 0) {
+		var pluginContainer = $(".nexly-content", parent.document); 
+		pluginContainer.load("/plugins/render_content_page/?app=" + pluginContainer.attr('data-app-id') + "&network=" + pluginContainer.attr('data-network'));
+	}
+
 	var tbWrapper = $("#nexly-toolbar", parent.document);
 	
 	if (tbWrapper.attr('data-tb-enabled') == "true") {

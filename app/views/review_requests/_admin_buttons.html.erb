@@ -1,5 +1,3 @@
-<% if(review_request.business.is_user_admin?(current_user)) %>
-	<%= form_tag business_review_request_path(review_request.business, review_request), :remote => true, :method => :delete do |f| %>
-			<a class="control-link delete-request-link" title="Cancel this request"></a>
-	<% end %>
+<%= form_tag business_review_request_path(review_request.business, review_request), :remote => true, :method => :delete do |f| %>
+	<a class="control-link delete-request-link" title="Cancel this request"></a>
 <% end %>

@@ -1,0 +1,10 @@
+<%= link_to "Post News Item", new_business_news_path(@business) %>
+
+<% if @posts.empty? %>
+	<span class="no-records">There are no news items</span>
+<% else %>
+	<ul id="news-posts" class="standard-list">
+		<%= render :partial => 'news_posts/post', :collection => @posts, :locals => { :show_admin => true, :truncate_review => false } %>
+	</ul>
+	<%= render :partial => 'shared/pager', :locals => { :items => @posts, :label => "news post" } %>
+<% end %>

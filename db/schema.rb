@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111126200343) do
+ActiveRecord::Schema.define(:version => 20111209190640) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -90,6 +90,14 @@ ActiveRecord::Schema.define(:version => 20111126200343) do
 
   add_index "links", ["in_url"], :name => "index_links_on_in_url"
 
+  create_table "news_posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "page_views", :force => true do |t|
     t.text     "url"
     t.integer  "business_id"
@@ -98,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20111126200343) do
     t.integer  "platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ip_address"
   end
 
   create_table "platform_pages", :force => true do |t|

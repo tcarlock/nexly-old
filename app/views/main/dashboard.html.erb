@@ -1,5 +1,9 @@
 <% content_for :styles do stylesheet_link_tag "main", "reviews" end %>
 
+<style type="text/css">
+	.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
+	.ui-widget-content { border: 0px solid #aaaaaa; }
+</style>
 <div id="profile-details-pane" class="left-col">
 	<div id="avatar-outer">
 		<%= raw display_logo(@business, :large) %>
@@ -21,55 +25,55 @@
 	</ul>
 </div>
 <div id="dashboard-content-pane" class="right-col">
-	<div id="biz-vitals" class="content-panel">
-		<ul id="stats-tab" class="profile-details clearfix">
-			<li class="header">
-				<%= link_to "Review Stats", business_analytics_path(@business) %>
-			</li>
-			<li>
-				<% if @business.reviews.empty? %>
-					<span class="no-records">There are no reviews at this time</span>
-				<% else %>
-					<ul>
-						<%= render :partial => 'dashboard/review_stats' %>
-					</ul>
-				<% end %>
-			</li>
-		</ul>
-		<ul id="social-tab" class="profile-details clearfix">
-			<li class="header">
-				<%= link_to "Traffic Stats", business_analytics_path(@business) %>
-				<% if @traffic.page_views.count > 0 %>
-					<span class="date-range">
-						<%= @traffic.start_date.to_s(:stats_date) %> to 
-						<%= @traffic.end_date.to_s(:stats_date) %>
-					</span>
-				<% end %>			
-			</li>
-			<li>
-				<% if @traffic.page_views.count == 0 %>
-					<span class="no-records">There is no traffic data at this time</span>
-				<% else %>
-					<ul>
-						<%= render :partial => 'dashboard/traffic_stats' %>
-					</ul>
-				<% end %>
-			</li>
-		</ul>
-	</div>
-	<div class="content-panel">
-		<h3>
-			Reviews Pending Approval
-			<%= link_to "Manage Requests", business_review_requests_path(@business) %>
-			<%= link_to "Manage Reviews", business_reviews_path(@business) %>
-		</h3>
-		<% if @business.reviews.empty? %>
-			<span class="no-records">There are no reviews pending approval</span>
-		<% else %>
-			<ul id="biz-reviews" class="standard-list">
-				<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
+		<div id="biz-vitals" class="content-panel">
+			<ul id="stats-tab" class="profile-details clearfix">
+				<li class="header">
+					<%= link_to "Review Stats", business_analytics_path(@business) %>
+				</li>
+				<li>
+					<% if @business.reviews.empty? %>
+						<span class="no-records">There are no reviews at this time</span>
+					<% else %>
+						<ul>
+							<%= render :partial => 'dashboard/review_stats' %>
+						</ul>
+					<% end %>
+				</li>
 			</ul>
-			<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review" } %>
-		<% end %>
-	</div>
+			<ul id="social-tab" class="profile-details clearfix">
+				<li class="header">
+					<%= link_to "Traffic Stats", business_analytics_path(@business) %>
+					<% if @traffic.page_views.count > 0 %>
+						<span class="date-range">
+							<%= @traffic.start_date.to_s(:stats_date) %> to 
+							<%= @traffic.end_date.to_s(:stats_date) %>
+						</span>
+					<% end %>			
+				</li>
+				<li>
+					<% if @traffic.page_views.count == 0 %>
+						<span class="no-records">There is no traffic data at this time</span>
+					<% else %>
+						<ul>
+							<%= render :partial => 'dashboard/traffic_stats' %>
+						</ul>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+		<div class="content-panel">
+			<h3>
+				Reviews Pending Approval
+				<%= link_to "Manage Requests", business_review_requests_path(@business) %>
+				<%= link_to "Manage Reviews", business_reviews_path(@business) %>
+			</h3>
+			<% if @business.reviews.empty? %>
+				<span class="no-records">There are no reviews pending approval</span>
+			<% else %>
+				<ul id="biz-reviews" class="standard-list">
+					<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
+				</ul>
+				<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review" } %>
+			<% end %>
+		</div>
 </div>

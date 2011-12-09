@@ -25,7 +25,8 @@ class MainController < ApplicationController
     @profile = current_user.profile
     @business = current_user.business
     @platforms = Platform.where(:is_available => true)
-    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)    
+    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    @posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:page])
     @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max, DateTime.current)
   end
   
@@ -34,7 +35,8 @@ class MainController < ApplicationController
         :business_id => params[:bId],
         :reference_id =>params[:rId],
         :link_type_id => params[:tId],
-        :platform_id => params[:pId])
+        :platform_id => params[:pId],
+        :ip_address => request.env['REMOTE_ADDR'])
     
     redirect_to params[:url]
   end

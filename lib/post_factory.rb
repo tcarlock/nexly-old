@@ -34,11 +34,17 @@ class PostFactory
   
   def generate_post resource, format
     pId = Platform.find_by_name(format.to_s).id
+    redir_url = @business.website
     
     if resource.class == Review
-      self.full_link = create_redir_link(@business.website, @business.id, resource.id, PageView.page_types[:review], pId)
+      self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:review], pId)
       self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
       message = "A new review has been posted for #{@business.name}: " + resource.details
+      name = "View our website"
+    elsif resource.class == NewsPost
+      self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:news], pId)
+      self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
+      message = "#{@business.name} has posted a news post: " + resource.content
       name = "View our website"
     end
 

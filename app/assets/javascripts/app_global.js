@@ -127,6 +127,8 @@ $(function(){
 		$(this).closest('form').submit();
 	    return false; 
 	});
+
+	$('#admin-tabs').tabs();
 	
 	$('#submit-feedback').colorbox({transition:'fade', speed:500, modal: true});
 		
