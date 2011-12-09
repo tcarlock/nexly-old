@@ -1,8 +1,8 @@
 class PlatformSuggestion < ActiveRecord::Base
   belongs_to :user
   
-  validates_presence_of :message => ""
-  validates :url, :presence => true, :uri_format => true
+  validates_presence_of :url, :message => ""
+  validates :url, :uri_format => true
 
   before_validation :sanitize_url
 
