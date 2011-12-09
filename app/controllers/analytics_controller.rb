@@ -1,7 +1,7 @@
 class AnalyticsController < ApplicationController
   def index
       business = Business.find(params[:business_id])
-      @traffic = business.traffic_browser([business.created_at, 12.months.ago].max.beginning_of_month, DateTime.current.beginning_of_month)
+      @traffic = business.traffic_browser([business.created_at, 12.months.ago].max, DateTime.current)
 
       # @total_series = @traffic.get_time_series(TrafficDetails.time_series[:monthly])
       @review_series = @traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:review]).get_time_series(TrafficDetails.time_series[:monthly])
