@@ -5,7 +5,7 @@ class ReviewRequest < ActiveRecord::Base
   
   before_create :set_token
   
-  validates :email, :presence => true, :uniqueness => true, :email_format => true 
+  validates :email, :presence => true, :email_format => true 
   
   def set_token
     self.token = rand(36**8).to_s(36)
