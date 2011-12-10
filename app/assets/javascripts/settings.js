@@ -1,5 +1,6 @@
 $(function() {
 	$('#fb-pages-link').colorbox();
+	$('.screen-cap').colorbox();
 
 	$('input.page-select').live("change", function() {
 		$.post('/platforms/' + $('#platform-id').val() + '/pages/' + $(this).attr('id') + '/toggle_publishing');
@@ -25,6 +26,9 @@ $(function() {
 		if(!$(this).siblings('div.contents').is(':visible')) {
 			$('.integration-panels div.contents').slideUp(200);
 			$(this).siblings('div.contents').slideDown(350);
+
+			$("#tab-plugins div.details-text div").hide();
+			$("#" + $(this).attr('rel')).fadeIn(700);
 		}
 	});
 	

@@ -5,7 +5,7 @@
 		</div>
 	<% end %>
 	<p>
-		<%= truncate_post ? truncate(post.content, :length => 40) : post.content %>
+		<%= raw truncate_post ? truncate(post.content, :length => 40) : auto_link(post.content) %>
 	</p>
 	<div class="footer">
 		<span>

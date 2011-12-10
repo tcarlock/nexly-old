@@ -1,4 +1,4 @@
-<% content_for :styles do stylesheet_link_tag "main", "reviews" end %>
+<% content_for :styles do stylesheet_link_tag "main", "reviews", "news_posts" end %>
 
 <style type="text/css">
 	.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
@@ -25,6 +25,12 @@
 	</ul>
 </div>
 <div id="dashboard-content-pane" class="right-col">
+	<div id="admin-tabs">
+		<ul>
+			<li><a href="#tab-reviews">Reviews</a></li>
+			<li><a href="#tab-news">News Posts</a></li>
+		</ul>
+	<div id="tab-reviews">
 		<div id="biz-vitals" class="content-panel">
 			<ul id="stats-tab" class="profile-details clearfix">
 				<li class="header">
@@ -76,4 +82,21 @@
 				<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review" } %>
 			<% end %>
 		</div>
+	</div>
+	<div id="tab-news">
+		<div class="content-panel">
+			<h3>
+				Recent News Posts
+				<%= link_to "Post News Item", new_business_news_path(@business) %>
+			</h3>
+			<% if @posts.empty? %>
+				<span class="no-records">There are no news items</span>
+			<% else %>
+				<ul id="news-posts" class="standard-list">
+					<%= render :partial => 'news_posts/post', :collection => @posts, :locals => { :show_admin => true, :truncate_post => false } %>
+				</ul>
+				<%= render :partial => 'shared/pager', :locals => { :items => @posts, :label => "news post" } %>
+			<% end %>
+		</div>
+	</div>
 </div>

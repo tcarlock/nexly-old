@@ -1,6 +1,5 @@
 #subscriptions,
-#app-options, 
-#services {
+#app-options {
 	margin:0;
 	padding:7px 0 25px 0;
 	display:block;
@@ -49,6 +48,7 @@
 		position:absolute;
 		top:0;
 		right:0;
+		display:block;
 		
 		h3 {
 			color:#0A2E58;
@@ -57,9 +57,19 @@
 		p { 
 			margin-bottom:15px;
 			padding:0;
+			line-height:1.2em;
 		}
 	}
 }
+
+.screen-cap {
+	display:block;
+	height:168px;
+	width:142px;
+	margin:7px auto;
+	display:none;
+}
+
 #platforms {
   	padding-bottom:7px;
 
@@ -177,13 +187,19 @@
 		
 		span {
 			display:block;
-			margin:7px 0;
+			margin:7px 0 12px 0;
 		}
 	}
 	
 	label {
 		font-weight:normal;
 	}
+}
+#tab-plugins .details-text div {
+	display:none;
+}
+#tab-plugins .details-text div:nth-child(1) {
+	display:block;
 }
 .integration-panels:nth-child(1) {
 	div.contents {

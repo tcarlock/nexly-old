@@ -40,7 +40,7 @@ class Business < ActiveRecord::Base
   
   has_many :news_posts
 
-  has_many :links
+  has_many :tracking_links
   has_many :page_views
   
   # Sphinx indexes

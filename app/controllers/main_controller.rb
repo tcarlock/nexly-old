@@ -77,7 +77,7 @@ class MainController < ApplicationController
   
   def test_tweet
     social = PostFactory.new(current_user)
-    social.post_to_twitter! current_user.business.reviews.first
+    social.post_to_twitter current_user.business.reviews.first
 
     Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
     
@@ -88,7 +88,7 @@ class MainController < ApplicationController
   
   def test_li_update
     social = PostFactory.new(current_user)
-    social.post_to_linkedin! current_user.business.reviews.first
+    social.post_to_linkedin current_user.business.reviews.first
 
     Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
     
@@ -99,7 +99,7 @@ class MainController < ApplicationController
   
   def test_fb_post
     social = PostFactory.new(current_user)
-    social.post_to_facebook! current_user.business.reviews.first
+    social.post_to_facebook current_user.business.reviews.first
 
     Link.find_or_create_by_in_url(:in_url => social.short_link, :out_url => social.full_link)
     

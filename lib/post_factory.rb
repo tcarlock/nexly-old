@@ -6,7 +6,13 @@ class PostFactory
     @business = @current_user.business
   end
   
-  def post_to_facebook! resource
+  def post_to_all resource 
+    self.post_to_facebook resource
+    self.post_to_linkedin resource
+    self.post_to_twitter resource
+  end
+
+  def post_to_facebook resource
     if @current_user.facebook.nil?
       return false
     else
@@ -14,7 +20,7 @@ class PostFactory
     end
   end
   
-  def post_to_linkedin! resource
+  def post_to_linkedin resource
     if @current_user.linkedin.nil?
       return false
     else
@@ -22,7 +28,7 @@ class PostFactory
     end
   end
   
-  def post_to_twitter! resource
+  def post_to_twitter resource
     if @current_user.twitter.nil?
       return false
     else
@@ -32,10 +38,11 @@ class PostFactory
   
   private
   
-  def generate_post resource, format
-    pId = Platform.find_by_name(format.to_s).id
+  def generate_post resource, platform
+    pId = Platform.find_by_name(platform.to_s).id
     redir_url = @business.website
     
+    # Create post contents and tracking link
     if resource.class == Review
       self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:review], pId)
       self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
@@ -48,7 +55,11 @@ class PostFactory
       name = "View our website"
     end
 
-    case format
+    # Save tracking link
+    TrackingLink.find_or_create_by_in_url(:in_url => self.short_link, :out_url => self.full_link)
+
+    # Publish post
+    case platform
       when :facebook
         # Get pages user's selected to post to
         platform_id = Platform.find_by_name("facebook").id

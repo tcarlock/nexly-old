@@ -239,7 +239,7 @@ ul.navigation li.active a {
 	position:relative;
 	clear:left;
 	margin-bottom:5px;
-	border-bottom:1px solid #D8D5D5;
+	border-bottom:1px dotted #D8D5D5;
 }
 .standard-list > li .footer {
 	font-size:.9em;
@@ -357,9 +357,8 @@ ul.navigation li.active a {
 		color:#444;
 		
 		a {
-			margin-left:10px;
+			margin:0 7px;
 			float:right;
-			margin-left:13px;
 		}
 	}
 }
