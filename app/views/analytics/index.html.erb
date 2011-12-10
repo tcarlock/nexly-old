@@ -14,7 +14,7 @@
 			chart: {
 				renderTo: 'traffic-chart',
 				defaultSeriesType: 'column',
-				marginBottom: 70
+				marginBottom: 100
 			},
 			title: {
 				text: 'Monthly Traffic'
@@ -36,7 +36,7 @@
 			legend: {
 				align: 'right',
 				verticalAlign: 'top',
-				y: 20,
+				y: -5,
 				floating: true,
 				backgroundColor: '#fff'
 			},
@@ -50,8 +50,9 @@
 			xAxis: {
 				type: 'datetime',
 				labels: {
-					rotation: 0,
-					y: 25
+					rotation: -90,
+					y: 40,
+					x: 7
 				},
 				tickInterval: 24*30*3600*1000
 			},

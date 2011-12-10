@@ -31,7 +31,7 @@ Time::DATE_FORMATS.merge!(
   :feed_date => "%b %d",
   :feed_date_year => "%b %d, %Y",
   :feed_date_time => "%b %d at %I:%M%p",
-  :stats_date => "%b %Y"
+  :stats_date => "%b %d, %Y"
 )
 
 WillPaginate.per_page = 7

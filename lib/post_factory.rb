@@ -86,7 +86,7 @@ class PostFactory
         end
       when :twitter
         # Process for 140 char count limit taking into account shortened link length
-        short_link_len = 13
+        short_link_len = 20
         sep_text = "... "
         max_msg_len = (140 - short_link_len - sep_text.length)
         
@@ -95,7 +95,7 @@ class PostFactory
           short_split = message[0..max_msg_len].split()
           message = short_split[0, short_split.length - 1].join(' ') + sep_text
         end
-        
+
         return @current_user.twitter.update(message + self.short_link)
       when :linked_in
         return @current_user.linkedin.add_share(:comment => message + self.short_link)

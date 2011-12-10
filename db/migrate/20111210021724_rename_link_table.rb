@@ -1,5 +1,5 @@
 class RenameLinkTable < ActiveRecord::Migration
   def change
-  	rename_table :link, :tracking_link
+  	rename_table :links, :tracking_links
   end
 end

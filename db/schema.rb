@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209190640) do
+ActiveRecord::Schema.define(:version => 20111210021724) do
 
   create_table "app_subscriptions", :force => true do |t|
     t.integer  "application_id"
@@ -78,17 +78,6 @@ ActiveRecord::Schema.define(:version => 20111209190640) do
     t.string   "phone"
     t.text     "preferences"
   end
-
-  create_table "links", :force => true do |t|
-    t.integer  "business_id"
-    t.string   "in_url"
-    t.text     "out_url"
-    t.integer  "http_status", :default => 301
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "links", ["in_url"], :name => "index_links_on_in_url"
 
   create_table "news_posts", :force => true do |t|
     t.string   "title"
@@ -229,6 +218,17 @@ ActiveRecord::Schema.define(:version => 20111209190640) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tracking_links", :force => true do |t|
+    t.integer  "business_id"
+    t.string   "in_url"
+    t.text     "out_url"
+    t.integer  "http_status", :default => 301
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracking_links", ["in_url"], :name => "index_links_on_in_url"
 
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id"
