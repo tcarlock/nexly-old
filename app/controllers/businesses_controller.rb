@@ -1,6 +1,7 @@
 class BusinessesController < ApplicationController
   before_filter :get_business, :except => [:index, :create]
   before_filter :set_menu_visibility, :only => [:new, :create]
+  skip_before_filter :authenticate_user!, :only => :show
   skip_before_filter :check_for_biz, :only => [:new, :create]   # Filter in application_controller; skip to prevent infinite redirects
   
   def index

@@ -18,7 +18,6 @@ class NewsPostsController < ApplicationController
 
     factory = PostFactory.new(current_user).post_to_all @post
 
-
     if @post.valid?
       redirect_to business_news_posts_path(@business)
     else
