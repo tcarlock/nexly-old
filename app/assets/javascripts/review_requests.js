@@ -15,7 +15,7 @@ function getBlockUIOptions() {
 }
 
 $(function() {
-	$('.approve-review-link, .reject-review-link').click(function() {
-		$(this).closest('li.biz-review').block(getBlockUIOptions());
+	$('.delete-request-link').click(function() {
+		$(this).closest('li.review-request').block(getBlockUIOptions());
 	});
 });

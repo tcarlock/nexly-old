@@ -89,9 +89,9 @@ class ReviewsController < ApplicationController
   end
   
   def approve
-    # @review.update_attributes(:is_approved => true)
+    @review.update_attributes(:is_approved => true)
 
-    # factory = PostFactory.new(current_user).post_to_all @review
+    factory = PostFactory.new(current_user).post_to_all @review
     
     respond_to do |format|
       format.js

@@ -1,3 +1,19 @@
+function getBlockUIOptions() {
+   	return {
+   	    message: '<img src="/assets/throbber/loading_orange.gif" />',
+        centerX: true,
+       	centerY: true,
+   	    css: { 
+            border: '0px',
+           	backgroundColor: 'transparent'
+       	},
+   	    overlayCSS: { 
+            backgroundColor: '#D8D5D5', 
+           	opacity: .8
+       	}
+   	}
+}
+
 $(function() {
 	$('#fb-pages-link').colorbox();
 	$('.screen-cap').colorbox();
@@ -28,8 +44,12 @@ $(function() {
 			$(this).siblings('div.contents').slideDown(350);
 
 			$("#tab-plugins div.details-text div").hide();
-			$("#" + $(this).attr('rel')).fadeIn(700);
+			$("#" + $(this).attr('rel')).fadeIn(900);
 		}
+	});
+
+	$('.deauth-platform').click(function() {
+		$(this).parent().block(getBlockUIOptions());
 	});
 	
 	// $('.integration-panels a').toggle(function() {

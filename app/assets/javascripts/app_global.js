@@ -10,7 +10,23 @@ $(function(){
 		$('#panel-play-pause').removeClass('paused');
 		$('#viewport').cycle('resume');
 	}
-	
+
+	function getBlockUIOptions() {
+    	return {
+    	    message: '<img src="/assets/throbber/loading_orange.gif" />',
+	        centerX: true,
+        	centerY: true,
+    	    css: { 
+	            border: '0px',
+            	backgroundColor: 'transparent'
+        	},
+    	    overlayCSS: { 
+	            backgroundColor: '#fff', 
+            	opacity: .8
+        	}
+    	}
+	}
+
 	function hoverIntentConfig(selector) {
 		return {    
 		    over: function() {
@@ -21,8 +37,8 @@ $(function(){
 				$(this).find(selector).fadeOut(250);
 			}
 		};
-	};
-	
+	}
+
 	if($('#storyboard-banner').length == 1) {
 		$('#pre').delay(2000).fadeOut(1000, function() {
 			$('#storyboard-banner').animate({ width: 350, right: 300 });
@@ -40,7 +56,7 @@ $(function(){
 				});
 			});
 		});
-	}
+	};
 	
 	$('#panel-play-pause').toggle(function() {
 		isHardPaused = true;

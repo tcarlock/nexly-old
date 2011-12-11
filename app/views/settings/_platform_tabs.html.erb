@@ -4,7 +4,7 @@
 		<% @platforms.each do |platform| %>
 			<li>
 				<% if !@enabled_platforms.where(:id => platform.id).first.nil? %>
-					<%= link_to authentication_path(platform), :method => :delete, :class => "auth-provider" do %>
+					<%= link_to authentication_path(platform), :method => :delete, :class => "deauth-platform" do %>
 						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
 						<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
 						<span>Disable <%= platform.display_name %></span>
@@ -15,7 +15,7 @@
 						<% end %>
 					<% end %>
 				<% else %>
-					<a href="/auth/<%= platform.name %>" class="auth-provider">
+					<a href="/auth/<%= platform.name %>" class="auth-platform">
 						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}" %>
 						<span>Enable <%= platform.display_name %></span>
 					</a>
