@@ -92,9 +92,6 @@ class ReviewsController < ApplicationController
     @review.update_attributes(:is_approved => true)
 
     factory = PostFactory.new(current_user).post_to_all @review
-  
-    # Save tracking link
-    TrackingLink.find_or_create_by_in_url(:in_url => factory.short_link, :out_url => factory.full_link)
     
     respond_to do |format|
       format.js
