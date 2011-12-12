@@ -1,9 +1,10 @@
 class PostFactory
   attr_accessor :full_link, :short_link
   
-  def initialize current_user
+  def initialize current_user, root_domain
     @current_user = current_user
     @business = @current_user.business
+    @root = root_domain
   end
   
   def post_to_all resource 
@@ -103,8 +104,7 @@ class PostFactory
   end
   
   def create_redir_link(url, business_id, reference_id, link_type_id, platform_id)
-    root = (ENV['RAILS_ENV'] == 'production' ? DOMAIN_NAME : "http://127.0.0.1:3000")
-    "#{root}/redir/?url=#{url}&bId=#{business_id.to_s}&rId=#{reference_id.to_s}&tId=#{link_type_id.to_s}&pId=#{platform_id}"
+    "#{@root}/redir/?url=#{url}&bId=#{business_id.to_s}&rId=#{reference_id.to_s}&tId=#{link_type_id.to_s}&pId=#{platform_id}"
   end
   
   def shorten_with_bitly(url)

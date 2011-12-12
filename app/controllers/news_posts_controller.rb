@@ -16,7 +16,7 @@ class NewsPostsController < ApplicationController
   def create
     @post = @business.news_posts.create(params[:news_post])
 
-    PostFactory.new(current_user).post_to_all @post
+    PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_all @post
 
     if @post.valid?
       redirect_to dashboard_path

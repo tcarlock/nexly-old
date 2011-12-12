@@ -39,7 +39,7 @@ WillPaginate.per_page = 7
 DOMAIN_NAMES = 
 {
   "staging" => "http://nexly-staging.heroku.com", 
-  "development" => "http://localhost:3000", 
+  "development" => "http://127.0.0.1:3000", 
   "production" =>  "http://nexly.com", 
   "demo" => "http://nexly-demo.heroku.com"
 }
