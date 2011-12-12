@@ -22,8 +22,11 @@ Nexly::Application.routes.draw do
     resources :analytics, :only => :index, :controller => :analytics
   end
   
-  get 'settings/' => 'settings#index'
+  get 'features/' => 'settings#features'
+  get 'settings/' => 'settings#settings'
+  get 'platforms/' => 'settings#platforms'
   get 'init_settings/' => 'settings#init_settings'
+  post 'settings/toggle_feature/:id' => 'settings#toggle_feature'
   post 'settings/toggle_toolbar_activation' => 'settings#toggle_toolbar_activation'
   post 'settings/toggle_public_reviews' => 'settings#toggle_public_reviews'
   post 'settings/toggle_public_recommendations' => 'settings#toggle_public_recommendations'
@@ -62,7 +65,6 @@ Nexly::Application.routes.draw do
   end
   
   get :billing, :to => "main#billing"
-  resources :subscriptions, :except => :index, :controller => :app_subscriptions, :as => :subscriptions
   post "main/update_billing", :as => :update_billing
   
   post "beta_signup/create"

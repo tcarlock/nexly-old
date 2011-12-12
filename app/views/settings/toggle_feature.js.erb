@@ -1,0 +1,4 @@
+var li = $('#feature-<%= @feature.id %>');
+
+li.unblock();
+li.find('div.hdr-outer').html('<%= escape_javascript(render(:partial => "settings/feature_header", :locals => { :feature => @feature, :active_feature_ids => @active_feature_ids })) %>');

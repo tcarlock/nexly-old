@@ -14,7 +14,7 @@ try {
 			    $("#toolbarbut", parent.document).fadeIn("slow");
 			});
 
-			  //show toolbar and hide the 'show' button
+			//show toolbar and hide the 'show' button
 			$("span.showbar a", parent.document).click(function() {
 				$("#toolbar", parent.document).slideToggle("fast");
 			    $("#toolbarbut", parent.document).fadeOut();
@@ -39,6 +39,8 @@ try {
 
 				if(menu.is(':hidden')){ //if quick menu isn't visible
 					$(".quickmenu", parent.document).hide(); //Hide all other menus
+					$(".btn-container", parent.document).hide(); //Hide all other toolbars
+					
 					menu.fadeIn("fast"); //show menu on click
 					//expandFrame();
 					if(toolbar != null)
@@ -56,7 +58,7 @@ try {
 			//hide menu on casual click on the page
 			$(parent.document).click(function() {
 				$(".quickmenu", parent.document).fadeOut("fast");
-				$(".btn_container", parent.document).fadeOut(500);
+				$(".btn-container", parent.document).fadeOut(500);
 			});
 
 			$('.quickmenu', parent.document).click(function(e) {

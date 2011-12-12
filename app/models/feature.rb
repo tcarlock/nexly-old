@@ -1,11 +1,11 @@
-class Application < ActiveRecord::Base
-  has_many :app_subscriptions
-  has_many :businesses, :through => :app_subscriptions
+class Feature < ActiveRecord::Base
+  has_many :feature_subscriptions
+  has_many :businesses, :through => :feature_subscriptions
 end
 
 # == Schema Information
 #
-# Table name: applications
+# Table name: features
 #
 #  id         :integer(4)      not null, primary key
 #  title      :string(255)

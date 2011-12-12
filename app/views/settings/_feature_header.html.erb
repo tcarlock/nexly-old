@@ -1,0 +1,10 @@
+<a class="toggle-feature" data-feature-id="<%= feature.id %>">
+	<%= image_tag "#{feature.icon}", :alt => "#{feature.title}", :class => "icon" %>
+	<% if !active_feature_ids.index(feature.id).nil? %>
+		<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
+		<span>Disable <%= feature.title %></span>
+	<% else %>
+		<span>Enable <%= feature.title %></span>
+	<% end %>
+	<span class="price"><%= feature.price %> / mo</span>
+</a>

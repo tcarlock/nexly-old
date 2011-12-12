@@ -1,0 +1,11 @@
+<% require 'rails_rinku' %>
+
+<li id="news-post-<%= news_post.id %>" class="news-post">
+	<h4 class="headline"><%= news_post.title %></h4>
+	<p>
+		<%= raw auto_link(truncate_post ? truncate(news_post.content, :length => 40) : news_post.content) %>
+	</p>
+	<div class="footer">
+		Posted on <%= news_post.created_at.to_s(:feed_date_year)%>
+	</div>
+</li>

@@ -6,6 +6,9 @@
 	margin:15px auto;
 }
 #biz-details {
+	text-align:center;
+	margin-bottom:20px;
+
 	a#edit-profile {
 		display:block;
 		margin-bottom:7px;
@@ -33,12 +36,12 @@
 .content-panel {
 	width:715px;
 }
-#dashboard-content-pane h3 {
-	border-bottom:1px solid #CBC9C9;
-	padding:7px 0;
+#dashboard-content-pane > h3 {
 	text-indent:7px;
 }
-#apps-settings,
+#features,
+#platforms,
+#settings,
 #biz-vitals {
 	ul.profile-details {
 		border:1px #D8D5D5 solid;
@@ -67,18 +70,23 @@
 		padding:0;
 	}
 }
-#apps-settings {
-	margin-top:15px;
+#features,
+#platforms {
+	margin-top:7px;
 }
-ul#apps-settings li.header {
-	background-image:url(/assets/gear.png);
-}
-ul#apps-settings ul > li {
-	list-style-image:url(/assets/check.gif);
+ul#features,
+ul#platforms {
+	li.header {
+		background-image:url(/assets/gear.png);
+	}
+	
+	& > li > ul > li {
+		list-style-image:url(/assets/check.gif);
+	}
 }
 ul#stats-tab li.header {
 	background-image:url(/assets/chart.png);
 }
-ul#social-tab li.header {
+ul#traffic-tab li.header {
 	background-image:url(/assets/redo.png);
 }

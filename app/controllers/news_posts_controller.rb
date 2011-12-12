@@ -16,17 +16,17 @@ class NewsPostsController < ApplicationController
   def create
     @post = @business.news_posts.create(params[:news_post])
 
-    factory = PostFactory.new(current_user).post_to_all @post
+    PostFactory.new(current_user).post_to_all @post
 
     if @post.valid?
-      redirect_to business_news_posts_path(@business)
+      redirect_to dashboard_path
     else
       render :new
     end
   end
 
   def destroy
-    NewsPosts.find(params[:id]).destroy
+    NewsPost.find(params[:id]).destroy
         
     respond_to do |format|
       format.js

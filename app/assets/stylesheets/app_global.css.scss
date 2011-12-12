@@ -350,12 +350,13 @@ ul.navigation li.active a {
 	clear:both;
 	float:left;
 
-	h3 {
+	& > h3 {
 		width:100%;
-		padding:3px 0;
 		margin-bottom:7px;
 		color:#444;
-		
+		border-bottom:1px solid #CBC9C9;
+		padding:7px 0;
+
 		a {
 			margin:0 7px;
 			float:right;

@@ -26,7 +26,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
-    # platform = Platform.find(params[:id])
+    platform = Platform.find(params[:id])
     
     current_user.authentications.find_or_create_by_platform_id_and_business_id(:platform_id  => platform.id, :business_id => current_user.business.id).destroy
     redirect_to settings_path, :notice => "#{platform.display_name} is now disabled"

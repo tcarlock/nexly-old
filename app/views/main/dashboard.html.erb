@@ -1,5 +1,5 @@
 <% content_for :styles do stylesheet_link_tag "main", "reviews", "news_posts" end %>
-<% content_for :scripts do javascript_include_tag "reviews" end %>
+<% content_for :scripts do javascript_include_tag "reviews", "news_posts" end %>
 
 <style type="text/css">
 	.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
@@ -14,69 +14,50 @@
 		<%= link_to @business.name, business_path(@business), :id => 'biz-name' %>
 		<h3><%= @business.location %></h3>
 	</div>
-	<ul id="apps-settings" class="profile-details clearfix">
+	<ul id="features" class="profile-details clearfix" style="display:none;">
 		<li class="header">
-			<%= link_to "Apps & Settings", settings_path %>
+			<%= link_to "Manage Features", features_path %>
 		</li>
 		<li>
 			<ul>
-				<%= render :partial => 'dashboard/apps_settings' %>
+				<%= render 'dashboard/features' %>
+			</ul>
+		</li>
+	</ul>
+	<ul id="platforms" class="profile-details clearfix">
+		<li class="header">
+			<%= link_to "Manage Settings", platforms_path %>
+		</li>
+		<li>
+			<ul>
+				<%= render 'dashboard/platforms' %>
 			</ul>
 		</li>
 	</ul>
 </div>
 <div id="dashboard-content-pane" class="right-col">
-
-		<div id="biz-vitals" class="content-panel">
-			<ul id="stats-tab" class="profile-details clearfix">
-				<li class="header">
-					<%= link_to "Review Stats", business_analytics_path(@business) %>
-				</li>
-				<li>
-					<% if @business.reviews.empty? %>
-						<span class="no-records">There are no reviews at this time</span>
-					<% else %>
-						<ul>
-							<%= render :partial => 'dashboard/review_stats' %>
-						</ul>
-					<% end %>
-				</li>
+	<% if @active_feature_count > 0 %>
+		<div id="admin-tabs">
+			<ul style="display:none;">
+				<% if @enable_reviews %>
+					<li><a href="#tab-reviews">Reviews</a></li>
+				<% end %>
+				<% if @enable_news %>
+					<li><a href="#tab-news">News</a></li>
+				<% end %>
 			</ul>
-			<ul id="social-tab" class="profile-details clearfix">
-				<li class="header">
-					<%= link_to "Traffic Stats", business_analytics_path(@business) %>
-					<% if @traffic.page_views.count > 0 %>
-						<span class="date-range">
-							<%= @traffic.start_date.to_s(:stats_date) %> to 
-							<%= @traffic.end_date.to_s(:stats_date) %>
-						</span>
-					<% end %>			
-				</li>
-				<li>
-					<% if @traffic.page_views.count == 0 %>
-						<span class="no-records">There is no traffic data at this time</span>
-					<% else %>
-						<ul>
-							<%= render :partial => 'dashboard/traffic_stats' %>
-						</ul>
-					<% end %>
-				</li>
-			</ul>
-		</div>
-		<div class="content-panel">
-			<h3>
-				Reviews Pending Approval
-				<%= link_to "Manage Requests", business_review_requests_path(@business) %>
-				<%= link_to "Manage Reviews", business_reviews_path(@business) %>
-			</h3>
-			<% if @business.reviews.empty? %>
-				<span class="no-records">There are no reviews pending approval</span>
-			<% else %>
-				<ul id="biz-reviews" class="standard-list">
-					<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
-				</ul>
-				<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review" } %>
+			<% if @enable_reviews %>
+				<div id="tab-reviews">
+					<%= render 'dashboard/reviews_tab' %>
+				</div>
+			<% end %>
+			<% if @enable_news %>
+				<div id="tab-news">
+					<%= render 'dashboard/news_tab' %>
+				</div>
 			<% end %>
 		</div>
-
+	<% else %>
+		<span class="no-records">You haven't enabled any features yet. <%= link_to 'Click here to manage features', features_path %>.</span>
+	<% end %>
 </div>

@@ -25,8 +25,15 @@ class MainController < ApplicationController
     @profile = current_user.profile
     @business = current_user.business
     @platforms = Platform.where(:is_available => true)
-    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
-    @posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:page])
+    
+    @business.active_features
+
+    @active_feature_count = 1   # @business.active_features.count
+    @enable_reviews = true   # !@business.active_features.where(:lookup_key => "reviews").empty?
+    @enable_news = false   # !@business.active_features.where(:lookup_key => "news").empty?
+
+    @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:reviews_pg], :per_page => 5)
+    @news_posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:news_pg])
     @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max, DateTime.current)
   end
   

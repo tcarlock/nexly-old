@@ -15,6 +15,11 @@ function getBlockUIOptions() {
 }
 
 $(function() {
+	$('a.toggle-feature').live("click", function() {
+		$(this).closest('li').block(getBlockUIOptions());
+		$.post('/settings/toggle_feature/' + $(this).attr('data-feature-id'));
+	});
+
 	$('#fb-pages-link').colorbox();
 	$('.screen-cap').colorbox();
 
@@ -51,25 +56,6 @@ $(function() {
 	$('.deauth-platform').click(function() {
 		$(this).parent().block(getBlockUIOptions());
 	});
-	
-	// $('.integration-panels a').toggle(function() {
-	// 	var contentPanel = $(this).siblings('div.contents');
-	// 	contentPanel.slideDown(350, function() {
-	// 		$('body').animate({scrollTop: contentPanel.offset().top - 5}, 800);
-	// 	});
-	// }, function() {
-	// 	var contentPanel = $(this).siblings('div.contents');
-	// 	contentPanel.slideDown(350, function() {
-	// 		$('body').animate({scrollTop: contentPanel.offset().top - 5}, 800);
-	// 	});
-	// 	
-	// 	if(!isHardPaused)
-	// 		startAutoNav();
-	// 	$('body').animate({scrollTop: '0px'}, 800, function() {
-	// 		//$('#sign-up-tab').effect("scale", { percent: 200, origin: ['top','left'] }, 300);
-	// 		$('#signup-pane-inner').slideUp(350);
-	// 	});
-	// });
 	
 	$('textarea.integration-script')
 	.mouseup(function(e){

@@ -51,7 +51,7 @@ class PostFactory
     elsif resource.class == NewsPost
       self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:news], pId)
       self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
-      message = "#{@business.name} has posted a news post: " + resource.content
+      message = "#{@business.name} has posted a news update: " + resource.content
       name = "View our website"
     end
 

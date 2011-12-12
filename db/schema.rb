@@ -11,23 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111210021724) do
-
-  create_table "app_subscriptions", :force => true do |t|
-    t.integer  "application_id"
-    t.integer  "business_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "applications", :force => true do |t|
-    t.string   "title"
-    t.text     "details"
-    t.float    "price"
-    t.boolean  "is_public",  :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111211210712) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "platform_id"
@@ -77,6 +61,25 @@ ActiveRecord::Schema.define(:version => 20111210021724) do
     t.datetime "avatar_updated_at"
     t.string   "phone"
     t.text     "preferences"
+  end
+
+  create_table "feature_subscriptions", :force => true do |t|
+    t.integer  "feature_id"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "features", :force => true do |t|
+    t.string   "title"
+    t.text     "details"
+    t.float    "price"
+    t.boolean  "is_public",     :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon"
+    t.integer  "display_order"
+    t.string   "lookup_key"
   end
 
   create_table "news_posts", :force => true do |t|

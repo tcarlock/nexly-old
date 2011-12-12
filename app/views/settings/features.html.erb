@@ -1,0 +1,26 @@
+<% content_for :styles do stylesheet_link_tag "settings" end %>
+<% content_for :scripts do javascript_include_tag "settings" end %>
+<% content_for :page_header do "Manage Features" end %>
+
+<div id="features-outer" class="tab-content-outer">
+	<div class="form-outer">
+		<ul id="features" class="standard-tiles clearfix">
+			<% @features.each do |feature| %>
+				<li id="feature-<%= feature.id %>">
+					<div class="hdr-outer">
+						<%= render :partial => 'feature_header', :locals => { :feature => feature, :active_feature_ids => @active_feature_ids } %>
+					</div>
+					<p>
+						<%= feature.details %>
+					</p>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="details-text">
+		<h3>Use only what you need</h3>
+		<p>
+			Nexly allows you to pick and choose features and you only pay for what you need.
+		</p>
+	</div>
+</div>

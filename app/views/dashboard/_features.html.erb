@@ -1,0 +1,9 @@
+<% if @business.active_features.empty? %>
+	<li class="no-records">You haven't enabled any features</li>
+<% else %>
+	<% @business.active_features.each do |p| %>
+		<li>
+			<%= p.title %> is enabled
+		</li>
+	<% end %>
+<% end %>

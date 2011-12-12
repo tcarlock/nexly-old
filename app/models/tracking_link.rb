@@ -7,7 +7,7 @@ end
 
 # == Schema Information
 #
-# Table name: links
+# Table name: tracking_links
 #
 #  id          :integer(4)      not null, primary key
 #  business_id :integer(4)

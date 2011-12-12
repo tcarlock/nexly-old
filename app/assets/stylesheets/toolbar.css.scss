@@ -152,13 +152,13 @@ span.downarr a {
   background: url(/assets/toolbar/downarrow.png) no-repeat 5px 7px;
 }
 
-span.btn_container {
+span.btn-container {
 	position:relative;
 	display:none;
 	padding:10px;
 }
 
-span.btn_container a {
+span.btn-container a {
 	position:relative;
 	display:inline-block;
 	padding:5px 12px;
@@ -178,7 +178,7 @@ span.btn_container a {
 	-webkit-border-top-right-radius: 8px;
 	border-top-right-radius:8px;
 }
-span.btn_container a span {
+span.btn-container a span {
 	display:block;
 	margin-top:3px;
 }
@@ -189,7 +189,7 @@ span.menu_title {
 	display:inline-block;
 }
 
-span.menu_title a {
+span.menu_title > a {
   	font-size: 13px;
   	line-height: 34px;
   	color: #666;
@@ -198,7 +198,7 @@ span.menu_title a {
 
 .quickmenu {
 	position: absolute; /* important */
-	top: -270px;
+	top: -255px;
 	right: -5px;
 	width: 400px;
 	height: 250px;
@@ -213,13 +213,4 @@ span.menu_title a {
 	/* CSS3 end */
 	display: none; /* important */
 	overflow:auto;
-	padding:7px;
-}
-
-.quickmenu ul li a {
-  font-size: 18px;
-  display: block;
-}
-
-.quickmenu ul li a:hover {
 }

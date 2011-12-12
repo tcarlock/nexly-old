@@ -1,6 +1,6 @@
 <% content_for :styles do stylesheet_link_tag "settings" end %>
 <% content_for :scripts do javascript_include_tag "settings" end %>
-<% content_for :page_header do "Applications and Settings" end %>
+<% content_for :page_header do "Manage Settings" end %>
 
 <%= hidden_field_tag "display-fb-pages", @display_fb_pages %>
 <div id="admin-tabs">
@@ -8,41 +8,6 @@
 		<li><a href="#tab-platforms">Manage Websites</a></li>
 		<li><a href="#tab-plugins">Add Features to Your Site</a></li>
 	</ul>
-	<div id="tabs-1">
-		<ul id="subscriptions" class="standard-tiles" style="display:none;">
-		<h2 class="edit-section">Manage Your Settings</h2>
-			<% @nexly_apps.each do |app| %>
-				<li>
-					<h2><%= app.title %></h2>
-					<p>
-						<strong>Details: </strong><%= app.details %>
-					</p>
-					<h3>Publishing Options</h3>
-					<ul id="app-options">
-						<% @platforms.each do |platform| %>
-							<li>
-								<%= check_box_tag platform.id, platform.name %>
-								<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
-							</li>
-						<% end %>
-					</ul>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	<div id="tabs-2">
-		<div style="display:none;">
-			<h2 class="edit-section">Reviews Settings</h2>
-			<ul id="app-options">
-				<% @platforms.each do |platform| %>
-					<li>
-						<%= check_box_tag platform.id, platform.name %>
-						<%= label_tag platform.id, "Publish to " + platform.name.titleize %>
-					</li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
 	<div id="tab-platforms">
 		<div class="tab-content-outer">
 			<%= render :partial => "settings/platform_tabs", :locals => { :show_suggestions => true } %>

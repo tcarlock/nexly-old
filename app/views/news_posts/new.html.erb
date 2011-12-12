@@ -1,8 +1,8 @@
 <h1>Post a News Update</h1>
 <div id="news-post-outer">
-	<%= semantic_form_for(@post, :url => business_news_index_path, :remote => true,  :validate => true) do |f| %>
+	<%= semantic_form_for(@post, :url => business_news_index_path, :validate => true) do |f| %>
 	  <%= f.inputs do %>
-		<%= f.input :title, :label_html => { :style => "width:200px;" }, :label => "Post title:" %>
+		<%= f.input :title, :label_html => { :style => "width:200px;" }, :label => "Headline:" %>
 		<%= f.input :content , :label => "Post content:", :label_html => { :style => "width:200px;" }, :input_html => { :rows => 8 } %>
 	  <% end %>
 	  <%= f.buttons do %>

@@ -54,6 +54,7 @@ class PluginsController < ApplicationController
     @root = DOMAIN_NAMES[Rails.env]
     @network = params[:network]
     @business = Business.find_by_api_token(@network)
-    @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC').limit(7)
+    @reviews = @business.reviews.where(:is_approved => true).order('created_at DESC')
+    @news_posts = @business.news_posts.order('created_at DESC')
   end
 end

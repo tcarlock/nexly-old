@@ -3,7 +3,7 @@
 	<ul id="platforms" class="standard-tiles clearfix">
 		<% @platforms.each do |platform| %>
 			<li>
-				<% if !@enabled_platforms.where(:id => platform.id).first.nil? %>
+				<% if !@active_platform_ids.index(platform.id).nil? %>
 					<%= link_to authentication_path(platform), :method => :delete, :class => "deauth-platform" do %>
 						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
 						<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>

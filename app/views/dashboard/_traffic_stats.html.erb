@@ -1,9 +1,16 @@
 <li>
 	<%= pluralize(@traffic.page_views.count, "new page view") %>
 </li>
-<li>
-	<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:review]).page_views.count, "page view") %> from reviews
-</li>
+<% if @enable_reviews %>
+	<li>
+		<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:review]).page_views.count, "page view") %> from reviews
+	</li>
+<% end %>
+<% if @enable_news %>
+	<li>
+		<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:news]).page_views.count, "page view") %> from news posts
+	</li>
+<% end %>
 <li>
 	<%= pluralize(@traffic.filter(TrafficDetails.filter_types[:link_type], PageView.page_types[:profile]).page_views.count, "page view") %> from your profile links
 </li>

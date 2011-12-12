@@ -1,9 +1,4 @@
 <li id="biz-review-<%= review.id %>" class="biz-review">
-	<% if show_admin %>
-		<div class="btns-tab btns-tab-small review-btns">
-			<%= render :partial => "reviews/admin_buttons", :locals => { :review => review } %>
-		</div>
-	<% end %>
 	<span class="disputed <%= !review.is_under_review ? 'hidden' : '' %>">
 		This review has been disputed
 	</span>
@@ -25,13 +20,5 @@
 	<div class="footer">
 		<%= image_tag review.avatar.url(:tab) %>
 		Posted by <%= review.name %> on <%= review.created_at.to_s(:feed_date_year)%>
-		<% if show_admin %>
-			<span class="rejected <%= !review.is_rejected ? 'hidden' : '' %>">
-				(This review has been rejected)
-			</span>
-			<span class="approved <%= !review.is_approved ? 'hidden' : '' %>">
-				(This review is approved)
-			</span>
-		<% end %>
 	</div>
 </li>

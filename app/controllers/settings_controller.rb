@@ -1,19 +1,38 @@
 class SettingsController < ApplicationController
   before_filter :get_business
   
-  def index
+  def features
+    @features = Feature.where(:is_public => true)
+    @active_feature_ids = @business.active_features.map { |f| f.id }
+  end
+
+  def toggle_feature
+    subscrip = current_user.business.feature_subscriptions.find_or_initialize_by_feature_id(params[:id])
+
+    if subscrip.persisted?   # Record already existed; delete
+      subscrip.destroy
+    else
+      subscrip.save
+    end
+
+    @feature = subscrip.feature
+    @active_feature_ids = @business.active_features.map { |f| f.id }
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def platforms
     @root = DOMAIN_NAMES[Rails.env]
-    @business = current_user.business
-    
-    @nexly_apps = Application.where(:is_public => true)
-    @enabled_apps = @business.applications
-
+    @features = Feature.where(:is_public => true)
     @platforms = Platform.where(:is_available => true).order(:display_order)
-    @enabled_platforms = @business.active_platforms
+    active_platforms = @business.active_platforms
+    @active_platform_ids = active_platforms.map { |p| p.id }
 
-    if !@enabled_platforms.empty?
+    if !active_platforms.empty?
       fb_platform_id = Platform.find_by_name("facebook").id
-      fb_platform = @enabled_platforms.where(:id => fb_platform_id).first
+      fb_platform = active_platforms.where(:id => fb_platform_id).first
 
       if !fb_platform.nil? && fb_platform.platform_pages.count == 0
         @display_fb_pages = true    # Controls whether popup is displayed for user to select fanpages
@@ -28,7 +47,7 @@ class SettingsController < ApplicationController
     @plugin_init_script = render_to_string :partial => 'plugins/plugin_init_script'
     
     # For each app, get details and html to render text area with code for embedding
-    @content_pages_html = @nexly_apps.inject([]) do |result, element|
+    @content_pages_html = @features.inject([]) do |result, element|
       result << {
         :app_id => element.id,
         :app_title => element.title, 

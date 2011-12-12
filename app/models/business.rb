@@ -21,8 +21,8 @@ class Business < ActiveRecord::Base
   has_many :business_users
   has_many :users, :through => :business_users
   
-  has_many :app_subscriptions
-  has_many :applications, :through => :app_subscriptions
+  has_many :feature_subscriptions
+  has_many :active_features, :source => :feature, :through => :feature_subscriptions
   
   has_many :authentications
   has_many :active_platforms, :source => :platform, :foreign_key => "platform_id", :through => :authentications
