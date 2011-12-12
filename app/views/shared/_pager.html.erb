@@ -1,6 +1,6 @@
 <div class="pager-outer">
 	<span class="pager-controls">
-		<%= will_paginate(items, :previous_label => '<<', :next_label => '>>', :param_name => param_name)%>
+		<%= will_paginate(items, :previous_label => '<<', :next_label => '>>', :param_name => param_name || "page")%>
 	</span>
 	<span class="record-count">
 		<span class="item-count"><%= items.count %></span> <%= items.count == 1 ? label : label.pluralize %>

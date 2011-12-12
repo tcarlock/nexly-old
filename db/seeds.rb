@@ -1,8 +1,8 @@
 Feature.delete_all
 Platform.delete_all
 
-ActiveRecord::Base.connection.reset_pk_sequence!('features')
-ActiveRecord::Base.connection.reset_pk_sequence!('platforms')
+# ActiveRecord::Base.connection.reset_pk_sequence!('features')
+# ActiveRecord::Base.connection.reset_pk_sequence!('platforms')
 
 Feature.create!(
                 :title => 'Reviews',
