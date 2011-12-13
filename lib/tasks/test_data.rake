@@ -111,6 +111,17 @@ namespace :app do
       )
     end
     
+
+    review = biz.reviews.create!(
+      :name => 'Sally Parsons',
+      :email => 'sparsons@leftcoast.com', 
+      :details => 'BCI team was very responsive; great to work with',
+      :rating => 5,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+
     review = biz.reviews.create!(
       :name => 'David Hansson',
       :email => 'dhh@37signals.com',
@@ -124,24 +135,14 @@ namespace :app do
     review = biz.reviews.create!(
       :name => 'Dale Cooper',
       :email => 'dale.cooper@tpks.com', 
-      :details => 'Great experience working with the firm - we saved time and $ by using their',
+      :details => 'We found their work to be incredible and the people to be very helpful.',
       :rating => 4,
       :is_approved => false,
       :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
-
-    review = biz.reviews.create!(
-      :name => 'Sally Parsons',
-      :email => 'sparsons@leftcoast.com', 
-      :details => 'BCI team was very responsive; great to work with',
-      :rating => 5,
-      :is_approved => false,
-      :is_rejected => false)
-      
-    review.update_attributes!(:created_at => DateTime.current + 30)
     
-      review = biz.reviews.create!(
+    review = biz.reviews.create!(
       :name => 'Bill Snyder',
       :email => 'bsnyder@bostitch.com', 
       :details => 'Excellent work, will use again BCI services when we need to select a new service provider',
