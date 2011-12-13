@@ -32,50 +32,54 @@
 		<span class="downarr"> <!-- hide button -->
 			<a href="#"></a>
 		</span>
-		<span id="reviews-btns" class="btn-container">
-			<% if is_rev_enabled %>
-				<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
-					<span>Post a Review</span>
-				<% end %>
-			<% end %>
-			<% if tb_show_rec_btn %>
-				<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
-					<span>Tell Someone</span>
-				<% end %>
-			<% end %>
-		</span>
-		<span class="menu_title">
-			<a class="menutit" href="#" data-toolbar-id="reviews-btns">
-				Reviews (<%= @reviews.count %>)
-			</a> <!-- quick menu title -->
-			<div class="quickmenu">
-				<div class="quickmenu-inner">
-					<% if @reviews.empty? %>
-						<span class="no-records">There are no reviews at this time</span>
-					<% else %>
-						<ul class="nexly-list"> <!-- quick menu list -->
-							<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
-						</ul>
+		<% if @enable_reviews %>
+			<span id="reviews-btns" class="btn-container">
+				<% if is_rev_enabled %>
+					<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
+						<span>Post a Review</span>
 					<% end %>
-				</div>
-			</div>
-		</span>
-		<span class="menu_title">
-			<a class="menutit" href="#">
-				News Updates (<%= @news_posts.count %>)
-			</a> <!-- quick menu title -->
-			<div class="quickmenu">
-				<div class="quickmenu-inner">
-					<% if @news_posts.empty? %>
-						<span class="no-records">There are no news updates at this time</span>
-					<% else %>
-						<ul class="nexly-list"> <!-- quick menu list -->
-							<%= render :partial => 'plugins/news_post', :collection => @news_posts, :locals => { :truncate_post => false } %>
-						</ul>
+				<% end %>
+				<% if tb_show_rec_btn %>
+					<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
+						<span>Tell Someone</span>
 					<% end %>
+				<% end %>
+			</span>
+			<span class="menu_title">
+				<a class="menutit" href="#" data-toolbar-id="reviews-btns">
+					Reviews (<%= @reviews.count %>)
+				</a> <!-- quick menu title -->
+				<div class="quickmenu">
+					<div class="quickmenu-inner">
+						<% if @reviews.empty? %>
+							<span class="no-records">There are no reviews at this time</span>
+						<% else %>
+							<ul class="nexly-list"> <!-- quick menu list -->
+								<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
+							</ul>
+						<% end %>
+					</div>
 				</div>
-			</div>
-		</span>
+			</span>
+		<% end %>
+		<% if @enable_news %>
+			<span class="menu_title">
+				<a class="menutit" href="#">
+					News Updates (<%= @news_posts.count %>)
+				</a> <!-- quick menu title -->
+				<div class="quickmenu">
+					<div class="quickmenu-inner">
+						<% if @news_posts.empty? %>
+							<span class="no-records">There are no news updates at this time</span>
+						<% else %>
+							<ul class="nexly-list"> <!-- quick menu list -->
+								<%= render :partial => 'plugins/news_post', :collection => @news_posts, :locals => { :truncate_post => false } %>
+							</ul>
+						<% end %>
+					</div>
+				</div>
+			</span>
+		<% end %>
 	</div>
 </div>
 <div class="clearfix"></div>
