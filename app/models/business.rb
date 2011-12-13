@@ -77,9 +77,7 @@ class Business < ActiveRecord::Base
   end
   
   def review_stats
-    if self.reviews.count > 0
-      ReviewStats.new(self.id)
-    end
+    ReviewStats.new(self.id)
   end
   
   def traffic_browser start_date = 365.days.ago.beginning_of_month, end_date = DateTime.current.beginning_of_month
