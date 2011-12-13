@@ -20,7 +20,7 @@ Feature.create!(
                 :icon => "news.png",
                 :display_order => 2,
                 :lookup_key => "news",
-                :is_public => true)
+                :is_public => false)
 
 Feature.create!(
                 :title => 'Resources',
