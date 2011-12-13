@@ -1,5 +1,8 @@
 var li = $('#biz-review-<%= params[:id] %>');
 
+$('.item-count').text(parseInt($('.item-count').text()) - 1);
+
 li.unblock();
-li.find('span.rejected').fadeIn();
-li.find('div.btns-tab').html('<%= escape_javascript(render(:partial => "reviews/admin_buttons", :locals => { :review => @review })) %>');
+li.fadeOut(500, function() {
+	$(this).slideUp(500).remove();
+});

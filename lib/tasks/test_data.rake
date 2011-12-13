@@ -125,7 +125,27 @@ namespace :app do
       :name => 'Dale Cooper',
       :email => 'dale.cooper@tpks.com', 
       :details => 'Great experience working with the firm - we saved time and $ by using their',
+      :rating => 4,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+
+    review = biz.reviews.create!(
+      :name => 'Sally Parsons',
+      :email => 'sparsons@leftcoast.com', 
+      :details => 'BCI team was very responsive; great to work with',
       :rating => 5,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+    
+      review = biz.reviews.create!(
+      :name => 'Bill Snyder',
+      :email => 'bsnyder@bostitch.com', 
+      :details => 'Excellent work, will use again BCI services when we need to select a new service provider',
+      :rating => 4,
       :is_approved => false,
       :is_rejected => false)
       

@@ -33,27 +33,31 @@ class ReviewsController < ApplicationController
       end
     end
 
-    if @business.preferences[:tb_show_review_btn]   # Business allows public reviews
-      @review = @business.reviews.build()
-    else   # Business does not allow public reviews; check for invitation token  
-      if params[:token].nil?   # No token; don't allow review
-            render :text => "<strong>This business does not allow public reviews.</strong>", :layout => true
-          return
-      else   # Token supplied; validate
-        token = params[:token]
-    
-        unless is_token_valid? token   #Token invalid
-          render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
-          return
-        end
-      
-        unless is_review_submitted? token   #Review already submitted for this token
-          render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
-          return
-        end
-    
-        @review = @business.reviews.build(:review_request_id => ReviewRequest.find_by_token(token).id)
+    if params[:token].nil?   # No token supplied
+      if !@business.preferences[:tb_show_review_btn]   # Business does not allow public reviews without token; don't allow
+        render :text => "<strong>This business does not allow public reviews.</strong>", :layout => true
+        return
       end
+    else   # Token supplied; validate
+      token = params[:token]
+  
+      request = ReviewRequest.find_by_token(token)
+
+      if request.nil?   #Token invalid
+        render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
+        return
+      end
+      
+      unless Review.find_by_review_request_id(request.id).nil?   #Review already submitted for this token
+        render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
+        return
+      end
+    end
+
+    if request.nil?
+      @review = @business.reviews.build()
+    else
+      @review = @business.reviews.build(:review_request_id => request.id)
     end
     
     if params[:v] == "popup"
@@ -67,6 +71,10 @@ class ReviewsController < ApplicationController
     @review = @business.reviews.create(params[:review])
     
     if @review.valid?
+      unless params[:review][:review_request_id].nil?  
+        ReviewRequest.find(params[:review][:review_request_id].to_i).update_attributes(:is_reviewed => true)
+      end
+
       ReviewMailer.new_review_alert(@review).deliver
 
       respond_to do |format|
@@ -89,7 +97,7 @@ class ReviewsController < ApplicationController
   end
   
   def approve
-    @review.update_attributes(:is_approved => true)
+    @review.update_attributes(:is_approved => true, :is_rejected => false)
 
     PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_all @review
     
@@ -99,7 +107,7 @@ class ReviewsController < ApplicationController
   end
   
   def reject
-    @review.update_attributes(:is_rejected => true)
+    @review.update_attributes(:is_approved => false, :is_rejected => true)
     
     respond_to do |format|
       format.js
