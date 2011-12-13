@@ -111,7 +111,6 @@ namespace :app do
       )
     end
     
-
     review = biz.reviews.create!(
       :name => 'Sally Parsons',
       :email => 'sparsons@leftcoast.com', 
