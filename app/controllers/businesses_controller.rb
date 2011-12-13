@@ -23,7 +23,7 @@ class BusinessesController < ApplicationController
     @business = current_user.businesses.create(params[:business])
     
     if @business.save
-      redirect_to settings_path, :notice => 'Your business profile has been saved'
+      redirect_to platforms_path, :notice => 'Your business profile has been saved'
     else
       render :new
     end

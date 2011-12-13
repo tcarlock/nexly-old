@@ -2,7 +2,7 @@ class AuthenticationsController < ApplicationController
   # session[:omniauth] = omniauth
   
   def failure
-    redirect_to settings_path, :notice => "Something went wrong this website was not enabled."    
+    redirect_to platforms_path, :notice => "Something went wrong this website was not enabled."    
   end
   
   def create
@@ -17,11 +17,11 @@ class AuthenticationsController < ApplicationController
     
     if platform_id == 2   # Facebook: Check to see if user has pages
       if current_user.facebook.accounts.length > 0
-        redirect_to settings_path(:display_pages => "true"), :notice => "#{display} is now enabled."
+        redirect_to platforms_path(:display_pages => "true"), :notice => "#{display} is now enabled."
       end
     else  
       display = Platform.find_by_name(auth['provider']).display_name
-      redirect_to settings_path, :notice => "#{display} is now enabled."
+      redirect_to platforms_path, :notice => "#{display} is now enabled."
     end
   end
 
@@ -29,6 +29,6 @@ class AuthenticationsController < ApplicationController
     platform = Platform.find(params[:id])
     
     current_user.authentications.find_or_create_by_platform_id_and_business_id(:platform_id  => platform.id, :business_id => current_user.business.id).destroy
-    redirect_to settings_path, :notice => "#{platform.display_name} is now disabled"
+    redirect_to platforms_path, :notice => "#{platform.display_name} is now disabled"
   end
 end

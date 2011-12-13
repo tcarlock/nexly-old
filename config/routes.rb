@@ -23,7 +23,6 @@ Nexly::Application.routes.draw do
   end
   
   get 'features/' => 'settings#features'
-  get 'settings/' => 'settings#platforms'
   get 'platforms/' => 'settings#platforms'
   get 'init_settings/' => 'settings#init_settings'
   post 'settings/toggle_feature/:id' => 'settings#toggle_feature'
