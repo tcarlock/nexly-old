@@ -36,7 +36,7 @@ class PostFactory
       return generate_post(resource, :twitter)
     end
   end
-  
+    
   private
   
   def generate_post resource, platform

@@ -89,7 +89,7 @@ class ReviewsController < ApplicationController
   end
   
   def approve
-    @review.update_attributes(:is_approved => true)
+    # @review.update_attributes(:is_approved => true)
 
     PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_all @review
     
