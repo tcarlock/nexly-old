@@ -3,7 +3,7 @@
 <h2>Which Facebook pages do you want to post to?</h2>
 <ul id="platform-pages">
 	<li>
-		<input type="checkbox" id="0" class="page-select" <%= @active_pages.length > 0 && !@active_pages.where(:external_id => 0).empty? ? 'checked="checked"' : '' %>>
+		<input type="checkbox" id="0" class="page-select" <%= @active_pages.length > 0 && !@active_pages.where(:external_id => "0").empty? ? 'checked="checked"' : '' %>>
 		<label for="0">Your Profile Page</label>
 	</li>
 	<% unless @accounts.empty? %>

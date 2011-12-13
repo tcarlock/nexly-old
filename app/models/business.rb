@@ -86,7 +86,11 @@ class Business < ActiveRecord::Base
   end
   
   def is_user_admin? user
-    !self.users.find_by_id(user.id).nil?
+    if user.nil?
+      false
+    else
+      !self.users.find_by_id(user.id).nil?
+    end
   end
   
   private
