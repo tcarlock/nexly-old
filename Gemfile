@@ -40,7 +40,7 @@ gem "rinku"
 group :development, :test do
   gem "mysql2"
   
-  gem "rspec-rails", ">= 2.0.0.beta"
+  gem "rspec-rails", "~> 2.6"
   gem "minitest"
   gem "watchr"
 
@@ -55,6 +55,5 @@ group :production do
   gem "pg"
   # gem "flying-sphinx"
   gem "exception_notification", :require => "exception_notifier"
-  gem "newrelic_rpm"
 end
 
