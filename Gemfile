@@ -54,5 +54,6 @@ group :production do
   # gems specifically for Heroku go here
   gem "pg"
   # gem "flying-sphinx"
+  gem "exception_notification", :require => "exception_notifier"
 end
 
