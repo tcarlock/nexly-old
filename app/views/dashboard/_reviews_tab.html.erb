@@ -4,7 +4,7 @@
 			<%= link_to "Review Stats", business_analytics_path(@business) %>
 		</li>
 		<li>
-			<% if @business.reviews.empty? %>
+			<% if @business.review_stats.total_review_count == 0 %>
 				<span class="no-records">There are no reviews at this time</span>
 			<% else %>
 				<ul>
@@ -40,7 +40,7 @@
 		<%= link_to "Manage Requests", business_review_requests_path(@business) %>
 		<%= link_to "Manage Reviews", business_reviews_path(@business) %>
 	</h3>
-	<% if @business.reviews.empty? %>
+	<% if @business.review_stats.pending_review_count == 0 %>
 		<span class="no-records">There are no reviews pending approval</span>
 	<% else %>
 		<ul id="biz-reviews" class="standard-list">

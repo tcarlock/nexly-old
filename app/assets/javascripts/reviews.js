@@ -5,7 +5,8 @@ function getBlockUIOptions() {
        	centerY: true,
    	    css: { 
             border: '0px',
-           	backgroundColor: 'transparent'
+           	backgroundColor: 'transparent',
+            cursor: 'default'
        	},
    	    overlayCSS: { 
             backgroundColor: '#fff', 

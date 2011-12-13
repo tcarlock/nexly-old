@@ -6,22 +6,22 @@
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
 		<ul>
-			<% if Rails.env != "production" %>
+			<% unless Rails.env == "production" %>
 				<li>
 					<a class="rss" href="/dashboard"></a><!-- icon -->
 				</li>
 			<% end %>
-			<% if !@business.linked_in.empty? %>
+			<% unless @business.linked_in.empty? %>
 				<li>
 					<a class="link-button linkedin" href="<%= @business.linked_in %>"></a> 
 				</li>
 			<% end %>
-			<% if !@business.twitter.empty? %>
+			<% unless @business.twitter.empty? %>
 				<li>
 					<a class="link-button twitter" href="<%= @business.twitter %>"></a> 
 				</li>
 			<% end %>
-			<% if !@business.facebook.empty? %>
+			<% unless @business.facebook.empty? %>
 				<li>
 					<a class="link-button facebook" href="<%= @business.facebook %>"></a> 
 				</li>

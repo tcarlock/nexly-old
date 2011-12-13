@@ -30,11 +30,11 @@ class SettingsController < ApplicationController
     active_platforms = @business.active_platforms
     @active_platform_ids = active_platforms.map { |p| p.id }
 
-    if !active_platforms.empty?
+    unless active_platforms.empty?
       fb_platform_id = Platform.find_by_name("facebook").id
       fb_platform = active_platforms.where(:id => fb_platform_id).first
 
-      if !fb_platform.nil? && fb_platform.platform_pages.count == 0
+      unless fb_platform.nil? && fb_platform.platform_pages.count == 0
         @display_fb_pages = true    # Controls whether popup is displayed for user to select fanpages
       end
     else

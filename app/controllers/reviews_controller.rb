@@ -42,12 +42,12 @@ class ReviewsController < ApplicationController
       else   # Token supplied; validate
         token = params[:token]
     
-        if !is_token_valid? token   #Token invalid
+        unless is_token_valid? token   #Token invalid
           render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
           return
         end
       
-        if !is_review_submitted? token   #Review already submitted for this token
+        unless is_review_submitted? token   #Review already submitted for this token
           render :text => "<strong>A review has already been submitted for this request.</strong>", :layout => true
           return
         end
@@ -89,7 +89,7 @@ class ReviewsController < ApplicationController
   end
   
   def approve
-    # @review.update_attributes(:is_approved => true)
+    @review.update_attributes(:is_approved => true)
 
     PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_all @review
     

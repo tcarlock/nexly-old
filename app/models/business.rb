@@ -104,7 +104,7 @@ class Business < ActiveRecord::Base
 
   def sanitize_url
     [:website, :facebook, :twitter, :google_plus, :linked_in].each do |attr_sym|
-      if !self[attr_sym].empty?
+      unless self[attr_sym].empty?
         unless self[attr_sym].include?("http://") || self[attr_sym].include?("https://")
           self[attr_sym] = "http://" + self[attr_sym].to_s
         end

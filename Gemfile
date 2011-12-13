@@ -55,5 +55,6 @@ group :production do
   gem "pg"
   # gem "flying-sphinx"
   gem "exception_notification", :require => "exception_notifier"
+  gem "newrelic_rpm"
 end
 

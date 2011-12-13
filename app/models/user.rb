@@ -52,30 +52,48 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    platform_id = Platform.find_by_name("facebook").id
-    @fb_user ||= FbGraph::User.me(self.authentications.find_by_platform_id(platform_id).token)
+    if @fb_user.nil?   # Not initialized yet
+      auth = get_auth("facebook")
+
+      unless auth.nil?
+        @fb_user = FbGraph::User.me(auth.token)
+      end
+    end
+
+    @fb_user
   end
 
   def linkedin
-    platform_id = Platform.find_by_name("linked_in").id
-    
-    auth = self.authentications.find_by_platform_id(platform_id)
+    if @li_user.nil?   # Not initialized yet
+      auth = get_auth("linked_in")
 
-    @li_user = LinkedIn::Client.new("694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg", "0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM")
-    @li_user.authorize_from_access(auth.token, auth.secret)
+      unless auth.nil?
+        @li_user = LinkedIn::Client.new("694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg", "0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM")
+        @li_user.authorize_from_access(auth.token, auth.secret)
+      end
+    end
+
     @li_user
   end
   
   def twitter
-    unless @twitter_user
-      platform_id = Platform.find_by_name("twitter").id
-      provider = self.authentications.find_by_platform_id(platform_id)
-      @twitter_user = Twitter::Client.new(:oauth_token => provider.token, :oauth_token_secret => provider.secret) rescue nil
+    if @twitter_user.nil?   # Not initialized yet
+     auth = get_auth("twitter")
+
+      unless auth.nil?
+        @twitter_user = Twitter::Client.new(:oauth_token => auth.token, :oauth_token_secret => auth.secret) rescue nil
+      end
     end
+
     @twitter_user
   end
   
-  protected
+  private
+
+  def get_auth platform_name
+    platform_id = Platform.find_by_name(platform_name).id
+    self.authentications.find_by_platform_id(platform_id)
+  end
   
   def setup_blank_profile
     if self.profile.blank?
