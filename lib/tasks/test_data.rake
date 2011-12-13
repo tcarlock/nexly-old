@@ -126,7 +126,7 @@ namespace :app do
       :email => 'dhh@37signals.com',
       :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
       :rating => 5,
-      :is_approved => true,
+      :is_approved => false,
       :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
