@@ -136,11 +136,41 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
       
     review = biz.reviews.create!(
+      :name => 'Jennifer Roth',
+      :email => 'j.roth@shorts.com', 
+      :details => 'We really enjoyed working with them and found their work to be incredible.  The people were easy to work with as well.',
+      :rating => 4,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+    
+    review = biz.reviews.create!(
+      :name => 'Sandy Strinni',
+      :email => 'sandy.strinni@sa.com', 
+      :details => 'They did great work.  We will use again BCI services when we need to select a new service provider.',
+      :rating => 5,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+    
+    review = biz.reviews.create!(
+      :name => 'Bill Dennis',
+      :email => 'bdennis@sass.org', 
+      :details => 'It has been wonderful working with BCI. They tried to fully understand our needs before ever starting their search.',
+      :rating => 4,
+      :is_approved => false,
+      :is_rejected => false)
+      
+    review.update_attributes!(:created_at => DateTime.current + 30)
+
+    review = biz.reviews.create!(
       :name => 'Dale Cooper',
       :email => 'dale.cooper@tpks.com', 
       :details => 'We found their work to be incredible and the people to be very helpful.',
       :rating => 4,
-      :is_approved => false,
+      :is_approved => true,
       :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
@@ -150,7 +180,7 @@ namespace :app do
       :email => 'bsnyder@bostitch.com', 
       :details => 'Excellent work, will use again BCI services when we need to select a new service provider',
       :rating => 4,
-      :is_approved => false,
+      :is_approved => true,
       :is_rejected => false)
       
     review.update_attributes!(:created_at => DateTime.current + 30)
