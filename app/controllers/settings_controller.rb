@@ -78,7 +78,6 @@ class SettingsController < ApplicationController
   
   def update_setting key
     @business.preferences[key] = !@business.preferences[key]
-      
     @business.save
   end
 end

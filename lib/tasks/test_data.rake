@@ -99,6 +99,10 @@ namespace :app do
       :created_at => '2010-08-02 20:46:45')
       
     biz.avatar = "https://s3.amazonaws.com/nexly_avatar_dev/original/1/logo.jpg"
+    biz.preferences[:enable_toolbar] = true
+    biz.preferences[:tb_show_rec_btn] = true
+    biz.preferences[:tb_show_review_btn] = true
+
     biz.save
     biz.reload
   

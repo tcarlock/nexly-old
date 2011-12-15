@@ -9,8 +9,8 @@ class PostFactory
   
   def post_to_all resource 
     self.post_to_facebook resource
-    self.post_to_linkedin resource
-    self.post_to_twitter resource
+    #self.post_to_linkedin resource
+    #self.post_to_twitter resource
   end
 
   def post_to_facebook resource
