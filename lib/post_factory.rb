@@ -74,11 +74,11 @@ class PostFactory
               :name => name
             )
           else   # Post to fanpage wall
-            page = @current_user.facebook.accounts.detect do |page|
-              page.identifier == p.external_id
-            end
-            
-            page.feed!(
+            # page = @current_user.facebook.accounts.detect do |page|
+            #   page.identifier == p.external_id
+            # end
+
+            FbGraph::Page.fetch(p.id).feed!(
               :message => message,
               :link => self.short_link, 
               :name => name

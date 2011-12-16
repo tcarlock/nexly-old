@@ -23,7 +23,7 @@
 		}
 		
 		p { 
-			margin-bottom:7px;
+			padding-bottom:7px;
 			padding:0;
 			line-height:1.2em;
 		}
@@ -41,8 +41,19 @@
 .screen-cap {
 	display:block;
 	width:168px;
-	padding:10px 0;
-	margin:7px auto;
+	padding:20px 0;
+	margin:0 auto;
+
+	img {
+		padding:7px;
+		border:2px solid #3595D4;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		-moz-box-shadow:0 0 4px #3BA7EE;
+		-webkit-box-shadow:0 0 4px #3BA7EE;
+		box-shadow:0 0 4px #3BA7EE;
+	}
 }
 #admin-tabs {
 	min-height:450px;
