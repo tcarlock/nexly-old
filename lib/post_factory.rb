@@ -77,7 +77,7 @@ class PostFactory
             page = @current_user.facebook.accounts.detect do |page|
               page.identifier == p.external_id
             end
-
+            
             page.feed!(
               :message => message,
               :link => self.short_link, 

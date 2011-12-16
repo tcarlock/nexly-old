@@ -64,7 +64,7 @@
 						With Nexly you can easily add useful information and and engaging features to your website to improve client experience and prospect conversion. 
 					</p>
 				</div>
-				<div id="toolbar-details">
+				<div id="toolbar-details" class="clearfix">
 					<h3>The Nexly Toolbar</h3>
 					<p>
 						The toolbar helps people interact with your brand and access information about your business.
@@ -74,7 +74,7 @@
 					</p>
 					<%= link_to image_tag("toolbar-cap.png", :size => "168x142"), asset_path("toolbar-cap.png"), :class => "screen-cap" %>
 				</div>
-				<div id="pages-details">
+				<div id="pages-details" class="clearfix">
 					<h3>Nexly Pages</h3>
 					<p>
 						Nexly Pages allows you to automatically display useful information in your website such as client reviews.
@@ -83,21 +83,9 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
+			<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<% if ENV['RAILS_ENV'] == 'development'%>
-		<div>
-			<%= form_tag :main_test_tweet, :method => :post,  :remote => true do %>
-				<%= submit_tag "Post Tweet" %>
-			<% end %>
-			<%= form_tag :main_test_li_update, :method => :post,  :remote => true do %>
-				<%= submit_tag "Post to LinkedIn" %>
-			<% end %>
-			<%= form_tag :main_test_fb_post, :method => :post,  :remote => true do %>
-				<%= submit_tag "Post to FB" %>
-			<% end %>
-		</div>
-	<% end %>
 	<div class="clearfix"></div>
 </div>

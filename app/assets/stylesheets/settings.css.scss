@@ -40,12 +40,13 @@
 }
 .screen-cap {
 	display:block;
-	height:168px;
-	width:142px;
+	width:168px;
+	padding:10px 0;
 	margin:7px auto;
-	display:none;
 }
-
+#admin-tabs {
+	min-height:450px;
+}
 #features,
 #platforms {
   	padding-bottom:7px;
@@ -194,6 +195,7 @@
 	}
 	
 	div.contents {
+		padding-bottom:7px;
 		display:none;
 		
 		span {
