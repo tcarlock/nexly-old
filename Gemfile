@@ -29,6 +29,7 @@ gem "linkedin", :branch => "2-0-stable"
 gem "faker", "~> 1.0.1"
 gem "preferable"
 gem "rinku"
+gem "newrelic_rpm"
 # gem "thinking-sphinx"
 
 # Use unicorn as the web server
