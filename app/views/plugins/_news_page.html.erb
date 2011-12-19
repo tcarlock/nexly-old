@@ -1,7 +1,7 @@
 <% if @news_posts.empty? %>
 	<span class="no-records">There are no news updates at this time</span>
 <% else %>
-	<ul class="nexly-list">
+	<ul class="nexly-page-list">
 		<%= render :partial => 'plugins/news_post', :collection => @news_posts, :locals => { :truncate_post => false } %>
 	</ul>
 <% end %>

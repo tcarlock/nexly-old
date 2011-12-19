@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
   validates_presence_of :name, :details, :rating
   validates :email, :presence => true, :email_format => true
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
-  validates_inclusion_of :rating, :in => 0..5, :message => "Must be from 0 to 5"
+  validates_inclusion_of :rating, :in => 1..5, :message => "Must be from 1 to 5"
   
   has_attached_file :avatar, 
   :storage => :s3,

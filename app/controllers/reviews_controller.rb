@@ -55,7 +55,7 @@ class ReviewsController < ApplicationController
     end
 
     if request.nil?
-      @review = @business.reviews.build()
+      @review = @business.reviews.build(:review_request_id => 0)
     else
       @review = @business.reviews.build(:review_request_id => request.id)
     end
@@ -71,18 +71,13 @@ class ReviewsController < ApplicationController
     @review = @business.reviews.create(params[:review])
     
     if @review.valid?
-      unless params[:review][:review_request_id].nil?  
+      unless params[:review][:review_request_id].to_i == 0  
         ReviewRequest.find(params[:review][:review_request_id].to_i).update_attributes(:is_reviewed => true)
       end
 
       ReviewMailer.new_review_alert(@review).deliver
 
-      respond_to do |format|
-        format.html {
-          redirect_to(@review.business)
-        }
-        format.js
-      end
+      render :text => '<span class="submitted">Your review has been submitted. Close this tab or window to go back to the business\' page.<span>'      
     else
       render :new
     end
@@ -99,7 +94,7 @@ class ReviewsController < ApplicationController
   def approve
     @review.update_attributes(:is_approved => true, :is_rejected => false)
 
-    PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_all @review
+    PostFactory.new(current_user, DOMAIN_NAMES[Rails.env]).post_to_facebook @review
     
     respond_to do |format|
       format.js

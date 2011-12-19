@@ -5,74 +5,74 @@
 		<%= @traffic.end_date.to_s(:stats_date) %>
 	</span>
 <% end %>
-
 <% content_for :styles do stylesheet_link_tag "analytics" end %>
-
-<script type="text/javascript">
-	$(function() {
-		new Highcharts.Chart({
-			chart: {
-				renderTo: 'traffic-chart',
-				defaultSeriesType: 'column',
-				marginBottom: 100
-			},
-			title: {
-				text: 'Monthly Traffic'
-			},
-			plotOptions: {
-				column: {
-					stacking: 'normal',
-					borderWidth: 0,
-					shadow: false
-				}
-			},
-			tooltip: {
-				borderWidth: 1,
-				borderColor: '#909090',
-				formatter: function () {
-		        	return '<b>' + Highcharts.dateFormat('%B %Y', this.x) + '</b><br />' + this.series.name +': '+ this.y +'<br/>'+ 'Total: '+ this.point.stackTotal;Highcharts.numberFormat(this.y, 0);
-		      	}
-		    },
-			legend: {
-				align: 'right',
-				verticalAlign: 'top',
-				y: -5,
-				floating: true,
-				backgroundColor: '#fff'
-			},
-			colors: [
-				'#92C1E9',
-				'#AA4643',
-				'#abdb73',
-				'#80699B',
-				'#3D96AE'
-			],
-			xAxis: {
-				type: 'datetime',
-				labels: {
-					rotation: -90,
-					y: 40,
-					x: 7
+<% content_for :scripts do %>
+	<script type="text/javascript">
+		$(function() {
+			new Highcharts.Chart({
+				chart: {
+					renderTo: 'traffic-chart',
+					defaultSeriesType: 'column',
+					marginBottom: 100
 				},
-				tickInterval: 24*30*3600*1000
-			},
-			yAxis: {
 				title: {
-					text: 'Page Views'
+					text: 'Monthly Traffic'
 				},
-				stackLabels: {
-					enabled: true
-				}
-			},
-			series: [{
-				name: 'Review-Link Traffic',
-				data: <%= @review_series %>
-			}, {
-				name: 'Profile-Link Traffic',
-				data: <%= @profile_series %>
-			}]
+				plotOptions: {
+					column: {
+						stacking: 'normal',
+						borderWidth: 0,
+						shadow: false
+					}
+				},
+				tooltip: {
+					borderWidth: 1,
+					borderColor: '#909090',
+					formatter: function () {
+			        	return '<b>' + Highcharts.dateFormat('%B %Y', this.x) + '</b><br />' + this.series.name +': '+ this.y +'<br/>'+ 'Total: '+ this.point.stackTotal;Highcharts.numberFormat(this.y, 0);
+			      	}
+			    },
+				legend: {
+					align: 'right',
+					verticalAlign: 'top',
+					y: -5,
+					floating: true,
+					backgroundColor: '#fff'
+				},
+				colors: [
+					'#92C1E9',
+					'#AA4643',
+					'#abdb73',
+					'#80699B',
+					'#3D96AE'
+				],
+				xAxis: {
+					type: 'datetime',
+					labels: {
+						rotation: -90,
+						y: 40,
+						x: 7
+					},
+					tickInterval: 24*30*3600*1000
+				},
+				yAxis: {
+					title: {
+						text: 'Page Views'
+					},
+					stackLabels: {
+						enabled: true
+					}
+				},
+				series: [{
+					name: 'Review-Link Traffic',
+					data: <%= @review_series %>
+				}, {
+					name: 'Profile-Link Traffic',
+					data: <%= @profile_series %>
+				}]
+			});
+			
 		});
-		
-	});
-</script>
+	</script>
+<% end %>
 <div id="traffic-chart" style="width:560;height:300;"></div>

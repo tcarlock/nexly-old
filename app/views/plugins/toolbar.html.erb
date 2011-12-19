@@ -54,7 +54,7 @@
 						<% if @reviews.empty? %>
 							<span class="no-records">There are no reviews at this time</span>
 						<% else %>
-							<ul class="nexly-list"> <!-- quick menu list -->
+							<ul class="nexly-toolbar-list"> <!-- quick menu list -->
 								<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
 							</ul>
 						<% end %>
@@ -72,7 +72,7 @@
 						<% if @news_posts.empty? %>
 							<span class="no-records">There are no news updates at this time</span>
 						<% else %>
-							<ul class="nexly-list"> <!-- quick menu list -->
+							<ul class="nexly-toolbar-list"> <!-- quick menu list -->
 								<%= render :partial => 'plugins/news_post', :collection => @news_posts, :locals => { :truncate_post => false } %>
 							</ul>
 						<% end %>

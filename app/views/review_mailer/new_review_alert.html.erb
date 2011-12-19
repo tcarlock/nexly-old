@@ -10,5 +10,5 @@
 	<strong>Email:</strong> <span><%= @review.email %></span>
 </p>
 <p>
-	Click the following link to see your reviews: <%= auto_link business_url(@review.business) %>
+	Click the following link to see your reviews: <%= link_to business_url(@review.business).to_s, business_url(@review.business) %>
 </p>

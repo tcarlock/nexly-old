@@ -1,6 +1,7 @@
-ul.nexly-list {
-	padding:5px 10px 0 10px;
+ul.nexly-page-list { padding:5px 10px 0 10px; }
 
+ul.nexly-page-list,
+ul.nexly-toolbar-list {
 	li {
 		border-bottom: 1px solid #989898;    
 		padding: 3px 7px;

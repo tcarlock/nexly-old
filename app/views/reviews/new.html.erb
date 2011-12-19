@@ -1,28 +1,26 @@
-<%= stylesheet_link_tag "jquery.ui.stars.min.css", "reviews" %>
-<%= javascript_include_tag "jquery.ui.stars.min.js" %>
+<% content_for :styles do stylesheet_link_tag "jquery.ui.stars.min.css", "reviews" end %>
+<% content_for :scripts do %>
+	<%= javascript_include_tag "jquery.ui.stars.min.js", "reviews" %>
+<% end %>
 
-<script type="text/javascript">
-	$(function() {
-		$('#rating-outer').stars({
-			cancelShow:false
-		});
-	});
-</script>
 <h1>Post a New Review</h1>
 <div id="new-review-outer">
-	<%= semantic_form_for(@review, :url => business_reviews_path, :remote => true,  :validate => true) do |f| %>
+	<%= semantic_form_for(@review, :url => business_reviews_path) do |f| %>
 	  <%= f.inputs do %>
-		<%= f.input :name, :input_html => { :style => "width:400px;", }, :label => "Your name:" %>
-		<%= f.input :email, :input_html => { :style => "width:400px;", }, :label => "Your email:" %>
-	   	<%= f.input :avatar, :label_html => { }, :label => "Add a picture or logo: (optional)" %>
+		<%= f.input :name, :input_html => { :style => "width:350px;" }, :label_html => { :style => "width:250px;" }, :label => "Your name:" %>
+		<%= f.input :email, :input_html => { :style => "width:350px;" }, :label_html => { :style => "width:250px;" }, :label => "Your email:" %>
+	   	<%= f.input :avatar, :input_html => { :style => "width:250px;" }, :label_html => { :style => "width:250px;" }, :label => "Add a picture or logo: (optional)" %>
 	  	<li id="rating-outer">
-			<%= f.label 'How would you rate this provider?', :style => "width:325px;" %>
-	    	<% 0.upto(5) do |n| %>
-	      		<%= f.radio_button :rating, n %>
-	    	<% end %>
+			<%= f.label 'How would you rate this provider? *', :style => "width:300px;" %>
+	  		<div id="stars-outer">
+		    	<% 0.upto(5) do |n| %>
+		      		<%= f.radio_button :rating, n %>
+		    	<% end %>
+	  		</div>
+			<label id="review-rating-error" for="review_rating">Select a rating</label>
 	  	</li>
 		<%= f.input :review_request_id, :as => :hidden %>
-		<%= f.input :details , :label_html => { :style => "width:45%;" }, :label => "Please share your thoughts about this provider:", :input_html => { :rows => 8 } %>
+		<%= f.input :details , :label_html => { :style => "width:45%;" }, :label => "Please share your thoughts about this business:", :input_html => { :rows => 8 } %>
 	  <% end %>
 	  <%= f.buttons do %>
 		<%= f.commit_button 'Submit Review' %>

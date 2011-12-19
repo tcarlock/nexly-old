@@ -59,14 +59,17 @@ li.biz-review {
 	margin-right:125px;
 }
 
-
 #rating-outer {
 	width:100%;
-	padding-top:15px;
-	
-	label {
-		width:275px;
-		display:inline-block;
-		margin-top:3px;
+	padding-top:20px;
+
+	#stars-outer {
+		float:left;
+	}
+
+	#review-rating-error { 
+		display:none; 
+		padding:0 0 0 10px; 
+		line-height:24px; 
 	}
 }

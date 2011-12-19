@@ -68,21 +68,23 @@ class PostFactory
         
         active_pages.each do |p|
           if p.external_id == "0"   # Post to profile wall
-            @current_user.facebook.feed!(
-              :message => message,
-              :link => self.short_link, 
-              :name => name
-            )
+            @current_user.facebook.feed!(:message => message, :link => short_link, :name => name)
           else   # Post to fanpage wall
-            # page = @current_user.facebook.accounts.detect do |page|
-            #   page.identifier == p.external_id
-            # end
+            page = @current_user.facebook.accounts.detect do |page|
+              page.identifier == p.external_id
+            end
 
-            FbGraph::Page.fetch(p.id).feed!(
+            page.feed!(
               :message => message,
-              :link => self.short_link, 
+              :link => short_link, 
               :name => name
             )
+
+            # FbGraph::Page.fetch(p.id).feed!(
+            #   :message => message,
+            #   :link => self.short_link, 
+            #   :name => name
+            # )
           end  
         end
       when :twitter
