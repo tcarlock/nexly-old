@@ -1,4 +1,4 @@
-var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "http://nexly-demo.heroku.com/assets/jquery_ujs.js", "http://nexly-demo.heroku.com/assets/render_plugins.js"];
+var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js"];
 
 scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
