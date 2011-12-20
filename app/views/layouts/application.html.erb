@@ -2,10 +2,9 @@
 <html>
 <head>
 	<title>Nexly - Where businesses connect</title>
-
-	<%= stylesheet_link_tag "application", "app_global", "app_layout" %>
+	<%= stylesheet_link_tag "application", "app_global", "app_layout", "jquery.ui.stars.min.css" %>
 	<%= yield :styles %>
-	<%= javascript_include_tag "application", "app_global" %>
+	<%= javascript_include_tag "application", "app_global", "jquery.ui.stars.min.js" %>
 	<%= yield :scripts %>
 
 	<%= csrf_meta_tag %>

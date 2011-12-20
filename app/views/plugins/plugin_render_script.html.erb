@@ -1,21 +1,10 @@
-var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js"];
+var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "http://nexly-demo.heroku.com/assets/jquery_ujs.js", "http://nexly-demo.heroku.com/assets/render_plugins.js"];
 
 scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
 	script.type="text/javascript";
 	script.src = path;
-	document.getElementsByTagName("head")[0].appendChild(script);
-});
-
-var stylePaths = ["<%= root %>/assets/plugins.css"];
-
-stylePaths.forEach(function(path) {
-	var style = document.createElement("link");
-	style.media = "screen";
-	style.rel = "stylesheet"
-	style.type="text/css";
-	style.href = path;
-	parent.document.getElementsByTagName("head")[0].appendChild(style);
+	parent.document.getElementsByTagName("head")[0].appendChild(script);
 });
 
 var div = document.createElement("div");

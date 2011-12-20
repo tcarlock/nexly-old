@@ -1,4 +1,5 @@
-<%= stylesheet_link_tag "app_global", "toolbar", "public/formtastic", "public/formtastic_changes" %>
+<%= stylesheet_link_tag "app_global", "toolbar", "plugins", "public/formtastic", "public/formtastic_changes", "jquery.ui.stars.min.css" %>
+<%= javascript_include_tag "jquery.ui.stars.min.js", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
 <div id="toolbarbut"> <!-- hide button -->
 	<span class="showbar"><a href="#">show bar</a></span>
@@ -34,15 +35,19 @@
 		</span>
 		<% if @enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
-				<% if is_rev_enabled %>
-					<%= link_to new_business_review_path(@business), :id => "new-review-btn", :class => "link-button" do %>
-						<span>Post a Review</span>
-					<% end %>
-				<% end %>
 				<% if tb_show_rec_btn %>
-					<%= link_to new_business_recommendations_path(@business), :id => "new-rec-btn", :class => "link-button" do %>
-						<span>Tell Someone</span>
-					<% end %>
+					<span class="menu_title">
+						<%= link_to "Tell Someone", new_business_recommendations_path(@business, :v => "popup"), :id => "new-rec-btn", :class => "menutit" %>
+						<div class="quickmenu" id="new-rec-outer">
+						</div>
+					</span>
+				<% end %>
+				<% if is_rev_enabled %>
+					<span class="menu_title">
+						<%= link_to "Post a Review", new_business_review_path(@business, :v => "popup"), :id => "new-review-btn", :class => "menutit" %>
+						<div class="quickmenu" id="new-review-outer">
+						</div>
+					</span>
 				<% end %>
 			</span>
 			<span class="menu_title">
@@ -50,15 +55,13 @@
 					Reviews (<%= @reviews.count %>)
 				</a> <!-- quick menu title -->
 				<div class="quickmenu">
-					<div class="quickmenu-inner">
-						<% if @reviews.empty? %>
-							<span class="no-records">There are no reviews at this time</span>
-						<% else %>
-							<ul class="nexly-toolbar-list"> <!-- quick menu list -->
-								<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
-							</ul>
-						<% end %>
-					</div>
+					<% if @reviews.empty? %>
+						<span class="no-records">There are no reviews at this time</span>
+					<% else %>
+						<ul class="nexly-toolbar-list"> <!-- quick menu list -->
+							<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
+						</ul>
+					<% end %>
 				</div>
 			</span>
 		<% end %>

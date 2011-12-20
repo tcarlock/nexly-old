@@ -59,6 +59,8 @@ class ReviewsController < ApplicationController
     else
       @review = @business.reviews.build(:review_request_id => request.id)
     end
+
+    @view = params[:v] || "standard"
     
     if params[:v] == "popup"
       render :layout => false
@@ -77,7 +79,11 @@ class ReviewsController < ApplicationController
 
       ReviewMailer.new_review_alert(@review).deliver
 
-      render :text => '<span class="submitted">Your review has been submitted. Close this tab or window to go back to the business\' page.<span>'      
+      if params[:view] == "popup"
+        render :text => '<span class="submitted">Your review has been submitted.<span>'      
+      else
+        render :text => '<span class="submitted">Your review has been submitted. Close this tab or window to go back to the business\' page.<span>'
+      end
     else
       render :new
     end
