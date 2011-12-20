@@ -4,7 +4,7 @@ scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
 	script.type="text/javascript";
 	script.src = path;
-	parent.document.getElementsByTagName("head")[0].appendChild(script);
+	document.getElementsByTagName("head")[0].appendChild(script);
 });
 
 var div = document.createElement("div");
@@ -14,4 +14,4 @@ div.setAttribute("data-network", "<%= network %>");
 div.setAttribute("data-tb-enabled", <%= enable_toolbar %>);
 div.setAttribute("data-rev-enabled", <%= is_rev_enabled %>);
 div.setAttribute("data-rec-enabled", <%= tb_show_rec_btn %>);
-parent.document.body.appendChild(div);
+document.body.appendChild(div);
