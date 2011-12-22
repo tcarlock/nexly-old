@@ -1,5 +1,7 @@
 var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js"];
 
+var scriptPaths = ["<%= root %>/assets/jquery.min.js", "<%= root %>/assets/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js", "<%= root %>/assets/public/jquery.blockUI.js"];
+
 scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
 	script.type="text/javascript";
@@ -7,6 +9,18 @@ scriptPaths.forEach(function(path) {
 	document.getElementsByTagName("head")[0].appendChild(script);
 });
 
+var stylesPaths = ["<%= root %>/assets/plugin_canvas.css"];
+
+stylesPaths.forEach(function(path) {
+	var style = document.createElement("link");
+	style.type="text/css";
+	style.media="screen";
+	style.rel="stylesheet";
+	style.href = path;
+	parent.document.getElementsByTagName("head")[0].appendChild(style);
+});
+
+//Generate toolbar
 var div = document.createElement("div");
 div.setAttribute("id", "nexly-toolbar");
 div.setAttribute("style", "height:45px;");
@@ -15,3 +29,13 @@ div.setAttribute("data-tb-enabled", <%= enable_toolbar %>);
 div.setAttribute("data-rev-enabled", <%= is_rev_enabled %>);
 div.setAttribute("data-rec-enabled", <%= tb_show_rec_btn %>);
 document.body.appendChild(div);
+
+//Inject canvas into parent document
+var div = document.createElement("div");
+div.setAttribute("id", "nexly-canvas");
+
+var iframe = document.createElement("iframe");
+iframe.setAttribute("id", "nexly-canvas-frame");
+
+div.appendChild(iframe);
+parent.document.body.appendChild(div);

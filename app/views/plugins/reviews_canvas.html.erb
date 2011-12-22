@@ -1,0 +1,7 @@
+<% if @reviews.empty? %>
+	<span class="no-records">There are no reviews at this time</span>
+<% else %>
+	<ul class="nexly-toolbar-list">
+		<%= render :partial => 'plugins/review', :collection => @reviews, :locals => { :truncate_review => false } %>
+	</ul>
+<% end %>

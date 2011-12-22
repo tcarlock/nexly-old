@@ -63,7 +63,7 @@ class ReviewsController < ApplicationController
     @view = params[:v] || "standard"
     
     if params[:v] == "popup"
-      render :layout => false
+      render :layout => "plugin_canvas"
     else
       render :layout => true 
     end

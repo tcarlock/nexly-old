@@ -34,6 +34,7 @@ Nexly::Application.routes.draw do
     get :plugin_render_script
     get :toolbar
     get :render_content_page
+    get :reviews
   end 
     
   match "/auth/:provider/callback" => "authentications#create"

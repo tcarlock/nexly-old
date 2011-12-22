@@ -47,6 +47,10 @@ class PluginsController < ApplicationController
     
     render :partial => partial,  :layout => false
   end
+
+  def reviews
+    render "plugins/reviews_canvas", :locals => { :truncate_review => false }, :layout => "plugin_canvas"
+  end
   
   protected
   
