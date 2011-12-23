@@ -18,11 +18,11 @@ function getBlockUIOptions() {
 function loadPages() {
 	var pluginContainer = $(".nexly-content"); 
 
-	pluginContainer.load("/plugins/render_content_page/?app=" + pluginContainer.attr('data-app-id') + "&network=" + pluginContainer.attr('data-network'));	
+	pluginContainer.load("http://nexly-demo.heroku.com/plugins/render_content_page/?app=" + pluginContainer.attr('data-app-id') + "&network=" + pluginContainer.attr('data-network'));	
 }
 
 function loadToolbar(tbElement) {
-	tbElement.load("/plugins/toolbar/?network=" + tbElement.attr("data-network"), function(){
+	tbElement.load("http://nexly-demo.heroku.com/plugins/toolbar/?network=" + tbElement.attr("data-network"), function(){
 		//hide toolbar and make visible the 'show' button
 		$("span.downarr a").click(function() {
 		    $("#toolbar").slideToggle("fast");
