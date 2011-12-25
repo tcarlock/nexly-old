@@ -1,6 +1,6 @@
 function getBlockUIOptions() {
    	return {
-   	    message: '<img src="/assets/throbber/loading_orange.gif" />',
+   	    message: '<img src="http://nexly.com/assets/throbber/loading_orange.gif" />',
         centerX: true,
        	centerY: true,
    	    css: { 
