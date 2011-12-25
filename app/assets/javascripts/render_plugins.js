@@ -42,6 +42,10 @@ function loadToolbar(tbElement) {
 	    });
 	});
 
+	$('#nexly-canvas-frame').load(function() {
+        $('#nexly-canvas').unblock();
+    });
+
 	//Render canvas on click
 	$("a.menutit").click(function() {
 		//parent.document.getElementById('nexly-canvas-frame').src = "http://localhost:3000/plugins/reviews/?network=" + tbElement.attr('data-network');
@@ -74,6 +78,7 @@ function loadToolbar(tbElement) {
 				canvas.fadeIn();
 
 			canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {
+				canvas.block(getBlockUIOptions());
 
 				//Load appropriate page into quickmenu
 				if (link.attr('href') != "#")
@@ -84,7 +89,8 @@ function loadToolbar(tbElement) {
 
 				if(buttonGroup != null)
 					buttonGroup.fadeIn();
-				
+					
+							
 			});
 		}
 

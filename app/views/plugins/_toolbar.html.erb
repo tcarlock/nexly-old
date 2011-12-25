@@ -1,8 +1,8 @@
-<%= stylesheet_link_tag "global", "plugin_global", "plugin_canvas", "toolbar", "public/formtastic", "public/formtastic_changes", "jquery.ui.stars.min.css" %>
+<%= stylesheet_link_tag "#{root}/assets/global.css", "#{root}/assets/plugin_global.css", "#{root}/assets/plugin_canvas.css", "#{root}/assets/toolbar.css", "#{root}/assets/public/formtastic.css", "#{root}/assets/public/formtastic_changes.css", "#{root}/assets/jquery.ui.stars.min.css" %>
 <%= javascript_include_tag "jquery.ui.stars.min.js", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
 <div id="toolbarbut"> <!-- hide button -->
-	<span class="showbar"><a href="#">show bar</a></span>
+	<span class="showbar"><a href="#">show bar <%= root %></a></span>
 </div>
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
@@ -12,17 +12,17 @@
 					<a class="rss" href="/dashboard"></a><!-- icon -->
 				</li>
 			<% end %>
-			<% unless @business.linked_in.empty? %>
+			<% unless business.linked_in.empty? %>
 				<li>
 					<a class="link-button linkedin" href="<%= business.linked_in %>"></a> 
 				</li>
 			<% end %>
-			<% unless @business.twitter.empty? %>
+			<% unless business.twitter.empty? %>
 				<li>
 					<a class="link-button twitter" href="<%= business.twitter %>"></a> 
 				</li>
 			<% end %>
-			<% unless @business.facebook.empty? %>
+			<% unless business.facebook.empty? %>
 				<li>
 					<a class="link-button facebook" href="<%= business.facebook %>"></a> 
 				</li>
@@ -33,6 +33,7 @@
 		<span class="downarr"> <!-- hide button -->
 			<a href="#"></a>
 		</span>
+		Test: <%= root %>
 		<% if enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
 				<% if tb_show_rec_btn %>

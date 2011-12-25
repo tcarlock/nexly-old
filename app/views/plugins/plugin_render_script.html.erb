@@ -29,7 +29,7 @@ div.setAttribute("data-tb-enabled", <%= @enable_toolbar %>);
 div.setAttribute("data-rev-enabled", <%= @is_rev_enabled %>);
 div.setAttribute("data-rec-enabled", <%= @tb_show_rec_btn %>);
 
-div.innerHTML = "<%= escape_javascript(render(:partial => 'plugins/toolbar', :locals => { :business => @business, :enable_reviews => @enable_reviews, :reviews => @reviews, :enable_news => @enable_news, :news_posts => @news_posts, :tb_show_rec_btn => @tb_show_rec_btn, :is_rev_enabled => @is_rev_enabled})) %>"
+div.innerHTML = "<%= escape_javascript(render(:partial => 'plugins/toolbar', :locals => { :root => @root, :business => @business, :enable_reviews => @enable_reviews, :reviews => @reviews, :enable_news => @enable_news, :news_posts => @news_posts, :tb_show_rec_btn => @tb_show_rec_btn, :is_rev_enabled => @is_rev_enabled})) %>"
 
 parent.document.body.appendChild(div);
 
