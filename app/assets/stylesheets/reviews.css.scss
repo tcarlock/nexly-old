@@ -48,9 +48,14 @@ li.biz-review {
 .approve-review-link { background-image:url('/assets/tasks/check-green-small.png'); }
 
 //Form styles
-#new-review-outer {
+#new-review-outer, fieldset.inputs {
+	width:600px;
+}
+#review_details {
+	width:98%;
 }
 #new-rec-outer {
+	width:600px;
 }
 
 #reviews-view {

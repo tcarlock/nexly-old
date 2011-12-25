@@ -1,15 +1,15 @@
-var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js"];
+var scriptPaths = ["//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= @root %>/assets/jquery_ujs.js", "<%= @root %>/assets/render_plugins.js"];
 
-var scriptPaths = ["<%= root %>/assets/jquery.min.js", "<%= root %>/assets/jquery-ui.min.js", "<%= root %>/assets/jquery_ujs.js", "<%= root %>/assets/render_plugins.js", "<%= root %>/assets/public/jquery.blockUI.js"];
+var scriptPaths = ["<%= @root %>/assets/jquery.min.js", "<%= @root %>/assets/jquery-ui.min.js", "<%= @root %>/assets/jquery_ujs.js", "<%= @root %>/assets/render_plugins.js", "<%= @root %>/assets/public/jquery.blockUI.js"];
 
 scriptPaths.forEach(function(path) {
 	var script = document.createElement("script");
 	script.type="text/javascript";
 	script.src = path;
-	document.getElementsByTagName("head")[0].appendChild(script);
+	parent.document.getElementsByTagName("head")[0].appendChild(script);
 });
 
-var stylesPaths = ["<%= root %>/assets/plugin_canvas.css"];
+var stylesPaths = ["<%= @root %>/assets/plugin_canvas.css"];
 
 stylesPaths.forEach(function(path) {
 	var style = document.createElement("link");
@@ -24,11 +24,14 @@ stylesPaths.forEach(function(path) {
 var div = document.createElement("div");
 div.setAttribute("id", "nexly-toolbar");
 div.setAttribute("style", "height:45px;");
-div.setAttribute("data-network", "<%= network %>");
-div.setAttribute("data-tb-enabled", <%= enable_toolbar %>);
-div.setAttribute("data-rev-enabled", <%= is_rev_enabled %>);
-div.setAttribute("data-rec-enabled", <%= tb_show_rec_btn %>);
-document.body.appendChild(div);
+div.setAttribute("data-network", "<%= @network %>");
+div.setAttribute("data-tb-enabled", <%= @enable_toolbar %>);
+div.setAttribute("data-rev-enabled", <%= @is_rev_enabled %>);
+div.setAttribute("data-rec-enabled", <%= @tb_show_rec_btn %>);
+
+div.innerHTML = "<%= escape_javascript(render(:partial => 'plugins/toolbar', :locals => { :business => @business, :enable_reviews => @enable_reviews, :reviews => @reviews, :enable_news => @enable_news, :news_posts => @news_posts, :tb_show_rec_btn => @tb_show_rec_btn, :is_rev_enabled => @is_rev_enabled})) %>"
+
+parent.document.body.appendChild(div);
 
 //Inject canvas into parent document
 var div = document.createElement("div");

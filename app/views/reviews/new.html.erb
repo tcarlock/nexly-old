@@ -6,11 +6,11 @@
 	<%= semantic_form_for(@review, :url => business_reviews_path) do |f| %>
 	  <%= f.inputs do %>
 	  	<%= hidden_field_tag "view", @view %>
-		<%= f.input :name, :input_html => { :style => "width:300px;" }, :label_html => { :style => "width:200px;" }, :label => "Your name:" %>
-		<%= f.input :email, :input_html => { :style => "width:300px;" }, :label_html => { :style => "width:200px;" }, :label => "Your email:" %>
-	   	<%= f.input :avatar, :input_html => { :style => "width:250px;" }, :label_html => { :style => "width:200px;" }, :label => "Add a picture or logo: (optional)" %>
+		<%= f.input :name, :input_html => { :style => "width:250px;" }, :label_html => { :style => "width:175px;" }, :label => "Your name:" %>
+		<%= f.input :email, :input_html => { :style => "width:250px;" }, :label_html => { :style => "width:175px;" }, :label => "Your email:" %>
+	   	<%= f.input :avatar, :input_html => { :style => "width:250px;" }, :label_html => { :style => "width:175px;" }, :label => "Add a picture or logo: (optional)" %>
 	  	<li id="rating-outer">
-			<%= f.label 'How would you rate this business? *', :style => "width:300px;" %>
+			<%= f.label 'Please rate this business: *', :style => "width:225px;" %>
 	  		<div id="stars-outer">
 		    	<% 0.upto(5) do |n| %>
 		      		<%= f.radio_button :rating, n %>
@@ -19,7 +19,7 @@
 			<label id="review-rating-error" for="review_rating" class="custom-error">Select a rating</label>
 	  	</li>
 		<%= f.input :review_request_id, :as => :hidden %>
-		<%= f.input :details , :label => "Please share your thoughts about this business:", :label_html => { :style => "width:75%;" }, :input_html => { :rows => 8 } %>
+		<%= f.input :details , :label => "Please share your thoughts about this business:", :label_html => { :style => "width:75%;" }, :input_html => { :rows => "6" } %>
 	  <% end %>
 	  <%= f.buttons do %>
 		<%= f.commit_button 'Submit Review' %>

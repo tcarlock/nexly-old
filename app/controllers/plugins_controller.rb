@@ -17,19 +17,11 @@ class PluginsController < ApplicationController
   end
   
   def plugin_render_script
-    enable_toolbar = @business.preferences[:enable_toolbar]
-    is_rev_enabled = @business.preferences[:tb_show_review_btn]
-    tb_show_rec_btn = @business.preferences[:tb_show_rec_btn]
+    @enable_toolbar = @business.preferences[:enable_toolbar]
+    @is_rev_enabled = @business.preferences[:tb_show_review_btn]
+    @tb_show_rec_btn = @business.preferences[:tb_show_rec_btn]
     
-    render :content_type => 'text/javascript', 
-      :layout => false, 
-      :locals => { 
-        :network => @network, 
-        :root => @root, 
-        :enable_toolbar => enable_toolbar,
-        :is_rev_enabled => is_rev_enabled,
-        :tb_show_rec_btn => tb_show_rec_btn
-      }
+    render :content_type => 'text/javascript', :layout => false
   end
   
   def content_page_placeholder

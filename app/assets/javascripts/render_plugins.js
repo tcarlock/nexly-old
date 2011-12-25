@@ -22,62 +22,58 @@ function loadPages() {
 }
 
 function loadToolbar(tbElement) {
-	tbElement.load("http://nexly-demo.heroku.com/plugins/toolbar/?network=" + tbElement.attr("data-network"), function(){
-		//hide toolbar and make visible the 'show' button
-		$("span.downarr a").click(function() {
-		    $("#toolbar").slideToggle("fast");
-		    $("#toolbarbut").fadeIn("slow");
-		});
+	//hide toolbar and make visible the 'show' button
+	$("span.downarr a").click(function() {
+	    $("#toolbar").slideToggle("fast");
+	    $("#toolbarbut").fadeIn("slow");
+	});
 
-		//show toolbar and hide the 'show' button
-		$("span.showbar a").click(function() {
-			$("#toolbar").slideToggle("fast");
-		    $("#toolbarbut").fadeOut();
-		});
+	//show toolbar and hide the 'show' button
+	$("span.showbar a").click(function() {
+		$("#toolbar").slideToggle("fast");
+	    $("#toolbarbut").fadeOut();
+	});
 
-		//show tooltip when the mouse is moved over a list element
-		$(".leftside > ul > li").hover(function() {
-				$(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
-		    $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
-		        $(this).find("div").hide();
-		    });
-		});
+	//show tooltip when the mouse is moved over a list element
+	$(".leftside > ul > li").hover(function() {
+			$(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
+	    $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
+	        $(this).find("div").hide();
+	    });
+	});
 
-		//Render canvas on click
-		$("a.menutit").click(function() {
-			//parent.document.getElementById('nexly-canvas-frame').src = "http://localhost:3000/plugins/reviews/?network=" + tbElement.attr('data-network');
-			//parent.document.getElementById('nexly-canvas').style.display="block";
+	//Render canvas on click
+	$("a.menutit").click(function() {
+		//parent.document.getElementById('nexly-canvas-frame').src = "http://localhost:3000/plugins/reviews/?network=" + tbElement.attr('data-network');
+		//parent.document.getElementById('nexly-canvas').style.display="block";
 
-			link = $(this);
-			canvas = $('#nexly-canvas', parent.document);
-			canvasFrame = $('#nexly-canvas-frame', parent.document);
-			
-			if($(this).attr('data-btn-group-id') != undefined)
-				buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
+		link = $(this);
+		canvas = $('#nexly-canvas');
+		canvasFrame = $('#nexly-canvas-frame');
+		
+		if($(this).attr('data-btn-group-id') != undefined)
+			buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
 
-			//Set address
-			//$('#nexly-canvas-frame', parent.document).attr('src', "http://localhost:3000/plugins/reviews/?network=" + tbElement.attr('data-network'));
+		if (link.attr('href') == canvasFrame.attr('src')) {   //Canvas already loaded with correct url
+			if (canvas.is(':visible')) {
+				canvas.fadeOut("fast");
 
-			if (link.attr('href') == canvasFrame.attr('src')) {   //Canvas already loaded with correct url
-				if (canvas.is(':visible')) {
-					canvas.fadeOut("fast");
-
-					if(buttonGroup != null)
-						buttonGroup.fadeOut();
-				}
-				else {
-					if(buttonGroup != null)
-						buttonGroup.fadeIn();
-
-					canvas.fadeIn();
-				}
+				if(buttonGroup != null)
+					buttonGroup.fadeOut();
 			}
 			else {
-				//Set canvas and toolbar visibility
-				if (canvas.is(':hidden'))
-					canvas.fadeIn();
+				if(buttonGroup != null)
+					buttonGroup.fadeIn();
 
-				//canvas.block(getBlockUIOptions());
+				canvas.fadeIn();
+			}
+		}
+		else {
+			//Set canvas and toolbar visibility
+			if (canvas.is(':hidden'))
+				canvas.fadeIn();
+
+			canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {
 
 				//Load appropriate page into quickmenu
 				if (link.attr('href') != "#")
@@ -88,22 +84,21 @@ function loadToolbar(tbElement) {
 
 				if(buttonGroup != null)
 					buttonGroup.fadeIn();
+				
+			});
+		}
 
-				canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {canvas.unblock();});
-			}
+		return false;
+	});
+	
+	//hide menu on casual click on the page
+	$(parent.document).click(function() {
+		$("#nexly-canvas", parent.document).fadeOut("fast");
+		$(".btn-container").fadeOut();
+	});
 
-			return false;
-		});
-		
-		//hide menu on casual click on the page
-		$(parent.document).click(function() {
-			$("#nexly-canvas", parent.document).fadeOut("fast");
-			$(".btn-container").fadeOut();
-		});
-
-		$('#nexly-canvas').click(function(e) {
-			e.stopPropagation(); //use .stopPropagation() method to avoid the closing of canvas itself
-		});
+	$('#nexly-canvas').click(function(e) {
+		e.stopPropagation(); //use .stopPropagation() method to avoid the closing of canvas itself
 	});
 }
 

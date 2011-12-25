@@ -11,8 +11,8 @@ class RecommendationsController < ApplicationController
 
     @rec = Business.find(params[:business_id]).recommendations.build()
     
-    if params[:v] == 'popup'
-      render :layout => false
+    if params[:v] == "popup"
+      render :layout => "plugin_canvas"
     else
       render :layout => true 
     end
