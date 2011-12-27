@@ -9,8 +9,8 @@ function getBlockUIOptions() {
             cursor: 'default'
        	},
    	    overlayCSS: { 
-            backgroundColor: '#fff', 
-           	opacity: .8
+            backgroundColor: '#F7F7F7', 
+           	opacity: 1
        	}
    	}
 }
@@ -77,6 +77,7 @@ function loadToolbar(tbElement) {
 			if (canvas.is(':hidden'))
 				canvas.fadeIn();
 
+			canvasFrame.fadeOut();
 			canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {
 				canvas.block(getBlockUIOptions());
 
@@ -89,8 +90,8 @@ function loadToolbar(tbElement) {
 
 				if(buttonGroup != null)
 					buttonGroup.fadeIn();
-					
-							
+
+				canvasFrame.fadeIn();
 			});
 		}
 

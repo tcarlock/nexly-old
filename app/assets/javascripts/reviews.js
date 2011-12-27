@@ -16,6 +16,10 @@ function getBlockUIOptions() {
 }
 
 $(function() {
+  //Change index view
+  $('#reviews-view').buttonset();
+  $('#reviews-view input[type=radio]').change(function() { $('#reviews-view').submit(); });
+
 	$('.approve-review-link, .reject-review-link', parent.document).click(function() {
 		$(this).closest('li.biz-review').block(getBlockUIOptions());
 	});
