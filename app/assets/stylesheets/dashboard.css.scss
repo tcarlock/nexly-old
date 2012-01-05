@@ -92,10 +92,15 @@
 		background-image:url(/assets/redo.png);
 	}
 }
-#traffic-chart {
-	display:block;
-	width:350px;
-	margin:10px 0 0 20px;
+.chart-outer {
 	border:1px #D8D5D5 solid;
 	border-radius:5px;
+}
+#rating-dist-chart {
+	width:200px;
+	margin:10px 0 0 20px;	
+}
+#traffic-chart {
+	width:350px;
+	margin:10px 0 0 20px;
 }

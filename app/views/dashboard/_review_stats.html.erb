@@ -85,6 +85,10 @@
 		        }
 		    },
 			yAxis: {
+				gridLineWidth: 0,
+				labels: {
+					enabled: false
+				},
 				title: {
 					text: null
 				}
@@ -124,7 +128,7 @@
 					<%= number_to_percentage(@business.review_meta.request_response_rate * 100, :precision => 0) %> request response rate
 				</li>
 			</ul>
-			<div id="rating-dist-chart"></div>
+			<div id="rating-dist-chart" class="chart-outer"></div>
 		<% end %>
 	</li>
 </ul>
@@ -146,7 +150,7 @@
 					<%= number_to_percentage(@page_view_growth * 100, :precision => 1) %> average monthly change in traffic
 				</li>
 			</ul>
-			<div id="traffic-chart"></div>
+			<div id="traffic-chart" class="chart-outer"></div>
 		<% end %>
 	</li>
 </ul>
