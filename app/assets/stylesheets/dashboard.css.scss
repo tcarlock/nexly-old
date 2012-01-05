@@ -1,5 +1,11 @@
-#profile-details-pane {
+.left-col {
 	width:200px;
+}
+.right-col {
+	margin-left:7px;
+	padding-left:10px;
+	border-left:1px solid #CBC9C9;
+	min-height:500px;
 }
 #avatar-outer img {
 	display:block;
@@ -9,73 +15,27 @@
 	text-align:center;
 	margin-bottom:20px;
 
-	a#edit-profile {
+	#edit-profile {
 		display:block;
 		margin-bottom:7px;
 		width:100%;
 		text-align:center;
 		font-weight:bold;
 	}
-	a#biz-name {
+	#biz-name {
 		font-size:1.4em;
 		display:block;
 		padding:3px 0;
 	}
 	
-	h3.location {
+	.location {
 		padding-bottom:3px;
-	}
-}
-#dashboard-content-pane {
-	margin-left:7px;
-	padding-left:10px;
-	border-left:1px solid #CBC9C9;
-	min-height:500px;
-}
-#dashboard-content-pane,
-.content-panel {
-	width:715px;
-}
-#dashboard-content-pane > h3 {
-	text-indent:7px;
-}
-#features,
-#platforms,
-#settings,
-#biz-vitals {
-	ul.profile-details {
-		border:1px #D8D5D5 solid;
-		background-color:#ebebeb;
-		border-radius:5px;
-		width:46%;
-		padding:7px;
-		margin:0 5px;
-		float:left;
-		list-style-type:none;
-		list-style-image:none;
-		height:115px;
-		
-		li span.date-range {
-			font-size:.8em;
-		}
-		
-		ul > li {
-			font-size:1em;
-			list-style-type:disc;
-		}
-	}
-	
-	span.no-records {
-		font-size:.9em;
-		padding:0;
 	}
 }
 #features,
 #platforms {
 	margin-top:7px;
-}
-ul#features,
-ul#platforms {
+
 	li.header {
 		background-image:url(/assets/gear.png);
 	}
@@ -84,9 +44,58 @@ ul#platforms {
 		list-style-image:url(/assets/check.gif);
 	}
 }
-ul#stats-tab li.header {
-	background-image:url(/assets/chart.png);
+.stats-panel {
+	width:698px;
+	border:1px #D8D5D5 solid;
+	background-color:#ebebeb;
+	border-radius:5px;
+	padding:7px;
+
+	ul.profile-details {
+		list-style-type:none;
+		list-style-image:none;
+		float:left;
+
+		li span.date-range {
+			font-size:.8em;
+		}
+		
+		ul {
+		}
+
+		ul > li {
+			font-size:1em;
+			list-style-type:disc;
+			padding-bottom:5px;
+		}
+	}
+	
+	span.no-records {
+		font-size:.9em;
+		padding:0;
+	}
 }
-ul#traffic-tab li.header {
-	background-image:url(/assets/redo.png);
+.records-panel {
+	width:715px;
+}
+#review-stats {
+	width:45%;
+
+	li.header {
+		background-image:url(/assets/chart.png);
+	}
+}
+#traffic-stats {
+	width:54%;
+
+	li.header {
+		background-image:url(/assets/redo.png);
+	}
+}
+#traffic-chart {
+	display:block;
+	width:350px;
+	margin:10px 0 0 20px;
+	border:1px #D8D5D5 solid;
+	border-radius:5px;
 }

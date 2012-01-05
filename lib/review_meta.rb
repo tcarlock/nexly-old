@@ -1,4 +1,4 @@
-class ReviewStats
+class ReviewMeta
   def initialize business_id
     @business = Business.find(business_id)
   end
@@ -26,22 +26,25 @@ class ReviewStats
   def pending_request_count
     @business.pending_review_requests.count
   end
+    
+  def request_response_rate
+    if @business.review_requests.count == 0
+      0.0 / 0.0
+    else
+      (@business.review_requests.count - @business.pending_review_requests.count).to_f / @business.review_requests.count.to_f
+    end
+  end
   
   def average_rating
     Review.average(:rating, :conditions => ["business_id = ?", @business.id])
   end
   
-  def min_rating
-  end
   
-  def max_rating
-  end
-  
-  def submission_rate
-    if @business.review_requests.count == 0
-      0.0 / 0.0
+  def get_rating_distribution include_labels = true
+    if include_labels
+      @business.reviews.order("rating desc").group_by{ |r| r.rating }.map {|rating, g| [rating, g.count]}
     else
-      (@business.review_requests.count - @business.pending_review_requests.count).to_f / @business.review_requests.count.to_f
+      @business.reviews.order("rating desc").group_by{ |r| r.rating }.map {|rating, g| g.count}
     end
   end
 end

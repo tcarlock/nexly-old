@@ -31,10 +31,19 @@ class MainController < ApplicationController
     @active_feature_count = 1   # @business.active_features.count
     @enable_reviews = true   # !@business.active_features.where(:lookup_key => "reviews").empty?
     @enable_news = false   # !@business.active_features.where(:lookup_key => "news").empty?
+    
+    @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].max, DateTime.current)
+    
+    review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PageView.page_types[:review])
+    @total_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
+    @review_time_series = review_series.get_time_series(TrafficMeta.time_series[:monthly], false)
+    @review_page_view_count = review_series.page_views.count
+    @page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
+
+    @review_dist = @business.review_meta.get_rating_distribution(false)
 
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:reviews_pg], :per_page => 5)
-    @news_posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:news_pg])
-    @traffic = @business.traffic_browser([@business.created_at, 12.months.ago].max, DateTime.current)
+    # @news_posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:news_pg])
   end
   
   def redir

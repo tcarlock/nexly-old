@@ -190,7 +190,7 @@ namespace :app do
         :name => Faker::Name.name,
         :email => Faker::Internet.email, 
         :details => Faker::Lorem.paragraph,
-        :rating => rand(5),
+        :rating => 1 + rand(5),
         :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
         :is_rejected => ((n % 2 != 0) && (n % 5 != 0)))
     end
@@ -262,7 +262,7 @@ namespace :app do
             :name => Faker::Name.name,
             :email => Faker::Internet.email, 
             :details => Faker::Lorem.paragraph,
-            :rating => rand(5),
+            :rating => 1 + rand(5),
             :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
             :is_rejected => ((n % 2 != 0) && (n % 5 != 0)))
       end

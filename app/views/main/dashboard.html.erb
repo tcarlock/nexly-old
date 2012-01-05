@@ -5,7 +5,7 @@
 	.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
 	.ui-widget-content { border: 0px solid #aaaaaa; }
 </style>
-<div id="profile-details-pane" class="left-col">
+<div class="left-col">
 	<div id="avatar-outer">
 		<%= raw display_logo(@business, :large) %>
 	</div>
@@ -35,7 +35,7 @@
 		</li>
 	</ul>
 </div>
-<div id="dashboard-content-pane" class="right-col">
+<div class="right-col">
 	<% if @active_feature_count > 0 %>
 		<div id="admin-tabs">
 			<ul style="display:none;">

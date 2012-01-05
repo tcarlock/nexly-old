@@ -1,4 +1,4 @@
-class TrafficDetails
+class TrafficMeta
   attr_accessor :page_views, :start_date, :end_date
   
   def self.filter_types
@@ -21,9 +21,9 @@ class TrafficDetails
     reset_dataset
     
     case filter_type
-      when TrafficDetails.filter_types[:link_type]
+      when TrafficMeta.filter_types[:link_type]
         filter = :link_type_id
-      when TrafficDetails.filter_types[:platform]
+      when TrafficMeta.filter_types[:platform]
         filter = :platform_id
     end
 
@@ -31,10 +31,22 @@ class TrafficDetails
 	  self
   end
   
-  def get_time_series frequency    
-    self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
+  def get_time_series frequency, include_labels = true
+    if include_labels
+      self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
+    else
+      self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| g.count}
+    end
   end
-  
+    
+  def get_percentage_change frequency 
+    time_series, change_array = get_time_series(frequency), []
+
+    # Get difference from month to month and calculate and calculate an average
+    change_array = time_series.each_cons(2).map{|a,b| [b[0], (b[1].to_f - a[1].to_f) / a[1].to_f]}
+    change_array.inject(0.0){|sum, arr_item| sum += arr_item[1]} / change_array.length
+  end
+
   private
   
   def reset_dataset

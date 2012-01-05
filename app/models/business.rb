@@ -76,12 +76,12 @@ class Business < ActiveRecord::Base
     "#{self.address_1}, #{self.address_2} #{self.city}, #{self.state} #{self.zip_code}"
   end
   
-  def review_stats
-    ReviewStats.new(self.id)
+  def review_meta
+    ReviewMeta.new(self.id)
   end
   
-  def traffic_browser start_date = 365.days.ago.beginning_of_month, end_date = DateTime.current.beginning_of_month
-    @browser = TrafficDetails.new(self.id, start_date, end_date)
+  def traffic_meta start_date = 365.days.ago.beginning_of_month, end_date = DateTime.current.beginning_of_month
+    @browser = TrafficMeta.new(self.id, start_date, end_date)
     @browser
   end
   

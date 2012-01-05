@@ -1,8 +1,8 @@
 <% content_for :page_header do %>
 	Analytics
 	<span class="date-range">
-		<%= @traffic.start_date.to_s(:stats_date) %> to 
-		<%= @traffic.end_date.to_s(:stats_date) %>
+		<%= @traffic_meta.start_date.to_s(:stats_date) %> to 
+		<%= @traffic_meta.end_date.to_s(:stats_date) %>
 	</span>
 <% end %>
 <% content_for :styles do stylesheet_link_tag "analytics" end %>
@@ -64,11 +64,8 @@
 					}
 				},
 				series: [{
-					name: 'Review-Link Traffic',
-					data: <%= @review_series %>
-				}, {
-					name: 'Profile-Link Traffic',
-					data: <%= @profile_series %>
+					name: 'Page Views from Reviews',
+					data: <%= @total_series %>
 				}]
 			});
 			

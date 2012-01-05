@@ -1,15 +1,152 @@
-<li>
-	<%= pluralize(@business.review_stats.total_review_count, "review") %> submitted
-</li>
-<li>
-	<%= pluralize(@business.review_stats.pending_review_count, "review") %> pending approval
-</li>
-<li>
-	<%= pluralize(@business.review_stats.approved_review_count, "approved review") %>
-</li>
-<li>
-	<%= pluralize(@business.review_stats.pending_request_count, "outstanding request") %>
-</li>
-<li>
-	<%= @business.review_stats.average_rating.round(1) %> is your average rating	
-</li>
+<script type="text/javascript">
+	$(function() {
+		new Highcharts.Chart({
+			chart: {
+				renderTo: 'traffic-chart',
+				defaultSeriesType: 'line',
+				height:120,
+				width:350
+			},
+			title: {
+				text: 'Monthly Page Views',
+				style: {
+					fontSize: '10px'
+				}
+			},
+			plotOptions: {
+				column: {
+					stacking: 'normal',
+					borderWidth: 0,
+					shadow: false
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return '<b>' + this.x + '</b><br />' + this.series.name +': '+ this.y;
+		      	}
+		    },
+			legend: {
+				enabled: false
+			},
+			colors: [
+				'#92C1E9',
+				'#AA4643',
+				'#abdb73',
+				'#80699B',
+				'#3D96AE'
+			],
+			xAxis: {
+				categories: ['Jan', '', '', 'Apr', '', '', 'Jul', '', '', 'Oct', '', '']
+			},
+			yAxis: {
+				title: {
+					text: null
+				}
+			},
+			series: [{
+				name: 'Page Views',
+				data: <%= @review_time_series %>
+			}]
+		});
+		
+		new Highcharts.Chart({
+			chart: {
+				renderTo: 'rating-dist-chart',
+				defaultSeriesType: 'bar',
+				height:200,
+				width:200
+			},
+			title: {
+				text: 'Rating Distribution'
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				bar: {
+					stacking: 'normal',
+					borderWidth: 0,
+					shadow: false
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return '<b>' + this.y + '</b>';
+		      	}
+		    },
+			xAxis: {
+		        categories: ['5', '4', '3', '2', '1'],
+		        title: {
+		        	text: null
+		        }
+		    },
+			yAxis: {
+				title: {
+					text: null
+				}
+			},
+			series: [{
+				name: 'Rating Distribution',
+				data: <%= @review_dist %>
+			}]
+		});
+	});
+</script>
+<ul id="review-stats" class="profile-details clearfix">
+	<li class="header"> 
+		<%= link_to "Review Stats", business_analytics_path(@business) %>
+	</li>
+	<li>
+		<% if @business.review_meta.total_review_count == 0 %>
+			<span class="no-records">There are no reviews at this time</span>
+		<% else %>
+			<ul class="clearfix">
+				<li>
+					<%= pluralize(@business.review_meta.total_review_count, "review") %> submitted
+				</li>
+				<li style="display:none;">
+					<%= pluralize(@business.review_meta.pending_review_count, "review") %> pending approval
+				</li>
+				<li style="display:none;">
+					<%= pluralize(@business.review_meta.approved_review_count, "approved review") %>
+				</li>
+				<li style="display:none;">
+					<%= pluralize(@business.review_meta.pending_request_count, "outstanding request") %>
+				</li>
+				<li>
+					<%= @business.review_meta.average_rating.round(1) %> is your average rating	
+				</li>
+				<li>
+					<%= number_to_percentage(@business.review_meta.request_response_rate * 100, :precision => 0) %> request response rate
+				</li>
+			</ul>
+			<div id="rating-dist-chart"></div>
+		<% end %>
+	</li>
+</ul>
+<ul id="traffic-stats" class="profile-details clearfix">
+	<li class="header">
+		<%= link_to "Traffic Stats", business_analytics_path(@business) %>
+		<span class="date-range">
+			<%= @traffic_meta.start_date.to_s(:stats_date) %> to 
+			<%= @traffic_meta.end_date.to_s(:stats_date) %>
+		</span>
+	</li>
+	<li>
+		<% if @enable_reviews %>
+			<ul class="clearfix">
+				<li>
+					<%= pluralize(@review_page_view_count, "page view") %> from reviews
+				</li>
+				<li>
+					<%= number_to_percentage(@page_view_growth * 100, :precision => 1) %> average monthly change in traffic
+				</li>
+			</ul>
+			<div id="traffic-chart"></div>
+		<% end %>
+	</li>
+</ul>
