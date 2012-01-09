@@ -63,9 +63,9 @@ class Business < ActiveRecord::Base
   before_save :perform_avatar_removal
   
   preferable do
-    boolean :enable_toolbar, :default => false
-    boolean :tb_show_review_btn, :default => false
-    boolean :tb_show_rec_btn, :default => false
+    boolean :enable_toolbar, :default => true
+    boolean :tb_show_review_btn, :default => true
+    boolean :tb_show_rec_btn, :default => true
   end
     
   def location

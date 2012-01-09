@@ -34,13 +34,17 @@ class MainController < ApplicationController
     
     @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].max, DateTime.current)
     
+    @total_page_view_allocation = @traffic_meta.get_traffic_allocation(TrafficMeta.filter_types[:platform]).to_json
+
     review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PageView.page_types[:review])
-    @total_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
-    @review_time_series = review_series.get_time_series(TrafficMeta.time_series[:monthly], false)
-    @review_page_view_count = review_series.page_views.count
-    @page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
+    @total_page_view_time_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
+    @review_page_view_time_series = review_series.get_time_series(TrafficMeta.time_series[:monthly], false)
+    @review_page_view_total = review_series.page_views.count
+    @review_page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
 
     @review_dist = @business.review_meta.get_rating_distribution(false)
+
+    # debugger
 
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:reviews_pg], :per_page => 5)
     # @news_posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:news_pg])

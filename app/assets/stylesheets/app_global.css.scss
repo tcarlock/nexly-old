@@ -172,6 +172,7 @@ ul.navigation li.active a {
 	margin-bottom:3px;
 	border-bottom:1px dotted #D8D5D5;
 }
+.standard-list > li .footer,
 .standard-list > li .footer * {
 	font-size:.9em !important;
 	color:#A2A2A3;
@@ -305,9 +306,10 @@ ul.profile-details {
 		
 	li.header {
 		padding-bottom:7px;
+		padding-top:1px;
 		font-weight:bold; 
 		color:#646464;
-		font-size:1.2em;
+		font-size:1em;
 		list-style-type:none;
 		list-style-image:none;
 		background-repeat:no-repeat;

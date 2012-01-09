@@ -38,13 +38,24 @@ class TrafficMeta
       self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| g.count}
     end
   end
-    
+  
   def get_percentage_change frequency 
     time_series, change_array = get_time_series(frequency), []
 
     # Get difference from month to month and calculate and calculate an average
     change_array = time_series.each_cons(2).map{|a,b| [b[0], (b[1].to_f - a[1].to_f) / a[1].to_f]}
     change_array.inject(0.0){|sum, arr_item| sum += arr_item[1]} / change_array.length
+  end
+  
+  def get_traffic_allocation allocation_type
+    total_page_views = self.page_views.count
+
+    case allocation_type
+      when TrafficMeta.filter_types[:link_type]
+        self.page_views.group_by{ |u| u.link_type_id }.map {|link_type_id, g| [link_type_id, g.count.to_f/total_page_views.to_f*100]}
+      when TrafficMeta.filter_types[:platform]
+        self.page_views.group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
+    end
   end
 
   private

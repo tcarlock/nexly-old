@@ -2,15 +2,16 @@
 	$(function() {
 		new Highcharts.Chart({
 			chart: {
-				renderTo: 'traffic-chart',
+				renderTo: 'traffic-trend-chart',
 				defaultSeriesType: 'line',
 				height:120,
-				width:350
+				width:375
 			},
 			title: {
 				text: 'Monthly Page Views',
+				margin: 7,
 				style: {
-					fontSize: '10px'
+					fontSize: '13px'
 				}
 			},
 			plotOptions: {
@@ -24,7 +25,7 @@
 				borderWidth: 1,
 				borderColor: '#909090',
 				formatter: function () {
-		        	return '<b>' + this.x + '</b><br />' + this.series.name +': '+ this.y;
+		        	return this.y + ' page views';
 		      	}
 		    },
 			legend: {
@@ -47,7 +48,7 @@
 			},
 			series: [{
 				name: 'Page Views',
-				data: <%= @review_time_series %>
+				data: <%= @review_page_view_time_series %>
 			}]
 		});
 		
@@ -55,11 +56,15 @@
 			chart: {
 				renderTo: 'rating-dist-chart',
 				defaultSeriesType: 'bar',
-				height:200,
-				width:200
+				height:120,
+				width:225
 			},
 			title: {
-				text: 'Rating Distribution'
+				text: 'Rating Distribution',
+				margin: 7,
+				style: {
+					fontSize: '13px'
+				}
 			},
 			legend: {
 				enabled: false
@@ -67,6 +72,8 @@
 			plotOptions: {
 				bar: {
 					stacking: 'normal',
+					pointPadding: 0.05,
+					groupPadding: 0,
 					borderWidth: 0,
 					shadow: false
 				}
@@ -75,11 +82,11 @@
 				borderWidth: 1,
 				borderColor: '#909090',
 				formatter: function () {
-		        	return '<b>' + this.y + '</b>';
+		        	return '<b>' + this.y + ' ratings</b>';
 		      	}
 		    },
 			xAxis: {
-		        categories: ['5', '4', '3', '2', '1'],
+		        categories: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
 		        title: {
 		        	text: null
 		        }
@@ -96,6 +103,57 @@
 			series: [{
 				name: 'Rating Distribution',
 				data: <%= @review_dist %>
+			}]
+		});
+
+		new Highcharts.Chart({
+			chart: {
+				renderTo: 'traffic-allocation-chart',
+				defaultSeriesType: 'pie',
+				height:150,
+				width:300
+			},
+			title: {
+				text: 'Sources of Traffic',
+				margin: -10,
+				style: {
+					fontSize: '13px'
+				}
+			},
+			legend: {
+				enabled: true,
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				itemStyle: {
+					fontSize: '11px'
+				},
+				labelFormatter: function () {
+		        	return this.name + ' (' + Math.round(this.y) + '%)';
+		      	},
+			},
+			plotOptions: {
+				pie: {
+					size: '70%',
+					dataLabels: {
+						distance: 20,
+						formatter: function () {
+				        	return this.point.name + '<br />(' + Math.round(this.percentage) + '%)';
+				      	},
+				      	enabled: false
+            		},
+            		showInLegend: true
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
+		      	}
+		    },
+			series: [{
+				data: <%= raw @total_page_view_allocation %>
 			}]
 		});
 	});
@@ -144,13 +202,19 @@
 		<% if @enable_reviews %>
 			<ul class="clearfix">
 				<li>
-					<%= pluralize(@review_page_view_count, "page view") %> from reviews
+					<%= pluralize(@review_page_view_total, "page view") %> from reviews
 				</li>
 				<li>
-					<%= number_to_percentage(@page_view_growth * 100, :precision => 1) %> average monthly change in traffic
+					<%= number_to_percentage(@review_page_view_growth * 100, :precision => 1) %> average monthly change in traffic
 				</li>
 			</ul>
-			<div id="traffic-chart" class="chart-outer"></div>
+			<div id="traffic-trend-chart" class="chart-outer"></div>
+	<div id="traffic-allocation-chart" class="chart-outer"></div>
 		<% end %>
 	</li>
 </ul>
+<a id="toggle-charts">Show Charts</a>
+<div id="charts-container">
+	
+	
+</div>

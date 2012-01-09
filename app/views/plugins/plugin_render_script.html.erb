@@ -14,27 +14,12 @@ function loadScript(url, onloadFunction) {
 }
 
 //Load core jquery
-//loadScript("<%= @root %>/assets/jquery.min.js")
-
 loadScript("//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", function() {
 	var scriptPaths = [ "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "<%= @root %>/assets/public/jquery.blockUI.js", "<%= @root %>/assets/render_plugins.js"];
-
-	var scriptPaths = [, "<%= @root %>/assets/jquery-ui.min.js", "<%= @root %>/assets/public/jquery.blockUI.js", "<%= @root %>/assets/render_plugins.js"];
 
 	scriptPaths.forEach(function(url) {
 		loadScript(url);
 	});
-});
-
-var stylesPaths = ["<%= @root %>/assets/plugin_canvas.css"];
-
-stylesPaths.forEach(function(url) {
-	var style = document.createElement("link");
-	style.type="text/css";
-	style.media="screen";
-	style.rel="stylesheet";
-	style.href = url;
-	parent.document.getElementsByTagName("head")[0].appendChild(style);
 });
 
 //Generate toolbar
