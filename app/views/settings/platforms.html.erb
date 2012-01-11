@@ -21,9 +21,9 @@
 					<a rel="init-setup-details">Initial Setup</a>
 					<div class="contents">
 						<span>Complete these two simple steps before adding Nexly features to your site</span>
-						<h5>1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;).</h5>
+						<span>1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;).</span>
 						<%= text_area_tag "toolbar-bootstrap-script", @plugin_bootstrap_script.to_s, :class => "integration-script", :size => '67x3' %>
-						<h5>2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;).</h5>
+						<span>2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;).</span>
 						<%= text_area_tag "toolbar-init-script", @plugin_init_script.to_s, :class => "integration-script", :size => '67x1' %>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 							Simply paste the code where you want content displayed in your site. Pick and choose the features you want included: 
 						</span>
 						<% @content_pages_html.each do |page| %>
-							<h5><%= page[:app_title] %> module</h5>					
+							<span><%= page[:app_title] %> module</span>
 							<%= text_area_tag "content-page-#{page[:app_id]}", page[:placeholder_html], :class => "integration-script", :size => '67x1' %>
 						<% end %>
 					</div>

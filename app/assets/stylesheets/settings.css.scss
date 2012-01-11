@@ -4,9 +4,8 @@
 	.form-outer {
 		width:600px;
 		
-		h5 {
+		h4 {
 			padding:7px 0;
-			font-weight:normal;
 		}
 	}
 	
@@ -91,12 +90,11 @@
 			}
 			
 			img.settings {
-				width:8px;
+				width:16px;
 				height:16px;
 				padding:7px;
 				margin:0 7px 0 0;
 				border:1px transparent solid;
-				background:url(/assets/gear.png) center center no-repeat transparent;
 				-moz-border-radius:5px;
 				-webkit-border-radius:5px;
 				border-radius:5px;

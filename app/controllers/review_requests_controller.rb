@@ -32,6 +32,8 @@ class ReviewRequestsController < ApplicationController
     end
   end
   
+  private 
+  
   def get_business
     @business = Business.find(params[:business_id])
   end

@@ -18,9 +18,20 @@ function getBlockUIOptions() {
 $(function() {
   //Change index view
   $('#reviews-view').buttonset();
+
+  $('a.ui-state-active').mouseover(function(){
+       //$(this).removeClass('ui-state-active');
+  }).mouseout(function(){
+       $(this).addClass('ui-state-active');
+  });
+
   $('#reviews-view input[type=radio]').change(function() { $('#reviews-view').submit(); });
 
 	$('.approve-review-link, .reject-review-link', parent.document).click(function() {
 		$(this).closest('li.biz-review').block(getBlockUIOptions());
 	});
+
+  $('.delete-request-link').click(function() {
+    $(this).closest('li.review-request').block(getBlockUIOptions());
+  });
 });

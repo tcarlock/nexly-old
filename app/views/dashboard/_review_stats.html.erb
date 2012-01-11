@@ -1,166 +1,6 @@
-<script type="text/javascript">
-	$(function() {
-		new Highcharts.Chart({
-			chart: {
-				renderTo: 'traffic-trend-chart',
-				defaultSeriesType: 'line',
-				height:120,
-				width:375
-			},
-			title: {
-				text: 'Monthly Page Views',
-				margin: 7,
-				style: {
-					fontSize: '13px'
-				}
-			},
-			plotOptions: {
-				column: {
-					stacking: 'normal',
-					borderWidth: 0,
-					shadow: false
-				}
-			},
-			tooltip: {
-				borderWidth: 1,
-				borderColor: '#909090',
-				formatter: function () {
-		        	return this.y + ' page views';
-		      	}
-		    },
-			legend: {
-				enabled: false
-			},
-			colors: [
-				'#92C1E9',
-				'#AA4643',
-				'#abdb73',
-				'#80699B',
-				'#3D96AE'
-			],
-			xAxis: {
-				categories: ['Jan', '', '', 'Apr', '', '', 'Jul', '', '', 'Oct', '', '']
-			},
-			yAxis: {
-				title: {
-					text: null
-				}
-			},
-			series: [{
-				name: 'Page Views',
-				data: <%= @review_page_view_time_series %>
-			}]
-		});
-		
-		new Highcharts.Chart({
-			chart: {
-				renderTo: 'rating-dist-chart',
-				defaultSeriesType: 'bar',
-				height:120,
-				width:225
-			},
-			title: {
-				text: 'Rating Distribution',
-				margin: 7,
-				style: {
-					fontSize: '13px'
-				}
-			},
-			legend: {
-				enabled: false
-			},
-			plotOptions: {
-				bar: {
-					stacking: 'normal',
-					pointPadding: 0.05,
-					groupPadding: 0,
-					borderWidth: 0,
-					shadow: false
-				}
-			},
-			tooltip: {
-				borderWidth: 1,
-				borderColor: '#909090',
-				formatter: function () {
-		        	return '<b>' + this.y + ' ratings</b>';
-		      	}
-		    },
-			xAxis: {
-		        categories: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
-		        title: {
-		        	text: null
-		        }
-		    },
-			yAxis: {
-				gridLineWidth: 0,
-				labels: {
-					enabled: false
-				},
-				title: {
-					text: null
-				}
-			},
-			series: [{
-				name: 'Rating Distribution',
-				data: <%= @review_dist %>
-			}]
-		});
-
-		new Highcharts.Chart({
-			chart: {
-				renderTo: 'traffic-allocation-chart',
-				defaultSeriesType: 'pie',
-				height:150,
-				width:300
-			},
-			title: {
-				text: 'Sources of Traffic',
-				margin: -10,
-				style: {
-					fontSize: '13px'
-				}
-			},
-			legend: {
-				enabled: true,
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'middle',
-				itemStyle: {
-					fontSize: '11px'
-				},
-				labelFormatter: function () {
-		        	return this.name + ' (' + Math.round(this.y) + '%)';
-		      	},
-			},
-			plotOptions: {
-				pie: {
-					size: '70%',
-					dataLabels: {
-						distance: 20,
-						formatter: function () {
-				        	return this.point.name + '<br />(' + Math.round(this.percentage) + '%)';
-				      	},
-				      	enabled: false
-            		},
-            		showInLegend: true
-				}
-			},
-			tooltip: {
-				borderWidth: 1,
-				borderColor: '#909090',
-				formatter: function () {
-		        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
-		      	}
-		    },
-			series: [{
-				data: <%= raw @total_page_view_allocation %>
-			}]
-		});
-	});
-</script>
 <ul id="review-stats" class="profile-details clearfix">
 	<li class="header"> 
-		<%= link_to "Review Stats", business_analytics_path(@business) %>
+		Review Stats
 	</li>
 	<li>
 		<% if @business.review_meta.total_review_count == 0 %>
@@ -186,13 +26,12 @@
 					<%= number_to_percentage(@business.review_meta.request_response_rate * 100, :precision => 0) %> request response rate
 				</li>
 			</ul>
-			<div id="rating-dist-chart" class="chart-outer"></div>
 		<% end %>
 	</li>
 </ul>
 <ul id="traffic-stats" class="profile-details clearfix">
 	<li class="header">
-		<%= link_to "Traffic Stats", business_analytics_path(@business) %>
+		Traffic Stats
 		<span class="date-range">
 			<%= @traffic_meta.start_date.to_s(:stats_date) %> to 
 			<%= @traffic_meta.end_date.to_s(:stats_date) %>
@@ -208,13 +47,8 @@
 					<%= number_to_percentage(@review_page_view_growth * 100, :precision => 1) %> average monthly change in traffic
 				</li>
 			</ul>
-			<div id="traffic-trend-chart" class="chart-outer"></div>
-	<div id="traffic-allocation-chart" class="chart-outer"></div>
+			
 		<% end %>
 	</li>
 </ul>
-<a id="toggle-charts">Show Charts</a>
-<div id="charts-container">
-	
-	
-</div>
+			

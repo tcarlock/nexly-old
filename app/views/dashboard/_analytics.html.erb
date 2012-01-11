@@ -1,0 +1,203 @@
+<script type="text/javascript">
+	$(function() {
+		var height = 200;
+		var labelFont = '13px';
+
+		new Highcharts.Chart({
+			credits: {
+				enabled: false
+			},
+			chart: {
+				renderTo: 'traffic-trend-chart',
+				defaultSeriesType: 'line',
+				height: height,
+				width: 450
+			},
+			title: {
+				text: 'Monthly Page Views',
+				style: {
+					fontSize: '13px'
+				}
+			},
+			plotOptions: {
+				column: {
+					stacking: 'normal',
+					borderWidth: 0,
+					shadow: false
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return this.y + ' page views';
+		      	}
+		    },
+			legend: {
+				enabled: false
+			},
+			colors: [
+				'#92C1E9',
+				'#AA4643',
+				'#abdb73',
+				'#80699B',
+				'#3D96AE'
+			],
+			xAxis: {
+				categories: ['Jan', '', '', 'Apr', '', '', 'Jul', '', '', 'Oct', '', ''],
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			yAxis: {
+				title: {
+					text: null
+				},
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			series: [{
+				name: 'Page Views',
+				data: <%= @review_page_view_time_series %>
+			}]
+		});
+		
+		new Highcharts.Chart({
+			credits: {
+				enabled: false
+			},
+			chart: {
+				renderTo: 'rating-dist-chart',
+				defaultSeriesType: 'bar',
+				height:height,
+				width:230,
+				className: 'right-margin-applied'
+			},
+			title: {
+				text: 'Rating Distribution',
+				style: {
+					fontSize: '13px'
+				}
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				bar: {
+					stacking: 'normal',
+					pointPadding: 0.05,
+					groupPadding: 0,
+					borderWidth: 0,
+					shadow: false
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return '<b>' + this.y + ' ratings</b>';
+		      	}
+		    },
+			xAxis: {
+		        categories: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
+		        title: {
+		        	text: null
+		        },
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+		    },
+			yAxis: {
+				gridLineWidth: 0,
+				labels: {
+					enabled: false
+				},
+				title: {
+					text: null
+				}
+			},
+			series: [{
+				name: 'Rating Distribution',
+				data: <%= @review_dist %>
+			}]
+		});
+
+		new Highcharts.Chart({
+			credits: {
+				enabled: false
+			},
+			chart: {
+				renderTo: 'traffic-allocation-chart',
+				defaultSeriesType: 'pie',
+				height:height,
+				width:350
+			},
+			title: {
+				text: 'Sources of Traffic',
+				style: {
+					fontSize: '13px'
+				}
+			},
+			legend: {
+				enabled: true,
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				borderWidth: 0,
+				itemStyle: {
+					fontSize: '13px'
+				},
+				labelFormatter: function () {
+		        	return this.name + ' (' + Math.round(this.y) + '%)';
+		      	},
+			},
+			xAxis: {
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			yAxis: {
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			plotOptions: {
+				pie: {
+					size: '90%',
+					dataLabels: {
+						distance: 20,
+						formatter: function () {
+				        	return this.point.name + '<br />(' + Math.round(this.percentage) + '%)';
+				      	},
+				      	enabled: false
+            		},
+            		showInLegend: true
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
+		      	}
+		    },
+			series: [{
+				data: <%= raw @total_page_view_allocation %>
+			}]
+		});
+	});
+</script>
+<div id="rating-dist-chart" class="chart-outer"></div>
+<div id="traffic-trend-chart" class="chart-outer"></div>
+<div id="traffic-allocation-chart" class="chart-outer"></div>

@@ -1,18 +1,3 @@
 <div class="content-panel stats-panel">
 	<%= render :partial => 'dashboard/review_stats' %>
 </div>
-<div class="content-panel records-panel">
-	<h3>
-		Reviews Pending Approval
-		<%= link_to "Manage Requests", business_review_requests_path(@business) %>
-		<%= link_to "Manage Reviews", business_reviews_path(@business) %>
-	</h3>
-	<% if @business.review_meta.pending_review_count == 0 %>
-		<span class="no-records">There are no reviews pending approval</span>
-	<% else %>
-		<ul id="biz-reviews" class="standard-list">
-			<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
-		</ul>
-		<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review", :param_name => "reviews_pg" } %>
-	<% end %>
-</div>

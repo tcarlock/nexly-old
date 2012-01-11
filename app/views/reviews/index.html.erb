@@ -1,24 +1,46 @@
 <% content_for :styles do stylesheet_link_tag "reviews" end %>
-<% content_for :scripts do javascript_include_tag "reviews" end %>
+<% content_for :scripts do %>
+	<%= javascript_include_tag "reviews" %>
+	
+	<style type="text/css">
+		#page-header {
+			float:left;
+			margin-bottom:25px;
+		}	
+	</style>
+<% end %>
 
 <% content_for :page_header do %>
 	<%= @header %>
-	<%= form_tag business_reviews_path, :method => :get, :id => "reviews-view",  do %>
-		<input type="radio" id="radio1" name="v" value="1" <%= @view == 1 ? 'checked="checked"' : ''%> /><label for="radio1">Pending Approval</label>
-		<input type="radio" id="radio2" name="v" value="2" <%= @view == 2 ? 'checked="checked"' : ''%> /><label for="radio2">Approved Reviews</label>
-		<input type="radio" id="radio3" name="v" value="3" <%= @view == 3 ? 'checked="checked"' : ''%> /><label for="radio3">Rejected Reviews</label>
-	<% end %>
 <% end %>
+<div id="reviews-view">
+	<%= link_to "Requests", business_review_requests_path, :class => (@view == 'requests' ? 'ui-state-active' : '') %>
+	<%= link_to "Pending", business_pending_reviews_path, :class => (@view == 'pending' ? 'ui-state-active' : '') %>
+	<%= link_to "Approved", business_approved_reviews_path, :class => (@view == 'approved' ? 'ui-state-active' : '') %>
+	<%= link_to "Rejected", business_rejected_reviews_path, :class => (@view == 'rejected' ? 'ui-state-active' : '') %>
+</div>
 <div class="btns-tab">
 	<% if(@business.is_user_admin?(current_user)) %>
-		<%= link_to "", "#", :id => "manage-reqs-link", :href => business_review_requests_path(@business), :title => "Send review requests" %>
+		<%= link_to '', '#', :id => 'new-req-link', :href => new_business_review_request_path(@business), :title => 'Send review requests' %>
 	<% end %>
 </div>
-<% if @reviews.empty? %>
-	<span class="no-records">There are no reviews at this time.</span>
+
+<% if @view == 'requests' %>
+	<% if @requests.empty? %>
+		<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
+	<% else %>
+		<ul id="review-requests" class="standard-list">
+			<%= render @requests %>
+		</ul>
+		<%= render :partial => 'shared/pager', :locals => { :items => @requests, :label => 'pending request' } %>
+	<% end %>
 <% else %>
-	<ul id="review-requests" class="standard-list">
-		<%= render :partial => "reviews/review", :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false }  %>
-	</ul>
-	<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "review" } %>
+	<% if @reviews.empty? %>
+		<span class="no-records">There are no reviews at this time.</span>
+	<% else %>
+		<ul id="review-requests" class="standard-list">
+			<%= render :partial => "reviews/review", :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false }  %>
+		</ul>
+		<%= render :partial => 'shared/pager', :locals => { :items => @reviews, :label => "review" } %>
+	<% end %>
 <% end %>

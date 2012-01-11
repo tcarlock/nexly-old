@@ -9,8 +9,8 @@ Nexly::Application.routes.draw do
 
   resources :businesses do
     resource :recommendations, :only => [:new, :create]
-    resources :review_requests, :except => [:update, :edit]
-    resources :reviews, :except => [:update, :edit] do
+    resources :review_requests, :only => [:new, :create, :destroy]
+    resources :reviews, :except => [:show, :new, :create] do
       member do
         post :dispute, :approve, :reject
       end
@@ -20,8 +20,13 @@ Nexly::Application.routes.draw do
     
     resources :news, :controller => :news_posts
     resources :analytics, :only => :index, :controller => :analytics
+
+    get 'review_requests' => 'reviews#review_requests', :as => :business_review_requests_path
+    get 'pending_reviews' => 'reviews#pending_reviews'
+    get 'approved_reviews' => 'reviews#approved_reviews'
+    get 'rejected_reviews' => 'reviews#rejected_reviews'
   end
-  
+
   get 'features/' => 'settings#features'
   get 'platforms/' => 'settings#platforms'
   get 'init_settings/' => 'settings#init_settings'

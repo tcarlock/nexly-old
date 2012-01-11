@@ -1,63 +1,61 @@
-<% content_for :styles do stylesheet_link_tag "dashboard", "reviews", "news_posts" end %>
 <% content_for :scripts do javascript_include_tag "dashboard", "reviews", "news_posts" end %>
+<% content_for :styles do %>
+	<%= stylesheet_link_tag "dashboard", "reviews", "news_posts" %>
 
-<style type="text/css">
-	.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
-	.ui-widget-content { border: 0px solid #aaaaaa; }
-</style>
+	<style type="text/css">
+		.ui-tabs .ui-tabs-panel { padding: 1em 0em; }
+		.ui-widget-content { border: 0px solid #aaaaaa; }
+	</style>
+<% end %>
+<div id="header-bar">
+</div>
 <div class="left-col">
 	<div id="avatar-outer">
-		<%= raw display_logo(@business, :large) %>
+		<%= raw display_logo(@business, :thumb) %>
 	</div>
 	<div id="biz-details" class="panel">
-		<%= link_to "Edit Profile", edit_business_path(@business), :id => 'edit-profile'  %>
 		<%= link_to @business.name, business_path(@business), :id => 'biz-name' %>
-		<h3><%= @business.location %></h3>
+		<%= link_to "Edit Profile", edit_business_path(@business), :id => 'edit-profile'  %>
 	</div>
-	<ul id="features" class="profile-details clearfix" style="display:none;">
-		<li class="header">
-			<%= link_to "Manage Features", features_path %>
+	<ul id="panel-tabs" class="clearfix">
+		<li id="analytics-tab" class="header active">
+			<a class="toggle-link" ref="analytics-panel">Data &amp; Analytics</a>
 		</li>
-		<li>
-			<ul>
-				<%= render 'dashboard/features' %>
-			</ul>
+		<li id="reviews-tab" class="header">
+			<a class="toggle-link" ref="reviews-panel">Pending Reviews (<%= @business.review_meta.pending_review_count %>)</a>
 		</li>
-	</ul>
-	<ul id="platforms" class="profile-details clearfix">
-		<li class="header">
-			<%= link_to "Manage Settings", platforms_path %>
+		<li id="settings-tab" class="header">
+			<a class="toggle-link" ref="settings-panel">Settings</a>
+			<%= link_to "Manage", platforms_path, :class => 'command-link' %>
 		</li>
-		<li>
-			<ul>
+		<li  class="container">
+			<ul id="platforms" class="profile-details clearfix">
 				<%= render 'dashboard/platforms' %>
 			</ul>
 		</li>
 	</ul>
 </div>
 <div class="right-col">
-	<% if @active_feature_count > 0 %>
-		<div id="admin-tabs">
-			<ul style="display:none;">
-				<% if @enable_reviews %>
-					<li><a href="#tab-reviews">Reviews</a></li>
-				<% end %>
-				<% if @enable_news %>
-					<li><a href="#tab-news">News</a></li>
-				<% end %>
-			</ul>
-			<% if @enable_reviews %>
-				<div id="tab-reviews">
-					<%= render 'dashboard/reviews_tab' %>
-				</div>
-			<% end %>
-			<% if @enable_news %>
-				<div id="tab-news">
-					<%= render 'dashboard/news_tab' %>
-				</div>
-			<% end %>
+	<div id="analytics-panel" class="dashboard-panel">
+		<div id="tab-reviews">
+			<div class="content-panel stats-panel">
+				<%= render 'dashboard/review_stats' %>
+			</div>
+			<%= render 'dashboard/analytics' %>
 		</div>
-	<% else %>
-		<span class="no-records">You haven't enabled any features yet. <%= link_to 'Click here to manage features', features_path %>.</span>
-	<% end %>
+	</div>
+	<div id="reviews-panel" class="content-panel dashboard-panel">
+		<h2>
+			Reviews Pending Approval
+			<%= link_to "Manage Reviews & Requests", business_review_requests_path(@business) %>
+		</h2>
+		<% if @business.review_meta.pending_review_count == 0 %>
+			<span class="no-records">There are no reviews pending approval</span>
+		<% else %>
+			<ul id="biz-reviews" class="standard-list">
+				<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>
+			</ul>
+			<%= render :partial => 'shared/pager', :locals => { :items => @pending_reviews, :label => "pending review", :param_name => "reviews_pg" } %>
+		<% end %>
+	</div>
 </div>

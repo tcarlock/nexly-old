@@ -1,12 +1,6 @@
 <% content_for :styles do stylesheet_link_tag "review_requests" end %>
 <% content_for :scripts do javascript_include_tag "review_requests" end %>
 
-<% content_for :page_header do "Review Requests" end %>
-<div class="btns-tab">
-	<% if(@business.is_user_admin?(current_user)) %>
-		<%= link_to '', '#', :id => 'new-req-link', :href => new_business_review_request_path(@business), :title => 'Send review requests' %>
-	<% end %>
-</div>
 <% if @requests.empty? %>
 	<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
 <% else %>

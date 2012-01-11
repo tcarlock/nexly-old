@@ -1,26 +1,28 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :get_business, :only => [:index, :new, :create]
+  before_filter :get_business
   before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
-  
-  def index
-    @view = (params[:v] || 1).to_i
-    
-    case @view
-      when 1   # Pending
-        @reviews = @business.pending_reviews
-        @header = "Reviews Pending Approval"
-      when 2   # Approved
-        @reviews = @business.approved_reviews
-        @header = "Approved Reviews"
-      when 3   # Rejected
-        @reviews = @business.rejected_reviews
-        @header = "Rejected Reviews"
-    end
-    
-    @reviews = @reviews.order('created_at DESC').paginate(:page => params[:page])
+
+  def review_requests
+    @view = 'requests'
+    @requests = @business.review_requests.where(:is_reviewed => false).paginate(:page => params[:page])
+    @header = 'Review Requests'
+
+    render :template => 'reviews/index'
   end
       
+  def pending_reviews
+    get_reviews :pending
+  end
+      
+  def approved_reviews
+    get_reviews :approved
+  end
+      
+  def rejected_reviews
+    get_reviews :rejected
+  end
+
   def show
     @review = Review.find(params[:id])
   end
@@ -88,14 +90,6 @@ class ReviewsController < ApplicationController
       render :new
     end
   end
-
-  def destroy
-    @review.destroy
-    
-    respond_to do |format|
-      format.js
-    end
-  end
   
   def approve
     @review.update_attributes(:is_approved => true, :is_rejected => false)
@@ -131,6 +125,25 @@ class ReviewsController < ApplicationController
     end
   end
   
+  def get_reviews status
+    case status
+      when :pending
+        @reviews = @business.pending_reviews
+        @header = 'Reviews Pending Approval'
+      when :approved
+        @reviews = @business.approved_reviews
+        @header = 'Approved Reviews'
+      when :rejected
+        @reviews = @business.rejected_reviews
+        @header = 'Rejected Reviews'
+    end
+
+    @view = status.to_s
+    @reviews = @reviews.order('created_at DESC').paginate(:page => params[:page])
+
+    render 'reviews/index'
+  end
+
   def get_review
     @review = Review.find(params[:id])
   end

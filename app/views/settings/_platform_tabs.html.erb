@@ -10,7 +10,7 @@
 						<span>Disable <%= platform.display_name %></span>
 						<% if platform.name == "facebook" && current_user.facebook.accounts.length > 0 %>
 							<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
-								<%= image_tag "gear.png", :class => "settings", :title => "Manage settings" %>
+								<%= image_tag "tasks/gear.png", :class => "settings", :title => "Manage settings" %>
 							<% end %>
 						<% end %>
 					<% end %>
