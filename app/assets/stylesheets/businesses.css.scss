@@ -53,14 +53,14 @@ li.business {
 #biz-details {
 	padding-bottom:7px;
 	width:550px;
-}
-#biz-details h1,
-#biz-details h2 {
-	color:#666;
-	padding-bottom:0px;
-}
 
-#edit-profile-link { background-image:url('/assets/tasks/edit.png'); }
+	h1,
+	h2 {
+		color:#666;
+		padding-bottom:0px;
+	}
+}
+#edit-profile-link { background-image:url('/assets/tasks/file-edit.png'); }
 #review-link { background-image:url('/assets/tasks/edit.png'); }
 #content-link { background-image:url('/assets/tasks/document.png'); display: none; }
 #apps-link { background-image:url('/assets/tasks/gear.png'); }
