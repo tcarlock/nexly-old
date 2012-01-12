@@ -10,7 +10,7 @@ Nexly::Application.routes.draw do
   resources :businesses do
     resource :recommendations, :only => [:new, :create]
     resources :review_requests, :only => [:new, :create, :destroy]
-    resources :reviews, :except => [:show, :new, :create] do
+    resources :reviews, :only => [:show, :new, :create] do
       member do
         post :dispute, :approve, :reject
       end
