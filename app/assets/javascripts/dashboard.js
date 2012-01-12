@@ -9,7 +9,7 @@ $(function(){
 			$('#platforms').slideToggle(350);
 		else {
 			$('#panel-tabs li').removeClass('active');
-			$(this).parent().addClass('active');
+			$(this).addClass('active');
 			$('.dashboard-panel').hide();
 			$('#' + target).fadeIn(350);
 		}
