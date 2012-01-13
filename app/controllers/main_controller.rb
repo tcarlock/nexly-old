@@ -1,4 +1,6 @@
 class MainController < ApplicationController
+  caches_page :welcome
+
   if Rails.env == "development" || Rails.env == "demo"
     skip_before_filter :authenticate_user!
   else

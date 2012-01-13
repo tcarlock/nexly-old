@@ -28,3 +28,6 @@ Nexly::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+ENV['IRON_WORKER_TOKEN'] = 'YOUR TOKEN'
+ENV['IRON_WORKER_PROJECT_ID'] = 'YOUR PROJECT ID'

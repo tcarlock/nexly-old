@@ -35,17 +35,17 @@
 		</span>
 		<% if @enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
-				<% if tb_show_rec_btn %>
-					<span class="menu_title">
-						<%= link_to "Tell Someone", new_business_recommendations_url(@business, :v => "popup"), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 750 %>
-					</span>
-				<% end %>
-				<% if is_rev_enabled %>
-					<span class="menu_title">
-						<%= link_to "Post a Review", new_business_review_url(@business, :v => "popup"), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 750 %>
-					</span>
-				<% end %>
 			</span>
+			<% if tb_show_rec_btn %>
+				<span class="menu_title">
+					<%= link_to "Tell Someone", new_business_recommendations_url(@business, :v => "popup"), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 750 %>
+				</span>
+			<% end %>
+			<% if is_rev_enabled %>
+				<span class="menu_title">
+					<%= link_to "Post a Review", new_business_review_url(@business, :v => "popup"), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 750 %>
+				</span>
+			<% end %>
 			<span class="menu_title">
 				<%= link_to "Reviews (#{@reviews.count})", plugins_reviews_url(:network => @business.api_token), :id => "reviews-btn", :class => "menutit", "data-btn-group-id" => "reviews-btns", "data-btn-group-id" => "reviews-btns" %>
 			</span>
