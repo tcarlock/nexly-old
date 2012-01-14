@@ -31,6 +31,7 @@ gem "preferable"
 gem "rinku"
 gem "newrelic_rpm"
 # gem "thinking-sphinx"
+gem "iron_worker"
 
 # Use unicorn as the web server
 # gem "unicorn"

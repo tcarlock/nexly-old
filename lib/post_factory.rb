@@ -79,12 +79,6 @@ class PostFactory
               :link => short_link, 
               :name => name
             )
-
-            # FbGraph::Page.fetch(p.id).feed!(
-            #   :message => message,
-            #   :link => self.short_link, 
-            #   :name => name
-            # )
           end  
         end
       when :twitter

@@ -29,5 +29,5 @@ Nexly::Application.configure do
   config.assets.debug = true
 end
 
-ENV['IRON_WORKER_TOKEN'] = 'YOUR TOKEN'
-ENV['IRON_WORKER_PROJECT_ID'] = 'YOUR PROJECT ID'
+ENV['IRON_WORKER_TOKEN'] = '4f10a70ad8f74d3b0b000a6f'
+ENV['IRON_WORKER_PROJECT_ID'] = 'JbUZtjDB-YI3aF8EzSqnCzYsZDk'
