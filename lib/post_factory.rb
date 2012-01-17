@@ -72,9 +72,6 @@ class PostFactory
           message = short_split[0, short_split.length - 1].join(' ') + sep_text
         end
 
-        # return @current_user.twitter.update(message + " " + self.short_link)
-        # return @current_user.linkedin.add_share(:comment => message  + " " + self.short_link)
-
         worker = TwitterWorker.new
         worker.token = auth.token
         worker.secret = auth.secret
