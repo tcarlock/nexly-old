@@ -1,84 +1,63 @@
-class PostFactory
-  attr_accessor :full_link, :short_link
-  
-  def initialize current_user, root_domain
+require 'facebook_wall_worker'
+require 'facebook_fanpage_worker'
+require 'twitter_worker'
+require 'linked_in_worker'
+
+class PostFactory  
+  def initialize current_user, root_domain, resource
     @current_user = current_user
-    @business = @current_user.business
-    @root = root_domain
+    @post = PlatformPost.new(@current_user.business, root_domain, resource)
   end
   
-  def post_to_all resource 
-    self.post_to_facebook resource
-    self.post_to_linkedin resource
-    self.post_to_twitter resource
+  def post_to_all 
+    self.post_to_facebook
+    self.post_to_linkedin
+    self.post_to_twitter
   end
 
-  def post_to_facebook resource
-    if @current_user.facebook.nil?
-      return false
-    else
-      return generate_post(resource, :facebook)
-    end
+  def post_to_facebook
+    return generate_post(:facebook)
   end
   
-  def post_to_linkedin resource
-    if @current_user.linkedin.nil?
-      return false
-    else
-      return generate_post(resource, :linked_in)
-    end
+  def post_to_linkedin
+    return generate_post(:linked_in)
   end
   
-  def post_to_twitter resource
-    if @current_user.twitter.nil?
-      return false
-    else
-      return generate_post(resource, :twitter)
-    end
+  def post_to_twitter
+    return generate_post(:twitter)
   end
     
   private
   
-  def generate_post resource, platform
-    pId = Platform.find_by_name(platform.to_s).id
-    redir_url = @business.website
-    
-    # Create post contents and tracking link
-    if resource.class == Review
-      self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:review], pId)
-      self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
-      message = "A new review has been posted for #{@business.name}: " + resource.details
-      name = "View our website"
-    elsif resource.class == NewsPost
-      self.full_link = create_redir_link(redir_url, @business.id, resource.id, PageView.page_types[:news], pId)
-      self.short_link = shorten_with_bitly(CGI::escape(self.full_link))
-      message = "#{@business.name} has posted a news update: " + resource.content
-      name = "View our website"
-    end
-
+  def generate_post platform
     # Save tracking link
-    TrackingLink.find_or_create_by_in_url(:in_url => self.short_link, :out_url => self.full_link)
+    @post.generate_links(platform)
+    TrackingLink.find_or_create_by_in_url(:in_url => @post.shortened_link, :out_url => @post.full_link)
 
-    # Publish post
+    # Create/queue worker job
+    auth = get_auth(platform.to_s)
+
     case platform
       when :facebook
-        # Get pages user's selected to post to
+        # Get settings to determine where user wants to post (e.g., profile wall, fanpage, etc.)
         platform_id = Platform.find_by_name("facebook").id
         active_pages = @current_user.business.active_platforms.find(platform_id).platform_pages
         
         active_pages.each do |p|
           if p.external_id == "0"   # Post to profile wall
-            @current_user.facebook.feed!(:message => message, :link => short_link, :name => name)
+            worker = FacebookWallWorker.new
+            worker.token = auth.token
+            worker.message = @post.message
+            worker.link = @post.shortened_link
+            worker.name = @post.name
+            worker.queue
           else   # Post to fanpage wall
-            page = @current_user.facebook.accounts.detect do |page|
-              page.identifier == p.external_id
-            end
-
-            page.feed!(
-              :message => message,
-              :link => short_link, 
-              :name => name
-            )
+            worker = FacebookFanpageWorker.new
+            worker.token = auth.token
+            worker.message = @post.message
+            worker.link = @post.shortened_link
+            worker.name = @post.name
+            worker.queue
           end  
         end
       when :twitter
@@ -88,27 +67,32 @@ class PostFactory
         max_msg_len = (140 - short_link_len - (sep_text.length + 1))
         
         # Return message shortened by length of Twitter's converted links (19 chars) to fit 140 char limitation
-        if message.length > max_msg_len
-          short_split = message[0..max_msg_len].split()
+        if @post.message.length > max_msg_len
+          short_split = @post.message[0..max_msg_len].split()
           message = short_split[0, short_split.length - 1].join(' ') + sep_text
         end
 
-        return @current_user.twitter.update(message + " " + self.short_link)
+        # return @current_user.twitter.update(message + " " + self.short_link)
+        # return @current_user.linkedin.add_share(:comment => message  + " " + self.short_link)
+
+        worker = TwitterWorker.new
+        worker.token = auth.token
+        worker.secret = auth.secret
+        worker.message = message + " " + @post.shortened_link
+        worker.queue
       when :linked_in
-        return @current_user.linkedin.add_share(:comment => message  + " " + self.short_link)
+        worker = LinkedInWorker.new
+        worker.token = auth.token
+        worker.secret = auth.secret
+        worker.message = @post.message + " " + @post.shortened_link
+        worker.queue
     end
   end
-  
-  def create_redir_link(url, business_id, reference_id, link_type_id, platform_id)
-    "#{@root}/redir/?url=#{url}&bId=#{business_id.to_s}&rId=#{reference_id.to_s}&tId=#{link_type_id.to_s}&pId=#{platform_id}"
-  end
-  
-  def shorten_with_bitly(url)
-    user = "nexly"
-    apikey = "R_5ce84a66ab4a18fd093901d718c27545"
-    bitly_url = "http://api.bitly.com/v3/shorten/?login=#{user}&apiKey=#{apikey}&longUrl=#{url}&format=json"
-    
-    buffer = open(bitly_url, "UserAgent" => "Ruby-ExpandLink").read
-    JSON.parse(buffer)['data']['url']
+
+  private
+
+  def get_auth platform_name
+    platform_id = Platform.find_by_name(platform_name).id
+    @current_user.authentications.find_by_platform_id(platform_id)
   end
 end
