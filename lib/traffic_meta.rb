@@ -50,11 +50,13 @@ class TrafficMeta
   def get_traffic_allocation allocation_type
     total_page_views = self.page_views.count
 
-    case allocation_type
-      when TrafficMeta.filter_types[:link_type]
-        self.page_views.group_by{ |u| u.link_type_id }.map {|link_type_id, g| [link_type_id, g.count.to_f/total_page_views.to_f*100]}
-      when TrafficMeta.filter_types[:platform]
-        self.page_views.group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
+    if total_page_views > 0
+      case allocation_type
+        when TrafficMeta.filter_types[:link_type]
+          self.page_views.group_by{ |u| u.link_type_id }.map {|link_type_id, g| [link_type_id, g.count.to_f/total_page_views.to_f*100]}
+        when TrafficMeta.filter_types[:platform]
+          self.page_views.group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
+      end
     end
   end
 
