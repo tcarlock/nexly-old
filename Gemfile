@@ -32,7 +32,7 @@ gem "rinku"
 gem "newrelic_rpm"
 # gem "thinking-sphinx"
 gem "iron_worker"
-# gem "typhoeus"
+gem "typhoeus"
 
 # Use unicorn as the web server
 # gem "unicorn"

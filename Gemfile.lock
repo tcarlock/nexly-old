@@ -290,6 +290,8 @@ GEM
       multi_json (~> 1.0.0)
       multi_xml (~> 0.4.0)
       simple_oauth (~> 0.1.5)
+    typhoeus (0.3.3)
+      mime-types
     tzinfo (0.3.31)
     uglifier (1.1.0)
       execjs (>= 0.3.0)
@@ -336,6 +338,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   turn
   twitter (~> 1.0)
+  typhoeus
   uglifier
   watchr
   will_paginate (~> 3.0.pre4)
