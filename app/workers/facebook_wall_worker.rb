@@ -3,6 +3,7 @@ require 'iron_worker'
 class FacebookWallWorker < IronWorker::Base
 	attr_accessor :token, :message, :link, :name
 
+	merge_gem 'omniauth'
 	merge_gem 'fb_graph'
 
 	def run

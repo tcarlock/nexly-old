@@ -3,6 +3,7 @@ require 'iron_worker'
 class TwitterWorker < IronWorker::Base
 	attr_accessor :token, :secret, :message
 
+	merge_gem 'omniauth'
 	merge_gem 'twitter'
 
 	def run

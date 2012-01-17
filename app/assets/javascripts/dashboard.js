@@ -14,8 +14,4 @@ $(function(){
 			$('#' + target).fadeIn(350);
 		}
 	});
-
-	// $('#toggle-charts').click(function() {
-	// 	$('#charts-container').slideToggle();	
-	// });
 });

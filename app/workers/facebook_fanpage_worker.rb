@@ -3,7 +3,8 @@ require 'iron_worker'
 class FacebookFanpageWorker < IronWorker::Base
 	attr_accessor :token, :page_id, :message, :link, :name
 
-	merge_gem 'fb_graph'
+	merge_gem 'omniauth'
+  merge_gem 'fb_graph'
 
 	def run
 		page = FbGraph::User.me(token).accounts.detect do |page|
