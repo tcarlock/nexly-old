@@ -46,19 +46,16 @@ class PostFactory
         active_pages.each do |p|
           if p.external_id == "0"   # Post to profile wall
             worker = FacebookWallWorker.new
-            worker.token = auth.token
-            worker.message = @post.message
-            worker.link = @post.shortened_link
-            worker.name = @post.name
-            worker.queue
           else   # Post to fanpage wall
             worker = FacebookFanpageWorker.new
-            worker.token = auth.token
-            worker.message = @post.message
-            worker.link = @post.shortened_link
-            worker.name = @post.name
-            worker.queue
-          end  
+          end 
+
+          worker.token = auth.token
+          worker.message = @post.message
+          worker.link = @post.shortened_link
+          worker.name = @post.name
+          worker.page_id = p.external_id
+          worker.queue
         end
       when :twitter
         # Process for 140 char count limit taking into account shortened link length
