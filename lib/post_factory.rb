@@ -70,8 +70,10 @@ class PostFactory
         end
 
         worker = TwitterWorker.new
-        worker.token = auth.token
-        worker.secret = auth.secret
+        worker.oauth_token = auth.token
+        worker.oauth_secret = auth.secret
+        worker.consumer_key = "HjzVzzin2zCogq8tNezeA"
+        worker.consumer_secret = "oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o"
         worker.message = message + " " + @post.shortened_link
         worker.queue
       when :linked_in

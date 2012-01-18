@@ -4,10 +4,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, "164486726974185", "ee561cefebfa7ed6165934401e9b4141", {:scope => "publish_stream,offline_access,email,manage_pages"}
   provider :openid, nil, :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
 end
-
-Twitter.configure do |config|
-  config.consumer_key = "HjzVzzin2zCogq8tNezeA"
-  config.consumer_secret = "oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o"
-  config.oauth_token = "79022077-J3VPDE1rHrsVxjHyxMnQp8elzmZR8sgG0uSuQBcFZ"
-  config.oauth_token_secret = "XrG8rOVnISgsuHSmymLGSNpcHeWyvig5iWMjv2QQ"
-end
