@@ -3,6 +3,10 @@ require 'iron_worker'
 class TwitterWorker < IronWorker::Base
 	attr_accessor :token, :secret, :message
 
+	merge_gem 'addressable'
+	merge_gem 'multipart-post'
+	merge_gem 'faraday'
+	merge_gem 'simple_oauth'
 	merge_gem 'twitter'
 
 	def run
