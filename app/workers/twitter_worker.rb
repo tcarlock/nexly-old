@@ -10,6 +10,7 @@ class TwitterWorker < IronWorker::Base
 	merge_gem 'twitter'
 
 	def run
+		log "token: " + @token + " | secret: " + @secret
 		Twitter::Client.new(:oauth_token => @token, :oauth_token_secret => @secret).update(@message)
 	end
 end
