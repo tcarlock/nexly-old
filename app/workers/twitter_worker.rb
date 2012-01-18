@@ -3,8 +3,6 @@ require 'iron_worker'
 class TwitterWorker < IronWorker::Base
 	attr_accessor :token, :secret, :message
 
-	merge_gem 'faraday'
-  	merge_gem 'simple_oauth'
 	merge_gem 'twitter'
 
 	def run
