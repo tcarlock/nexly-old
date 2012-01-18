@@ -48,13 +48,13 @@ class PostFactory
             worker = FacebookWallWorker.new
           else   # Post to fanpage wall
             worker = FacebookFanpageWorker.new
+            worker.page_id = p.external_id
           end 
 
           worker.token = auth.token
           worker.message = @post.message
           worker.link = @post.shortened_link
           worker.name = @post.name
-          worker.page_id = p.external_id
           worker.queue
         end
       when :twitter
