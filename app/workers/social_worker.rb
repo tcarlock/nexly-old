@@ -18,7 +18,7 @@ class SocialWorker < IronWorker::Base
 	end
 
 	def track_link in_url, out_url
-		log 'Logging link: ' + in_url + ' | ' out_url
+		log 'Logging link: ' + in_url + ' | ' + out_url
 
 		resp = HTTParty.post(@link_tracking_url, {:body => { :in_url => in_url, :out_url => out_url }})
     	p resp
