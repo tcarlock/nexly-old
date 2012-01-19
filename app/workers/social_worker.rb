@@ -2,7 +2,7 @@ require 'iron_worker'
 require 'httparty'
 
 class SocialWorker < IronWorker::Base
-	attr_accessor :link_tracking_url, :bitly_api_key, :shortened_url
+	attr_accessor :message, :link, :link_tracking_url, :bitly_api_key, :shortened_url
 
 	merge_gem 'httparty'
 

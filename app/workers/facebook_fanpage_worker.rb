@@ -1,7 +1,7 @@
 require_relative 'social_worker'
 
 class FacebookFanpageWorker < SocialWorker
-	attr_accessor :oauth_token, :page_id, :message, :link, :name
+	attr_accessor :oauth_token, :page_id, :name
 
 	merge_gem 'httpclient'
     merge_gem 'attr_required', :require => 'attr_required'

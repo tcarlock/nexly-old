@@ -1,7 +1,7 @@
 require_relative 'social_worker'
 
 class LinkedInWorker < SocialWorker
-	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
+	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret
 
 	merge_gem "linkedin", :branch => "2-0-stable"
 

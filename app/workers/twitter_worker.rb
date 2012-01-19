@@ -1,7 +1,7 @@
 require_relative 'social_worker'
 
 class TwitterWorker < SocialWorker
-	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
+	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret
 
 	merge_gem 'addressable', :require => 'addressable/uri'
 	merge_gem 'multipart-post', :require => 'multipart_post'
