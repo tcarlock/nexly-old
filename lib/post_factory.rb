@@ -67,7 +67,6 @@ class PostFactory
         worker.message = @post.message
         worker.link = @post.link
         worker.queue
-
       when :linked_in
         worker = LinkedInWorker.new
         worker.oauth_token = auth.token
