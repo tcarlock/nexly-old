@@ -66,7 +66,7 @@ class PostFactory
         worker.consumer_secret = '0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM'
     end
 
-    worker.link_tracking_url = root_domain + '/analytics/track_link'
+    worker.link_tracking_url = @root_domain + '/analytics/track_link'
     worker.oauth_token = auth.token
     worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
     worker.message = @post.message
