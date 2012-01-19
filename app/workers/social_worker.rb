@@ -1,4 +1,5 @@
 require 'iron_worker'
+require 'httparty'
 
 class SocialWorker < IronWorker::Base
 	attr_accessor :link_tracking_url, :bitly_api_key, :shortened_url
