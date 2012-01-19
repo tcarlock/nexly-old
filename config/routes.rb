@@ -19,11 +19,7 @@ Nexly::Application.routes.draw do
     end
     
     resources :news, :controller => :news_posts
-    resources :analytics, :only => :index, :controller => :analytics do
-      member do
-        post 'track_link' => 'analytics#track_link', :as => :track_link 
-      end
-    end
+    resources :analytics, :only => :index, :controller => :analytics
 
     get 'review_requests' => 'reviews#review_requests', :as => :business_review_requests_path
     get 'pending_reviews' => 'reviews#pending_reviews'
@@ -34,6 +30,7 @@ Nexly::Application.routes.draw do
   get 'features/' => 'settings#features'
   get 'platforms/' => 'settings#platforms'
   get 'init_settings/' => 'settings#init_settings'
+  post 'analytics/track_link' => 'analytics#track_link', :as => :track_link
   post 'settings/toggle_feature/:id' => 'settings#toggle_feature'
   post 'settings/toggle_toolbar_activation' => 'settings#toggle_toolbar_activation'
   post 'settings/toggle_public_reviews' => 'settings#toggle_public_reviews'
