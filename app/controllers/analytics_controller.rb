@@ -1,6 +1,6 @@
 class AnalyticsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => :track_link
-	skip_before_filter :authenticate_user!, :except => :track_link
+	skip_before_filter :authenticate_user!, :only => :track_link
 
   def index
     business = Business.find(params[:business_id])
