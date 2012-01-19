@@ -71,8 +71,6 @@ class PostFactory
     worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
     worker.message = @post.message
     worker.link = @post.link
-
-    debugger
     worker.queue
   end
 
