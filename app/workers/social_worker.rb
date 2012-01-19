@@ -9,7 +9,7 @@ class SocialWorker < IronWorker::Base
 		log 'Shortening URL: ' + url
 
 		user = 'nexly'
-	    bitly_url = "http://api.bitly.com/v3/shorten/?login=#{user}&apiKey=#{@bitly_api_key}&longUrl=#{url}&format=json"
+	    bitly_url = "http://api.bitly.com/v3/shorten/?login=#{user}&apiKey=#{@bitly_api_key}&longUrl=#{CGI::escape(url)}&format=json"
 	    
 	    buffer = open(bitly_url, 'UserAgent' => 'Ruby-ExpandLink').read
 	    @shortened_url = JSON.parse(buffer)['data']['url']
