@@ -41,6 +41,7 @@ class PostFactory
         active_pages = @current_user.business.active_platforms.find(platform_id).platform_pages
         
         active_pages.each do |p|
+          log "Page ID: " + p.to_s
           if p.external_id == "0"   # Post to profile wall
             worker = FacebookWallWorker.new
           else   # Post to fanpage wall
