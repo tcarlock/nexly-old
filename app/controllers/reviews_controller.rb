@@ -94,7 +94,7 @@ class ReviewsController < ApplicationController
   def approve
     #@review.update_attributes(:is_approved => true, :is_rejected => false)
 
-    PostFactory.new(current_user, DOMAIN_NAMES[Rails.env], @review).post_to_twitter
+    PostFactory.new(current_user, DOMAIN_NAMES[Rails.env], @review).post_to_all
     
     respond_to do |format|
       format.js
