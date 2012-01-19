@@ -1,3 +1,5 @@
+require 'iron_worker'
+
 class PostFactory  
   def initialize current_user, root_domain, resource
     @current_user = current_user

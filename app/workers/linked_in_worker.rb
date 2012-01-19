@@ -1,4 +1,4 @@
-require 'social_worker'
+require_relative 'social_worker'
 
 class LinkedInWorker < SocialWorker
 	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
