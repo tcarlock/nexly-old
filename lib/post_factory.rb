@@ -1,8 +1,3 @@
-require 'facebook_wall_worker'
-require 'facebook_fanpage_worker'
-require 'twitter_worker'
-require 'linked_in_worker'
-
 class PostFactory  
   def initialize current_user, root_domain, resource
     @current_user = current_user

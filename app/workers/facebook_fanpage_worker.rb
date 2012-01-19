@@ -1,4 +1,4 @@
-require 'iron_worker'
+require 'social_worker'
 
 class FacebookFanpageWorker < SocialWorker
 	attr_accessor :oauth_token, :page_id, :message, :link, :name

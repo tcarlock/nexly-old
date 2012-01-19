@@ -1,4 +1,4 @@
-require 'iron_worker'
+require 'social_worker'
 
 class TwitterWorker < SocialWorker
 	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
