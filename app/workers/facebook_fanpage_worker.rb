@@ -1,7 +1,7 @@
 require 'iron_worker'
 
-class FacebookFanpageWorker < IronWorker::Base
-	attr_accessor :token, :page_id, :message, :link, :name
+class FacebookFanpageWorker < SocialWorker
+	attr_accessor :oauth_token, :page_id, :message, :link, :name
 
 	merge_gem 'httpclient'
     merge_gem 'attr_required', :require => 'attr_required'
@@ -9,14 +9,16 @@ class FacebookFanpageWorker < IronWorker::Base
     merge_gem 'fb_graph'
 
 	def run
-    	page = FbGraph::User.me(@token).accounts.detect do |page|
-          page.identifier == @page_id
-        end
+    # Post to feed
+    shorten_link(@link)
 
-        page.feed!(
-          :message => @message,
-          :link => @link, 
-          :name => @name
-        )
+  	page = FbGraph::User.me(@oauth_token).accounts.detect do |page|
+      page.identifier == @page_id
+    end
+
+    page.feed!(:message => @message, :link => @shortened_url, :name => @name)
+
+    # Track link in Nexly
+    track_link(@link, @shortened_url)
 	end
 end

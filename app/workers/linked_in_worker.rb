@@ -1,14 +1,20 @@
 require 'iron_worker'
 
-class LinkedInWorker < IronWorker::Base
-	attr_accessor :token, :secret, :message
+class LinkedInWorker < SocialWorker
+	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
 
 	merge_gem "linkedin", :branch => "2-0-stable"
 
 	def run
-		li_user = LinkedIn::Client.new("694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg", "0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM")
-        li_user.authorize_from_access(@token, @secret)
+		# Post update
+		shorten_link(@link)
 
-		li_user.add_share(:comment => @message)
+		li_user = LinkedIn::Client.new(@consumer_key, @consumer_secret)
+        li_user.authorize_from_access(@oauth_token, @oauth_secret)
+
+		li_user.add_share(:comment => @message + " " + @shortened_url)
+
+		# Track link in Nexly
+		track_link(@link, @shortened_url)
 	end
 end

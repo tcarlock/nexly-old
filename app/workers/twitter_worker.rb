@@ -1,7 +1,7 @@
 require 'iron_worker'
 
-class TwitterWorker < IronWorker::Base
-	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message
+class TwitterWorker < SocialWorker
+	attr_accessor :oauth_token, :oauth_secret, :consumer_key, :consumer_secret, :message, :link
 
 	merge_gem 'addressable', :require => 'addressable/uri'
 	merge_gem 'multipart-post', :require => 'multipart_post'
@@ -10,13 +10,32 @@ class TwitterWorker < IronWorker::Base
 	merge_gem 'twitter'
 
 	def run
-		Twitter.configure do |x|
-	      x.consumer_key       = @consumer_key
-	      x.consumer_secret    = @consumer_secret
-	      x.oauth_token        = @oauth_token
-	      x.oauth_token_secret = @oauth_secret
-	    end
+		# Process for 140 char count limit taking into account shortened link length
+        short_link_len = 20
+        sep_text = '...'
+        max_msg_len = (140 - short_link_len - (sep_text.length + 1))
+        
+        # Return message shortened by length of Twitter's converted links (19 chars) to fit 140 char limitation
+        if @message.length > max_msg_len
+          short_split = @message[0..max_msg_len].split()
+          tweet_text = short_split[0, short_split.length - 1].join(' ') + sep_text
+        else
+        	tweet_text = @message
+        end
 
-		Twitter.update(@message)
+        # Post tweet
+		Twitter.configure do |x|
+      x.consumer_key       = @consumer_key
+      x.consumer_secret    = @consumer_secret
+      x.oauth_token        = @oauth_token
+      x.oauth_token_secret = @oauth_secret
+    end
+
+    shorten_link(@link)
+
+		Twitter.update(tweet_text + ' ' + @shortened_url)
+
+		# Track link in Nexly
+		track_link(@link, @shortened_url)
 	end
 end

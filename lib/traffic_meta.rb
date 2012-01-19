@@ -11,8 +11,8 @@ class TrafficMeta
   
 	def initialize business_id, start_date, end_date
 	  @business_id = business_id
-		self.start_date = start_date
-		self.end_date = end_date
+		@start_date = start_date
+		@end_date = end_date
 		
 		reset_dataset
 	end
@@ -27,15 +27,15 @@ class TrafficMeta
         filter = :platform_id
     end
 
-	  self.page_views = self.page_views.where(filter => filter_parameter)
+	  @page_views = @page_views.where(filter => filter_parameter)
 	  self
   end
   
   def get_time_series frequency, include_labels = true
     if include_labels
-      self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
+      @page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
     else
-      self.page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| g.count}
+      @page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| g.count}
     end
   end
   
@@ -48,14 +48,14 @@ class TrafficMeta
   end
   
   def get_traffic_allocation allocation_type
-    total_page_views = self.page_views.count
+    total_page_views = @page_views.count
 
     if total_page_views > 0
       case allocation_type
         when TrafficMeta.filter_types[:link_type]
-          self.page_views.group_by{ |u| u.link_type_id }.map {|link_type_id, g| [link_type_id, g.count.to_f/total_page_views.to_f*100]}
+          @page_views.group_by{ |u| u.link_type_id }.map {|link_type_id, g| [link_type_id, g.count.to_f/total_page_views.to_f*100]}
         when TrafficMeta.filter_types[:platform]
-          self.page_views.group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
+          @page_views.group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
       end
     end
   end
@@ -63,6 +63,6 @@ class TrafficMeta
   private
   
   def reset_dataset
-    self.page_views = Business.find(@business_id).page_views.where("created_at >= ? AND created_at < ?", self.start_date, self.end_date).order(:created_at)
+    @page_views = Business.find(@business_id).page_views.where("created_at >= ? AND created_at < ?", @start_date, @end_date).order(:created_at)
 	end
 end

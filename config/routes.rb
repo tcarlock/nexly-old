@@ -19,7 +19,11 @@ Nexly::Application.routes.draw do
     end
     
     resources :news, :controller => :news_posts
-    resources :analytics, :only => :index, :controller => :analytics
+    resources :analytics, :only => :index, :controller => :analytics do
+      member do
+        post 'track_link' => 'analytics#track_link', :as => :track_link 
+      end
+    end
 
     get 'review_requests' => 'reviews#review_requests', :as => :business_review_requests_path
     get 'pending_reviews' => 'reviews#pending_reviews'

@@ -33,6 +33,7 @@ gem "newrelic_rpm"
 # gem "thinking-sphinx"
 gem "iron_worker"
 gem "typhoeus"
+gem "httparty"
 
 # Use unicorn as the web server
 # gem "unicorn"
@@ -50,7 +51,7 @@ group :development, :test do
   gem "ruby-debug19", :require => "ruby-debug"
   gem "turn", :require => false
   gem "annotate", :git => "git://github.com/jeremyolliver/annotate_models.git", :branch => "rake_compatibility"
-  gem "heroku_san" 
+  gem "heroku_san"
 end
 
 group :production do

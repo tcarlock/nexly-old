@@ -6,6 +6,7 @@ require 'linked_in_worker'
 class PostFactory  
   def initialize current_user, root_domain, resource
     @current_user = current_user
+    @root_domain = root_domain
     @post = PlatformPost.new(@current_user.business, root_domain, resource)
   end
   
@@ -30,9 +31,8 @@ class PostFactory
   private
   
   def generate_post platform
-    # Save tracking link
-    @post.generate_links(platform)
-    TrackingLink.find_or_create_by_in_url(:in_url => @post.shortened_link, :out_url => @post.full_link)
+    # Generate link for posts
+    @post.generate_link(platform)
 
     # Create/queue worker job
     auth = get_auth(platform.to_s)
@@ -51,38 +51,29 @@ class PostFactory
             worker.page_id = p.external_id
           end 
 
-          worker.token = auth.token
-          worker.message = @post.message
-          worker.link = @post.shortened_link
           worker.name = @post.name
-          worker.queue
         end
       when :twitter
-        # Process for 140 char count limit taking into account shortened link length
-        short_link_len = 20
-        sep_text = "..."
-        max_msg_len = (140 - short_link_len - (sep_text.length + 1))
-        
-        # Return message shortened by length of Twitter's converted links (19 chars) to fit 140 char limitation
-        if @post.message.length > max_msg_len
-          short_split = @post.message[0..max_msg_len].split()
-          message = short_split[0, short_split.length - 1].join(' ') + sep_text
-        end
-
         worker = TwitterWorker.new
-        worker.oauth_token = auth.token
-        worker.oauth_secret = auth.secret
-        worker.consumer_key = "HjzVzzin2zCogq8tNezeA"
-        worker.consumer_secret = "oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o"
-        worker.message = message + " " + @post.shortened_link
-        worker.queue
+        worker.oauth_secret = 'xqYOCHuzwkD3o3JVYis9zyy9qXMQUP8NvKOo0leiXIA'
+        worker.consumer_key = 'HjzVzzin2zCogq8tNezeA'
+        worker.consumer_secret = 'oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o'
+
       when :linked_in
         worker = LinkedInWorker.new
-        worker.token = auth.token
-        worker.secret = auth.secret
-        worker.message = @post.message + " " + @post.shortened_link
-        worker.queue
+        worker.oauth_secret = auth.secret
+        worker.consumer_key = '694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg'
+        worker.consumer_secret = '0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM'
     end
+
+    worker.link_tracking_url = track_link_business_analytic.to_s
+    worker.oauth_token = auth.token
+    worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
+    worker.message = @post.message
+    worker.link = @post.link
+
+    debugger
+    worker.queue
   end
 
   private

@@ -7,4 +7,8 @@ class AnalyticsController < ApplicationController
       @review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PageView.page_types[:review]).get_time_series(TrafficMeta.time_series[:monthly])
       @profile_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PageView.page_types[:profile]).get_time_series(TrafficMeta.time_series[:monthly])
   end
+
+  def track_link
+  	TrackingLink.find_or_create_by_in_url(:in_url => params[:in_url], :out_url => params[:out_url])
+  end
 end
