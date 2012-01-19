@@ -41,7 +41,6 @@ class PostFactory
         active_pages = @current_user.business.active_platforms.find(platform_id).platform_pages
         
         active_pages.each do |p|
-          log "Page ID: " + p.to_s
           if p.external_id == "0"   # Post to profile wall
             worker = FacebookWallWorker.new
           else   # Post to fanpage wall
@@ -49,27 +48,38 @@ class PostFactory
             worker.page_id = p.external_id
           end 
 
+          worker.oauth_token = auth.token
+          worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
+          worker.link_tracking_url = @root_domain + '/analytics/track_link'
           worker.name = @post.name
+          worker.message = @post.message
+          worker.link = @post.link
+          worker.queue
         end
       when :twitter
         worker = TwitterWorker.new
+        worker.oauth_token = auth.token
         worker.oauth_secret = 'xqYOCHuzwkD3o3JVYis9zyy9qXMQUP8NvKOo0leiXIA'
         worker.consumer_key = 'HjzVzzin2zCogq8tNezeA'
         worker.consumer_secret = 'oiD9D0lJROgl6giJ3UofU1iRZEGCIHOBXD8t9VVB01o'
+        worker.link_tracking_url = @root_domain + '/analytics/track_link'
+        worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
+        worker.message = @post.message
+        worker.link = @post.link
+        worker.queue
 
       when :linked_in
         worker = LinkedInWorker.new
+        worker.oauth_token = auth.token
         worker.oauth_secret = auth.secret
         worker.consumer_key = '694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg'
         worker.consumer_secret = '0tY-2DGwi0w1MbtitnV1I9PIjdOUqyDoVSNxWspucm0ZfziRJmAxHB_Dqwi1m_zM'
+        worker.link_tracking_url = @root_domain + '/analytics/track_link'
+        worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
+        worker.message = @post.message
+        worker.link = @post.link
+        worker.queue
     end
-
-    worker.link_tracking_url = @root_domain + '/analytics/track_link'
-    worker.oauth_token = auth.token
-    worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
-    worker.message = @post.message
-    worker.link = @post.link
-    worker.queue
   end
 
   private
