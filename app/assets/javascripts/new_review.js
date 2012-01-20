@@ -24,7 +24,7 @@ $(function() {
   });
 
   $('#new_review').validate({
-    debug: true,
+    debug: false,
     rules: {
       "review[name]": {required: true},
       "review[email]": {required: true, email: true},
@@ -36,6 +36,7 @@ $(function() {
       "review[details]": {required: "Required field"}
     },
     submitHandler: function(form) {
+      alert($('#new_review').valid());
       if($('#new_review').valid() && $('#stars-outer').data('stars').options.value != 0) {
         $('#new-review-outer').block(getBlockUIOptions());
         $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function () {$('#new-review-outer').unblock()}});
