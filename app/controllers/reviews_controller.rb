@@ -81,18 +81,14 @@ class ReviewsController < ApplicationController
 
       ReviewMailer.new_review_alert(@review).deliver
 
-      if params[:view] == "popup"
-        render :text => '<span class="submitted">Your review has been submitted.<span>'      
-      else
-        render :text => '<span class="submitted">Your review has been submitted. Close this tab or window to go back to the business\' page.<span>'
-      end
+      render :nothing => true
     else
       render :new
     end
   end
   
   def approve
-    #@review.update_attributes(:is_approved => true, :is_rejected => false)
+    @review.update_attributes(:is_approved => true, :is_rejected => false)
 
     PostFactory.new(current_user, DOMAIN_NAMES[Rails.env], @review).post_to_all
     

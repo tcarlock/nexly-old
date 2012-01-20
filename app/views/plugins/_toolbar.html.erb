@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "#{root}/assets/plugin_global.css", "#{root}/assets/plugin_canvas.css", "#{root}/assets/toolbar.css", "#{root}/assets/public/formtastic.css", "#{root}/assets/public/formtastic_changes.css", "#{root}/assets/jquery.ui.stars.min.css" %>
+<%= stylesheet_link_tag "#{root}/assets/plugin_global.css", "#{root}/assets/toolbar.css", "#{root}/assets/public/formtastic.css", "#{root}/assets/public/formtastic_changes.css", "#{root}/assets/jquery.ui.stars.min.css" %>
 <%= javascript_include_tag "jquery.ui.stars.min.js", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
 <div id="toolbarbut"> <!-- hide button -->
@@ -35,19 +35,19 @@
 		</span>
 		<% if enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
-				<% if tb_show_rec_btn %>
-					<span class="menu_title">
-						<%= link_to "Tell Someone", new_business_recommendations_url(business, :v => "popup"), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 650 %>
-					</span>
-				<% end %>
-				<% if is_rev_enabled %>
-					<span class="menu_title">
-						<%= link_to "Post a Review", new_business_review_url(business, :v => "popup"), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 650 %>
-					</span>
-				<% end %>
 			</span>
+			<% if tb_show_rec_btn %>
+				<span class="menu_title">
+					<%= link_to "Tell Someone", new_business_recommendations_url(business, :v => "popup"), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 650 %>
+				</span>
+			<% end %>
+			<% if is_rev_enabled %>
+				<span class="menu_title">
+					<%= link_to "Post a Review", new_business_review_url(business, :v => "popup"), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 650 %>
+				</span>
+			<% end %>
 			<span class="menu_title">
-				<%= link_to "Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "reviews-btn", :class => "menutit", "data-btn-group-id" => "reviews-btns", "data-btn-group-id" => "reviews-btns" %>
+				<%= link_to "Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "reviews-btn", :class => "menutit", "data-btn-group-id" => "reviews-btns" %>
 			</span>
 		<% end %>
 		<% if enable_news %>

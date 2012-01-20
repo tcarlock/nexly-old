@@ -1,18 +1,18 @@
 function getBlockUIOptions() {
-   	return {
-   	    message: '<img src="/assets/throbber/loading_orange.gif" />',
-        centerX: true,
-       	centerY: true,
-   	    css: { 
-            border: '0px',
-           	backgroundColor: 'transparent',
-            cursor: 'default'
-       	},
-   	    overlayCSS: { 
-            backgroundColor: '#fff', 
-           	opacity: .8
-       	}
+ 	return {
+    message: '<img src="/assets/throbber/loading_orange.gif" />',
+    centerX: true,
+   	centerY: true,
+	    css: { 
+        border: '0px',
+       	backgroundColor: 'transparent',
+        cursor: 'default'
+   	},
+	    overlayCSS: { 
+        backgroundColor: '#F7F7F7', 
+       	opacity: .8
    	}
+ 	}
 }
 
 $(function() {
@@ -36,10 +36,12 @@ $(function() {
       "review[details]": {required: "Required field"}
     },
     submitHandler: function(form) {
-      alert($('#new_review').valid());
       if($('#new_review').valid() && $('#stars-outer').data('stars').options.value != 0) {
-        $('#new-review-outer').block(getBlockUIOptions());
-        $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function () {$('#new-review-outer').unblock()}});
+        $('#nexly-canvas-inner').block(getBlockUIOptions());
+        $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function() {
+          $('#nexly-canvas-inner').unblock();
+          $('#nexly-canvas-inner').replaceWith('<span class="submitted">Your review has been submitted.<span>')
+        }});
         return false;
       }
     }

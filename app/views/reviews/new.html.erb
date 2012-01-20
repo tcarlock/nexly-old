@@ -1,8 +1,7 @@
-<%= stylesheet_link_tag "reviews" %>
-<%= javascript_include_tag "new_review", "public/jquery.validate.min.js", "public/jquery.form.js" %>
+<%= javascript_include_tag "new_review", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
-<h1>Post a New Review</h1>
 <div id="new-review-outer">
+	<h1>Post a New Review</h1>
 	<%= semantic_form_for(@review, :url => business_reviews_path) do |f| %>
 	  <%= f.inputs do %>
 	  	<%= hidden_field_tag "view", @view %>
