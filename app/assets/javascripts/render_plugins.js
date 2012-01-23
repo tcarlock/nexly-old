@@ -55,19 +55,19 @@ function loadToolbar(tbElement) {
 		canvas = $('#nexly-canvas');
 		canvasFrame = $('#nexly-canvas-frame');
 		
-		if($(this).attr('data-btn-group-id') != undefined)
-			buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
+		// if($(this).attr('data-btn-group-id') != undefined)
+		// 	buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
 
 		if (link.attr('href') == canvasFrame.attr('src')) {   //Canvas already loaded with correct url
 			if (canvas.is(':visible')) {
 				canvas.fadeOut("fast");
 
-				if(buttonGroup != null)
-					buttonGroup.fadeOut();
+				// if(buttonGroup != null)
+				// 	buttonGroup.fadeOut();
 			}
 			else {
-				if(buttonGroup != null)
-					buttonGroup.fadeIn();
+				// if(buttonGroup != null)
+				// 	buttonGroup.fadeIn();
 
 				canvas.fadeIn();
 			}
@@ -80,16 +80,16 @@ function loadToolbar(tbElement) {
 			canvasFrame.fadeOut();
 			canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {
 				canvas.block(getBlockUIOptions());
-
+				
 				//Load appropriate page into quickmenu
 				if (link.attr('href') != "#")
 					canvasFrame.attr('src', link.attr('href'));
 
 				//Hide all other toolbars
-				$(".btn-container").hide(); 
+				//$(".btn-container").hide(); 
 
-				if(buttonGroup != null)
-					buttonGroup.fadeIn();
+				// if(buttonGroup != null)
+				// 	buttonGroup.fadeIn();
 
 				canvasFrame.fadeIn();
 			});

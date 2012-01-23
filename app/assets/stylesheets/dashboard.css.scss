@@ -1,44 +1,109 @@
-#header-bar {
-	border-bottom:1px solid #CBC9C9;
-	display:none;
-}
 .left-col {
 	width:225px;
 	padding-top:15px;
 }
 .right-col {
-	width:700px;
+	width:680px;
 	min-height:500px;
 }
-#avatar-outer {
-	display:inline-block;
-	float:left;
-	clear:none;
+#biz-details {
+	text-align:left;
 
-	img {
-		display:block;
+	div {
+		display:inline-block;
+		vertical-align:middle;
+		float:left;
 		margin:0 7px;
 	}
-}
-#biz-details {
-	display:inline-block;
-	text-align:left;
-	float:left;
-	clear:none;
-	vertical-align:middle;
 
 	#biz-name {
-		font-size:1.2em;
+		font-size:1.4em;
 		display:block;
 		padding:3px 0;
+		font-weight:bold;
+		text-align:center;
 	}
 	#edit-profile {
 		display:block;
 		width:100%;
+		font-size:1.1em;
 		font-weight:bold;
+		text-align:center;
 	}	
-	.location {
-		padding-bottom:3px;
+}
+.stats-tabs {
+	padding:0;
+	margin:0;
+	margin-bottom:15px;
+	list-style-type:none;
+	list-style-image:none;
+	width:675px;
+
+	li.header {
+		padding-bottom:7px;
+		margin-bottom:10px;
+		font-weight:bold; 
+		color:#646464;
+		font-size:1.2em;
+		list-style-type:none;
+		list-style-image:none;
+		background-repeat:no-repeat;
+		background-position:left 1px;
+		border-bottom:1px #D8D5D5 solid;
+		text-indent:3px;
+		
+		a {
+			padding:0 0 5px 20px;			
+		}
+	}
+
+	ul > li {
+		display:inline-block;
+		vertical-align:middle;
+		margin:0;
+		padding:0;
+		border:1px #D8D5D5 solid;
+		background-color:#ebebeb;
+		border-radius:5px;
+		padding:10px 5px;
+		height:70px;
+		width:115px;
+		margin:0 10px 10px 0;
+		float:left;
+
+		span {
+			display:block;
+			text-align:center;
+			color:#646464;
+		}
+		.number {
+			font-size:2.2em;
+		}
+
+		.label {
+			font-size:1.1em;
+		}
+	}
+}
+.review-stats {
+	ul {
+		width:305px;
+		display:inline-block;
+		float:left;
+	}
+
+	ul > li {
+		width:125px;
+	}
+}
+.traffic-stats {
+	ul {
+		width:125px;
+		margin-left:20px;
+	}
+
+	ul > li {
+		width:125px;
 	}
 }
 #panel-tabs {
@@ -101,7 +166,7 @@
 	}
 }
 #reviews-panel {
-	width:695px;
+	width:675px;
 }
 #platforms {
 	display:none;
@@ -122,10 +187,6 @@
 }
 .stats-panel {
 	width:680px;
-	border:1px #D8D5D5 solid;
-	background-color:#ebebeb;
-	border-radius:5px;
-	padding:7px;
 	margin-bottom:10px;
 
 	ul.profile-details {
@@ -142,11 +203,14 @@
 		padding:0;
 	}
 }
-.highcharts-container {
+.chart-outer {
 	border:1px #D8D5D5 solid;
 	border-radius:5px;
 	float:left;
 	margin-bottom:10px;
+}
+.highcharts-container {
+
 }
 .right-margin-applied {
 	margin-right:10px;

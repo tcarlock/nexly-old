@@ -25,16 +25,16 @@
 			Links
 		</li>
 		<li>
-			<%= link_to @business.website.truncate(30), create_redir_link(@business.website, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.website.truncate(30), create_redir_link(@business.website, @business.id, 0, PlatformPost.resource_types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.facebook.truncate(30), create_redir_link(@business.facebook, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.facebook.truncate(30), create_redir_link(@business.facebook, @business.id, 0, PlatformPost.resource_types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.twitter.truncate(30), create_redir_link(@business.twitter, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.twitter.truncate(30), create_redir_link(@business.twitter, @business.id, 0, PlatformPost.resource_types[:profile]), 'data-popup' => true %>
 		</li>
 		<li>
-			<%= link_to @business.linked_in.truncate(30), create_redir_link(@business.linked_in, @business.id, 0, PageView.page_types[:profile]), 'data-popup' => true %>
+			<%= link_to @business.linked_in.truncate(30), create_redir_link(@business.linked_in, @business.id, 0, PlatformPost.resource_types[:profile]), 'data-popup' => true %>
 		</li>
 	</ul>
 	<ul id="biz-location" class="profile-details clearfix">

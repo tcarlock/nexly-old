@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	$(function() {
-		var height = 200;
+		var height = 193;
 		var labelFont = '13px';
 
 		new Highcharts.Chart({
@@ -11,7 +11,7 @@
 				renderTo: 'traffic-trend-chart',
 				defaultSeriesType: 'line',
 				height: height,
-				width: 450
+				width: 500
 			},
 			title: {
 				text: 'Monthly Page Views',
@@ -75,8 +75,7 @@
 				renderTo: 'rating-dist-chart',
 				defaultSeriesType: 'bar',
 				height:height,
-				width:230,
-				className: 'right-margin-applied'
+				width:230
 			},
 			title: {
 				text: 'Rating Distribution',
@@ -125,7 +124,7 @@
 			},
 			series: [{
 				name: 'Rating Distribution',
-				data: <%= @review_dist %>
+				data: <%= @rating_dist %>
 			}]
 		});
 
@@ -134,13 +133,13 @@
 				enabled: false
 			},
 			chart: {
-				renderTo: 'traffic-allocation-chart',
+				renderTo: 'channel-allocation-chart',
 				defaultSeriesType: 'pie',
 				height:height,
-				width:350
+				width:325
 			},
 			title: {
-				text: 'Sources of Traffic',
+				text: 'Sources of Web Traffic (by Channel)',
 				style: {
 					fontSize: '13px'
 				}
@@ -193,11 +192,76 @@
 		      	}
 		    },
 			series: [{
-				data: <%= raw @total_page_view_allocation %>
+				data: <%= raw @channel_allocation %>
+			}]
+		});
+
+		new Highcharts.Chart({
+			credits: {
+				enabled: false
+			},
+			chart: {
+				renderTo: 'platform-allocation-chart',
+				defaultSeriesType: 'pie',
+				height:height,
+				width:325
+			},
+			title: {
+				text: 'Sources of  WebTraffic (by Site)',
+				style: {
+					fontSize: '13px'
+				}
+			},
+			legend: {
+				enabled: true,
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				borderWidth: 0,
+				itemStyle: {
+					fontSize: '13px'
+				},
+				labelFormatter: function () {
+		        	return this.name + ' (' + Math.round(this.y) + '%)';
+		      	},
+			},
+			xAxis: {
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			yAxis: {
+				labels: {
+					style: {
+						fontSize: labelFont
+					}
+				}
+			},
+			plotOptions: {
+				pie: {
+					size: '90%',
+					dataLabels: {
+						distance: 20,
+						formatter: function () {
+				        	return this.point.name + '<br />(' + Math.round(this.percentage) + '%)';
+				      	},
+				      	enabled: false
+            		},
+            		showInLegend: true
+				}
+			},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090',
+				formatter: function () {
+		        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
+		      	}
+		    },
+			series: [{
+				data: <%= raw @platform_allocation %>
 			}]
 		});
 	});
 </script>
-<div id="rating-dist-chart" class="chart-outer"></div>
-<div id="traffic-trend-chart" class="chart-outer"></div>
-<div id="traffic-allocation-chart" class="chart-outer"></div>

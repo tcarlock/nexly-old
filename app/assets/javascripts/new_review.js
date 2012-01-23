@@ -37,10 +37,10 @@ $(function() {
     },
     submitHandler: function(form) {
       if($('#new_review').valid() && $('#stars-outer').data('stars').options.value != 0) {
-        $('#nexly-canvas-inner').block(getBlockUIOptions());
+        $('#new-review-outer').block(getBlockUIOptions());
         $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function() {
-          $('#nexly-canvas-inner').unblock();
-          $('#nexly-canvas-inner').replaceWith('<span class="submitted">Your review has been submitted.<span>')
+          $('#new-review-outer').unblock();
+          $('#new-review-outer').replaceWith('<span class="submitted">Your review has been sent.<span>')
         }});
         return false;
       }

@@ -1,4 +1,6 @@
 class RecommendationsController < ApplicationController
+  include LinkHelper
+
   skip_before_filter :authenticate_user!, :only => [:new, :create]
 
   def new
@@ -22,14 +24,12 @@ class RecommendationsController < ApplicationController
     @rec = Business.find(params[:business_id]).recommendations.create(params[:recommendation])
     
     if @rec.valid?
-      RecommendationMailer.new_recommendation_alert(@rec).deliver
+      @post = PlatformPost.new(@current_user.business, root_domain, resource)
+      @post.generate_link(:email, nil)
+
+      RecommendationMailer.new_recommendation_alert(@rec, @post.link).deliver
     
-      respond_to do |format|
-        format.html {
-          redirect_to(@review.business)
-        }
-        format.js
-      end
+      render :nothing => true
     else
       render :new
     end

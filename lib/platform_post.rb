@@ -1,6 +1,14 @@
 class PlatformPost
   attr_accessor :message, :link, :name
   
+  def self.traffic_channel_types
+    {:email  => 1, :web => 2}
+  end
+
+  def self.resource_types
+    {:recommendation  => 1, :review => 2, :news => 3}
+  end
+
   def initialize business, root_domain, resource
     @business = business
     @root = root_domain
@@ -17,19 +25,25 @@ class PlatformPost
     end
   end
 
-  def generate_link platform
-  	pId = Platform.find_by_name(platform.to_s).id
+  def generate_link channel, platform
+    if channel == :web
+      platform_id = Platform.find_by_name(platform.to_s).id
+    else
+      platform_id = 0
+    end
 
-  	if @resource.class == Review
-      @link = create_redir_link(@redir_url, @business.id, @resource.id, PageView.page_types[:review], pId)
+  	if @resource.class == Recommendation
+      @link = create_redir_link(@redir_url, @business.id, PlatformPost.resource_types[:recommendation], @resource.id, channel, platform_id)
+    elsif @resource.class == Review
+      @link = create_redir_link(@redir_url, @business.id, PlatformPost.resource_types[:review], @resource.id, channel, platform_id)
     elsif @resource.class == NewsPost
-      @link = create_redir_link(@redir_url, @business.id, @resource.id, PageView.page_types[:news], pId)
+      @link = create_redir_link(@redir_url, @business.id, PlatformPost.resource_types[:news], @resource.id, channel, platform_id)
     end
   end
 
   private
 
-  def create_redir_link url, business_id, reference_id, link_type_id, platform_id
-    "#{@root}/redir/?url=#{url}&bId=#{business_id.to_s}&rId=#{reference_id.to_s}&tId=#{link_type_id.to_s}&pId=#{platform_id}"
+  def create_redir_link url, business_id, resource_type, resource_reference_id, channel_type, platform_id
+    "#{@root}/redir/?url=#{url}&bizId=#{business_id.to_s}&resourceType=#{resource_type.to_s}&resourceId=#{resource_reference_id.to_s}&channel=#{PlatformPost.traffic_channel_types[channel_type].to_s}" << (platform_id > 0 ? "&platformId=#{platform_id}" : "")
   end
 end

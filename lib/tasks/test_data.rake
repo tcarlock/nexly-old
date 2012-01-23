@@ -199,7 +199,7 @@ namespace :app do
     urls = ['http://bci.com', 'http://bci.com/reviews', 'http://bci.com/content/article/4', 'http://bci.com/events/5']
     rec_refs = (1..50).to_a
     platform_ids = Platform.all(:select => :id).map { |x| x.id }
-    link_types = PageView.page_types.values
+    link_types = PlatformPost.resource_types.values
     
     359.times do |n|
       biz.page_views.create!(:url => urls.rotate![0],

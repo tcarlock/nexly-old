@@ -1,4 +1,4 @@
-<%= javascript_include_tag "new_review", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
+<%= javascript_include_tag "new_review", "jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
 <div id="new-review-outer">
 	<h1>Post a New Review</h1>
@@ -23,10 +23,12 @@
 	  <%= f.buttons do %>
 		<%= f.commit_button 'Submit Review' %>
 	  <% end %>
-	  <strong>
-		<%= @review.business.name %> posts their reviews to <%= @review.business.active_platforms.collect{|p| p.display_name}.join(', ') %>
-	  </strong>
-	  <br />
+	  <% if @review.business.active_platforms.count > 0 %>
+	  	<strong>
+			<%= @review.business.name %> posts their reviews to <%= @review.business.active_platforms.map{|p| p.display_name}.join(', ') %>
+	  	</strong>
+	  	<br />
+	  <% end %>
 	  <a style="display:none"><strong>View terms and conditions</strong></a>
 	<% end %>
 </div>

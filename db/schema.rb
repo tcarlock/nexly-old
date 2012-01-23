@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111211210712) do
+ActiveRecord::Schema.define(:version => 20120123041854) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "platform_id"
@@ -93,12 +93,13 @@ ActiveRecord::Schema.define(:version => 20111211210712) do
   create_table "page_views", :force => true do |t|
     t.text     "url"
     t.integer  "business_id"
-    t.integer  "reference_id"
-    t.integer  "link_type_id"
+    t.integer  "resource_id"
+    t.integer  "resource_type_id"
     t.integer  "platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ip_address"
+    t.integer  "channel_type_id"
   end
 
   create_table "platform_pages", :force => true do |t|

@@ -1,5 +1,7 @@
+<%= javascript_include_tag "new_recommendation", "jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
+
 <div id="new-rec-outer">
-	<h1>Recommend This Business To Someone</h1>
+	<h1>Recommend This Business</h1>
 	<%= semantic_form_for(@rec, :url => business_recommendations_path, :remote => true, :validate => true, ) do |f| %>
 		<%= f.inputs do %>
 		  <%= f.input :name , :label => "Your name:" %>

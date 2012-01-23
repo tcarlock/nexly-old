@@ -7,12 +7,15 @@ end
 #
 # Table name: features
 #
-#  id         :integer(4)      not null, primary key
-#  title      :string(255)
-#  details    :text
-#  price      :float
-#  is_public  :boolean(1)      default(TRUE)
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer(4)      not null, primary key
+#  title         :string(255)
+#  details       :text
+#  price         :float
+#  is_public     :boolean(1)      default(TRUE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  icon          :string(255)
+#  display_order :integer(4)
+#  lookup_key    :string(255)
 #
 

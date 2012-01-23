@@ -1,0 +1,78 @@
+<ul id="review-stats" class="stats-tabs review-stats clearfix">
+	<li class="header"> 
+		Review Stats
+	</li>
+	<li>
+		<% if @business.review_meta.total_review_count == 0 %>
+			<span class="no-records">There are no reviews at this time</span>
+		<% else %>
+			<ul class="clearfix">
+				<li>
+					<span class="number">
+						<%= @business.review_meta.total_review_count %>
+					</span>
+					<span class="label">
+						<%= @business.review_meta.total_review_count == 1 ? "review" : "review".pluralize %> submitted
+					</span>
+				</li>
+				<li>
+					<span class="number">
+						<%= @business.review_meta.average_rating.round(1) %>
+					</span>
+					<span class="label">
+						average rating (out of 5)
+					</span>
+				</li>
+				<li>
+					<span class="number">
+						<%= @business.review_meta.pending_request_count %>
+					</span>
+					<span class="label">
+						outstanding <%= @business.review_meta.pending_request_count == 1 ? "request" : "requests".pluralize %>
+					</span>
+				</li>
+				<li>
+					<span class="number">
+						<%= number_to_percentage(@business.review_meta.request_response_rate * 100, :precision => 0) %>
+					</span>
+					<span class="label">
+						 request response rate
+					</span>
+				</li>
+			</ul>
+			<div id="rating-dist-chart" class="chart-outer"></div>
+		<% end %>
+	</li>
+</ul>
+<ul id="traffic-stats" class="stats-tabs traffic-stats clearfix">
+	<li class="header">
+		Traffic Stats 
+		<span class="date-range">
+			(<%= @traffic_meta.start_date.to_s(:stats_date) %> to <%= @traffic_meta.end_date.to_s(:stats_date) %>)
+		</span>
+	</li>
+	<li>
+		<div id="traffic-trend-chart" class="chart-outer"></div>
+		<ul class="clearfix">
+			<li>
+				<span class="number">
+					<%= @page_view_count %>
+				</span>
+				<span class="label">
+					total page <%= @page_view_count == 1 ? "view" : "view".pluralize %>
+				</span>
+			</li>
+			<li>
+				<span class="number">
+					<%= number_to_percentage(@review_page_view_growth * 100, :precision => 0) %>
+				</span>
+				<span class="label">
+					 average change in traffic
+				</span>
+			</li>
+		</ul>
+		<div id="channel-allocation-chart" class="chart-outer right-margin-applied"></div>
+		<div id="platform-allocation-chart" class="chart-outer"></div>
+	</li>
+</ul>
+			
