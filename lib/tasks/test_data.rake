@@ -201,12 +201,23 @@ namespace :app do
     platform_ids = Platform.all(:select => :id).map { |x| x.id }
     link_types = PlatformPost.resource_types.values
     
+    148.times do |n|
+      biz.page_views.create!(:url => urls.rotate![0],
+        :business_id => biz.id,
+        :resource_type_id => link_types.rotate![0],
+        :resource_id => rec_refs.rotate![0],
+        :channel_type_id => 1,
+        :platform_id => 0,
+        :created_at => Date.today - rand(1095)) 
+    end
+
     359.times do |n|
       biz.page_views.create!(:url => urls.rotate![0],
-        :platform_id => platform_ids.rotate![0],
-        :reference_id => rec_refs.rotate![0],
-        :link_type_id => link_types.rotate![0],
         :business_id => biz.id,
+        :resource_type_id => link_types.rotate![0],
+        :resource_id => rec_refs.rotate![0],
+        :channel_type_id => 2,
+        :platform_id => platform_ids.rotate![0],
         :created_at => Date.today - rand(1095)) 
     end
     
