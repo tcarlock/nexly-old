@@ -21,10 +21,11 @@ class RecommendationsController < ApplicationController
   end
 
   def create
-    @rec = Business.find(params[:business_id]).recommendations.create(params[:recommendation])
+    @biz = Business.find(params[:business_id])
+    @rec = @biz.recommendations.create(params[:recommendation])
     
     if @rec.valid?
-      @post = PlatformPost.new(@current_user.business, root_domain, resource)
+      @post = PlatformPost.new(@biz, DOMAIN_NAMES[Rails.env], @rec)
       @post.generate_link(:email, nil)
 
       RecommendationMailer.new_recommendation_alert(@rec, @post.link).deliver
