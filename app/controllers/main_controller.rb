@@ -46,6 +46,9 @@ class MainController < ApplicationController
     @total_page_view_time_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
     @review_page_view_time_series = review_series.get_time_series(TrafficMeta.time_series[:monthly], false)
     @review_page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
+    
+    # @total_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
+    # @review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PlatformPost.resource_types[:review]).get_time_series(TrafficMeta.time_series[:monthly])
 
     @rating_dist = @business.review_meta.get_rating_distribution(false)
 

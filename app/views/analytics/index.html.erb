@@ -1,75 +1,45 @@
-<% content_for :page_header do %>
-	Analytics
-	<span class="date-range">
-		<%= @traffic_meta.start_date.to_s(:stats_date) %> to 
-		<%= @traffic_meta.end_date.to_s(:stats_date) %>
-	</span>
+<% content_for :styles do %>
+	<style>
+		table {
+			padding:0;
+			display:block;
+			margin-bottom:15px;
+		}
+		th {
+			background-color:#a1a1a3;
+		}
+		th, th a {
+			color:#fff;
+		}
+		th, td {
+			padding:7px 10px;
+			font-size:1.1em;
+		}
+		tr { 
+			border-bottom:#e1e1e3 1px solid;
+		}
+		.text-col { text-align:left; }
+		.nbr-date-col { text-align:center; }
+		.alt-row { background-color:#e1e1e3; }
+	</style>
 <% end %>
-<% content_for :styles do stylesheet_link_tag "analytics" end %>
-<% content_for :scripts do %>
-	<script type="text/javascript">
-		$(function() {
-			new Highcharts.Chart({
-				chart: {
-					renderTo: 'traffic-chart',
-					defaultSeriesType: 'column',
-					marginBottom: 100
-				},
-				title: {
-					text: 'Monthly Traffic'
-				},
-				plotOptions: {
-					column: {
-						stacking: 'normal',
-						borderWidth: 0,
-						shadow: false
-					}
-				},
-				tooltip: {
-					borderWidth: 1,
-					borderColor: '#909090',
-					formatter: function () {
-			        	return '<b>' + Highcharts.dateFormat('%B %Y', this.x) + '</b><br />' + this.series.name +': '+ this.y +'<br/>'+ 'Total: '+ this.point.stackTotal;Highcharts.numberFormat(this.y, 0);
-			      	}
-			    },
-				legend: {
-					align: 'right',
-					verticalAlign: 'top',
-					y: -5,
-					floating: true,
-					backgroundColor: '#fff'
-				},
-				colors: [
-					'#92C1E9',
-					'#AA4643',
-					'#abdb73',
-					'#80699B',
-					'#3D96AE'
-				],
-				xAxis: {
-					type: 'datetime',
-					labels: {
-						rotation: -90,
-						y: 40,
-						x: 7
-					},
-					tickInterval: 24*30*3600*1000
-				},
-				yAxis: {
-					title: {
-						text: 'Page Views'
-					},
-					stackLabels: {
-						enabled: true
-					}
-				},
-				series: [{
-					name: 'Page Views from Reviews',
-					data: <%= @total_series %>
-				}]
-			});
-			
-		});
-	</script>
-<% end %>
-<div id="traffic-chart" style="width:560;height:300;"></div>
+<h1>User Registrations</h1>	
+<table cellspacing="0" cellpadding="0">
+	<th class="text-col"><%= link_to "Name", :sortField => "user_profiles.last_name", :sortDir => @sort_dir %></th>
+	<th class="text-col"><%= link_to "Business", :sortField => "businesses.name", :sortDir => @sort_dir %></th>
+	<th class="nbr-date-col"><%= link_to "Registration", :sortField => "users.created_at", :sortDir => @sort_dir %></th>
+	<th class="nbr-date-col"><%= link_to "Sign-Ins", :sortField => "users.sign_in_count", :sortDir => @sort_dir %></th>
+	<th class="nbr-date-col"><%= link_to "Last Login", :sortField => "users.last_sign_in_at", :sortDir => @sort_dir %></th>
+	<th class="nbr-date-col">Reviews</th>
+	<% @users.each do |u| %>
+		<tr class="<%= cycle("", "alt-row") %>">
+			<td class="text-col"><%= u.profile.first_name << ' ' << u.profile.last_name %></td>
+			<td class="text-col"><%= u.business.name %></td>
+			<td class="nbr-date-col"><%= u.profile.created_at.to_s(:stats_date) %></td>
+			<td class="nbr-date-col"><%= u.sign_in_count %></td>
+			<td class="nbr-date-col"><%= u.last_sign_in_at.nil? ? "" : u.last_sign_in_at.to_s(:stats_date) %></td>
+			<td class="nbr-date-col"><%= u.business.reviews.count %></td>
+		</tr>
+	<% end %>
+</table>
+<%= render :partial => 'shared/pager', :locals => { :items => @users, :label => "user", :param_name => "page" } %>

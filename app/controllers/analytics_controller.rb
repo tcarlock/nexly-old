@@ -3,12 +3,19 @@ class AnalyticsController < ApplicationController
 	skip_before_filter :authenticate_user!, :only => :track_link
 
   def index
-    business = Business.find(params[:business_id])
-    @traffic_meta = business.traffic_meta([business.created_at, 12.months.ago].max, DateTime.current)
+    if !current_user.admin
+      render :text => "You don't have permission to view this page", :layout => true
+    else
+      sort_field = params[:sortField] || 'user_profiles.last_name'
+      
+      if params[:sortDir].nil?
+        @sort_dir = 'asc'
+      else
+        @sort_dir = (params[:sortDir].to_s == 'asc' ? 'desc' : 'asc')
+      end
 
-    @total_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
-    @review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PlatformPost.resource_types[:review]).get_time_series(TrafficMeta.time_series[:monthly])
-    # @profile_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PlatformPost.resource_types[:profile]).get_time_series(TrafficMeta.time_series[:monthly])
+      @users = User.paginate(:page => params[:page], :per_page => 15).find(:all, :include => [:profile, :business], :order => sort_field << ' ' << @sort_dir)
+    end
   end
 
   def track_link

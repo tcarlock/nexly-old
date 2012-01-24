@@ -55,6 +55,7 @@ namespace :app do
     #Create demo user, business and reviews
     user = User.create!(:email => 'timothy.carlock@gmail.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
     user.reload
+    user.update_attribute :admin, true
     
     profile = UserProfile.create!(
       :user => user,
