@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   
   has_one :profile, :class_name => "UserProfile", :dependent => :destroy
-  has_one :business_user
-  has_one :business, :through => :business_user
+  has_many :business_users
+  has_many :businesses, :through => :business_users
   
   validates :email, :presence => true, :uniqueness => true, :email_format => true 
   
@@ -31,9 +31,9 @@ class User < ActiveRecord::Base
     "#{self.profile.city}, #{self.profile.state}"
   end
   
-  # def business
-  #   self.businesses.first
-  # end
+  def business
+    self.businesses.first
+  end
   
   def authentications
     self.businesses.first.authentications
