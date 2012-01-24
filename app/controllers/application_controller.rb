@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
   
   def set_menu_visibility
-    @hide_nav = false # (Rails.env == 'production') && (signed_in? && (current_user.profile.nil? || current_user.business.nil?))
+    @hide_nav = (Rails.env == 'production') && (signed_in? && (current_user.profile.nil? || current_user.business.nil?))
   end
   
   def set_toolbar_visibility
-    @show_toolbar = (Rails.env == 'production') && !signed_in?
+    @show_toolbar = false  # (Rails.env == 'production') && !signed_in?
   end
 
   def check_for_biz
