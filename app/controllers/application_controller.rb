@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
-  before_filter :set_menu_visibility
+  before_filter :set_menu_visibility, :set_toolbar_visibility
   before_filter :check_for_biz    # Make sure user has created a biz profile
     
   protect_from_forgery
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   
   def set_menu_visibility
     @hide_nav = (Rails.env == 'production') && (signed_in? && (current_user.profile.nil? || current_user.business.nil?))
+  end
+  
+  def set_toolbar_visibility
+    @show_toolbar = (Rails.env == 'production') && !signed_in?
   end
 
   def check_for_biz
