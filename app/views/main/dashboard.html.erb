@@ -10,7 +10,7 @@
 <%= render 'dashboard/charts_script' %>
 <div class="left-col">
 	<div id="biz-details" class="panel">
-		<%= raw display_logo(@business, :thumb) %>
+		<%= raw display_logo(@business, :small) %>
 		<div>
 			<%= link_to @business.name, business_path(@business), :id => 'biz-name' %>
 			<%= link_to "Edit Profile", edit_business_path(@business), :id => 'edit-profile'  %>

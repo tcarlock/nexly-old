@@ -8,12 +8,20 @@
 }
 #biz-details {
 	text-align:left;
+	height:50px;
 
-	img, div {
+	div {
 		display:inline-block;
 		vertical-align:middle;
 		float:left;
 		margin:0 3px;
+		height:50px;
+		font-weight:bold;
+		text-align:left;
+	}
+	img {
+		height:50px;
+		width:50px;
 	}
 
 	#biz-name {
@@ -21,14 +29,11 @@
 		display:block;
 		padding:3px 0;
 		font-weight:bold;
-		text-align:center;
 	}
 	#edit-profile {
 		display:block;
 		width:100%;
 		font-size:1.1em;
-		font-weight:bold;
-		text-align:center;
 	}	
 }
 .stats-tabs {
