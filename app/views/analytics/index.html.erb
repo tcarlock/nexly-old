@@ -26,7 +26,7 @@
 <h1>User Registrations</h1>	
 <table cellspacing="0" cellpadding="0">
 	<th class="text-col"><%= link_to "Name", :sortField => "user_profiles.last_name", :sortDir => @sort_dir %></th>
-	<th class="text-col"><%= link_to "Business", :sortField => "businesses.name", :sortDir => @sort_dir %></th>
+	<th class="text-col">Business</th>
 	<th class="nbr-date-col"><%= link_to "Registration", :sortField => "users.created_at", :sortDir => @sort_dir %></th>
 	<th class="nbr-date-col"><%= link_to "Sign-Ins", :sortField => "users.sign_in_count", :sortDir => @sort_dir %></th>
 	<th class="nbr-date-col"><%= link_to "Last Login", :sortField => "users.last_sign_in_at", :sortDir => @sort_dir %></th>
