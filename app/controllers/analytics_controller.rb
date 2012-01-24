@@ -14,7 +14,7 @@ class AnalyticsController < ApplicationController
         @sort_dir = (params[:sortDir].to_s == 'asc' ? 'desc' : 'asc')
       end
 
-      @users = User.paginate(:page => params[:page], :per_page => 15).find(:all, :include => [:profile, :business], :order => sort_field << ' ' << @sort_dir)
+      @users = User.paginate(:page => params[:page], :per_page => 15).find(:all, :include => [:profile], :order => sort_field << ' ' << @sort_dir)
     end
   end
 
