@@ -34,11 +34,11 @@
 	<% @users.each do |u| %>
 		<tr class="<%= cycle("", "alt-row") %>">
 			<td class="text-col"><%= u.profile.first_name << ' ' << u.profile.last_name %></td>
-			<td class="text-col"><%= u.business.name %></td>
+			<td class="text-col"><%= u.business.nil? ? "" : u.business.name %></td>
 			<td class="nbr-date-col"><%= u.profile.created_at.to_s(:stats_date) %></td>
 			<td class="nbr-date-col"><%= u.sign_in_count %></td>
 			<td class="nbr-date-col"><%= u.last_sign_in_at.nil? ? "" : u.last_sign_in_at.to_s(:stats_date) %></td>
-			<td class="nbr-date-col"><%= u.business.reviews.count %></td>
+			<td class="nbr-date-col"><%= u.business.nil? ? 0 : u.business.reviews.count %></td>
 		</tr>
 	<% end %>
 </table>
