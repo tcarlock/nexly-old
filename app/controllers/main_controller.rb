@@ -36,7 +36,7 @@ class MainController < ApplicationController
     @enable_news = false   # !@business.active_features.where(:lookup_key => "news").empty?
     
     # Get datasets for dashboard charts
-    @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].max, DateTime.current)
+    @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].min, DateTime.current)
     
     @page_view_count = @traffic_meta.total_page_view_count
     @platform_allocation = @traffic_meta.get_traffic_allocation(TrafficMeta.filter_types[:platform]).to_json

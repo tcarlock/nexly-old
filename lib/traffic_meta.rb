@@ -61,7 +61,7 @@ class TrafficMeta
         when TrafficMeta.filter_types[:resource_type]
           @page_views.group_by{ |u| u.resource_type_id }.map {|resource_type_id, g| [get_series_label(TrafficMeta.filter_types[:resource_type], resource_type_id), g.count.to_f/total_page_views.to_f*100]}
         when TrafficMeta.filter_types[:channel]
-          @page_views.group_by{ |u| u.channel_type_id }.map {|channel_type_id, g| [get_series_label(TrafficMeta.filter_types[:channel], channel_type_id), g.count.to_f/total_page_views.to_f*100]}
+          @page_views.group_by{ |u| u.channel_type_id }.map {|channel_type_id, g| channel_type_id, g.count.to_f/total_page_views.to_f*100]}
         when TrafficMeta.filter_types[:platform]
           @page_views.where(:channel_type_id => 2).group_by{ |u| u.platform_id }.map {|platform_id, g| [g.first.platform.display_name, g.count.to_f/total_page_views.to_f*100]}
       end

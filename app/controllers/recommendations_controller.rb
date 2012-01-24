@@ -4,9 +4,16 @@ class RecommendationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
 
   def new
+    @view = params[:v] || "standard"
+
     if Rails.env == "production" && signed_in?
       if current_user.business.id == @business.id
-        render :text => "<strong>You cannot recommend your own business.</strong>", :layout => true
+        if params[:v] == "popup"
+          render :text => "<strong>You cannot recommend your own business.</strong>", :layout => false
+        else
+          render :text => "<strong>You cannot recommend your own business.</strong>", :layout => true
+        end
+
         return
       end
     end

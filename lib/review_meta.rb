@@ -41,10 +41,15 @@ class ReviewMeta
   
   
   def get_rating_distribution include_labels = true
+    data_set = @business.reviews.order("rating desc").group_by{ |r| r.rating }
+    data_array = []
+
     if include_labels
-      @business.reviews.order("rating desc").group_by{ |r| r.rating }.map {|rating, g| [rating, g.count]}
+      (1..5).each {|i| data_array << [i + " star".pluralize, data_set.select{|rating| rating == i}.map {|rating, g| g.count}[0] || 0]}
     else
-      @business.reviews.order("rating desc").group_by{ |r| r.rating }.map {|rating, g| g.count}
+      (1..5).each {|i| data_array << (data_set.select{|rating| rating == i}.map {|rating, g| g.count}[0] || 0)}
     end
+
+    data_array
   end
 end
