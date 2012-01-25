@@ -15,15 +15,13 @@
 		vertical-align:middle;
 		float:left;
 		margin:0 3px;
-		height:50px;
 		font-weight:bold;
-		text-align:left;
 	}
 	img {
 	}
 
 	#biz-name {
-		font-size:1.4em;
+		font-size:1.3em;
 		display:block;
 		padding:3px 0;
 		font-weight:bold;
@@ -42,7 +40,7 @@
 	list-style-image:none;
 	width:675px;
 
-	li.header {
+	& > li.header {
 		padding-bottom:7px;
 		margin-bottom:10px;
 		font-weight:bold; 
@@ -60,16 +58,17 @@
 		}
 	}
 
+	& > li:nth-child(2) {
+		padding:0 7px;
+	}
+
 	ul > li {
 		display:inline-block;
 		vertical-align:middle;
-		margin:0;
-		padding:0;
 		border:1px #D8D5D5 solid;
 		background-color:#ebebeb;
 		border-radius:5px;
 		padding:10px 5px;
-		height:70px;
 		width:115px;
 		margin:0 10px 10px 0;
 		float:left;
@@ -84,6 +83,7 @@
 		}
 
 		.label {
+			padding-top:3px;
 			font-size:1.1em;
 		}
 	}
@@ -188,24 +188,6 @@
 		list-style-image:url(/assets/check.gif);
 	}
 }
-.stats-panel {
-	width:680px;
-	margin-bottom:10px;
-
-	ul.profile-details {
-		float:left;
-		width:48%;
-
-		li span.date-range {
-			font-size:.9em;
-		}
-	}
-	
-	span.no-records {
-		font-size:.9em;
-		padding:0;
-	}
-}
 .chart-outer {
 	border:1px #D8D5D5 solid;
 	border-radius:5px;
@@ -217,4 +199,14 @@
 }
 .right-margin-applied {
 	margin-right:10px;
+}
+#traffic-trend-chart-outer {
+	float:left;
+	position:relative;
+}
+#traffic-view {
+	position:absolute;
+	top:12px;
+	right:12px;
+	display:none;
 }

@@ -12,7 +12,7 @@
 						<%= @business.review_meta.total_review_count %>
 					</span>
 					<span class="label">
-						<%= @business.review_meta.total_review_count == 1 ? "review" : "review".pluralize %> submitted
+						<%= link_to (@business.review_meta.total_review_count == 1 ? "review" : "review".pluralize) << ' submitted', business_approved_reviews_path(@business) %>
 					</span>
 				</li>
 				<li>
@@ -28,7 +28,7 @@
 						<%= @business.review_meta.pending_request_count %>
 					</span>
 					<span class="label">
-						outstanding <%= @business.review_meta.pending_request_count == 1 ? "request" : "requests".pluralize %>
+						<%= link_to 'outstanding ' << (@business.review_meta.pending_request_count == 1 ? "request" : "requests".pluralize), business_review_requests_path(@business) %>
 					</span>
 				</li>
 				<li>
@@ -52,27 +52,36 @@
 		</span>
 	</li>
 	<li>
-		<div id="traffic-trend-chart" class="chart-outer"></div>
-		<ul class="clearfix">
-			<li>
-				<span class="number">
-					<%= @page_view_count %>
-				</span>
-				<span class="label">
-					total page <%= @page_view_count == 1 ? "view" : "view".pluralize %>
-				</span>
-			</li>
-			<li>
-				<span class="number">
-					<%= number_to_percentage(@review_page_view_growth * 100, :precision => 0) %>
-				</span>
-				<span class="label">
-					 average change in traffic
-				</span>
-			</li>
-		</ul>
-		<div id="channel-allocation-chart" class="chart-outer right-margin-applied"></div>
-		<div id="platform-allocation-chart" class="chart-outer"></div>
+		<% if @page_view_count == 0 %>
+			<span class="no-records">You don't currently have any page views</span>
+		<% else %>
+			<div id="traffic-trend-chart-outer">
+				<div id="traffic-trend-chart" class="chart-outer"></div>
+				<select id="traffic-view">
+					<option>Channel</option>
+					<option>Site</option>
+				</select>
+			</div>
+			<ul class="clearfix">
+				<li>
+					<span class="number">
+						<%= @page_view_count %>
+					</span>
+					<span class="label">
+						total page <%= @page_view_count == 1 ? "view" : "view".pluralize %>
+					</span>
+				</li>
+				<li>
+					<span class="number">
+						<%= number_to_percentage(@total_page_view_growth * 100, :precision => 0) %>
+					</span>
+					<span class="label">
+						 average monthly change in traffic
+					</span>
+				</li>
+			</ul>
+			<div id="channel-allocation-chart" class="chart-outer right-margin-applied"></div>
+			<div id="platform-allocation-chart" class="chart-outer"></div>
+		<% end %>
 	</li>
-</ul>
-			
+</ul>		

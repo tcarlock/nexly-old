@@ -200,12 +200,12 @@ namespace :app do
     urls = ['http://bci.com', 'http://bci.com/reviews', 'http://bci.com/content/article/4', 'http://bci.com/events/5']
     rec_refs = (1..50).to_a
     platform_ids = Platform.all(:select => :id).map { |x| x.id }
-    link_types = PlatformPost.resource_types.values
+    resource_types = PlatformPost.resource_types.values
     
     148.times do |n|
       biz.page_views.create!(:url => urls.rotate![0],
         :business_id => biz.id,
-        :resource_type_id => link_types.rotate![0],
+        :resource_type_id => resource_types.rotate![0],
         :resource_id => rec_refs.rotate![0],
         :channel_type_id => 1,
         :platform_id => 0,
@@ -215,7 +215,7 @@ namespace :app do
     359.times do |n|
       biz.page_views.create!(:url => urls.rotate![0],
         :business_id => biz.id,
-        :resource_type_id => link_types.rotate![0],
+        :resource_type_id => resource_types.rotate![0],
         :resource_id => rec_refs.rotate![0],
         :channel_type_id => 2,
         :platform_id => platform_ids.rotate![0],

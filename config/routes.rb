@@ -21,7 +21,7 @@ Nexly::Application.routes.draw do
     resources :news, :controller => :news_posts
     resources :analytics, :only => :index, :controller => :analytics
 
-    get 'review_requests' => 'reviews#review_requests', :as => :business_review_requests_path
+    get 'review_requests' => 'reviews#review_requests', :as => :review_requests_path
     get 'pending_reviews' => 'reviews#pending_reviews'
     get 'approved_reviews' => 'reviews#approved_reviews'
     get 'rejected_reviews' => 'reviews#rejected_reviews'

@@ -6,7 +6,7 @@ class PlatformPost
   end
 
   def self.resource_types
-    {:recommendation  => 1, :review => 2, :news => 3}
+    {:recommendation  => 1, :review => 2}
   end
 
   def initialize business, root_domain, resource

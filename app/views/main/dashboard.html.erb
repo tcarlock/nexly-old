@@ -18,14 +18,14 @@
 	</div>
 	<ul id="panel-tabs" ref="analytics-panel" class="clearfix">
 		<li id="analytics-tab" ref="analytics-panel" class="header">
-			<a class="toggle-link">Data &amp; Analytics</a>
+			<a class="toggle-link">Analytics</a>
 		</li>
 		<li id="reviews-tab" ref="reviews-panel" class="header">
 			<a class="toggle-link">Pending Reviews (<%= @business.review_meta.pending_review_count %>)</a>
 		</li>
 		<li id="settings-tab" ref="settings-panel" class="header">
 			<a class="toggle-link">Settings</a>
-			<%= link_to "Edit", platforms_path, :class => 'command-link' %>
+			<%= link_to 'Edit', platforms_path, :class => 'command-link' %>
 		</li>
 		<li  class="container">
 			<ul id="platforms" class="profile-details clearfix">
@@ -43,7 +43,7 @@
 	<div id="reviews-panel" class="content-panel dashboard-panel">
 		<h2>
 			Reviews Pending Approval
-			<%= link_to "Manage Reviews & Requests", business_review_requests_path(@business) %>
+			<%= link_to 'Manage Reviews & Requests', business_pending_reviews_path(@business) %>
 		</h2>
 		<div id="pending-reviews-outer">
 			<%= render 'dashboard/pending_reviews' %>

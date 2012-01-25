@@ -30,7 +30,6 @@ class MainController < ApplicationController
     
     # View settings
     # @business.active_features
-
     @active_feature_count = 1   # @business.active_features.count
     @enable_reviews = true   # !@business.active_features.where(:lookup_key => "reviews").empty?
     @enable_news = false   # !@business.active_features.where(:lookup_key => "news").empty?
@@ -39,16 +38,16 @@ class MainController < ApplicationController
     @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].max, DateTime.current)
     
     @page_view_count = @traffic_meta.total_page_view_count
+
     @platform_allocation = @traffic_meta.get_traffic_allocation(TrafficMeta.filter_types[:platform]).to_json
     @channel_allocation = @traffic_meta.get_traffic_allocation(TrafficMeta.filter_types[:channel]).to_json
+    
+    @total_page_view_time_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
+    @total_page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
 
     review_series = @traffic_meta.filter(TrafficMeta.filter_types[:resource_type], PlatformPost.resource_types[:review])
-    @total_page_view_time_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
-    @review_page_view_time_series = review_series.get_time_series(TrafficMeta.time_series[:monthly], false)
-    @review_page_view_growth = @traffic_meta.get_percentage_change(TrafficMeta.time_series[:monthly])
-    
-    # @total_series = @traffic_meta.get_time_series(TrafficMeta.time_series[:monthly])
-    # @review_series = @traffic_meta.filter(TrafficMeta.filter_types[:link_type], PlatformPost.resource_types[:review]).get_time_series(TrafficMeta.time_series[:monthly])
+    @review_page_view_time_series = @traffic_meta.filter(TrafficMeta.filter_types[:resource_type], PlatformPost.resource_types[:review]).get_time_series(TrafficMeta.time_series[:monthly])
+    @recommendation_page_view_time_series = @traffic_meta.filter(TrafficMeta.filter_types[:resource_type], PlatformPost.resource_types[:recommendation]).get_time_series(TrafficMeta.time_series[:monthly])
 
     @rating_dist = @business.review_meta.get_rating_distribution(false)
 

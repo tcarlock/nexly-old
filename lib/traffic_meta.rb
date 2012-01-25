@@ -56,7 +56,9 @@ class TrafficMeta
   def get_traffic_allocation allocation_type
     total_page_views = @page_views.count
 
-    if total_page_views > 0
+    if total_page_views == 0
+      []
+    else
       case allocation_type
         when TrafficMeta.filter_types[:resource_type]
           @page_views.group_by{ |u| u.resource_type_id }.map {|resource_type_id, g| [get_series_label(TrafficMeta.filter_types[:resource_type], resource_type_id), g.count.to_f/total_page_views.to_f*100]}
