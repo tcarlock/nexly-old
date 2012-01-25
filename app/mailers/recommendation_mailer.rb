@@ -3,6 +3,6 @@ class RecommendationMailer < ActionMailer::Base
     @rec = recommendation
     @redir_url = redir_url
     
-    mail(:to => recommendation.email, :subject => "#{recommendation.name} has shared a recommendation with you...")
+    mail(:from => "\"Nexly Admin\" <admin@nexly.com>", :to => recommendation.email, :subject => "#{recommendation.name} has shared a recommendation with you...")
   end
 end

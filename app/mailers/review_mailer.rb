@@ -1,4 +1,6 @@
-class ReviewMailer < ActionMailer::Base  
+class ReviewMailer < ActionMailer::Base
+  default :from => "\"Nexly Admin\" <admin@nexly.com>"
+  
   def new_review_alert review
     @review = review
 
