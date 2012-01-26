@@ -29,7 +29,7 @@ class PostFactory
   
   def generate_post platform
     # Generate link for posts
-    @post.generate_link(:web, platform)
+    @post.generate_link(:social, platform)
 
     # Create/queue worker job
     auth = get_auth(platform.to_s)

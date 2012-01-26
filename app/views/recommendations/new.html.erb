@@ -2,7 +2,7 @@
 
 <div id="new-rec-outer">
 	<h1>Recommend This Business</h1>
-	<%= semantic_form_for(@rec, :url => business_recommendations_path, :remote => true, :validate => true, ) do |f| %>
+	<%= semantic_form_for(@rec, :url => business_recommendations_path, :validate => true) do |f| %>
 		<%= f.inputs do %>
 		  <%= f.input :name , :label => "Your name:" %>
 		  <%= f.input :email , :label => "Recipient's email:" %>

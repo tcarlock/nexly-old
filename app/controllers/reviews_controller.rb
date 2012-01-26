@@ -28,11 +28,11 @@ class ReviewsController < ApplicationController
   end
   
   def new
-    @view = params[:v] || "standard"
+    @view = params[:v] || 'standard'
 
-    if Rails.env == "production" && signed_in?
+    if Rails.env == 'production' && signed_in?
       if current_user.business.id == @business.id
-        if params[:v] == "popup"
+        if params[:v] == 'popup'
           render :text => "<strong>You cannot review your own business.</strong>", :layout => false
         else
           render :text => "<strong>You cannot review your own business.</strong>", :layout => true
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
 
     if params[:token].nil?   # No token supplied
       if !@business.preferences[:tb_show_review_btn]   # Business does not allow public reviews without token; don't allow
-        if params[:v] == "popup"
+        if params[:v] == 'popup'
           render :text => "<strong>This business does not allow public reviews.</strong>", :layout => false
         else
           render :text => "<strong>This business does not allow public reviews.</strong>", :layout => true
@@ -74,7 +74,7 @@ class ReviewsController < ApplicationController
       @review = @business.reviews.build(:review_request_id => request.id)
     end
 
-    if params[:v] == "popup"
+    if params[:v] == 'popup'
       render :layout => "plugin_canvas"
     else
       render :layout => true 

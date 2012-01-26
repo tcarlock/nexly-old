@@ -38,12 +38,12 @@
 			</span>
 			<% if tb_show_rec_btn %>
 				<span class="menu_title">
-					<%= link_to "Tell Someone", new_business_recommendations_url(business, :v => "popup"), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 650 %>
+					<%= link_to "Tell Someone", new_business_recommendations_url(business, :v => 'popup'), :id => "new-rec-btn", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
 			<% end %>
 			<% if is_rev_enabled %>
 				<span class="menu_title">
-					<%= link_to "Post a Review", new_business_review_url(business, :v => "popup"), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 650 %>
+					<%= link_to "Post a Review", new_business_review_url(business, :v => 'popup'), :id => "new-review-btn", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
 			<% end %>
 			<span class="menu_title">

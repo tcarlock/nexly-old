@@ -2,7 +2,7 @@ class PlatformPost
   attr_accessor :message, :link, :name
   
   def self.traffic_channel_types
-    {:email  => 1, :web => 2}
+    {:email  => 1, :social => 2}
   end
 
   def self.resource_types
