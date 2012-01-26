@@ -6,7 +6,7 @@ class RecommendationsController < ApplicationController
   def new
     @view = params[:v] || 'standard'
 
-    if Rails.env == 'production' && signed_in?
+    if Rails.env == 'production' && signed_in? && !current_user.business.nil?
       if current_user.business.id == @business.id
         if params[:v] == 'popup'
           render :text => "<strong>You cannot recommend your own business.</strong>", :layout => false
