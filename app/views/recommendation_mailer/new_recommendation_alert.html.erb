@@ -1,7 +1,12 @@
 <p>
-	<%= @rec.name %> has recommended <%= @rec.business.name %> for you:
-	<br />
-	<%= @rec.message %> 
+	<%= @rec.name %> has recommended <%= @rec.business.name %> for you 
+	<% if @rec.message.nil? %>
+		.
+	<% else %>
+		and included the following message:
+		<br />
+		<%= @rec.message %> 
+	<% end %>
 </p>
 <p>
 	Please click the following link to learn more about <%= @rec.business.name %>: <%= link_to @rec.business.website, @redir_url %>
