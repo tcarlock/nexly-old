@@ -36,9 +36,6 @@
 		<% if enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
 			</span>
-			<span class="menu_title">
-				<%= link_to "Contact Us", new_business_recommendations_url(business, :v => 'popup'), :id => "new-lead", :class => "menutit", "data-canvas-width" => 550 %>
-			</span>
 			<% if tb_show_rec_btn %>
 				<span class="menu_title">
 					<%= link_to "Recommend Us", new_business_recommendations_url(business, :v => 'popup'), :id => "new-rec", :class => "menutit", "data-canvas-width" => 650 %>
