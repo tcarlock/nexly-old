@@ -40,7 +40,7 @@ $(function() {
         $('#new-review-outer').block(getBlockUIOptions());
         $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function() {
           $('#new-review-outer').unblock();
-          $('#new-review-outer').replaceWith('<span class="submitted">Your review has been sent.<span>')
+          $('#new-review-outer').replaceWith('<span class="submitted">Your review has been sent. Thanks!<span>')
         }});
         return false;
       }

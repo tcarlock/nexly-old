@@ -1,5 +1,3 @@
-<% require 'rails_rinku' %>
-
 <p>
 	A new review has been submitted for <%= @review.business %>. See details below or click the link to manage your reviews. 
 </p>
@@ -10,6 +8,7 @@
 	<strong>Email:</strong> <span><%= @review.email %></span>
 </p>
 <p>
-	Click the following link to manage your reviews: <%= link_to business_approved_reviews_path(@review.business).to_s, business_approved_reviews_path(@review.business) %>
+	Click the following link to manage your reviews: <%= link_to @redir_url %>
 </p>
 <%= link_to business_url(@review.business).to_s, business_url(@review.business) %>
+<%= link_to business_approved_reviews_path(@review.business).to_s, business_approved_reviews_path(@review.business) %>
