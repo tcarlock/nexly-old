@@ -91,7 +91,7 @@ class ReviewsController < ApplicationController
         ReviewRequest.find(params[:review][:review_request_id].to_i).update_attributes(:is_reviewed => true)
       end
 
-      ReviewMailer.new_review_alert(@review).deliver
+      ReviewMailer.new_review_alert(@review, business_approved_reviews_path(@business)).deliver
 
       render :nothing => true
     else
