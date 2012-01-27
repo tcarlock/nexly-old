@@ -1,7 +1,7 @@
 <% require 'rails_rinku' %>
 
 <p>
-	A new review has been submitted for @review.business. See details below or click the link to manage your reviews. 
+	A new review has been submitted for <%= @review.business %>. See details below or click the link to manage your reviews. 
 </p>
 <p>
 	<h3>Sender Details</h3>
@@ -12,3 +12,4 @@
 <p>
 	Click the following link to manage your reviews: <%= link_to business_approved_reviews_path(@review.business).to_s, business_approved_reviews_path(@review.business) %>
 </p>
+<%= link_to business_url(@review.business).to_s, business_url(@review.business) %>
