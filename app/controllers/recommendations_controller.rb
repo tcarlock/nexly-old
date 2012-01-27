@@ -9,11 +9,12 @@ class RecommendationsController < ApplicationController
     if Rails.env == 'production' && signed_in? && !current_user.business.nil?
       if current_user.business.id == @business.id
         if params[:v] == 'popup'
-          render :text => "<strong>You cannot recommend your own business.</strong>", :layout => false
+          layout = false
         else
-          render :text => "<strong>You cannot recommend your own business.</strong>", :layout => true
+          layout = true
         end
-
+        
+        render :text => "<strong>You cannot recommend your own business.</strong>", :layout => layout
         return
       end
     end
@@ -21,18 +22,18 @@ class RecommendationsController < ApplicationController
     @rec = Business.find(params[:business_id]).recommendations.build()
     
     if params[:v] == 'popup'
-      render :layout => "plugin_canvas"
+      render :layout => 'plugin_canvas'
     else
       render :layout => true 
     end
   end
 
   def create
-    @biz = Business.find(params[:business_id])
-    @rec = @biz.recommendations.create(params[:recommendation])
+    @business = Business.find(params[:business_id])
+    @rec = @business.recommendations.create(params[:recommendation])
     
     if @rec.valid?
-      @post = PlatformPost.new(@biz, DOMAIN_NAMES[Rails.env], @rec)
+      @post = PlatformPost.new(@business, DOMAIN_NAMES[Rails.env], @rec)
       @post.generate_link(:email, nil)
 
       RecommendationMailer.new_recommendation_alert(@rec, @post.link).deliver

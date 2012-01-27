@@ -7,11 +7,10 @@ class ReviewMailer < ActionMailer::Base
     mail(:to => review.business.users.first.email, :subject => "A new review has been submitted...")
   end
   
-  def new_request_alert request
-    @business = request.business
-    @redir_url = @business.website + '?nexlyCanvasRef=new-review'
-    @sender = request.user.profile
+  def new_request_alert request, redir_url    
     @request = request
+    @sender = request.user.profile
+    @redir_url = redir_url
 
     mail(:to => request.email, :subject => "#{@sender.first_name} #{@sender.last_name} at #{request.business.name} has requested that you submit a review...")
   end

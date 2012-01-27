@@ -1,5 +1,5 @@
 <p>
-	<%= @sender.first_name %> <%= @sender.last_name %> is collecting client reviews for <%= @business.name %> 
+	<%= @sender.first_name %> <%= @sender.last_name %> is collecting client reviews for <%= @request.business.name %> 
 	and would love to hear from you.  It's fast and easy: just click the link below and share your thoughts.
 </p>
 <p>
@@ -8,7 +8,7 @@
 	<%= @request.message %> 
 </p>
 <p>
-	Please click the following link to submit a review: <%= link_to new_business_review_url(@redir_url, :token => @request.token).to_s, new_business_review_url(@business, :token => @request.token) %>
+	Please click the following link to submit a review: <%= link_to new_business_review_url(@redir_url, :token => @request.token).to_s, new_business_review_url(@request.business, :token => @request.token) %>
 </p>
 <p>
 	<span>
