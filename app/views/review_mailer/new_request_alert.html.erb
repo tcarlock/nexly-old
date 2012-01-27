@@ -8,7 +8,7 @@
 	<%= @request.message %> 
 </p>
 <p>
-	Please click the following link to submit a review: <%= link_to new_business_review_url(@business, :token => @request.token).to_s, new_business_review_url(@business, :token => @request.token) %>
+	Please click the following link to submit a review: <%= link_to new_business_review_url(@redir_url, :token => @request.token).to_s, new_business_review_url(@business, :token => @request.token) %>
 </p>
 <p>
 	<span>

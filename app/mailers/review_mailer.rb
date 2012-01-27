@@ -9,6 +9,7 @@ class ReviewMailer < ActionMailer::Base
   
   def new_request_alert request
     @business = request.business
+    @redir_url = @business.website + '?nexlyCanvasRef=new-review'
     @sender = request.user.profile
     @request = request
 

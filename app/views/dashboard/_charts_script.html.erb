@@ -1,27 +1,96 @@
 <script type="text/javascript">
 	$(function() {
 		var height = 193;
-		var labelFont = '13px';
+
+		Highcharts.theme = {
+			credits: {
+				enabled: false
+			},
+			colors: ['#92C1E9','#AA4643','#abdb73','#80699B','#3D96AE'],
+		  	title: {
+		    	style: {
+		      		color: '#646464',
+		      		font: 'bold 13px "Helvetica Neue",Helvetica,Arial,sans-serif'
+		    	}
+		  	},
+		  	subtitle: {
+		      	style: { 
+		         	color: '#646464',
+		         	font: 'bold 12px "Helvetica Neue",Helvetica,Arial,sans-serif'
+		      	}
+		   	},
+		   	xAxis: {
+		      	labels: {
+		        	style: {
+		            	color: '#272727',
+		            	font: '12px "Helvetica Neue",Helvetica,Arial,sans-serif'
+		         	}
+		      	},
+		      	title: {
+		        	style: {
+			            color: '#646464',
+			            fontWeight: 'bold',
+			            fontSize: '12px',
+			            fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+			        }            
+			    }
+		   	},
+		   	yAxis: {
+				labels: {
+		        	style: {
+		            	color: '#272727',
+		            	font: '12px "Helvetica Neue",Helvetica,Arial,sans-serif'
+		         	}
+		      	},
+				title: {
+		        	style: {
+			            color: '#646464',
+			            fontWeight: 'bold',
+			            fontSize: '12px',
+			            fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+			        }            
+			    }
+		   	},
+		   	legend: {
+				borderWidth: 0,
+		      	itemStyle: {
+		            color: '#272727',
+		            font: '12px "Helvetica Neue",Helvetica,Arial,sans-serif'
+		        },
+		     	itemHoverStyle: {
+		        	color: '#039'
+		      	},
+		      	itemHiddenStyle: {
+		        	color: 'gray'
+		      	}
+		   	},
+			tooltip: {
+				borderWidth: 1,
+				borderColor: '#909090'
+			},
+		   	labels: {
+		      	style: {
+		        	color: '#99b'
+		      	}
+		   	}
+		};
+
+		// Apply the theme
+		var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 		if ($('#traffic-trend-chart').length == 1) {
 			new Highcharts.Chart({
-				credits: {
-					enabled: false
-				},
 				chart: {
 					renderTo: 'traffic-trend-chart',
-					defaultSeriesType: 'area',
+					defaultSeriesType: 'column',
 					height: 177,
 					width: 505
 				},
 				title: {
-					text: 'Monthly Page Views',
-					style: {
-						fontSize: '13px'
-					}
+					text: 'Monthly Page Views'
 				},
 				plotOptions: {
-					area: {
+					column: {
 						stacking: 'normal',
 						borderWidth: 0,
 						shadow: false,
@@ -30,38 +99,24 @@
                				symbol: 'circle',
 							radius: 2,
 							states: {
-							  hover: {
-							     enabled: true
-							  }
+								hover: {
+							    	enabled: true
+							  	}
 							}
                			}
 					}
 				},
 				tooltip: {
-					borderWidth: 1,
-					borderColor: '#909090',
 					formatter: function() {
-			        	return this.total + ' total page views' + '<br />' + this.y + ' ' + this.series.name.toLowerCase();
+			        	return this.total + ' total page views<br />' + this.y + ' ' + this.series.name.toLowerCase();
 			      	}
 			    },
-				legend: {
-					enabled: true
-				},
-				colors: [
-					'#92C1E9',
-					'#AA4643',
-					'#abdb73',
-					'#80699B',
-					'#3D96AE'
-				],
 				xAxis: {
 					type: 'datetime',
 					labels: {
-						style: {
-							fontSize: labelFont
-						},
+						y: 17,
 						formatter: function() {
-			               return Highcharts.dateFormat('%b', this.value);
+			               return Highcharts.dateFormat('%b', this.value) + '<br />\'' + Highcharts.dateFormat('%y', this.value);
 			            }
 					},
 					tickInterval: 24 * 3600 * 1000 * 30
@@ -69,11 +124,6 @@
 				yAxis: {
 					title: {
 						text: null
-					},
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
 					}
 				},
 				series: [{
@@ -88,9 +138,6 @@
 		
 		if ($('#rating-dist-chart').length == 1) {
 			new Highcharts.Chart({
-				credits: {
-					enabled: false
-				},
 				chart: {
 					renderTo: 'rating-dist-chart',
 					defaultSeriesType: 'bar',
@@ -98,10 +145,7 @@
 					width:230
 				},
 				title: {
-					text: 'Rating Distribution',
-					style: {
-						fontSize: '13px'
-					}
+					text: 'Rating Distribution'
 				},
 				legend: {
 					enabled: false
@@ -116,8 +160,6 @@
 					}
 				},
 				tooltip: {
-					borderWidth: 1,
-					borderColor: '#909090',
 					formatter: function() {
 			        	return '<b>' + this.y + ' ratings</b>';
 			      	}
@@ -126,12 +168,7 @@
 			        categories: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
 			        title: {
 			        	text: null
-			        },
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
-					}
+			        }
 			    },
 				yAxis: {
 					gridLineWidth: 0,
@@ -151,47 +188,22 @@
 
 		if ($('#channel-allocation-chart').length == 1) {
 			new Highcharts.Chart({
-				credits: {
-					enabled: false
-				},
 				chart: {
 					renderTo: 'channel-allocation-chart',
 					defaultSeriesType: 'pie',
 					height:height,
-					width:323
+					width:283
 				},
 				title: {
-					text: 'Sources of Web Traffic (by Channel)',
-					style: {
-						fontSize: '13px'
-					}
+					text: 'Sources of Web Traffic (by Channel)'
 				},
 				legend: {
-					enabled: true,
 					layout: 'vertical',
 					align: 'right',
 					verticalAlign: 'middle',
-					borderWidth: 0,
-					itemStyle: {
-						fontSize: '13px'
-					},
 					labelFormatter: function() {
 			        	return this.name + ' (' + Math.round(this.y) + '%)';
 			      	},
-				},
-				xAxis: {
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
-					}
-				},
-				yAxis: {
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
-					}
 				},
 				plotOptions: {
 					pie: {
@@ -207,8 +219,6 @@
 					}
 				},
 				tooltip: {
-					borderWidth: 1,
-					borderColor: '#909090',
 					formatter: function() {
 			        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
 			      	}
@@ -221,47 +231,22 @@
 
 		if ($('#platform-allocation-chart').length == 1) {
 			new Highcharts.Chart({
-				credits: {
-					enabled: false
-				},
 				chart: {
 					renderTo: 'platform-allocation-chart',
 					defaultSeriesType: 'pie',
 					height:height,
-					width:323
+					width:363
 				},
 				title: {
-					text: 'Sources of Web Traffic (by Site)',
-					style: {
-						fontSize: '13px'
-					}
+					text: 'Sources of Web Traffic (by Site)'
 				},
 				legend: {
-					enabled: true,
 					layout: 'vertical',
 					align: 'right',
 					verticalAlign: 'middle',
-					borderWidth: 0,
-					itemStyle: {
-						fontSize: '13px'
-					},
 					labelFormatter: function() {
 			        	return this.name + ' (' + Math.round(this.y) + '%)';
 			      	},
-				},
-				xAxis: {
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
-					}
-				},
-				yAxis: {
-					labels: {
-						style: {
-							fontSize: labelFont
-						}
-					}
 				},
 				plotOptions: {
 					pie: {
@@ -277,8 +262,6 @@
 					}
 				},
 				tooltip: {
-					borderWidth: 1,
-					borderColor: '#909090',
 					formatter: function() {
 			        	return this.point.name + ' (' + Math.round(this.percentage) + '%)';
 			      	}

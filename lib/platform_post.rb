@@ -26,7 +26,7 @@ class PlatformPost
   end
 
   def generate_link channel, platform
-    if channel == :web
+    if channel == :social
       platform_id = Platform.find_by_name(platform.to_s).id
     else
       platform_id = 0

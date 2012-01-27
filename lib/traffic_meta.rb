@@ -37,12 +37,8 @@ class TrafficMeta
 	  self
   end
   
-  def get_time_series frequency, include_labels = true
-    if include_labels
-      @page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
-    else
-      @page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| g.count}
-    end
+  def get_time_series frequency
+    @page_views.group_by{ |u| u.created_at.beginning_of_month }.map {|date_str, g| [date_str.to_i * 1000, g.count]}
   end
   
   def get_percentage_change frequency 

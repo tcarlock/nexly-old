@@ -15,30 +15,30 @@ function getBlockUIOptions() {
    	}
 }
 
-function loadPages() {
-	var pluginContainer = $(".nexly-content"); 
+function initPages() {
+	var pluginContainer = $('.nexly-page'); 
 
-	pluginContainer.load("http://nexly-demo.heroku.com/plugins/render_content_page/?app=" + pluginContainer.attr('data-app-id') + "&network=" + pluginContainer.attr('data-network'));	
+	pluginContainer.load('http://nexly-demo.heroku.com/plugins/render_content_page/?app=' + pluginContainer.attr('data-app-id') + '&network=' + pluginContainer.attr('data-network'));
 }
 
-function loadToolbar(tbElement) {
+function initToolbar(tbElement) {
 	//hide toolbar and make visible the 'show' button
-	$("span.downarr a").click(function() {
-	    $("#toolbar").slideToggle("fast");
-	    $("#toolbarbut").fadeIn("slow");
+	$('span.downarr a').click(function() {
+	    $('#toolbar').slideToggle('fast');
+	    $('#toolbarbut').fadeIn('slow');
 	});
 
 	//show toolbar and hide the 'show' button
-	$("span.showbar a").click(function() {
-		$("#toolbar").slideToggle("fast");
-	    $("#toolbarbut").fadeOut();
+	$('span.showbar a').click(function() {
+		$('#toolbar').slideToggle('fast');
+	    $('#toolbarbut').fadeOut();
 	});
 
 	//show tooltip when the mouse is moved over a list element
-	$(".leftside > ul > li").hover(function() {
-			$(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
+	$('.leftside > ul > li').hover(function() {
+			$(this).find('div').fadeIn('fast').show(); //add 'show()'' for IE
 	    $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
-	        $(this).find("div").hide();
+	        $(this).find('div').hide();
 	    });
 	});
 
@@ -47,61 +47,15 @@ function loadToolbar(tbElement) {
     });
 
 	//Render canvas on click
-	$("a.menutit").click(function() {
-		//parent.document.getElementById('nexly-canvas-frame').src = "http://localhost:3000/plugins/reviews/?network=" + tbElement.attr('data-network');
-		//parent.document.getElementById('nexly-canvas').style.display="block";
-
-		link = $(this);
-		canvas = $('#nexly-canvas');
-		canvasFrame = $('#nexly-canvas-frame');
-		
-		// if($(this).attr('data-btn-group-id') != undefined)
-		// 	buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
-
-		if (link.attr('href') == canvasFrame.attr('src')) {   //Canvas already loaded with correct url
-			if (canvas.is(':visible')) {
-				canvas.fadeOut("fast");
-
-				// if(buttonGroup != null)
-				// 	buttonGroup.fadeOut();
-			}
-			else {
-				// if(buttonGroup != null)
-				// 	buttonGroup.fadeIn();
-
-				canvas.fadeIn();
-			}
-		}
-		else {
-			//Set canvas and toolbar visibility
-			if (canvas.is(':hidden'))
-				canvas.fadeIn();
-
-			canvasFrame.fadeOut();
-			canvas.animate({ width: $(this).attr('data-canvas-width') || 400 }, 350, function() {
-				canvas.block(getBlockUIOptions());
-				
-				//Load appropriate page into quickmenu
-				if (link.attr('href') != "#")
-					canvasFrame.attr('src', link.attr('href'));
-
-				//Hide all other toolbars
-				//$(".btn-container").hide(); 
-
-				// if(buttonGroup != null)
-				// 	buttonGroup.fadeIn();
-
-				canvasFrame.fadeIn();
-			});
-		}
-
+	$('a.menutit').click(function() {
+		renderCanvas($(this));
 		return false;
 	});
 	
 	//hide menu on casual click on the page
 	$(parent.document).click(function() {
-		$("#nexly-canvas", parent.document).fadeOut("fast");
-		$(".btn-container").fadeOut();
+		$('#nexly-canvas', parent.document).fadeOut('fast');
+		$('.btn-container').fadeOut();
 	});
 
 	$('#nexly-canvas').click(function(e) {
@@ -109,16 +63,82 @@ function loadToolbar(tbElement) {
 	});
 }
 
+function displayTab(tabReference) {
+	renderCanvas($('#' + tabReference));
+}
+
+function renderCanvas(linkRef) {
+	url = linkRef.attr('href')
+	canvas = $('#nexly-canvas');
+	canvasFrame = $('#nexly-canvas-frame');
+	
+	// if($(this).attr('data-btn-group-id') != undefined)
+	// 	buttonGroup = $('#' + $(this).attr('data-btn-group-id'));
+
+	if (url == canvasFrame.attr('src')) {   //Canvas already loaded with correct url
+		if (canvas.is(':visible')) {
+			canvas.fadeOut('fast');
+
+			// if(buttonGroup != null)
+			// 	buttonGroup.fadeOut();
+		}
+		else {
+			// if(buttonGroup != null)
+			// 	buttonGroup.fadeIn();
+
+			canvas.fadeIn();
+		}
+	}
+	else {
+		//Set canvas and toolbar visibility
+		if (canvas.is(':hidden'))
+			canvas.fadeIn();
+
+		canvasFrame.fadeOut();
+		canvas.animate({ width: linkRef.attr('data-canvas-width') || 400 }, 350, function() {
+			canvas.block(getBlockUIOptions());
+			
+			//Load appropriate page into quickmenu
+			if (url != "#")
+				canvasFrame.attr('src', url);
+
+			//Hide all other toolbars
+			//$(".btn-container").hide(); 
+
+			// if(buttonGroup != null)
+			// 	buttonGroup.fadeIn();
+
+			canvasFrame.fadeIn();
+		});
+	}
+}
+
 $(function() {
 	try {
-		if ($(".nexly-content").length > 0) {
-			loadPages();
+		if ($('.nexly-page').length > 0)
+			initPages();
+
+		var tbWrapper = $('#nexly-toolbar');
+
+		if (tbWrapper.attr('data-tb-enabled') == 'true')
+	    	initToolbar(tbWrapper);
+
+	    //Check for querystring flags for auto-showing tabs
+		var url = location.href
+
+		if (url.indexOf('?') != -1) {
+			var qs = url.split('?')[1];
+			var qsArray = null;
+
+			if (qs.indexOf('&') == -1)
+				qsArray = [qs];
+			else
+				qsArray = qs.split['&'];
+
+			for (i in qsArray)
+				if (qsArray[i].split('=')[0] == 'nexlyCanvasRef')
+					displayTab(qsArray[i].split('=')[1]);
 		}
-
-		var tbWrapper = $("#nexly-toolbar");
-
-		if (tbWrapper.attr('data-tb-enabled') == "true")
-	    	loadToolbar(tbWrapper);
 	}
 	catch(e) {
 		//Whoops...die gracefully	
