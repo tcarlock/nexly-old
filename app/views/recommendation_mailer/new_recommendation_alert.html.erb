@@ -1,10 +1,10 @@
 <p>
-	<%= @rec.name %> has recommended a business for you and included the following message:
+	<%= @rec.name %> has recommended <%= @rec.business.name %> for you:
 	<br />
 	<%= @rec.message %> 
 </p>
 <p>
-	Please click the following link to learn more about this business: <%= link_to @rec.business.website, @redir_url %>
+	Please click the following link to learn more about <%= @rec.business.name %>: <%= link_to @rec.business.website, @redir_url %>
 </p>
 <p>
 	<span>

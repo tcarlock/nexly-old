@@ -2,7 +2,7 @@ class ReviewRequestsController < ApplicationController
   before_filter :get_business, :only => [:index, :new, :create]
   
   def index
-    @requests = @business.review_requests.where(:is_reviewed => false).paginate(:page => params[:page])
+    @requests = @business.review_requests.where(:is_reviewed => false).order('created_at DESC').paginate(:page => params[:page])
   end
   
   def new
