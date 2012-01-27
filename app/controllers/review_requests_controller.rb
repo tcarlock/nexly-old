@@ -17,9 +17,8 @@ class ReviewRequestsController < ApplicationController
                  :message => params[:message],
                  :business_id => params[:business_id],
                  :user_id => current_user.id)
-      
-      redir_url = business.website + '?nexlyCanvasRef=new-review'
-      ReviewMailer.new_request_alert(review_request, redir_url).deliver if review_request.valid?
+                   
+      ReviewMailer.new_request_alert(review_request).deliver if review_request.valid?
     end
     
     redirect_to(business_review_requests_path(@business), :notice => "Your requests have been sent")
