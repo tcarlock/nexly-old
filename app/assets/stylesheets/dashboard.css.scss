@@ -139,8 +139,8 @@
 			color:#646464;
 			font-size:1.1em;
 			background-repeat:no-repeat;
-			background-position:5px center;
-			padding:10px 0 10px 27px;
+			background-position:7px center;
+			padding:10px 0 10px 30px;
 		}
 
 		& > a.command-link {
@@ -154,20 +154,21 @@
 	background-image:url(/assets/chart.png);	
 }
 #reviews-tab > a:nth-child(1) {
-	background-image:url(/assets/tasks/bubble.png);	
+	background-image:url(/assets/tasks/bubble-text.png);	
+}
+#inquiries-tab > a:nth-child(1) {
+	background-image:url(/assets/tasks/message.png);
 }
 #settings-tab > a:nth-child(1) {
 	background-image:url(/assets/tasks/gear.png);
 }
 .dashboard-panel {
 	display:none;
+	width:675px;
 
 	&:nth-child(1) {
 		display:block;
 	}
-}
-#reviews-panel {
-	width:675px;
 }
 #platforms {
 	display:none;

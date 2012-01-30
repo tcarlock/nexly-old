@@ -37,6 +37,10 @@ class Business < ActiveRecord::Base
   has_many :review_requests
   has_many :pending_review_requests, :class_name => "ReviewRequest", :foreign_key => "business_id", :conditions => ['is_reviewed = ?', false]
   has_many :resources
+
+  has_many :inquiries
+  has_many :active_inquiries, :class_name => "Inquiry", :foreign_key => "business_id", :conditions => ['is_archived = ?', false]
+  has_many :archived_inquiries, :class_name => "Inquiry", :foreign_key => "business_id", :conditions => ['is_archived = ?', true]
   
   has_many :news_posts
 

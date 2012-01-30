@@ -1,0 +1,8 @@
+var li = $('#biz-inquiry-<%= params[:id] %>');
+
+$('.item-count').text(parseInt($('.item-count').text()) - 1);
+
+li.unblock();
+li.fadeOut(500, function() {
+	$(this).slideUp(500).remove();
+});

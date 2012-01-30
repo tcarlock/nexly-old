@@ -164,7 +164,7 @@ ul.navigation li.active a {
 	padding:7px;
 }
 .standard-list > li {
-	padding:5px;
+	padding:5px 7px;
 	display:block;
 	position:relative;
 	clear:left;
@@ -176,6 +176,8 @@ ul.navigation li.active a {
 	font-size:.9em !important;
 	color:#A2A2A3;
 	font-weight:bold;
+	margin-top:7px;
+	vertical-align:middle;
 }
 
 /*Standard button groups*/
@@ -244,7 +246,7 @@ ul.navigation li.active a {
 	
 	a {
 		padding:1px;
-		background-position:center 3px;
+		background-position:center 5px;
 		width:27px;
 		height:27px;
 	}
@@ -283,13 +285,14 @@ ul.navigation li.active a {
 
 	& > h2 {
 		width:100%;
-		margin-bottom:7px;
+		margin-bottom:4px;
 		color:#646464;
 		border-bottom:1px solid #CBC9C9;
 		padding:7px 0;
+		text-indent:7px;
 
 		a {
-			font-size:.9em;
+			font-size:.8em;
 			margin:0 7px;
 			float:right;
 		}

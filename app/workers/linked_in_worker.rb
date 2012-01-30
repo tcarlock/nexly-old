@@ -15,6 +15,6 @@ class LinkedInWorker < SocialWorker
 		li_user.add_share(:comment => @message + " " + @shortened_url)
 
 		# Track link in Nexly
-		track_link(@link, @shortened_url)
+		track_link(@business_id, @shortened_url, @link)
 	end
 end

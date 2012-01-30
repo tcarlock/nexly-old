@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :get_business
+  before_filter :get_business, :only => [:review_requests, :pending_reviews, :rejected_reviews, :new, :create]
   before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
 
   def review_requests
     @view = 'requests'
-    @requests = @business.review_requests.where(:is_reviewed => false).paginate(:page => params[:page])
+    @requests = @business.pending_review_requests.paginate(:page => params[:page])
     @header = 'Review Requests'
 
     render :template => 'reviews/index'
@@ -30,34 +30,27 @@ class ReviewsController < ApplicationController
   def new
     @view = params[:v] || 'standard'
 
+    if @view == 'toolbar'
+      layout = 'plugin_canvas'
+    else
+      layout = true
+    end
+
     if Rails.env == 'production' && signed_in? && !current_user.business.nil?
-      if current_user.business.id == @business.id
-        if params[:v] == 'popup'
-          layout = false
-        else
-          layout = true
-        end
-        
+      if current_user.business.id == @business.id        
         render :text => "<strong>You cannot review your own business.</strong>", :layout => layout
         return
       end
     end
 
+    # Process token if one is supplied
     if params[:token].nil?   # No token supplied
-      if !@business.preferences[:tb_show_review_btn]   # Business does not allow public reviews without token; don't allow
-        if params[:v] == 'popup'
-          layout = false
-        else
-          layout = true
-        end
-        
+      if !@business.preferences[:tb_show_review_btn]   # Business does not allow public reviews without token; don't allow        
         render :text => "<strong>This business does not allow public reviews.</strong>", :layout => layout
         return
       end
     else   # Token supplied; validate
-      token = params[:token]
-  
-      request = ReviewRequest.find_by_token(token)
+      request = ReviewRequest.find_by_token(params[:token])
 
       if request.nil?   #Token invalid
         render :text => "<strong>This token is invalid. Please try reclicking the link included in the request email.</strong>", :layout => true
@@ -76,11 +69,7 @@ class ReviewsController < ApplicationController
       @review = @business.reviews.build(:review_request_id => request.id)
     end
 
-    if params[:v] == 'popup'
-      render :layout => 'plugin_canvas'
-    else
-      render :layout => true 
-    end
+    render :layout => layout
   end
 
   def create
@@ -91,7 +80,7 @@ class ReviewsController < ApplicationController
         ReviewRequest.find(params[:review][:review_request_id].to_i).update_attributes(:is_reviewed => true)
       end
 
-      ReviewMailer.new_review_alert(@review, business_approved_reviews_url(@business)).deliver
+      ReviewMailer.new_review_alert(@review).deliver
 
       render :nothing => true
     else
@@ -133,6 +122,10 @@ class ReviewsController < ApplicationController
     end
   end
   
+  def get_review
+    @review = Review.find(params[:id])
+  end
+  
   def get_reviews status
     case status
       when :pending
@@ -150,10 +143,6 @@ class ReviewsController < ApplicationController
     @reviews = @reviews.order('created_at DESC').paginate(:page => params[:page])
 
     render 'reviews/index'
-  end
-
-  def get_review
-    @review = Review.find(params[:id])
   end
   
   def is_token_valid? token

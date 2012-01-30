@@ -1,10 +1,9 @@
 require 'iron_worker'
-require 'httparty'
+require 'net/http'
+require 'json'
 
 class SocialWorker < IronWorker::Base
 	include LinkHelper
 
-	attr_accessor :message, :link
-
-	merge_gem 'httparty'
+	attr_accessor :business_id, :message, :link
 end

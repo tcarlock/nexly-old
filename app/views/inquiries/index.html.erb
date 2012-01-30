@@ -1,0 +1,27 @@
+<% content_for :styles do stylesheet_link_tag "inquiries" end %>
+<% content_for :scripts do %>
+	<%= javascript_include_tag "inquiries" %>
+	
+	<style type="text/css">
+		#page-header {
+			float:left;
+			margin-bottom:25px;
+		}	
+	</style>
+<% end %>
+
+<% content_for :page_header do %>
+	<%= @header %>
+<% end %>
+<div id="inquiries-view">
+	<%= link_to "Active", business_active_inquiries_path, :class => (@view == 'active' ? 'ui-state-active' : '') %>
+	<%= link_to "Archived", business_archived_inquiries_path, :class => (@view == 'archived' ? 'ui-state-active' : '') %>
+</div>
+<% if @inquiries.empty? %>
+	<span class="no-records">There are no inquiries at this time.</span>
+<% else %>
+	<ul id="inquiries" class="standard-list">
+		<%= render :partial => "inquiries/inquiry", :collection => @inquiries, :locals => { :show_admin => true }  %>
+	</ul>
+	<%= render :partial => 'shared/pager', :locals => { :items => @inquiries, :label => "inquiry" } %>
+<% end %>

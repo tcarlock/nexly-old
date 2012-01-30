@@ -48,6 +48,7 @@ class PostFactory
             worker.page_id = p.external_id
           end 
 
+          worker.business_id = @current_user.business.id
           worker.oauth_token = auth.token
           worker.bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
           worker.link_tracking_url = @root_domain + '/analytics/track_link'
@@ -58,6 +59,7 @@ class PostFactory
         end
       when :twitter
         worker = TwitterWorker.new
+        worker.business_id = @current_user.business.id
         worker.oauth_token = auth.token
         worker.oauth_secret = 'xqYOCHuzwkD3o3JVYis9zyy9qXMQUP8NvKOo0leiXIA'
         worker.consumer_key = 'HjzVzzin2zCogq8tNezeA'
@@ -69,6 +71,7 @@ class PostFactory
         worker.queue
       when :linked_in
         worker = LinkedInWorker.new
+        worker.business_id = @current_user.business.id
         worker.oauth_token = auth.token
         worker.oauth_secret = auth.secret
         worker.consumer_key = '694wVPqtdE2lQmrRRJ2YG-uxoVA-f1E6Cb6cPUdxe2xUMcwuaq4D0wgmcdwAoucg'

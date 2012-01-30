@@ -1,0 +1,17 @@
+<%= javascript_include_tag "new_inquiry" %>
+<%= stylesheet_link_tag "inquiries" %>
+
+<div id="new-inquiry-outer">
+	<h1>Contact Us</h1>
+	<%= semantic_form_for(@inquiry, :url => business_inquiries_path) do |f| %>
+	  <%= f.inputs do %>
+	  	<%= hidden_field_tag "view", @view %>
+		<%= f.input :name, :input_html => { :style => "width:450px;" }, :label_html => { :style => "width:150px;" }, :label => "Your name:" %>
+		<%= f.input :email, :input_html => { :style => "width:450px;" }, :label_html => { :style => "width:150px;" }, :label => "Your email:" %>
+		<%= f.input :details , :input_html => { :style => "width:450px;", :rows => "5" }, :label_html => { :style => "width:150px;" }, :label => "How can we help:" %>
+	  <% end %>
+	  <%= f.buttons do %>
+		<%= f.commit_button 'Send' %>
+	  <% end %>
+	<% end %>
+</div>

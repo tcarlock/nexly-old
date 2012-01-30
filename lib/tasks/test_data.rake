@@ -26,6 +26,8 @@ namespace :app do
     Business.delete_all
     Review.delete_all
     PageView.delete_all
+    Recommendation.delete_all
+    Inquiry.delete_all
     Authentication.delete_all
     
     Authentication.create!(
@@ -194,6 +196,30 @@ namespace :app do
         :rating => 1 + rand(5),
         :is_approved => ((n % 2 == 0) && (n % 5 != 0)),
         :is_rejected => ((n % 2 != 0) && (n % 5 != 0)))
+    end
+       
+    #Create recommendations 
+    25.times do |n|
+      biz.recommendations.create!(
+        :name => Faker::Name.name,
+        :email => Faker::Internet.email, 
+        :message => Faker::Lorem.paragraph)
+    end
+           
+    #Create inquiries 
+    17.times do |n|
+      biz.inquiries.create!(
+        :name => Faker::Name.name,
+        :email => Faker::Internet.email, 
+        :details => Faker::Lorem.paragraph)
+    end
+
+    12.times do |n|
+      biz.inquiries.create!(
+        :name => Faker::Name.name,
+        :email => Faker::Internet.email, 
+        :details => Faker::Lorem.paragraph,
+        :is_archived => true)
     end
     
     # Create link clicks

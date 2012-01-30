@@ -1,0 +1,8 @@
+<% if @business.active_inquiries.count == 0 %>
+	<span class="no-records">You have no active inquiries at this time</span>
+<% else %>
+	<ul id="biz-inquiries" class="standard-list">
+		<%= render :partial => 'inquiries/inquiry', :collection => @inquiries, :locals => { :show_admin => true, :truncate_review => false } %>
+	</ul>
+	<%= render :partial => 'shared/pager', :locals => { :items => @inquiries, :label => "active inquiries", :param_name => "inquiries_pg" } %>
+<% end %>

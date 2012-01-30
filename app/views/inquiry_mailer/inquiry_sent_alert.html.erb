@@ -1,0 +1,22 @@
+<p>
+	We've received your inquiry and we appreciate your interest in <%= @inquiry.business.name %>. We'll follow up as soon as possible.
+</p>
+<p>
+	<h3>Inquiry Details</h3>
+	<strong>Name:</strong> <span><%= @inquiry.name %></span>
+	<br />
+	<strong>Email:</strong> <span><%= @inquiry.email %></span>
+	<br />
+	<strong>Details:</strong> <span><%= @inquiry.details %></span>
+	<br />
+	<strong>Sent:</strong> <span><%= @inquiry.created_at.to_s(:default) %></span>
+</p>
+<p>
+	<span>
+		Thanks,
+	</span>
+	<br />
+	<span>
+		<%= @inquiry.business.name %>
+	</span>
+</p>

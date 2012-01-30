@@ -27,7 +27,7 @@ $(function() {
 
   $('#reviews-view input[type=radio]').change(function() { $('#reviews-view').submit(); });
 
-	$('.approve-review-link, .reject-review-link', parent.document).click(function() {
+	$('.approve-review-link, .reject-review-link').click(function() {
 		$(this).closest('li.biz-review').block(getBlockUIOptions());
 	});
 

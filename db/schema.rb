@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123041854) do
+ActiveRecord::Schema.define(:version => 20120127222725) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "platform_id"
@@ -80,6 +80,17 @@ ActiveRecord::Schema.define(:version => 20120123041854) do
     t.string   "icon"
     t.integer  "display_order"
     t.string   "lookup_key"
+  end
+
+  create_table "inquiries", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "details"
+    t.integer  "business_id"
+    t.boolean  "is_reviewed", :default => false
+    t.boolean  "is_archived", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "news_posts", :force => true do |t|
