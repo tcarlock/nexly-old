@@ -32,9 +32,16 @@ class RecommendationsController < ApplicationController
       @post = PlatformPost.new(@business, DOMAIN_NAMES[Rails.env], @rec)
       @post.generate_link(:email, nil)
 
+      # # Shorten link and track
+      # bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
+      # user = 'nexly'
+      # bitly_url = "http://api.bitly.com/v3/shorten/?login=#{user}&apiKey=#{bitly_api_key}&longUrl=#{CGI::escape(@post.link)}&format=json"
+      # shortened_url = JSON.parse(Net::HTTP.get(URI(bitly_url))['data']['url']
+
+      # TrackingLink.find_or_create_by_in_url(:in_url => shortened_url, :out_url => @post.link, :business_id => params[:business_id])
+
       # Shorten link and track
       @bitly_api_key = 'R_5ce84a66ab4a18fd093901d718c27545'
-      @link_tracking_url = DOMAIN_NAMES[Rails.env] + '/analytics/track_link'
 
       TrackingLink.find_or_create_by_in_url(:in_url => shorten_link(@post.link), :out_url => @post.link, :business_id => params[:business_id])
       RecommendationMailer.new_recommendation_alert(@rec, @post.link).deliver
