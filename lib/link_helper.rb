@@ -1,4 +1,4 @@
-class LinkHelper
+module LinkHelper
 	attr_accessor :link_tracking_url, :bitly_api_key, :shortened_url
 	
 	def shorten_link url
