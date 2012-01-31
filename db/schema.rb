@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123041854) do
+ActiveRecord::Schema.define(:version => 20120130225501) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "platform_id"
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(:version => 20120123041854) do
     t.string   "lookup_key"
   end
 
+  create_table "inquiries", :force => true do |t|
+    t.string   "first_name"
+    t.string   "email"
+    t.text     "details"
+    t.integer  "business_id"
+    t.boolean  "is_reviewed", :default => false
+    t.boolean  "is_archived", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "last_name"
+  end
+
   create_table "news_posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -130,13 +142,13 @@ ActiveRecord::Schema.define(:version => 20120123041854) do
   add_index "platforms", ["name"], :name => "index_platforms_on_name"
 
   create_table "recommendations", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "email"
     t.text     "message"
-    t.integer  "user_id"
     t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_name"
   end
 
   create_table "resource_types", :force => true do |t|
@@ -181,7 +193,7 @@ ActiveRecord::Schema.define(:version => 20120123041854) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "email"
     t.text     "details"
     t.integer  "rating"
@@ -197,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20120123041854) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "last_name"
   end
 
   create_table "suggestions", :force => true do |t|

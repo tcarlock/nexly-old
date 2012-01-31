@@ -38,7 +38,7 @@ $(function() {
     submitHandler: function(form) {
       if($('#new_review').valid() && $('#stars-outer').data('stars').options.value != 0) {
         $('#new-review-outer').block(getBlockUIOptions());
-        $('#new_review').ajaxSubmit({target: '#new-review-outer', success: function() {
+        $('#new_review').ajaxSubmit({success: function() {
           $('#new-review-outer').unblock();
           $('#new-review-outer').replaceWith('<span class="submitted">Your review has been sent. Thanks!<span>')
         }});

@@ -27,9 +27,11 @@ $(function() {
 
   $('#reviews-view input[type=radio]').change(function() { $('#reviews-view').submit(); });
 
-	$('.approve-review-link, .reject-review-link', parent.document).click(function() {
+	$('.approve-review-link, .reject-review-link').click(function() {
 		$(this).closest('li.biz-review').block(getBlockUIOptions());
 	});
+
+  $('.review-text').jTruncate({moreText:'(show more)', lessText:'(show less)'});
 
   $('.delete-request-link').click(function() {
     $(this).closest('li.review-request').block(getBlockUIOptions());

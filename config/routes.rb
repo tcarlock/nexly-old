@@ -18,10 +18,18 @@ Nexly::Application.routes.draw do
       resources :review_responses, :only => [:new, :create], :as => :responses
     end
     
+    resources :inquiries, :only => [:new, :create] do
+      member do
+        post :archive
+      end
+    end
+    
     resources :news, :controller => :news_posts
     resources :analytics, :only => :index, :controller => :analytics
 
-    get 'review_requests' => 'reviews#review_requests', :as => :review_requests_path
+    get 'active_inquiries' => 'inquiries#active_inquiries', :as => :active_inquiries
+    get 'archived_inquiries' => 'inquiries#archived_inquiries', :as => :archived_inquiries
+    get 'review_requests' => 'reviews#review_requests', :as => :review_requests
     get 'pending_reviews' => 'reviews#pending_reviews'
     get 'approved_reviews' => 'reviews#approved_reviews'
     get 'rejected_reviews' => 'reviews#rejected_reviews'
@@ -79,10 +87,5 @@ Nexly::Application.routes.draw do
   get :feedback, :to => "main#feedback"
   post "main/submit_feedback", :as => :submit_feedback
   
-  post "main/test_tweet"
-  post "main/test_li_update"
-  post "main/test_fb_post"
-  match "test_fbfp_access" => "main#test_fbfp_access"
-
   root :to => "main#welcome"
 end

@@ -6,7 +6,11 @@
 		#page-header {
 			float:left;
 			margin-bottom:25px;
-		}	
+		}
+		span.no-records {
+			display:block;
+			clear:both;
+		}
 	</style>
 <% end %>
 
@@ -30,7 +34,7 @@
 		<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
 	<% else %>
 		<ul id="review-requests" class="standard-list">
-			<%= render @requests %>
+			<%= render :partial => "review_requests/review_request", :collection => @requests, :locals => { :show_admin => true }  %>
 		</ul>
 		<%= render :partial => 'shared/pager', :locals => { :items => @requests, :label => 'pending request' } %>
 	<% end %>

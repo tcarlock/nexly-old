@@ -1,21 +1,20 @@
 <p>
-	<%= @sender.first_name %> <%= @sender.last_name %> is collecting client reviews for <%= @request.business.name %> 
-	and would love to hear from you.  It's fast and easy: just click the link below and share your thoughts.
+	We are using Nexly collecting client reviews for <%= @request.business.name %> and would love to hear from you.  It's fast and easy: just click the link below and share your thoughts.
 </p>
-<p>
-	<%= @sender.first_name %> included the following message:
-	<br />
-	<%= @request.message %> 
-</p>
+<% if !@request.message.nil? %>
+	<p>
+		<%= @request.message %> 
+	</p>
+<% end %>
 <p>
 	Please click the following link to submit a review: <%= link_to new_business_review_url(@request.business, :token => @request.token).to_s, new_business_review_url(@request.business, :token => @request.token) %>
 </p>
 <p>
 	<span>
-		On behalf of <%= @sender.first_name %> we want to thank you for your time,
+		Thank you for your time and feedback,
 	</span>
 	<br />
 	<span>
-		The Nexly Team
+		<%= @sender.first_name %>
 	</span>
 </p>

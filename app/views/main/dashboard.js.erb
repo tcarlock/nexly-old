@@ -1,1 +1,8 @@
-$('#pending-reviews-outer').html('<%= escape_javascript(render partial: "dashboard/pending_reviews") %>');
+switch ($.cookie('active-tab')) {
+	case 'reviews-tab':
+		$('#pending-reviews-outer').html('<%= escape_javascript(render partial: "dashboard/pending_reviews") %>');
+		break;
+	case 'inquiries-tab':
+		$('#active-inquiries-outer').html('<%= escape_javascript(render partial: "dashboard/active_inquiries") %>');
+		break;
+}

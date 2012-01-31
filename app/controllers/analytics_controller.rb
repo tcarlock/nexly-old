@@ -19,7 +19,7 @@ class AnalyticsController < ApplicationController
   end
 
   def track_link
-		TrackingLink.find_or_create_by_in_url(:in_url => params[:in_url], :out_url => params[:out_url])
+		TrackingLink.find_or_create_by_in_url(:in_url => params[:in_url], :out_url => params[:out_url], :business_id => params[:business_id])
 
 		render :nothing => true
   end

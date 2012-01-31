@@ -4,7 +4,7 @@ class Review < ActiveRecord::Base
   has_one :review_request
   has_one :review_response
   
-  validates_presence_of :name, :details, :rating
+  validates_presence_of :first_name, :last_name, :details, :rating
   validates :email, :presence => true, :email_format => true
   validates_numericality_of :rating, :only_integer => true, :message => "Must be a whole number"
   validates_inclusion_of :rating, :in => 1..5, :message => "Must be from 1 to 5"
@@ -18,6 +18,10 @@ class Review < ActiveRecord::Base
       :thumb => ["50x50>", :png],
       :tab => ["25x25>", :png]
     }
+  
+  def display_name
+    (self.first_name || '') << ' ' << (self.last_name || '')
+  end
 end
 
 # == Schema Information

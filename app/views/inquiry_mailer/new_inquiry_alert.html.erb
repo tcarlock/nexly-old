@@ -1,0 +1,12 @@
+<p>
+	A new inquiry has been submitted for <%= @inquiry.business.name %>. See details below and click the link to manage your reviews. 
+</p>
+<p>
+	<h3>Sender Details</h3>
+	<strong>Name:</strong> <span><%= @inquiry.display_name %></span>
+	<br />
+	<strong>Email:</strong> <span><%= @inquiry.email %></span>
+</p>
+<p>
+	Click the following link to access your inquiries: <%= link_to @redir_url, @redir_url %>
+</p>

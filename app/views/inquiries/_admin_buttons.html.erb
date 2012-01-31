@@ -1,0 +1,6 @@
+<a class="control-link send-email-link" title="Email <%= inquiry.first_name %> at <%= inquiry.email %>" href="mailto:<%= inquiry.email %>?subject=<%= inquiry.business.name %> inquiry..."></a>
+<% if !inquiry.is_archived %>
+	<%= form_tag archive_business_inquiry_path(inquiry.business, inquiry), :remote => true do |f| %>
+		<a class="control-link archive-inquiry-link" title="Archive this Inquiry"></a>
+	<% end %>
+<% end %>

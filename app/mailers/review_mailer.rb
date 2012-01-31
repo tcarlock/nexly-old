@@ -1,9 +1,9 @@
 class ReviewMailer < ActionMailer::Base
   default :from => "\"Nexly Admin\" <admin@nexly.com>"
   
-  def new_review_alert review, redir_url
+  def new_review_alert review
     @review = review
-    @redir_url = redir_url
+    @redir_url = business_approved_reviews_url(@business)
 
     mail(:to => review.business.users.first.email, :subject => "A new review has been submitted...")
   end

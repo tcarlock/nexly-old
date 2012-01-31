@@ -1,5 +1,5 @@
 <li id='review-request-<%= review_request.id %>' class="review-request">
-	<% if(review_request.business.is_user_admin?(current_user)) %>
+	<% if show_admin %>
 		<div class="btns-tab btns-tab-small review-btns">
 			<%= render :partial => 'review_requests/admin_buttons', :locals => { :review_request => review_request } %>
 		</div>

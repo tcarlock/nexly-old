@@ -36,6 +36,6 @@ class TwitterWorker < SocialWorker
 		Twitter.update(tweet_text + ' ' + @shortened_url)
 
 		# Track link in Nexly
-		track_link(@link, @shortened_url)
+		track_link(@business_id, @shortened_url, @link)
 	end
 end

@@ -36,18 +36,21 @@
 		<% if enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
 			</span>
+			<span class="menu_title">
+				<%= link_to "Contact Us", new_business_inquiry_url(business, :v => 'toolbar'), :id => "new-lead", :class => "menutit", "data-canvas-width" => 650 %>
+			</span>
 			<% if tb_show_rec_btn %>
 				<span class="menu_title">
-					<%= link_to "Recommend Us", new_business_recommendations_url(business, :v => 'popup'), :id => "new-rec", :class => "menutit", "data-canvas-width" => 650 %>
+					<%= link_to "Recommend Us", new_business_recommendations_url(business, :v => 'toolbar'), :id => "new-rec", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
 			<% end %>
 			<% if is_rev_enabled %>
 				<span class="menu_title">
-					<%= link_to "Post a Review", new_business_review_url(business, :v => 'popup'), :id => "new-review", :class => "menutit", "data-canvas-width" => 650 %>
+					<%= link_to "Post a Review", new_business_review_url(business, :v => 'toolbar'), :id => "new-review", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
 			<% end %>
 			<span class="menu_title">
-				<%= link_to "Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "browse-reviews", :class => "menutit", "data-btn-group-id" => "reviews-btns" %>
+				<%= link_to "Browse Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "browse-reviews", :class => "menutit", "data-btn-group-id" => "reviews-btns", "data-canvas-width" => 550 %>
 			</span>
 		<% end %>
 		<% if enable_news %>

@@ -29,9 +29,9 @@ $(function() {
     submitHandler: function(form) {
       if($('#new_recommendation').valid()) {
         $('#new-rec-outer').block(getBlockUIOptions());
-        $('#new_recommendation').ajaxSubmit({target: '#new-rec-outer', success: function() {
+        $('#new_recommendation').ajaxSubmit({success: function() {
           $('#new-rec-outer').unblock();
-          $('#new-rec-outer').replaceWith('<span class="submitted">Your recommendation has been submitted.<span>')
+          $('#new-rec-outer').replaceWith('<span class="submitted">Your recommendation has been submitted. Thanks!<span>')
         }});
         return false;
       }

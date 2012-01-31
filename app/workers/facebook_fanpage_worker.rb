@@ -19,6 +19,6 @@ class FacebookFanpageWorker < SocialWorker
     page.feed!(:message => @message, :link => @shortened_url, :name => @name)
 
     # Track link in Nexly
-    track_link(@link, @shortened_url)
+    track_link(@business_id, @shortened_url, @link)
 	end
 end

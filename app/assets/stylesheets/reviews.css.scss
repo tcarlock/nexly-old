@@ -1,8 +1,5 @@
 //List styles
 li.review-request {
-	padding:7px;
-	position:relative;
-
 	.rating-icon {
 		margin-bottom:5px;
 	}
@@ -44,33 +41,19 @@ li.biz-review {
 	.hidden {
 		display:none;
 	}
-	.footer {
-		margin-top:7px;
-		
-		* {
-			vertical-align:middle;
-		}
-	}
-	
 }
 
+//Admin button icons
 .delete-request-link { background-image:url('/assets/tasks/cross-red-small.png'); }
 .review-response-link { background-image:url('/assets/tasks/reply.png'); }
 .dispute-review-link { background-image:url('/assets/tasks/flag.png'); }
 .reject-review-link { background-image:url('/assets/tasks/cross-red-small.png'); }
 .approve-review-link { background-image:url('/assets/tasks/check-green-small.png'); }
 
-//Form styles
 #new-req-link { background-image:url('/assets/tasks/document-edit.png'); }
 
-#new-review-outer, fieldset.inputs {
-	width:600px;
-}
 #review_details {
 	width:98%;
-}
-#new-rec-outer {
-	width:600px;
 }
 
 #reviews-view {

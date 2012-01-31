@@ -51,7 +51,8 @@ class MainController < ApplicationController
 
     @rating_dist = @business.review_meta.get_rating_distribution(false)
 
-    # Get pending reviews
+    # Get data for tabs
+    @inquiries = @business.active_inquiries.order('created_at DESC').paginate(:page => params[:inquiries_pg], :per_page => 7)
     @pending_reviews = @business.pending_reviews.order('created_at DESC').paginate(:page => params[:reviews_pg], :per_page => 7)
     # @news_posts = @business.news_posts.order('created_at DESC').paginate(:page => params[:news_pg])
 

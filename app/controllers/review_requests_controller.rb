@@ -1,18 +1,12 @@
 class ReviewRequestsController < ApplicationController
   before_filter :get_business, :only => [:index, :new, :create]
-  
-  def index
-    @requests = @business.review_requests.where(:is_reviewed => false).order('created_at DESC').paginate(:page => params[:page])
-  end
-  
+ 
   def new
   end
 
-  def create
-    business = Business.find(params[:business_id])
-    
+  def create    
     params[:emails].split(",").each do |email|
-      review_request = business.review_requests.create(
+      review_request = @business.review_requests.create(
                  :email => email.strip,
                  :message => params[:message],
                  :business_id => params[:business_id],

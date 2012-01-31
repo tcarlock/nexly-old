@@ -19,6 +19,6 @@
 	</div>
 	<div class="footer">
 		<%= image_tag review.avatar.url(:tab) %>
-		Posted by <%= review.name %> on <%= review.created_at.to_s(:feed_date_year)%>
+		Posted by <%= review.display_name %> on <%= review.created_at.to_s(:feed_date_year)%>
 	</div>
 </li>
