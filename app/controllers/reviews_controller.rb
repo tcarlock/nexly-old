@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :get_business, :only => [:review_requests, :pending_reviews, :rejected_reviews, :new, :create]
+  before_filter :get_business, :only => [:review_requests, :pending_reviews, :approved_reviews, :rejected_reviews, :new, :create]
   before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
 
   def review_requests

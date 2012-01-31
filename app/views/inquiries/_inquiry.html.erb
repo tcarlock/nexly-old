@@ -1,13 +1,13 @@
 <li id="biz-inquiry-<%= inquiry.id %>" class="biz-inquiry">
-	<% if show_admin && !inquiry.is_archived %>
+	<% if show_admin %>
 		<div class="btns-tab btns-tab-small review-btns">
 			<%= render :partial => 'inquiries/admin_buttons', :locals => { :inquiry => inquiry } %>
 		</div>
 	<% end %>
-	<p>
+	<p class="inquiry-text">
 		<%= inquiry.details %>
 	</p>
 	<div class="footer">
-		Sent by <%= inquiry.name %> on <%= inquiry.created_at.to_s(:feed_date_time)%>
+		Sent by <%= inquiry.display_name %> on <%= inquiry.created_at.to_s(:feed_date_time)%>
 	</div>
 </li>

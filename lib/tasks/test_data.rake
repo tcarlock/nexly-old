@@ -119,7 +119,8 @@ namespace :app do
     end
     
     review = biz.reviews.create!(
-      :name => 'Sally Parsons',
+      :first_name => 'Sally',
+      :last_name => 'Parsons',
       :email => 'sparsons@leftcoast.com', 
       :details => 'BCI team was very responsive; great to work with',
       :rating => 5,
@@ -129,7 +130,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
 
     review = biz.reviews.create!(
-      :name => 'David Hansson',
+      :first_name => 'David',
+      :last_name => 'Hansson',
       :email => 'dhh@37signals.com',
       :details => 'Great experience working with the firm - we saved time and $ by using their services to select a software development firm. Understood our needs quickly. Would use again',
       :rating => 5,
@@ -139,7 +141,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
       
     review = biz.reviews.create!(
-      :name => 'Jennifer Roth',
+      :first_name => 'Jennifer',
+      :last_name => 'Roth',
       :email => 'j.roth@shorts.com', 
       :details => 'We really enjoyed working with them and found their work to be incredible.  The people were easy to work with as well.',
       :rating => 4,
@@ -149,7 +152,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
     
     review = biz.reviews.create!(
-      :name => 'Sandy Strinni',
+      :first_name => 'Sandy',
+      :last_name => 'Strinni',
       :email => 'sandy.strinni@sa.com', 
       :details => 'They did great work.  We will use again BCI services when we need to select a new service provider.',
       :rating => 5,
@@ -159,7 +163,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
     
     review = biz.reviews.create!(
-      :name => 'Bill Dennis',
+      :first_name => 'Bill',
+      :last_name => 'Dennis',
       :email => 'bdennis@sass.org', 
       :details => 'It has been wonderful working with BCI. They tried to fully understand our needs before ever starting their search.',
       :rating => 4,
@@ -169,7 +174,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
 
     review = biz.reviews.create!(
-      :name => 'Dale Cooper',
+      :first_name => 'Dale',
+      :last_name => 'Cooper',
       :email => 'dale.cooper@tpks.com', 
       :details => 'We found their work to be incredible and the people to be very helpful.',
       :rating => 4,
@@ -179,7 +185,8 @@ namespace :app do
     review.update_attributes!(:created_at => DateTime.current + 30)
     
     review = biz.reviews.create!(
-      :name => 'Bill Snyder',
+      :first_name => 'Bill',
+      :last_name => 'Snyder',
       :email => 'bsnyder@bostitch.com', 
       :details => 'Excellent work, will use again BCI services when we need to select a new service provider',
       :rating => 4,
@@ -190,7 +197,8 @@ namespace :app do
     
     25.times do |n|
       biz.reviews.create!(
-        :name => Faker::Name.name,
+        :first_name => Faker::Name.first_name, 
+        :last_name => Faker::Name.last_name, 
         :email => Faker::Internet.email, 
         :details => Faker::Lorem.paragraph,
         :rating => 1 + rand(5),
@@ -201,7 +209,8 @@ namespace :app do
     #Create recommendations 
     25.times do |n|
       biz.recommendations.create!(
-        :name => Faker::Name.name,
+        :first_name => Faker::Name.first_name, 
+        :last_name => Faker::Name.last_name, 
         :email => Faker::Internet.email, 
         :message => Faker::Lorem.paragraph)
     end
@@ -209,14 +218,16 @@ namespace :app do
     #Create inquiries 
     17.times do |n|
       biz.inquiries.create!(
-        :name => Faker::Name.name,
+        :first_name => Faker::Name.first_name, 
+        :last_name => Faker::Name.last_name, 
         :email => Faker::Internet.email, 
         :details => Faker::Lorem.paragraph)
     end
 
     12.times do |n|
       biz.inquiries.create!(
-        :name => Faker::Name.name,
+        :first_name => Faker::Name.first_name, 
+        :last_name => Faker::Name.last_name, 
         :email => Faker::Internet.email, 
         :details => Faker::Lorem.paragraph,
         :is_archived => true)
@@ -297,7 +308,8 @@ namespace :app do
           
       10.times do |n|
           biz.reviews.create!(
-            :name => Faker::Name.name,
+            :first_name => Faker::Name.first_name, 
+            :last_name => Faker::Name.last_name, 
             :email => Faker::Internet.email, 
             :details => Faker::Lorem.paragraph,
             :rating => 1 + rand(5),

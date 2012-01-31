@@ -50,7 +50,7 @@
 				</span>
 			<% end %>
 			<span class="menu_title">
-				<%= link_to "Browse Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "browse-reviews", :class => "menutit", "data-btn-group-id" => "reviews-btns" %>
+				<%= link_to "Browse Reviews (#{@reviews.count})", plugins_reviews_url(:network => business.api_token), :id => "browse-reviews", :class => "menutit", "data-btn-group-id" => "reviews-btns", "data-canvas-width" => 550 %>
 			</span>
 		<% end %>
 		<% if enable_news %>

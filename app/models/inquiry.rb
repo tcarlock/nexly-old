@@ -1,8 +1,12 @@
 class Inquiry < ActiveRecord::Base
 	belongs_to :business
 	
-	validates_presence_of :name, :details
+	validates_presence_of :first_name, :last_name, :details
 	validates :email, :presence => true, :email_format => true
+
+	def display_name
+		(self.first_name || '') << ' ' << (self.last_name || '')
+	end
 end
 
 # == Schema Information

@@ -27,6 +27,8 @@ $(function() {
 
   $('#inquiries-view input[type=radio]').change(function() { $('#inquiries-view').submit(); });
 
+  $('.inquiry-text').jTruncate({moreText:'(show more)', lessText:'(show less)'});
+
   $('.archive-inquiry-link').click(function() {
     $(this).closest('li.biz-inquiry').block(getBlockUIOptions());
   });
