@@ -59,6 +59,7 @@ $(function(){
 				dataType: 'script',
 				success: (function() {
 			  		$(pagingSelector).unblock();
+			  		updateHoverTabs();
 				})
 			});
 	      	return false;
