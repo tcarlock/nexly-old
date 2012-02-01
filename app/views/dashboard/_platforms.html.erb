@@ -1,5 +1,5 @@
 <% if @business.active_platforms.empty? %>
-	<li class="no-records">You haven't enabled any sites</li>
+	<li class="no-records">No sites have been enabled</li>
 <% else %>
 	<% @business.active_platforms.each do |p| %>
 		<li>

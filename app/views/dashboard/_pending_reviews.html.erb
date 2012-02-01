@@ -1,5 +1,5 @@
 <% if @business.review_meta.pending_review_count == 0 %>
-	<span class="no-records">You have no reviews pending approval at this time</span>
+	<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Review Requests', new_business_review_request_path(@business) %></span>
 <% else %>
 	<ul id="biz-reviews" class="standard-list">
 		<%= render :partial => 'reviews/review', :collection => @pending_reviews, :locals => { :show_admin => true, :truncate_review => false } %>

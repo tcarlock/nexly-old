@@ -25,11 +25,6 @@
 		<script type="text/javascript">window.Nexly||function(c){function p(){return["<",i,' onload="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='http://nexly.com/plugins/plugin_render_script?iv=",a.v,"&",q,"=",c[q],c[l]?"&"+l+"="+c[l]:"",c[e]?"&"+e+"="+c[e]:"","'\"></",i,">"].join("")}var f=window,a=f.Nexly=f.Nexly||function(){(a._=a._||[]).push(arguments)},d=document,i="body",m=d[i],r;if(!m){r=arguments.callee;return setTimeout(function(){r(c)},100)}a.$={0:+new Date};a.T=function(u){a.$[u]=new Date-a.$[0]};a.v=5;var j="appendChild",h="createElement",k="src",l="lang",q="network",e="domain",n=d[h]("div"),v=n[j](d[h]("m")),b=d[h]("iframe"),g="document",o,s=function(){a.T("load");a("load")};f.addEventListener?f.addEventListener("load",s,false):f.attachEvent("onload",s);m.insertBefore(n,m.firstChild).id="nexly-tb-outer";b.frameBorder="0";b.name=b.id="nexly-iframe";b.allowTransparency="true";bs=b.style;bs.width="100%";bs.height="45px";bs.zIndex=1001;bs.position="fixed";bs.bottom="0px";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{var t=b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write("'+p().replace(/"/g,'\\"')+'");d.close();'}a.T(1)}({network:"rk34gmha"});</script>
 	<% end %>
 	<div id="backdrop"></div>
-	<% if user_signed_in? %>
-		<div id="feedback-tab">
-			<%= link_to 'Feedback', feedback_path, :id => 'submit-feedback'  %>
-		</div>
-	<% end %>
 	<div id="container">
 		<div id="container-inner">
 			<div id="flash-outer">
@@ -91,5 +86,13 @@
 	<% if @show_toolbar %>
 		<script type="text/javascript">Nexly("domReady");</script>
 	<% end %>
+	<script type="text/javascript">
+	  var uvOptions = {};
+	  (function() {
+	    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+	    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/1elQmdizjuu1oDHoo9b3Pg.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+	  })();
+	</script>
 </body>
 </html>

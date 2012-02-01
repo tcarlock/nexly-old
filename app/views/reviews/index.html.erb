@@ -25,13 +25,13 @@
 </div>
 <div class="btns-tab">
 	<% if(@business.is_user_admin?(current_user)) %>
-		<%= link_to '', '#', :id => 'new-req-link', :href => new_business_review_request_path(@business), :title => 'Send review requests' %>
+		<%= link_to '', '#', :id => 'new-req-link', :href => new_business_review_request_path(@business), :title => 'Send new review requests' %>
 	<% end %>
 </div>
 
 <% if @view == 'requests' %>
 	<% if @requests.empty? %>
-		<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Requests', new_business_review_request_path(@business) %></span>
+		<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Review Requests', new_business_review_request_path(@business) %></span>
 	<% else %>
 		<ul id="review-requests" class="standard-list">
 			<%= render :partial => "review_requests/review_request", :collection => @requests, :locals => { :show_admin => true }  %>
@@ -40,7 +40,7 @@
 	<% end %>
 <% else %>
 	<% if @reviews.empty? %>
-		<span class="no-records">There are no reviews at this time.</span>
+		<span class="no-records">There are no review requests at this time. <%= link_to 'Send New Review Requests', new_business_review_request_path(@business) %></span>
 	<% else %>
 		<ul id="review-requests" class="standard-list">
 			<%= render :partial => "reviews/review", :collection => @reviews, :locals => { :show_admin => true, :truncate_review => false }  %>
