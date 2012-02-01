@@ -2,6 +2,8 @@ class InquiriesController < ApplicationController
 	skip_before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :get_business, :only => [:active_inquiries, :archived_inquiries, :new, :create]
   
+  caches_action :new
+  
   def active_inquiries
     get_inquries :active
   end

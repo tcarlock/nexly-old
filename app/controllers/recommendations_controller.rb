@@ -4,6 +4,8 @@ class RecommendationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :get_business
 
+  caches_action :new
+  
   def new
     @view = params[:v] || 'standard'
 

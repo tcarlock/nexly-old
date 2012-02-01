@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
   before_filter :get_business, :only => [:review_requests, :pending_reviews, :approved_reviews, :rejected_reviews, :new, :create]
   before_filter :get_review, :only => [:destroy, :approve, :dispute, :reject]
 
+  caches_action :new
+
   def review_requests
     @view = 'requests'
     @requests = @business.pending_review_requests.paginate(:page => params[:page])
