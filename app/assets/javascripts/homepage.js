@@ -35,9 +35,9 @@ $(function(){
     	}
 	}
 
-	if($('#storyboard-banner').length == 1) {
+	if($('#storyboard-banner').length == -1) {
 		$('#pre').delay(2000).fadeOut(1000, function() {
-			$('#storyboard-banner').animate({ width: 350, right: 300 });
+			$('#storyboard-banner').animate({ width: 400, right: 275 });
 			$('#post').fadeIn(1500, function() {
 				$('#storyboard-banner').delay(1500).animate({ top:0, right:0, opacity: 0 }, 1000, function() {
 					$('.panel-nav-btn, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(2000, 1, function() {
@@ -55,6 +55,8 @@ $(function(){
 			});
 		});
 	};
+
+	$('.panel-nav-btn, #sign-up-tab, #viewport .content, #viewport .text').fadeTo(1000, 1);
 	
 	$('#panel-play-pause').toggle(function() {
 		isHardPaused = true;
@@ -69,7 +71,7 @@ $(function(){
 		pauseAutoNav();
 		hideNavControls();
 
-		$('div.text, div.content', '#panel-demo').fadeOut(350, function() {
+		$('div.text, div.content', '#demo-panel').fadeOut(350, function() {
 			$('#viewport').animate({ height: '400px' }, function() {
 				$('#demo-outer').show();
 			});
@@ -79,7 +81,7 @@ $(function(){
 	$('#close-demo').click(function() {
 		$('#demo-outer').fadeOut(250, function() {
 			$('#viewport').animate({ height: '340px' });
-			$('div.text, div.content', '#panel-demo').fadeIn(350, function() {
+			$('div.text, div.content', '#demo-panel').fadeIn(350, function() {
 				isHardPaused = false;
 				startAutoNav();
 				showNavControls();
@@ -88,12 +90,11 @@ $(function(){
 	});
 	
 	$('#viewport').cycle({
-	    speed:  1500, 
-	    timeout: 8500,
+	    speed:  1000, 
+	    timeout: 10000,
 		fx:  'scrollHorz',
 		prev: '#panel-nav-prev',
 		next: '#panel-nav-next',
-	    pager:  '#timeline-nav',
 		pagerAnchorBuilder: function(index, slide) {
 			var label;
 			
