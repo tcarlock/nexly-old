@@ -130,12 +130,12 @@ $(function(){
 		});
 	});
 	
-	$('li', '#highlights').hoverIntent({    
+	$('li', '#highlights ul').hoverIntent({    
 	    over: function() {
 			var element = $(this);
-			element.find("div.content").fadeIn(250);
-			if((element.offset().top + element.height()) > $(window).height())
-				$('body').animate({ scrollTop: element.offset().top }, 800);
+			element.find("div.content").slideDown(250);
+			// if((element.offset().top + element.height()) > $(window).height())
+			// 	$('body').animate({ scrollTop: element.offset().top }, 800);
 		},
 	    timeout:0,
 	    out: function() {
