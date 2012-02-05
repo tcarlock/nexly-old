@@ -6,7 +6,7 @@
 	<%= semantic_form_for(@review, :url => business_reviews_path) do |f| %>
 	  <%= f.inputs do %>
 	  	<%= hidden_field_tag "view", @view %>
-		<li class="string required" id="recommendation_name_input">
+		<li class="string required" id="review_name_input">
 		  <%= f.label "Your first/last name:", :style => "width:175px;" %>
 		  <%= f.text_field :first_name, :style => "width:190px;" %>
 		  <%= f.text_field :last_name, :style => "width:235px;" %>

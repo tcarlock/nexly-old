@@ -6,7 +6,7 @@
 	<%= semantic_form_for(@inquiry, :url => business_inquiries_path) do |f| %>
 	  <%= f.inputs do %>
 	  	<%= hidden_field_tag "view", @view %>
-		<li class="string required" id="recommendation_name_input">
+		<li class="string required" id="inquiry_name_input">
 		  <%= f.label "Your first/last name:", :style => "width:175px;" %>
 		  <%= f.text_field :first_name, :style => "width:200px;" %>
 		  <%= f.text_field :last_name, :style => "width:245px;" %>

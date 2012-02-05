@@ -31,7 +31,7 @@
 		</li>
 		<li class="process-panel">
 			<div class="text">
-				<h2>Distribute reviews throughout the web</h2>
+				<h2>Distribute reviews across the web</h2>
 				<p>
 					Once you approve reviews, they will automatically display on your website in the Nexly toolbar.
 				</p>
@@ -85,9 +85,9 @@
 						information will stay private and we won't spam you.
 					</p>
 				</div>
-				<h1>It's Easy and Free to Sign Up.</h1>
+				<h2>It's easy to sign up...</h2>
 				<p>
-					There are only two steps to register and you don't need a credit card to get started. We just launched so we apologize for any bugs that we missed and we would love to hear your feedback.
+					There are only two steps to register and you don't need a credit card to get started. We just launched so we would love to hear your feedback.
 				</p>
 			</div>
 			<div id="svc-req-form-outer">
@@ -101,16 +101,19 @@
 					  <% end %>
 					<% end %>
 				</div>
-				<h1>Step 1 of 2 - Create an Account</h1>					
+				<h2>Step 1 of 2 - Create an Account</h2>
 				<%= semantic_form_for("user", :method => :post, :url => user_registration_path) do |f| %>
 					<%= f.inputs do %>
 						<%= f.fields_for :profile_attributes do |profile_form| %>
-							<%= profile_form.input :first_name %>
-							<%= profile_form.input :last_name %>
+							<li class="string required" id="recommendation_name_input">
+							  <%= profile_form.label "First & Last Name *", :style => "width:175px;" %>
+							  <%= profile_form.text_field :first_name, :style => "width:125px;" %>
+							  <%= profile_form.text_field :last_name, :style => "width:175px;" %>
+							</li>
 						<% end %>
-						<%= f.input :email %>
-						<%= f.input :password %>
-						<%= f.input :password_confirmation %>
+						<%= f.input :email, :label_html => { :style => "width:175px;" }, :input_html => { :style => "width:310px;" } %>
+						<%= f.input :password, :label_html => { :style => "width:175px;" }, :input_html => { :style => "width:310px;" } %>
+						<%= f.input :password_confirmation, :label_html => { :style => "width:175px;" }, :input_html => { :style => "width:310px;" }, :label => "Confirm Password" %>
 					<% end %>
 					<%= f.buttons do %>
 						<%= f.commit_button 'Create Your Account' %>
@@ -120,22 +123,24 @@
 		</div>
 	</div>
 	<div id="sign-up-tab">
-		Get Registered
+		Get signed up
 	</div>
 </div>
 <div id="details-pane" class="homepage-pane">
-	<div id="overview">
+	<div class="overview">
 		<h2>Reputation + Social Media = Better Web Marketing</h2>
 		<p>
 			Nexly combines the social proof of client recommendations and reviews with the reach of social media to give smaller businesses more brand awareness and credidibility.
 		</p>
+	</div>
+	<div class="overview">
 		<h2>We Believe that Simple is Better</h2>
 		<p>
 			Our goal is to provide an easy-to-understand, affordable toolset that helps your business build brand awareness and generate leads.
 		</p>
 	</div>
 	<div id="highlights">
-		<h2>What this means for your business...</h2>
+		<h2>Some of the Highlights</h2>
 		<ul class="clearfix">
 			<li>
 				<div class="header">

@@ -1,6 +1,6 @@
 /*Site homepage*/
 body {
-	background-color:#fff !important;
+	background:none #fff !important;
 	font-size:14px;
 }
 P {
@@ -34,19 +34,6 @@ P {
 	border-radius:10px;
 	position:relative;	
 	border:1px #D8D5D5 solid;
-	background-image: linear-gradient(right top, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-	background-image: -o-linear-gradient(right top, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-	background-image: -moz-linear-gradient(right top, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-	background-image: -webkit-linear-gradient(right top, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-	background-image: -ms-linear-gradient(right top, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-
-	background-image: -webkit-gradient(
-		linear,
-		right top,
-		left bottom,
-		color-stop(0.48, rgb(235,235,235)),
-		color-stop(1, rgb(216,213,213))
-	);
 }
 #storyboard-banner {
 	position:absolute;
@@ -100,6 +87,8 @@ P {
 }
 
 #viewport {
+	background-image:url(/assets/bg_texture.jpg);
+
 	& > li {
 		display:block;
 		width:960px;
@@ -117,7 +106,7 @@ P {
 		position:absolute;
 		top:0px;
 		left:0px;
-		text-align:center;
+		text-align:right;
 
 		h2 {
 			font-size:1.7em;
@@ -208,7 +197,7 @@ P {
 }
 #play-demo {
 	display:block;
-	margin:50px auto 0 auto;
+	margin:75px auto 0 auto;
 	width:250px;
 	text-align:center;
 	
@@ -217,7 +206,6 @@ P {
 		width:175px;
 		height:175px;
 		margin:0 auto;
-		opacity:.5;
 	}
 }
 #demo-container {
@@ -280,12 +268,18 @@ P {
 #signup-pane {
 	margin-top:0px;
 	padding:0 20px;
+	background-image:url(/assets/bg_texture.jpg);
 }
 #signup-pane-inner {
-	height:350px;
+	height:300px;
 	border-top:1px solid #a2a2a3;
 	display:none;
 	padding-top:30px;
+	color:#646464;
+
+	h2 {
+		color:#0A2E58;
+	}
 }
 #sign-up-tab {
 	position:absolute;
@@ -310,7 +304,7 @@ P {
 	display:none;
 }
 #signup-text {
-	width:440px;
+	width:380px;
 	float:left;
 	
 	p {
@@ -320,12 +314,11 @@ P {
 #svc-req-form-outer {
 	float:left;
 	padding-left:30px;
-	width:430px;
+	width:500px;
 }
 #details-pane {
 	& > div {
-		padding-top:7px;
-		margin-top:20px;
+		margin-top:30px;
 		display:inline-block;
 		float:left;
 	}
@@ -333,27 +326,38 @@ P {
 	h2 {
 		color:#FF571A;
 		margin-bottom:10px;
+		font-size:1.3em;
 	}
 }
+.overview {
+	text-align:center;
 
-#overview {
-	width:530px;
-	padding:15px 15px 0 0px;
-	text-align:right;
+	&:nth-child(1) {
+		width:525px;
+		padding:25px 10px 25px 0;
+	}
+
+	&:nth-child(2) {
+		width:410px;
+		padding:25px 0 25px 10px;
+		border-left:1px #d8d5d5 solid;
+	}
 
 	p {
 		display:block;
 		color:#646464;
 		font-size:1.2em;
 		line-height:1.2em;
-		margin-bottom:25px;
 	}
 }
 #highlights {
-	width:375px;
-	padding:15px 0 15px 15px;
-	border-left:1px #a1a1a3 solid;
+	* {
+		cursor:default;
+	}
 
+	h2 {
+		text-indent:7px;
+	}
 	p {
 		display:block;
 		line-height:1.2em;
@@ -366,32 +370,23 @@ P {
 		width:100%;
 
 		li {
-			display:block;
-			cursor:pointer;
+			display:inline-block;
 			list-style-type:none;
 			padding:7px;
 			-moz-border-radius:7px;
 			-webkit-border-radius:17px;
 			border-radius:7px;
-			border:1px #D8D5D5 solid;
-			margin-bottom:7px;
+			border:1px solid #d8d5d5;
+			margin-bottom:12px;
 			float:left;
-			width:100%;
-			background-image: linear-gradient(right bottom, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-			background-image: -o-linear-gradient(right bottom, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-			background-image: -moz-linear-gradient(right bottom, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-			background-image: -webkit-linear-gradient(right bottom, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-			background-image: -ms-linear-gradient(right bottom, rgb(235,235,235) 48%, rgb(216,213,213) 100%);
-			background-image: -webkit-gradient(
-				linear,
-				right bottom,
-				left top,
-				color-stop(0.48, rgb(235,235,235)),
-				color-stop(1, rgb(216,213,213))
-			);
+			width:458px;
+
+			&:nth-child(odd) {
+				margin-right:12px;
+			}
 
 			&:hover {
-				background-color:#ebebeb;
+				background-image:url(/assets/bg_texture.jpg);
 			}
 
 			div.header * {
@@ -407,10 +402,9 @@ P {
 
 			div.content {
 				color:#646464;
-				padding:10px 0 0 40px;
+				padding:10px 0 0 7px;
 				float:left;
 				clear:both;
-				display:none;
 			}
 		}
 	}
