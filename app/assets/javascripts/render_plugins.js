@@ -17,6 +17,7 @@ function getBlockUIOptions() {
 
 function initPages() {
 	var pluginContainer = $('.nexly-page'); 
+	alert($('.nexly-page').length);
 
 	pluginContainer.load('http://nexly-demo.heroku.com/plugins/render_content_page/?app=' + pluginContainer.attr('data-app-id') + '&network=' + pluginContainer.attr('data-network'));
 }
@@ -24,14 +25,16 @@ function initPages() {
 function initToolbar(tbElement) {
 	//hide toolbar and make visible the 'show' button
 	$('span.downarr a').click(function() {
-	    $('#toolbar').slideToggle('fast');
-	    $('#toolbarbut').fadeIn('slow');
+	    $('#toolbar').slideToggle('fast', function(){
+	    	$('#toolbarbut').slideToggle('fast');
+	    });
 	});
 
 	//show toolbar and hide the 'show' button
 	$('span.showbar a').click(function() {
-		$('#toolbar').slideToggle('fast');
-	    $('#toolbarbut').fadeOut();
+		$('#toolbarbut').slideToggle('fast', function(){
+	    	$('#toolbar').slideToggle('fast');
+	    });
 	});
 
 	//show tooltip when the mouse is moved over a list element

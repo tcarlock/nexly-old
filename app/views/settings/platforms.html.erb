@@ -1,5 +1,5 @@
-<% content_for :styles do stylesheet_link_tag "settings" end %>
-<% content_for :scripts do javascript_include_tag "settings" end %>
+<% content_for :styles do stylesheet_link_tag "settings", "jquery.colorpicker.css" end %>
+<% content_for :scripts do javascript_include_tag "settings", "jquery.colorpicker.js" end %>
 <% content_for :page_header do "Manage Settings" end %>
 
 <%= hidden_field_tag "display-fb-pages", @display_fb_pages %>
@@ -10,52 +10,117 @@
 	</ul>
 	<div id="tab-platforms">
 		<div class="tab-content-outer">
-			<%= render :partial => "settings/platform_tabs", :locals => { :show_suggestions => true } %>
+			<div class="form-outer">
+				<label>Select where reviews should be distributed:</label>
+				<%= render :partial => "settings/platform_tabs" %>
+				<div class="separator">
+					<div></div>
+					<label>or</label>
+				</div>
+				<div id="suggest-platform-outer" class="clearfix">
+					<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
+						<%= f.inputs do %>
+						  <%= f.input :url, :label => 'Suggest a website we should add:', :label_html => { :style => 'width:300px' }, :input_html => { :placeholder => 'http://' } %>
+					  <% end %>
+					  <%= f.buttons do %>
+						<%= f.commit_button 'Submit' %>
+					  <% end %>
+					<% end %>
+				</div>
+			</div>
+			<div class="details-text">
+				<h3>What is this?</h3>
+				<p>
+					Nexly allows you to automatically publish your reviews to other websites including your social-media pages. These 
+					posts contain links which drive traffic back to your main site. 
+				</p>
+			</div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div id="tab-plugins">
 		<div class="tab-content-outer">
 			<div class="form-outer">
-				<div class="integration-panels clearfix">
-					<a rel="init-setup-details">Initial Setup</a>
-					<div class="contents">
-						<span>Complete these two simple steps before adding Nexly features to your site</span>
-						<span>1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;).</span>
-						<%= text_area_tag "toolbar-bootstrap-script", @plugin_bootstrap_script.to_s, :class => "integration-script", :size => '67x3' %>
-						<span>2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;).</span>
-						<%= text_area_tag "toolbar-init-script", @plugin_init_script.to_s, :class => "integration-script", :size => '67x1' %>
-					</div>
-				</div>
-				<div class="integration-panels clearfix">
-					<a rel="toolbar-details">Manage the Nexly Toolbar</a>
-					<div class="contents">
-						<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:enable_toolbar] ? 'checked="checked"' : '' %>>
-						<label for="toolbar-activation">
-							Activate the Toolbar
-						</label>
-						<input type="checkbox" id="review-enabling" <%= @business.preferences[:tb_show_review_btn] ? 'checked="checked"' : '' %>>
-						<label for="review-enabling">
-							Enable &quot;Post a Review&quot;
-						</label>
-						<input type="checkbox" id="rec-enabling" <%= @business.preferences[:tb_show_rec_btn] ? 'checked="checked"' : '' %>>
-						<label for="rec-enabling">
-							Enable &quot;Recommend Us&quot;
-						</label>
-					</div>
-				</div>
-				<div class="integration-panels clearfix">
-					<a rel="pages-details">Manage Nexly Pages</a>
-					<div class="contents">
-						<span>
-							Simply paste the code where you want content displayed in your site. Pick and choose the features you want included: 
-						</span>
-						<% @content_pages_html.each do |page| %>
-							<span><%= page[:app_title] %> module</span>
-							<%= text_area_tag "content-page-#{page[:app_id]}", page[:placeholder_html], :class => "integration-script", :size => '67x1' %>
-						<% end %>
-					</div>
-				</div>
+				<ul id="plugin-admin-panels">
+					<li>
+						<a rel="init-setup-details">Initial Setup</a>
+						<div class="contents">
+							<h3>Complete these two steps to start adding Nexly features to your site:</h3>
+							<h3>1) Paste this code immediately <b>after</b> the body-opening tag (i.e., &lt;body&gt;)</h3>
+							<%= text_area_tag "toolbar-bootstrap-script", @plugin_bootstrap_script.to_s, :class => "integration-script", :size => '67x6' %>
+							<h3>2) Paste this code immediately <b>before</b> the body-closing tag (i.e., &lt;/body&gt;)</h3>
+							<%= text_area_tag "toolbar-init-script", @plugin_init_script.to_s, :class => "integration-script", :size => '67x1' %>
+						</div>
+					</li>
+					<li>
+						<a rel="toolbar-details">Customize the Nexly Toolbar</a>
+						<div class="contents">
+							<%= form_tag 'update_toolbar_settings', :class => 'formtastic' do %>
+								<h3>1) Customize the design of the toolbar</h3>
+								<ul id="color-palette">
+									<li>
+										<span>Toolbar Color</span>
+										<div class="color-picker-outer">
+											<div id="bg-color" class="color-picker-preview"></div>
+											<span>#</span>
+											<input name="bg-color" type="text" class="color-field" value="<%= @tb_bg_color %>">
+										</div>
+									</li>
+									<li>
+										<span>Font Color</span>
+										<div class="color-picker-outer">
+											<div id="font-color" class="color-picker-preview"></div>
+											<span>#</span>
+											<input name="font-color" type="text" class="color-field" value="<%= @tb_font_color %>">
+										</div>
+									</li>
+									<li>
+										<span>Popup Color</span>
+										<div class="color-picker-outer">
+											<div id="canvas-color" class="color-picker-preview"></div>
+											<span>#</span>
+											<input name="canvas-color" type="text" class="color-field" value="<%= @canvas_bg_color %>">
+										</div>
+									</li>
+								</ul>
+								<h3>2) Select the buttons that should be displayed on the toolbar</h3>
+								<div id="options-outer">
+									<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:enable_toolbar] ? 'checked="checked"' : '' %>>
+									<label for="toolbar-activation">
+										Enable Toolbar
+									</label>
+									<input type="checkbox" id="review-enabling" <%= @business.preferences[:tb_show_review_btn] ? 'checked="checked"' : '' %>>
+									<label for="review-enabling">
+										Allow New Reviews
+									</label>
+									<input type="checkbox" id="rec-enabling" <%= @business.preferences[:tb_show_rec_btn] ? 'checked="checked"' : '' %>>
+									<label for="rec-enabling">
+										Allow New Recommendations
+									</label>
+								</div>
+								<fieldset class="buttons">
+									<ol>
+										<li class="commit">
+											<input class="update" name="commit" type="submit" value="Save Changes">
+										</li>
+									</ol>
+								</fieldset>
+							<% end %>
+						</div>
+					</li>
+					<li>
+						<a rel="pages-details">Manage Nexly Pages</a>
+						<div class="contents">
+							<h3>
+								Simply paste the code where you want content displayed in your site. Pick and choose the features you want: 
+							</span>
+							<% @content_pages_html.each do |page| %>
+								<h3><%= page[:app_title] %> module</h3>
+								<%= text_area_tag "content-page-#{page[:app_id]}", page[:placeholder_html], :class => "integration-script", :size => '67x1' %>
+							<% end %>
+						</div>
+					</li>
+				</ul>
 			</div>
 			<div class="details-text">
 				<div id="init-setup-details">
@@ -65,12 +130,12 @@
 					</p>
 				</div>
 				<div id="toolbar-details" class="clearfix">
-					<h3>The Nexly Toolbar</h3>
+					<h3>Customizing the Nexly Toolbar</h3>
 					<p>
-						The toolbar helps people interact with your brand and access information about your business.
+						The toolbar helps people interact with your brand and access information about your business. The toolbar appears at the bottom of your webpages and it won't affect the performance of your site.
 					</p>
 					<p>
-						After initial setup you can turn the toolbar on and off without changing any code. The toolbar appears at the bottom of your webpages and it won't affect the performance of your site.
+						After initial setup you can turn the toolbar on and off without changing any code. You can also customize the look and feel of the toolbar.
 					</p>
 					<%= link_to image_tag("toolbar-cap.png", :size => "168x142"), asset_path("toolbar-cap.png"), :class => "screen-cap" %>
 				</div>
@@ -81,11 +146,7 @@
 					</p>
 					<%= link_to image_tag("pages-cap.png", :size => "168x142"), asset_path("pages-cap.png"), :class => "screen-cap" %>
 				</div>
-				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
-		<div class="clearfix"></div>
 	</div>
-	<div class="clearfix"></div>
 </div>

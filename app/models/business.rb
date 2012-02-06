@@ -70,6 +70,10 @@ class Business < ActiveRecord::Base
     boolean :enable_toolbar, :default => true
     boolean :tb_show_review_btn, :default => true
     boolean :tb_show_rec_btn, :default => true
+    string :tb_bg_color, :default => 'D8D5D5'
+    string :tb_font_color, :default => '646464'
+    string :canvas_bg_color, :default => 'F7F7F7'
+    string :tb_btn_location, :default => 'SE'
   end
     
   def location

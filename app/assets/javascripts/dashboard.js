@@ -15,7 +15,7 @@ function getBlockUIOptions() {
 }
 function activatePanel(tabId) {
 	tab = $('#' + tabId);
-	$('#panel-tabs li.header').removeClass('active');
+	$('.dash-side-tabs li.header').removeClass('active');
 	tab.addClass('active');
 	$('.dashboard-panel').hide();
 	$('#' + tab.attr('ref')).fadeIn(350);
@@ -29,12 +29,13 @@ $(function(){
 	else
 		activatePanel($.cookie('active-tab'));
 
-	// Toggle selected panel OR show settings drop-panel
-	$('#panel-tabs li.header').click(function(){
-		if ($(this).attr('ref') == 'settings-panel')
-			$('#platforms').slideToggle(350);
-		else
-			activatePanel($(this).attr('id'));
+	// Toggle selected panel/tab
+	$('#panel-side-tabs li.panel-toggle').click(function(){
+		activatePanel($(this).attr('id'));
+	});
+
+	$('#admin-side-tabs li.tab-toggle').click(function(){
+		$('#' + $(this).attr('ref')).slideToggle(350);
 	});
 
 	//Set up ajax pagination on reviews

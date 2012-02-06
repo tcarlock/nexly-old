@@ -1,51 +1,53 @@
-/*-- Bottom Toolbar --*/
+$tb_bg_color:#D8D5D5;
+$tb_text_color:#646464;
+$canvas_bg_color:#F7F7F7;
 
+/*-- Bottom Toolbar --*/
 div#toolbar, div#toolbarbut {
 	position: fixed; /* set fixed position for the bar */
 	bottom: 0px;
 	right: 0px;
 	z-index: 9999; /* keep the bar on top  */
-	height: 36px;
-	background: url(/assets/toolbar/bcktool.png) #CECECE;
+	background:$tb_bg_color;
+
 	/* CSS3 */
-	-moz-border-radius-topleft: 8px;
-	-webkit-border-top-left-radius: 8px;
-	border-top-left-radius:8px;
-	-moz-border-radius-topright: 8px;
-	-webkit-border-top-right-radius: 8px;
-	border-top-right-radius:8px;
-	-moz-box-shadow: 0px 1px 10px #666, inset 1px 1px 0px #a4a4a4; /* inset creates a inner-shadow */
-	-webkit-box-shadow: 0px 1px 10px #666;
-	box-shadow: 0px 1px 10px #666;
-	/* CSS3 end */
-	border-top: 1px solid #eee;
-	border-left: 1px solid #eee; 
-	border-right: 1px solid #eee;  
-}
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-top-left-radius:5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius:5px;
 
+	-moz-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+	box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #fff;  
+}
 div#toolbarbut { /* div for the 'hide status' */
-	width: 90px;
-	height: 25px;
-	margin-right: 3%;
+	height:25px;
+	padding:3px 15px;
+	margin-right:3%;
 	text-align:center;
-	display:none;
-}
-
-span.showbar a { /* show button */
-	font-size: 12px;
 	display:block;
-	height: 25px;
-	line-height: 25px;
-	color:#666;
-}
 
+	span a { /* show button */
+		font-size:13px;
+		display:block;
+		height: 25px;
+		line-height: 25px;
+		color:$tb_text_color;
+	}
+}
 div#toolbar {
-	color:#212121;
 	width:70%;
+	height:36px;
 	min-width: 200px; /* to limit the width when an excessive window resize */
 	margin: 0px auto; /* centered toolbar */
 	left: 0px;
-  	display: block;
+  	display: none;
 
 	.leftside {
 		float: left;
@@ -149,37 +151,6 @@ div#toolbar {
 		position:relative;
 		display:none;
 	}
-	span.blue-btn-container {
-		position:relative;
-		display:none;
-		padding:10px;
-
-		a {
-			position:relative;
-			display:inline-block;
-			padding:5px 12px;
-			margin-right:5px;
-			vertical-align:bottom;
-			font-size: 13px;
-			height:22px;
-			text-align:center;
-			background-color:#3595D4;
-			color: #fff;
-			-moz-border-radius-topleft: 8px;
-			-khtml-border-radius-topleft: 8px;
-			-webkit-border-top-left-radius: 8px;
-			border-top-left-radius:8px;
-			-moz-border-radius-topright: 8px;
-			-khtml-border-radius-topright: 8px;
-			-webkit-border-top-right-radius: 8px;
-			border-top-right-radius:8px;
-
-			span {
-				display:block;
-				margin-top:3px;
-			}
-		}
-	}
 	span.menu_title {
 	  	border-left: 1px solid #a4a4a4;
 	  	padding:1px 10px;
@@ -189,7 +160,7 @@ div#toolbar {
 		& > a {
 		  	font-size: 13px;
 		  	line-height: 34px;
-		  	color: #666;
+		  	color:$tb_text_color;
 			padding:7px 0;
 		}
 	}
@@ -205,12 +176,48 @@ div#toolbar {
 		border-left: 1px solid #a4a4a4; 
 		border-right: 1px solid #a4a4a4;
 		/* CSS3 */
-		-moz-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-		-khtml-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-		-webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
-		/* CSS3 end */
+		-moz-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+		-webkit-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+		box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+
 		display: none; /* important */
 		overflow:auto;
 		padding:5px 10px 0 10px;
+	}
+}
+#nexly-canvas {
+	background:$canvas_bg_color;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #fff;
+	height:250px;
+	width:650px;
+	display:none;
+	position:fixed;
+	overflow:hidden;
+	bottom:37px;
+	z-index:10000;
+	right:250px;
+	padding:7px 7px 0 7px;
+
+	/* CSS3 */
+	-moz-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 0px 2px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 0px 2px;
+	box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 0px 2px;
+
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-top-left-radius:5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius:5px;
+	
+	/* CSS3 end */
+	overflow:hidden;
+
+	iframe {
+		height:243px;
+		width:100%;
+		border:0;
 	}
 }

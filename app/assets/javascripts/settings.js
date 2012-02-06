@@ -16,18 +16,30 @@ function getBlockUIOptions() {
 }
 
 $(function() {
+	$('.screen-cap').colorbox();
+
 	$('a.toggle-feature').live("click", function() {
 		$(this).closest('li').block(getBlockUIOptions());
 		$.post('/settings/toggle_feature/' + $(this).attr('data-feature-id'));
 	});
 
+	//Config Facebook-page selection
 	$('#fb-pages-link').colorbox();
-	$('.screen-cap').colorbox();
+
+	if ($('#display-fb-pages').val() == 'true') {
+		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
+	};
 
 	$('input.page-select').live("change", function() {
 		$.post('/platforms/' + $('#platform-id').val() + '/pages/' + $(this).attr('id') + '/toggle_publishing');
 	});
 
+	//Platform-disabling
+	$('.deauth-platform').click(function() {
+		$(this).parent().block(getBlockUIOptions());
+	});
+
+	//Config toobar button options
 	$('#toolbar-activation').change(function() {
 		$.post('/settings/toggle_toolbar_activation');
 	});
@@ -40,13 +52,10 @@ $(function() {
 		$.post('/settings/toggle_public_recommendations');
 	});
 	
-	if ($('#display-fb-pages').val() == 'true') {
-		$.fn.colorbox({href: $('#fb-pages-link').attr('href')});
-	};
-	
-	$('.integration-panels a').click(function() {
+	//Config panel show/hide
+	$('li > a', '#plugin-admin-panels').click(function() {
 		if(!$(this).siblings('div.contents').is(':visible')) {
-			$('.integration-panels div.contents').slideUp(200);
+			$('li > div.contents', '#plugin-admin-panels').slideUp(200);
 			$(this).siblings('div.contents').slideDown(350);
 
 			$("#tab-plugins div.details-text div").hide();
@@ -54,10 +63,35 @@ $(function() {
 		}
 	});
 
-	$('.deauth-platform').click(function() {
-		$(this).parent().block(getBlockUIOptions());
+	//Enable color pickers for toolbar design
+	$('div.color-picker-preview', '#color-palette').each(function() {
+		var previewTab = $(this);
+		var valField = $('input[name="' + $(this).attr('id') + '"]');
+
+		previewTab.css('backgroundColor', '#' + valField.val());
+
+		$(this).ColorPicker({
+			onShow: function (colpkr) {
+				$(colpkr).fadeIn(500);
+				previewTab.ColorPickerSetColor(valField.val());
+				return false;
+			},
+			onHide: function (colpkr) {
+				$(colpkr).fadeOut(500);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				previewTab.css('backgroundColor', '#' + hex);
+				valField.val(hex);
+			}
+		});	
 	});
+
+	$('.color-field').change(function(){
+		$('#' + $(this).attr('name')).css('backgroundColor', '#' + $(this).val());
+	})
 	
+	//Auto-select script in textboxes
 	$('textarea.integration-script')
 	.mouseup(function(e){
 	    // fixes safari/chrome problem

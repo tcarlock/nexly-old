@@ -25,7 +25,10 @@ class SettingsController < ApplicationController
   
   def platforms
     @root = DOMAIN_NAMES[Rails.env]
+    @platform_suggestion = PlatformSuggestion.new
     @features = Feature.where(:is_public => true)
+
+    # Get activated platforms and social selections
     @platforms = Platform.where(:is_available => true).order(:display_order)
     active_platforms = @business.active_platforms
     @active_platform_ids = active_platforms.map { |p| p.id }
@@ -40,9 +43,8 @@ class SettingsController < ApplicationController
     else
       @display_fb_pages = false
     end
-
-    @platform_suggestion = PlatformSuggestion.new
     
+    # Get data for toolbar and plugins
     @plugin_bootstrap_script = render_to_string :partial => 'plugins/plugin_bootstrap_script', :locals => { :network => @business.api_token, :root => @root }
     @plugin_init_script = render_to_string :partial => 'plugins/plugin_init_script'
     
@@ -53,8 +55,17 @@ class SettingsController < ApplicationController
         :app_title => element.title, 
         :placeholder_html => render_to_string(:partial => 'plugins/content_page_placeholder', :locals => { :network => @business.api_token, :root => @root, :app_id => element.id })}
     end
+
+    # Get toolbar design options
+    @tb_bg_color = @business.preferences[:tb_bg_color]
+    @tb_font_color = @business.preferences[:tb_font_color]
+    @canvas_bg_color = @business.preferences[:canvas_bg_color]
   end
   
+  def update_toolbar_settings
+
+  end
+
   def toggle_toolbar_activation
     update_setting :enable_toolbar 
     render :nothing => true

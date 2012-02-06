@@ -1,49 +1,23 @@
-<div class="form-outer">
-	<label>Select where reviews should be distributed:</label>
-	<ul id="platforms" class="standard-tiles clearfix">
-		<% @platforms.each do |platform| %>
-			<li>
-				<% unless @active_platform_ids.index(platform.id).nil? %>
-					<%= link_to authentication_path(platform), :method => :delete, :class => "deauth-platform" do %>
-						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
-						<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
-						<span>Disable <%= platform.display_name %></span>
-						<% if platform.name == "facebook" && current_user.facebook.accounts.length > 0 %>
-							<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
-								<%= image_tag "tasks/gear.png", :class => "settings", :title => "Manage settings" %>
-							<% end %>
+<ul id="platforms" class="standard-tiles clearfix">
+	<% @platforms.each do |platform| %>
+		<li>
+			<% unless @active_platform_ids.index(platform.id).nil? %>
+				<%= link_to authentication_path(platform), :method => :delete, :class => "deauth-platform" do %>
+					<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}", :class => "icon" %>
+					<%= image_tag "tasks/check-green-small.png", :class => "enabled" %>
+					<span>Disable <%= platform.display_name %></span>
+					<% if platform.name == "facebook" && current_user.facebook.accounts.length > 0 %>
+						<%= link_to platform_pages_path(platform.id), :id => "fb-pages-link" do %>
+							<%= image_tag "tasks/gear.png", :class => "settings", :title => "Manage settings" %>
 						<% end %>
 					<% end %>
-				<% else %>
-					<a href="/auth/<%= platform.name %>" class="auth-platform">
-						<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}" %>
-						<span>Enable <%= platform.display_name %></span>
-					</a>
 				<% end %>
-			</li>
-		<% end %>
-	</ul>
-	<% if show_suggestions %>
-		<div class="separator">
-			<div></div>
-			<label>or</label>
-		</div>
-		<div id="suggest-platform-outer" class="clearfix">
-			<%= semantic_form_for @platform_suggestion, :method => :post, :url => suggest_platform_path, :validate => true, :remote => true do |f| %>
-				<%= f.inputs do %>
-				  <%= f.input :url, :label => 'Suggest a website we should add:', :label_html => { :style => 'width:300px' }, :input_html => { :placeholder => 'http://' } %>
-			  <% end %>
-			  <%= f.buttons do %>
-				<%= f.commit_button 'Submit' %>
-			  <% end %>
+			<% else %>
+				<a href="/auth/<%= platform.name %>" class="auth-platform">
+					<%= image_tag "social/#{platform.icon}", :alt => "#{platform.display_name}" %>
+					<span>Enable <%= platform.display_name %></span>
+				</a>
 			<% end %>
-		</div>
+		</li>
 	<% end %>
-</div>
-<div class="details-text">
-	<h3>What is this?</h3>
-	<p>
-		Nexly allows you to automatically publish your reviews to other websites including your social-media pages. These 
-		posts contain links which drive traffic back to your main site. 
-	</p>
-</div>
+</ul>
