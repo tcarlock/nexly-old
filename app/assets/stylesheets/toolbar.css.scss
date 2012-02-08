@@ -3,7 +3,7 @@ $tb_text_color:#646464;
 $canvas_bg_color:#F7F7F7;
 
 /*-- Bottom Toolbar --*/
-div#toolbar, div#toolbarbut {
+#toolbar, #toolbarbut {
 	position: fixed; /* set fixed position for the bar */
 	bottom: 0px;
 	right: 0px;
@@ -18,15 +18,15 @@ div#toolbar, div#toolbarbut {
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius:5px;
 
-	-moz-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
-	-webkit-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
-	box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+	-moz-box-shadow: rgba(255, 255, 255, 0.246) 1px 1px 1px inset, rgba(0, 0, 0, 0.136) .5px -1px 2px;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.246) 1px 1px 1px inset, rgba(0, 0, 0, 0.136) .5px -1px 2px;
+	box-shadow: rgba(255, 255, 255, 0.246) 1px 1px 1px inset, rgba(0, 0, 0, 0.136) .5px -1px 2px;
 
 	border-top: 1px solid #fff;
 	border-left: 1px solid #fff; 
 	border-right: 1px solid #fff;  
 }
-div#toolbarbut { /* div for the 'hide status' */
+#toolbarbut { /* div for the 'hide status' */
 	height:25px;
 	padding:3px 15px;
 	margin-right:3%;
@@ -41,7 +41,7 @@ div#toolbarbut { /* div for the 'hide status' */
 		color:$tb_text_color;
 	}
 }
-div#toolbar {
+#toolbar {
 	width:70%;
 	height:36px;
 	min-width: 200px; /* to limit the width when an excessive window resize */

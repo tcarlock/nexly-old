@@ -56,14 +56,27 @@ class SettingsController < ApplicationController
         :placeholder_html => render_to_string(:partial => 'plugins/content_page_placeholder', :locals => { :network => @business.api_token, :root => @root, :app_id => element.id })}
     end
 
-    # Get toolbar design options
+    # Get toolbar options
+    @enable_toolbar = @business.preferences[:enable_toolbar]
+    @tb_show_review_btn = @business.preferences[:tb_show_review_btn]
+    @tb_show_rec_btn = @business.preferences[:tb_show_rec_btn]
     @tb_bg_color = @business.preferences[:tb_bg_color]
     @tb_font_color = @business.preferences[:tb_font_color]
     @canvas_bg_color = @business.preferences[:canvas_bg_color]
   end
   
   def update_toolbar_settings
+    @business.preferences[:enable_toolbar] = params[:enable_toolbar]
+    @business.preferences[:tb_show_review_btn] = params[:tb_show_review_btn]
+    @business.preferences[:tb_show_rec_btn] = params[:tb_show_rec_btn]
+    @business.preferences[:tb_bg_color] = params[:tb_bg_color]
+    @business.preferences[:tb_font_color] = params[:tb_font_color]
+    @business.preferences[:canvas_bg_color] = params[:canvas_bg_color]
+    @business.save
 
+    respond_to do |format|
+      format.js
+    end
   end
 
   def toggle_toolbar_activation

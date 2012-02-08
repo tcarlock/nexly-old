@@ -2,24 +2,14 @@ class PluginsController < ApplicationController
   skip_before_filter :authenticate_user!
   skip_before_filter :check_for_biz
   before_filter :init_objects
-  
-  def toolbar
-    is_rev_enabled = @business.preferences[:tb_show_review_btn]
-    tb_show_rec_btn = @business.preferences[:tb_show_rec_btn]
-
-    render :layout => false,
-    :locals => { 
-      :network => @network, 
-      :root => @root, 
-      :is_rev_enabled => is_rev_enabled,
-      :tb_show_rec_btn => tb_show_rec_btn
-    }
-  end
-  
+   
   def plugin_render_script
     @enable_toolbar = @business.preferences[:enable_toolbar]
-    @is_rev_enabled = @business.preferences[:tb_show_review_btn]
+    @tb_show_review_btn = @business.preferences[:tb_show_review_btn]
     @tb_show_rec_btn = @business.preferences[:tb_show_rec_btn]
+    @tb_bg_color = @business.preferences[:tb_bg_color]
+    @tb_font_color = @business.preferences[:tb_font_color]
+    @canvas_bg_color = @business.preferences[:canvas_bg_color]
     
     render :content_type => 'text/javascript', :layout => false
   end

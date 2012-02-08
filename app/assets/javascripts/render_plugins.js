@@ -1,6 +1,6 @@
 function getBlockUIOptions() {
    	return {
-   	    message: '<img src="http://nexly.com/assets/throbber/loading_orange.gif" />',
+   	    message: '<img src="/assets/throbber/grey-bar.gif" />',
         centerX: true,
        	centerY: true,
    	    css: { 
@@ -9,15 +9,14 @@ function getBlockUIOptions() {
             cursor: 'default'
        	},
    	    overlayCSS: { 
-            backgroundColor: '#F7F7F7', 
+            backgroundColor: 'transparent', 
            	opacity: 1
        	}
    	}
 }
 
 function initPages() {
-	var pluginContainer = $('.nexly-page'); 
-	alert($('.nexly-page').length);
+	var pluginContainer = $('.nexly-page');
 
 	pluginContainer.load('http://nexly-demo.heroku.com/plugins/render_content_page/?app=' + pluginContainer.attr('data-app-id') + '&network=' + pluginContainer.attr('data-network'));
 }
@@ -97,21 +96,16 @@ function renderCanvas(linkRef) {
 		if (canvas.is(':hidden'))
 			canvas.fadeIn();
 
-		canvasFrame.fadeOut();
-		canvas.animate({ width: linkRef.attr('data-canvas-width') || 400 }, 350, function() {
+		canvasFrame.hide();
+
+		//Load appropriate page into quickmenu
+		canvasFrame.load(function (){
+			canvas.unblock();
+		    canvasFrame.fadeIn();
+		}).attr('src', url);
+
+		canvas.animate({ width: linkRef.attr('data-canvas-width') || 400 }, 250, function() {
 			canvas.block(getBlockUIOptions());
-			
-			//Load appropriate page into quickmenu
-			if (url != "#")
-				canvasFrame.attr('src', url);
-
-			//Hide all other toolbars
-			//$(".btn-container").hide(); 
-
-			// if(buttonGroup != null)
-			// 	buttonGroup.fadeIn();
-
-			canvasFrame.fadeIn();
 		});
 	}
 }

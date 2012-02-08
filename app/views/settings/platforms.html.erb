@@ -1,6 +1,5 @@
 <% content_for :styles do stylesheet_link_tag "settings", "jquery.colorpicker.css" end %>
 <% content_for :scripts do javascript_include_tag "settings", "jquery.colorpicker.js" end %>
-<% content_for :page_header do "Manage Settings" end %>
 
 <%= hidden_field_tag "display-fb-pages", @display_fb_pages %>
 <div id="admin-tabs">
@@ -55,45 +54,45 @@
 					<li>
 						<a rel="toolbar-details">Customize the Nexly Toolbar</a>
 						<div class="contents">
-							<%= form_tag 'update_toolbar_settings', :class => 'formtastic' do %>
+							<%= form_tag settings_update_toolbar_settings_path, :id => 'update_toolbar_settings', :class => 'formtastic', :method => :post, :remote => true do %>
 								<h3>1) Customize the design of the toolbar</h3>
 								<ul id="color-palette">
 									<li>
-										<span>Toolbar Color</span>
+										<span>Toolbar Color:</span>
 										<div class="color-picker-outer">
-											<div id="bg-color" class="color-picker-preview"></div>
+											<div id="tb_bg_color" class="color-picker-preview"></div>
 											<span>#</span>
-											<input name="bg-color" type="text" class="color-field" value="<%= @tb_bg_color %>">
+											<input name="tb_bg_color" type="text" class="color-field" value="<%= @tb_bg_color %>">
 										</div>
 									</li>
 									<li>
-										<span>Font Color</span>
+										<span>Font Color:</span>
 										<div class="color-picker-outer">
-											<div id="font-color" class="color-picker-preview"></div>
+											<div id="tb_font_color" class="color-picker-preview"></div>
 											<span>#</span>
-											<input name="font-color" type="text" class="color-field" value="<%= @tb_font_color %>">
+											<input name="tb_font_color" type="text" class="color-field" value="<%= @tb_font_color %>">
 										</div>
 									</li>
 									<li>
-										<span>Popup Color</span>
+										<span>Popup Color:</span>
 										<div class="color-picker-outer">
-											<div id="canvas-color" class="color-picker-preview"></div>
+											<div id="canvas_bg_color" class="color-picker-preview"></div>
 											<span>#</span>
-											<input name="canvas-color" type="text" class="color-field" value="<%= @canvas_bg_color %>">
+											<input name="canvas_bg_color" type="text" class="color-field" value="<%= @canvas_bg_color %>">
 										</div>
 									</li>
 								</ul>
 								<h3>2) Select the buttons that should be displayed on the toolbar</h3>
 								<div id="options-outer">
-									<input type="checkbox" id="toolbar-activation" <%= @business.preferences[:enable_toolbar] ? 'checked="checked"' : '' %>>
+									<input type="checkbox" name="enable_toolbar" <%= @enable_toolbar ? 'checked="checked"' : '' %>>
 									<label for="toolbar-activation">
 										Enable Toolbar
 									</label>
-									<input type="checkbox" id="review-enabling" <%= @business.preferences[:tb_show_review_btn] ? 'checked="checked"' : '' %>>
+									<input type="checkbox" name="tb_show_review_btn" <%= @tb_show_review_btn ? 'checked="checked"' : '' %>>
 									<label for="review-enabling">
 										Allow New Reviews
 									</label>
-									<input type="checkbox" id="rec-enabling" <%= @business.preferences[:tb_show_rec_btn] ? 'checked="checked"' : '' %>>
+									<input type="checkbox" id="rec-enabling" name="tb_show_rec_btn" <%= @tb_show_rec_btn ? 'checked="checked"' : '' %>>
 									<label for="rec-enabling">
 										Allow New Recommendations
 									</label>
@@ -101,6 +100,7 @@
 								<fieldset class="buttons">
 									<ol>
 										<li class="commit">
+											<span id="save-status">Your changes have been saved</span>
 											<input class="update" name="commit" type="submit" value="Save Changes">
 										</li>
 									</ol>

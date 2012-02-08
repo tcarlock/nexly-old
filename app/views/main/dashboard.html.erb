@@ -1,4 +1,4 @@
-<% content_for :scripts do javascript_include_tag "dashboard", "reviews", "highcharts", "news_posts", "jquery.cookie.js" end %>
+<% content_for :scripts do javascript_include_tag "dashboard", "reviews", "highcharts/highcharts.js", "news_posts", "jquery.cookie.js" end %>
 <% content_for :styles do %>
 	<%= stylesheet_link_tag "dashboard", "reviews", "inquiries", "news_posts" %>
 
@@ -26,24 +26,26 @@
 		<li id="inquiries-tab" ref="inquiries-panel" class="header panel-toggle">
 			<a class="toggle-link">Active Inquiries (<%= @business.active_inquiries.count %>)</a>
 		</li>
-	</ul>
-	<ul id="admin-side-tabs" ref="analytics-panel" class="dash-side-tabs clearfix">
-		<li id="platforms-tab" ref="platforms-panel" class="header tab-toggle">
-			<a class="toggle-link">Platforms</a>
-			<%= link_to 'Manage', platforms_path, :class => 'command-link' %>
-		</li>
-		<li id="platforms-panel" class="side-panel">
-			<ul id="platforms" class="profile-details clearfix">
-				<%= render 'dashboard/platforms' %>
-			</ul>
-		</li>
 		<li id="settings-tab" ref="settings-panel" class="header tab-toggle">
 			<a class="toggle-link">Settings</a>
-			<%= link_to 'Edit', platforms_path, :class => 'command-link' %>
+			<%= link_to 'Manage', platforms_path, :class => 'command-link' %>
 		</li>
 		<li id="settings-panel" class="side-panel">
-			<ul id="settings" class="profile-details clearfix">
-				<%= render 'dashboard/platforms' %>
+			<ul id="platforms" class="settings-list clearfix">
+				<% if @business.active_platforms.empty? %>
+					<li>No sites have been enabled</li>
+				<% else %>
+					<% @business.active_platforms.each do |p| %>
+						<li>
+							<%= p.display_name %> is enabled
+						</li>
+					<% end %>
+				<% end %>
+				<% @tb_settings.each do |s| %>
+					<li>
+						<%= s %>
+					</li>
+				<% end %>
 			</ul>
 		</li>
 	</ul>

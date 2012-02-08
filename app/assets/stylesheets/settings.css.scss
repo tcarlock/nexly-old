@@ -300,11 +300,18 @@
 		}
 	}
 }
-#tab-plugins .details-text div {
+#save-status {
+	padding-right:25px;
+	color:#AA4643 !important;
+	font-weight:bold;
 	display:none;
 }
-#tab-plugins .details-text div:first-child {
-	display:block;
+#tab-plugins .details-text div {
+	display:none;
+
+	&:first-child {
+		display:block;
+	}
 }
 .integration-script {
 	color:#666;

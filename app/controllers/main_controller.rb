@@ -28,11 +28,17 @@ class MainController < ApplicationController
     @business = current_user.business
     # @platforms = Platform.where(:is_available => true)
     
-    # View settings
+    # Init view settings
     # @business.active_features
     @active_feature_count = 1   # @business.active_features.count
     @enable_reviews = true   # !@business.active_features.where(:lookup_key => "reviews").empty?
     @enable_news = false   # !@business.active_features.where(:lookup_key => "news").empty?
+
+    # Format toolbar settings for display
+    @tb_settings = []
+    @tb_settings << "Toolbar is enabled" if @business.preferences[:enable_toolbar]
+    # @tb_settings << "Reviews are enabled" if @business.preferences[:enable_toolbar]
+    # @tb_settings << "Recommendations are enabled" if @business.preferences[:enable_toolbar]
     
     # Get datasets for dashboard charts
     @traffic_meta = @business.traffic_meta([@business.created_at, 12.months.ago].max.beginning_of_month, DateTime.current)

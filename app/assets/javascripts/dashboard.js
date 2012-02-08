@@ -34,7 +34,7 @@ $(function(){
 		activatePanel($(this).attr('id'));
 	});
 
-	$('#admin-side-tabs li.tab-toggle').click(function(){
+	$('#panel-side-tabs li.tab-toggle').click(function(){
 		$('#' + $(this).attr('ref')).slideToggle(350);
 	});
 

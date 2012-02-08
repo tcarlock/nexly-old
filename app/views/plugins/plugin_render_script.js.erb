@@ -28,10 +28,10 @@ div.setAttribute("id", "nexly-toolbar");
 div.setAttribute("style", "height:45px;");
 div.setAttribute("data-network", "<%= @network %>");
 div.setAttribute("data-tb-enabled", <%= @enable_toolbar %>);
-div.setAttribute("data-rev-enabled", <%= @is_rev_enabled %>);
+div.setAttribute("data-rev-enabled", <%= @tb_show_review_btn %>);
 div.setAttribute("data-rec-enabled", <%= @tb_show_rec_btn %>);
 
-div.innerHTML = "<%= escape_javascript(render(:partial => 'plugins/toolbar', :locals => { :root => @root, :business => @business, :enable_reviews => @enable_reviews, :reviews => @reviews, :enable_news => @enable_news, :news_posts => @news_posts, :tb_show_rec_btn => @tb_show_rec_btn, :is_rev_enabled => @is_rev_enabled})) %>"
+div.innerHTML = "<%= escape_javascript(render(:partial => 'plugins/toolbar', :locals => { :root => @root, :business => @business, :enable_reviews => @enable_reviews, :reviews => @reviews, :enable_news => @enable_news, :news_posts => @news_posts, :tb_show_rec_btn => @tb_show_rec_btn, :tb_show_review_btn => @tb_show_review_btn, :tb_bg_color => @tb_bg_color, :tb_font_color => @tb_font_color, :canvas_bg_color => @canvas_bg_color})) %>"
 
 parent.document.body.appendChild(div);
 

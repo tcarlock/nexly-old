@@ -1,8 +1,14 @@
 <%= stylesheet_link_tag "#{root}/assets/plugin_global.css", "#{root}/assets/toolbar.css", "#{root}/assets/public/formtastic.css", "#{root}/assets/public/formtastic_changes.css", "#{root}/assets/jquery.ui.stars.min.css" %>
 <%= javascript_include_tag "jquery.ui.stars.min.js", "public/jquery.validate.min.js", "public/jquery.form.js", "public/jquery.blockUI.js" %>
 
+<style type="text/css" media="screen">
+	#toolbar, #toolbarbut { background-color:#<%= tb_bg_color %> !important; }
+	#toolbarbut span a { color:#<%= tb_font_color %> !important; }
+	#toolbar span.menu_title > a { color:#<%= tb_font_color %> !important; }
+	#nexly-canvas { background-color:#<%= canvas_bg_color %> !important; }
+</style>
 <div id="toolbarbut"> <!-- hide button -->
-	<span class="showbar"><a href="#">Reviews and Connect</a></span>
+	<span class="showbar"><a>Reviews and Connect</a></span>
 </div>
 <div id="toolbar"> <!-- toolbar container -->
 	<div class="leftside"> <!-- all things in floating left side -->
@@ -31,7 +37,7 @@
 	</div>
 	<div class="rightside"> <!-- all things in floating right side -->
 		<span class="downarr"> <!-- hide button -->
-			<a href="#"></a>
+			<a></a>
 		</span>
 		<% if enable_reviews %>
 			<span id="reviews-btns" class="btn-container">
@@ -44,7 +50,7 @@
 					<%= link_to "Recommend Us", new_business_recommendations_url(business, :v => 'toolbar'), :id => "new-rec", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
 			<% end %>
-			<% if is_rev_enabled %>
+			<% if tb_show_review_btn %>
 				<span class="menu_title">
 					<%= link_to "Post a Review", new_business_review_url(business, :v => 'toolbar'), :id => "new-review", :class => "menutit", "data-canvas-width" => 650 %>
 				</span>
@@ -55,7 +61,7 @@
 		<% end %>
 		<% if enable_news %>
 			<span class="menu_title">
-				<a class="menutit" href="#">
+				<a class="menutit">
 					News Updates (<%= news_posts.count %>)
 				</a> <!-- quick menu title -->
 			</span>

@@ -9,7 +9,7 @@ function getBlockUIOptions() {
             cursor: 'default'
        	},
    	    overlayCSS: { 
-            backgroundColor: '#D8D5D5', 
+            backgroundColor: '#F7F7F7', 
            	opacity: .8
        	}
    	}
@@ -37,19 +37,6 @@ $(function() {
 	//Platform-disabling
 	$('.deauth-platform').click(function() {
 		$(this).parent().block(getBlockUIOptions());
-	});
-
-	//Config toobar button options
-	$('#toolbar-activation').change(function() {
-		$.post('/settings/toggle_toolbar_activation');
-	});
-
-	$('#review-enabling').change(function() {
-		$.post('/settings/toggle_public_reviews');
-	});
-	
-	$('#rec-enabling').change(function() {
-		$.post('/settings/toggle_public_recommendations');
 	});
 	
 	//Config panel show/hide
@@ -89,6 +76,10 @@ $(function() {
 
 	$('.color-field').change(function(){
 		$('#' + $(this).attr('name')).css('backgroundColor', '#' + $(this).val());
+	})
+
+	$('#update_toolbar_settings').submit(function() {
+		$('#update_toolbar_settings').block(getBlockUIOptions());
 	})
 	
 	//Auto-select script in textboxes
