@@ -259,7 +259,7 @@ namespace :app do
         :created_at => Date.today - rand(1095)) 
     end
     
-    50.times do |n|
+    500.times do |n|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       user_handle = first_name.first + last_name
@@ -306,7 +306,7 @@ namespace :app do
           :zip_code => Faker::Address.zip_code)
       biz.reload
           
-      10.times do |n|
+      150.times do |n|
           biz.reviews.create!(
             :first_name => Faker::Name.first_name, 
             :last_name => Faker::Name.last_name, 

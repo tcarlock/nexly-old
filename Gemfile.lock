@@ -328,7 +328,7 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   omniauth
-  paperclip (~> 2.3.15)
+  paperclip
   pg
   preferable
   rails (= 3.1.0)

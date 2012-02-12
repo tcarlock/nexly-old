@@ -77,30 +77,7 @@
 	<div id="panel-nav-next" class="panel-nav-btn"></div>
 	<div id="signup-pane" class="homepage-pane">
 		<div id="signup-pane-inner">
-			<div id="signup-text">
-				<div style="display:none">
-					<h1>We're really close to launching!</h1>
-					<p>
-						Provide us with your email address and we'll alert you as soon as we launch.  Don't worry, your 
-						information will stay private and we won't spam you.
-					</p>
-				</div>
-				<h2>It's easy to sign up...</h2>
-				<p>
-					There are only two steps to register and you don't need a credit card to get started. We just launched so we would love to hear your feedback.
-				</p>
-			</div>
 			<div id="svc-req-form-outer">
-				<div style="display:none">
-					<%= semantic_form_for @signup, :method => :post, :url => beta_signup_create_path, :remote => true do |f| %>
-						<%= f.inputs do %>
-						  <%= f.input :email , :label => false, :input_html => { :style => 'width:325px;', :placeholder => "Your email address" } %>
-					  <% end %>
-					  <%= f.buttons do %>
-						<%= f.commit_button 'Submit' %>
-					  <% end %>
-					<% end %>
-				</div>
 				<h2>Step 1 of 2 - Create an Account</h2>
 				<%= semantic_form_for("user", :method => :post, :url => user_registration_path) do |f| %>
 					<%= f.inputs do %>

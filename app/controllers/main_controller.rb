@@ -10,8 +10,6 @@ class MainController < ApplicationController
   def welcome
     if signed_in?
       redirect_to dashboard_path
-    else
-      @signup = BetaSignup.new()
     end
   end
   
