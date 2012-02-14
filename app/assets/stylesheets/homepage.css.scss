@@ -120,6 +120,15 @@ P {
 		position:absolute;
 		top:0px;
 		right:0px;
+
+		img {
+			-moz-border-top-right-radius:10px;
+			-webkit-border-top-right-radius:10px;
+			border-top-right-radius:10px;
+			-moz-border-bottom-right-radius:10px;
+			-webkit-border-bottom-right-radius:10px;
+			border-bottom-right-radius:10px;
+		}
 	}
 }
 #intro-panel {
