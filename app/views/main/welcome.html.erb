@@ -1,5 +1,21 @@
 <% content_for :styles do stylesheet_link_tag "homepage" end %>
-<% content_for :scripts do javascript_include_tag "homepage", "jquery.cycle.all.js" end %>
+<% content_for :scripts do %>
+	<%= javascript_include_tag "homepage", "jquery.cycle.all.js" %>
+	<style type="text/css" media="screen">
+		body {
+			background:none #fff !important;
+			font-size:14px;
+		}
+		#main-content {
+			padding:0px !important;
+			-moz-box-shadow:0 0 0;
+			-webkit-box-shadow:0 0 0;
+			box-shadow:0 0 0;
+			border:0;
+			width:960px;
+		}
+		</style>
+<% end %>
 
 <div id="storyboard-pane" class="homepage-pane">
 	<div id="storyboard-banner">
@@ -9,15 +25,15 @@
 	<ul id="viewport">	
 		<li id="intro-panel">
 			<div class="text">
-				<h2>Capture and share customer experiences to generate better leads</h2>
+				<h2>Capture and share customer experiences in order to generate better leads</h2>
 			</div>
 			<div class="content">
-				<img src="/assets/homepage/rotator/intro_copy.jpg" />
+				<img src="/assets/homepage/rotator/new/intro.png" />
 			</div>
 		</li>
 		<li class="process-panel">
 			<div class="text">
-				<h2>Collect reviews and recommendations</h2>
+				<h2>Easily collect reviews and recommendations</h2>
 				<p>
 					Request reviews and recommendations from clients and collect them through your own site using the Nexly toolbar. 
 				</p>
@@ -26,7 +42,7 @@
 				</p>
 			</div>
 			<div class="content">
-				<img src="/assets/homepage/rotator/speech-bubble.jpg" />
+				<img src="/assets/homepage/rotator/new/convo.png" />
 			</div>
 		</li>
 		<li class="process-panel">
@@ -40,7 +56,7 @@
 				</p>
 			</div>
 			<div class="content">
-				<img src="/assets/homepage/rotator/broadcast.jpg" />
+				<img src="/assets/homepage/rotator/new/broadcast.png" />
 			</div>
 		</li>
 		<li class="process-panel">
@@ -54,7 +70,7 @@
 				</p>
 			</div>
 			<div class="content">
-				<img src="/assets/homepage/rotator/analytics.jpg" />
+				<img src="/assets/homepage/rotator/new/chart.png" />
 			</div>
 		</li>
 		<li id="demo-panel">

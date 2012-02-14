@@ -52,8 +52,8 @@ Nexly::Application.routes.draw do
     get :reviews
   end 
     
-  match "/auth/:provider/callback" => "authentications#create"
-  match "/auth/failure" => "authentications#failure"
+  match '/auth/:provider/callback' => 'authentications#create'
+  match '/auth/failure' => 'authentications#failure'
   
   resources :authentications, :only => [:index, :create, :destroy]
   resources :platforms, :only => [] do
@@ -64,11 +64,11 @@ Nexly::Application.routes.draw do
     end
   end
   
-  get :dashboard, :to => "main#dashboard"
-  get :redir, :to => "main#redir"
-  get :modules, :to => "main#modules"
-  get :contact, :to => "main#contact"
-  get :faqs, :to => "main#faqs"
+  get :dashboard, :to => 'main#dashboard'
+  get :redir, :to => 'main#redir'
+  get :modules, :to => 'main#modules'
+  get :contact, :to => 'main#contact'
+  get :faqs, :to => 'main#faqs'
     
   namespace :demo do
     get :home
@@ -79,13 +79,13 @@ Nexly::Application.routes.draw do
     get :contact    
   end
   
-  get :billing, :to => "main#billing"
-  post "main/update_billing", :as => :update_billing
+  get :billing, :to => 'main#billing'
+  post 'main/update_billing', :as => :update_billing
   
-  post "beta_signup/create"
-  post "main/suggest_platform", :as => :suggest_platform
-  get :feedback, :to => "main#feedback"
-  post "main/submit_feedback", :as => :submit_feedback
+  post 'beta_signup/create'
+  post 'main/suggest_platform', :as => :suggest_platform
+  get :feedback, :to => 'main#feedback'
+  post 'main/submit_feedback', :as => :submit_feedback
   
-  root :to => "main#welcome"
+  root :to => 'main#welcome'
 end

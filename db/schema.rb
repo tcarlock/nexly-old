@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130225501) do
+ActiveRecord::Schema.define(:version => 20120212063847) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "platform_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "authentications", ["business_id", "platform_id"], :name => "index_authentications_on_business_id_and_platform_id"
 
   create_table "beta_signups", :force => true do |t|
     t.string   "email"
@@ -94,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.string   "last_name"
   end
 
+  add_index "inquiries", ["business_id"], :name => "index_inquiries_on_business_id"
+
   create_table "news_posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -114,6 +118,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.integer  "channel_type_id"
   end
 
+  add_index "page_views", ["resource_id", "business_id", "platform_id", "resource_type_id", "channel_type_id"], :name => "index_page_views_multi_col"
+
   create_table "platform_pages", :force => true do |t|
     t.integer  "platform_id"
     t.integer  "business_id"
@@ -121,6 +127,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "platform_pages", ["external_id", "business_id", "platform_id"], :name => "index_platform_pages_multi_col"
 
   create_table "platform_suggestions", :force => true do |t|
     t.string   "url"
@@ -150,6 +158,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "updated_at"
     t.string   "last_name"
   end
+
+  add_index "recommendations", ["business_id"], :name => "index_recommendations_on_business_id"
 
   create_table "resource_types", :force => true do |t|
     t.string   "name"
@@ -184,6 +194,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "updated_at"
   end
 
+  add_index "review_requests", ["business_id"], :name => "index_review_requests_on_business_id"
+
   create_table "review_responses", :force => true do |t|
     t.text     "response"
     t.integer  "review_id"
@@ -211,6 +223,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "avatar_updated_at"
     t.string   "last_name"
   end
+
+  add_index "reviews", ["business_id"], :name => "index_reviews_on_business_id"
 
   create_table "suggestions", :force => true do |t|
     t.text     "details"
@@ -245,6 +259,7 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.datetime "updated_at"
   end
 
+  add_index "tracking_links", ["business_id"], :name => "index_tracking_links_on_business_id"
   add_index "tracking_links", ["in_url"], :name => "index_links_on_in_url"
 
   create_table "user_profiles", :force => true do |t|
@@ -271,6 +286,8 @@ ActiveRecord::Schema.define(:version => 20120130225501) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
+
+  add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false

@@ -97,46 +97,48 @@ $(function(){
 		});
 	});
 	
-	$('#viewport').cycle({
-	    speed:  1000, 
-	    timeout: 10000,
-		fx:  'scrollHorz',
-		prev: '#panel-nav-prev',
-		next: '#panel-nav-next',
-		pagerAnchorBuilder: function(index, slide) {
-			var label;
-			
-			switch (index)
-			{
-				case 0: 
-					label = "Intro";
-					break;
-				case 1: 
-					label = "Watch a Demo";
-					break;
-				case 2:	
-					label = "Our Future Plans";
-					break;
-				default: 
-					label = "Error";
-					break;
+	if ($('#viewport').length == 1) {
+		$('#viewport').cycle({
+		    speed:  1000, 
+		    timeout: 10000,
+			fx:  'scrollHorz',
+			prev: '#panel-nav-prev',
+			next: '#panel-nav-next',
+			pagerAnchorBuilder: function(index, slide) {
+				var label;
+				
+				switch (index)
+				{
+					case 0: 
+						label = "Intro";
+						break;
+					case 1: 
+						label = "Watch a Demo";
+						break;
+					case 2:	
+						label = "Our Future Plans";
+						break;
+					default: 
+						label = "Error";
+						break;
+				}
+				return '<a href="#" class="tab-' + index + '">' + label + '</a>'; 
 			}
-			return '<a href="#" class="tab-' + index + '">' + label + '</a>'; 
-		}
-	}).cycle('pause');
-	
-	$('#sign-up-tab').toggle(function() {
-		pauseAutoNav();
-		$('#signup-pane-inner').slideDown(350, function() {
-			$('body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
+		}).cycle('pause');
+		
+		$('#sign-up-tab').toggle(function() {
+			pauseAutoNav();
+			$('#signup-pane-inner').slideDown(350, function() {
+				$('body').animate({scrollTop: $('#signup-pane-inner').offset().top - 5}, 800);
+			});
+		}, function() {
+			if(!isHardPaused)
+				startAutoNav();
+			$('body').animate({scrollTop: '0px'}, 800, function() {
+				$('#signup-pane-inner').slideUp(350);
+			});
 		});
-	}, function() {
-		if(!isHardPaused)
-			startAutoNav();
-		$('body').animate({scrollTop: '0px'}, 800, function() {
-			$('#signup-pane-inner').slideUp(350);
-		});
-	});
+	}
 	
 	// $('li', '#highlights ul').hoverIntent({    
 	//     over: function() {
@@ -150,4 +152,10 @@ $(function(){
 	// 		$(this).find("div.content").fadeOut(250);
 	// 	}
 	// });
+
+	$('li', '#faqs').hover(function() {
+		$(this).children('div').slideDown(350);
+	}, function() {
+		$(this).children('div').slideUp(350);
+	});
 });

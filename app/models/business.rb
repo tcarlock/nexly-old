@@ -56,7 +56,7 @@ class Business < ActiveRecord::Base
   #   indexes zip_code
   # end
   
-  # Validations
+  # Validations and callbacks
   validates_presence_of :name, :biography, :address_1, :city, :state, :zip_code, :website, :on => :update, :message => "This is required"
   validates :website, :facebook, :twitter, :google_plus, :linked_in, :uri_format => true
     
